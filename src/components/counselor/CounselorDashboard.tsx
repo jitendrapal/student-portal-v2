@@ -546,7 +546,8 @@ const CounselorDashboard: React.FC = () => {
                                 {application.submittedAt?.toLocaleDateString()}
                               </span>
                               <span>
-                                Documents: {application.documents.length}
+                                Documents:{" "}
+                                {(application.documents || []).length}
                               </span>
                               <span>ID: {application.studentId}</span>
                             </div>
@@ -880,10 +881,10 @@ const CounselorDashboard: React.FC = () => {
                     {/* Documents */}
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-3">
-                        Documents ({application.documents.length})
+                        Documents ({(application.documents || []).length})
                       </h4>
                       <div className="space-y-2">
-                        {application.documents.map((doc) => (
+                        {(application.documents || []).map((doc) => (
                           <div
                             key={doc.id}
                             className="flex items-center justify-between p-3 border rounded-lg"

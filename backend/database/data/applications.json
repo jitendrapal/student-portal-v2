@@ -15,9 +15,9 @@
     "student": "1760189422960rrr6pxcf1",
     "university": "1760189422973gve9fe2ek",
     "course": "17601894229936m52na0s7",
-    "personalStatement": "",
+    "personalStatement": "ok",
     "additionalInfo": "",
-    "status": "draft",
+    "status": "submitted",
     "documents": [],
     "statusHistory": [
       {
@@ -25,12 +25,18 @@
         "updatedBy": "1760189422960rrr6pxcf1",
         "timestamp": "2025-10-11T19:31:07.889Z",
         "notes": "Application created"
+      },
+      {
+        "status": "submitted",
+        "updatedBy": "1760189422960rrr6pxcf1",
+        "timestamp": "2025-10-11T21:01:27.675Z",
+        "notes": "Status changed to submitted"
       }
     ],
-    "submittedAt": null,
-    "lastUpdated": "2025-10-11T19:31:07.889Z",
+    "submittedAt": "2025-10-11T21:01:27.675Z",
+    "lastUpdated": "2025-10-11T21:01:27.675Z",
     "createdAt": "2025-10-11T19:31:07.892Z",
-    "updatedAt": "2025-10-11T19:31:07.892Z"
+    "updatedAt": "2025-10-11T21:01:27.677Z"
   },
   {
     "_id": "17602110757593renjrwhw",
