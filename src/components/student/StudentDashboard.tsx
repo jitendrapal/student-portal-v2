@@ -38,7 +38,7 @@ const StudentDashboard: React.FC = () => {
   const [selectedApplicationId, setSelectedApplicationId] = useState<
     string | null
   >(null);
-  const [applications, setApplications] = useState<any[]>([]);
+  const [userApplications, setUserApplications] = useState<any[]>([]);
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -70,8 +70,8 @@ const StudentDashboard: React.FC = () => {
   // Update local applications state when store applications change
   useEffect(() => {
     if (user?.id) {
-      const userApplications = getApplicationsByStudent(user.id);
-      setApplications(userApplications);
+      const filteredApplications = getApplicationsByStudent(user.id);
+      setUserApplications(filteredApplications);
     }
   }, [applications, user?.id, getApplicationsByStudent]);
 
@@ -160,7 +160,7 @@ const StudentDashboard: React.FC = () => {
     {
       id: "applications",
       label: "My Applications",
-      count: applications.length,
+      count: userApplications.length,
     },
     { id: "documents", label: "Documents", count: 0 },
     { id: "profile", label: "Profile", count: 0 },
@@ -188,7 +188,7 @@ const StudentDashboard: React.FC = () => {
               </div>
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">
-                  {applications.length}
+                  {userApplications.length}
                 </div>
                 <div className="text-sm text-gray-600">Total Applications</div>
               </div>
@@ -275,7 +275,7 @@ const StudentDashboard: React.FC = () => {
                 <div className="flex justify-between items-center mb-6">
                   <div>
                     <h2 className="text-lg font-semibold text-gray-900">
-                      My Applications ({applications.length})
+                      My Applications ({userApplications.length})
                     </h2>
                     <p className="text-sm text-gray-600 mt-1">
                       Track your application status and progress • Last updated:{" "}
@@ -308,7 +308,7 @@ const StudentDashboard: React.FC = () => {
                   </div>
                 </div>
 
-                {applications.length === 0 ? (
+                {userApplications.length === 0 ? (
                   <div className="text-center py-12">
                     <FileText className="w-12 h-12 mx-auto text-gray-300 mb-4" />
                     <h3 className="text-lg font-medium text-gray-900 mb-2">
@@ -327,7 +327,7 @@ const StudentDashboard: React.FC = () => {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {applications.map((application) => {
+                    {userApplications.map((application) => {
                       const university = getUniversityById(
                         application.universityId
                       );
@@ -615,7 +615,7 @@ const StudentDashboard: React.FC = () => {
       {showUploadModal && (
         <DocumentUpload
           onClose={() => setShowUploadModal(false)}
-          applicationId={applications[0]?.id}
+          applicationId={userApplications[0]?.id}
         />
       )}
 
