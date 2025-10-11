@@ -18,6 +18,8 @@ import { useStore } from "../../store/useStore";
 const CounselorDashboard: React.FC = () => {
   const {
     user,
+    applications,
+    fetchApplications,
     getApplicationsByCounselor,
     getUniversityById,
     getCourseById,
@@ -25,6 +27,7 @@ const CounselorDashboard: React.FC = () => {
     updateApplication,
     getUserById,
     setCurrentPage,
+    isLoadingApplications,
   } = useStore();
 
   const [activeTab, setActiveTab] = useState<
@@ -62,26 +65,40 @@ const CounselorDashboard: React.FC = () => {
     );
   }
 
-  const applications = getApplicationsByCounselor(user.id);
+  // Fetch applications when component mounts
+  useEffect(() => {
+    if (user?.id) {
+      fetchApplications();
+    }
+  }, [user?.id, fetchApplications]);
+
+  // Get counselor applications from store
+  const counselorApplications = getApplicationsByCounselor(user.id);
 
   // Check for new applications every 5 seconds
   useEffect(() => {
-    const interval = setInterval(() => {
-      const currentApplications = getApplicationsByCounselor(user.id);
-      const newApps = currentApplications.filter(
-        (app) => app.submittedAt && app.submittedAt > lastChecked
-      );
+    if (user?.id) {
+      const interval = setInterval(() => {
+        fetchApplications();
+      }, 5000); // Check every 5 seconds
 
-      if (newApps.length > 0) {
-        setNewApplicationsCount((prev) => prev + newApps.length);
-        setLastChecked(new Date());
-      }
-    }, 5000); // Check every 5 seconds
+      return () => clearInterval(interval);
+    }
+  }, [user?.id, fetchApplications]);
 
-    return () => clearInterval(interval);
-  }, [user.id, lastChecked, getApplicationsByCounselor]);
+  // Update new applications count when applications change
+  useEffect(() => {
+    const newApps = counselorApplications.filter(
+      (app) => app.submittedAt && app.submittedAt > lastChecked
+    );
 
-  const filteredApplications = applications.filter((app) => {
+    if (newApps.length > 0) {
+      setNewApplicationsCount((prev) => prev + newApps.length);
+      setLastChecked(new Date());
+    }
+  }, [counselorApplications, lastChecked]);
+
+  const filteredApplications = counselorApplications.filter((app) => {
     const matchesStatus = statusFilter === "all" || app.status === statusFilter;
     const university = getUniversityById(app.universityId);
     const course = getCourseById(app.courseId);
@@ -153,57 +170,69 @@ const CounselorDashboard: React.FC = () => {
     setShowApplicationModal(true);
   };
 
-  const handleScheduleInterview = (applicationId: string) => {
+  const handleScheduleInterview = async (applicationId: string) => {
     const interviewDate = prompt("Enter interview date (YYYY-MM-DD):");
     if (interviewDate) {
-      updateApplication(applicationId, {
-        status: "interview_scheduled",
-        interviewDate: new Date(interviewDate),
-      });
-      updateApplicationStatus(
-        applicationId,
-        "interview_scheduled",
-        `Interview scheduled for ${interviewDate}`
-      );
+      try {
+        await updateApplicationStatus(
+          applicationId,
+          "interview_scheduled",
+          `Interview scheduled for ${interviewDate}`
+        );
+        // Refresh applications to get updated data
+        await fetchApplications();
+      } catch (error) {
+        console.error("Error scheduling interview:", error);
+        alert("Failed to schedule interview");
+      }
     }
   };
 
-  const handleAcceptApplication = (applicationId: string) => {
+  const handleAcceptApplication = async (applicationId: string) => {
     if (confirm("Are you sure you want to accept this application?")) {
-      updateApplication(applicationId, {
-        status: "accepted",
-        decisionDate: new Date(),
-      });
-      updateApplicationStatus(
-        applicationId,
-        "accepted",
-        "Application accepted by counselor"
-      );
+      try {
+        await updateApplicationStatus(
+          applicationId,
+          "accepted",
+          "Application accepted by counselor"
+        );
+        // Refresh applications to get updated data
+        await fetchApplications();
+      } catch (error) {
+        console.error("Error accepting application:", error);
+        alert("Failed to accept application");
+      }
     }
   };
 
-  const handleRejectApplication = (applicationId: string) => {
+  const handleRejectApplication = async (applicationId: string) => {
     const reason = prompt("Please provide a reason for rejection:");
     if (reason) {
-      updateApplication(applicationId, {
-        status: "rejected",
-        decisionDate: new Date(),
-      });
-      updateApplicationStatus(
-        applicationId,
-        "rejected",
-        `Application rejected: ${reason}`
-      );
+      try {
+        await updateApplicationStatus(
+          applicationId,
+          "rejected",
+          `Application rejected: ${reason}`
+        );
+        // Refresh applications to get updated data
+        await fetchApplications();
+      } catch (error) {
+        console.error("Error rejecting application:", error);
+        alert("Failed to reject application");
+      }
     }
   };
 
   const stats = {
-    totalStudents: new Set(applications.map((app) => app.studentId)).size,
-    totalApplications: applications.length,
-    underReview: applications.filter((app) => app.status === "under_review")
+    totalStudents: new Set(counselorApplications.map((app) => app.studentId))
+      .size,
+    totalApplications: counselorApplications.length,
+    underReview: counselorApplications.filter(
+      (app) => app.status === "under_review"
+    ).length,
+    accepted: counselorApplications.filter((app) => app.status === "accepted")
       .length,
-    accepted: applications.filter((app) => app.status === "accepted").length,
-    pendingInterviews: applications.filter(
+    pendingInterviews: counselorApplications.filter(
       (app) => app.status === "interview_scheduled"
     ).length,
   };

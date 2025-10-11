@@ -289,7 +289,8 @@ export function createSimpleRoutes(app, db) {
       if (user.role === "student") {
         filter.student = req.user.userId;
       } else if (user.role === "counselor") {
-        filter.assignedCounselor = req.user.userId;
+        // Counselors can see all submitted applications (not drafts)
+        filter.status = { $ne: "draft" };
       }
 
       if (req.query.status) filter.status = req.query.status;
@@ -336,11 +337,123 @@ export function createSimpleRoutes(app, db) {
         personalStatement,
         additionalInfo,
         status: "draft",
+        documents: [],
+        statusHistory: [
+          {
+            status: "draft",
+            updatedBy: req.user.userId,
+            timestamp: new Date(),
+            notes: "Application created",
+          },
+        ],
+        submittedAt: null,
+        lastUpdated: new Date(),
       });
 
       res.status(201).json({
         success: true,
         data: { application },
+      });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Server error" });
+    }
+  });
+
+  // Get single application
+  app.get("/api/applications/:id", auth, async (req, res) => {
+    try {
+      const application = await db.findById("applications", req.params.id);
+      if (!application) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Application not found" });
+      }
+
+      const user = await db.findById("users", req.user.userId);
+
+      // Check permissions
+      if (user.role === "student" && application.student !== req.user.userId) {
+        return res
+          .status(403)
+          .json({ success: false, message: "Access denied" });
+      }
+
+      // Populate related data
+      if (application.student) {
+        const student = await db.findById("users", application.student);
+        application.student = student;
+      }
+      if (application.university) {
+        const university = await db.findById(
+          "universities",
+          application.university
+        );
+        application.university = university;
+      }
+      if (application.course) {
+        const course = await db.findById("courses", application.course);
+        application.course = course;
+      }
+
+      res.json({
+        success: true,
+        data: { application },
+      });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Server error" });
+    }
+  });
+
+  // Update application
+  app.put("/api/applications/:id", auth, async (req, res) => {
+    try {
+      const application = await db.findById("applications", req.params.id);
+      if (!application) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Application not found" });
+      }
+
+      const user = await db.findById("users", req.user.userId);
+
+      // Check permissions
+      if (user.role === "student" && application.student !== req.user.userId) {
+        return res
+          .status(403)
+          .json({ success: false, message: "Access denied" });
+      }
+
+      const updates = {
+        ...req.body,
+        lastUpdated: new Date(),
+      };
+
+      // If status is being updated, add to history
+      if (req.body.status && req.body.status !== application.status) {
+        const statusHistory = application.statusHistory || [];
+        statusHistory.push({
+          status: req.body.status,
+          updatedBy: req.user.userId,
+          timestamp: new Date(),
+          notes: req.body.statusNotes || `Status changed to ${req.body.status}`,
+        });
+        updates.statusHistory = statusHistory;
+
+        // Set submittedAt when status changes to submitted
+        if (req.body.status === "submitted" && !application.submittedAt) {
+          updates.submittedAt = new Date();
+        }
+      }
+
+      const updatedApplication = await db.update(
+        "applications",
+        req.params.id,
+        updates
+      );
+
+      res.json({
+        success: true,
+        data: { application: updatedApplication },
       });
     } catch (error) {
       res.status(500).json({ success: false, message: "Server error" });

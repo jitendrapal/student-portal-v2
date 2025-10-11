@@ -187,10 +187,15 @@ interface CourseState {
 
 interface ApplicationState {
   applications: Application[];
+  isLoadingApplications: boolean;
+  fetchApplications: () => Promise<void>;
   addApplication: (
     application: Omit<Application, "id" | "lastUpdated" | "statusHistory">
-  ) => void;
-  updateApplication: (id: string, updates: Partial<Application>) => void;
+  ) => Promise<string>;
+  updateApplication: (
+    id: string,
+    updates: Partial<Application>
+  ) => Promise<void>;
   addDocumentToApplication: (
     applicationId: string,
     document: Omit<any, "id" | "applicationId">
@@ -199,7 +204,7 @@ interface ApplicationState {
     id: string,
     status: Application["status"],
     notes?: string
-  ) => void;
+  ) => Promise<void>;
   getApplicationsByStudent: (studentId: string) => Application[];
   getApplicationsByCounselor: (counselorId: string) => Application[];
 }
@@ -436,40 +441,98 @@ export const useStore = create<Store>((set, get) => ({
   },
 
   // Application State
-  applications: mockApplications,
-  addApplication: (applicationData) => {
-    const newApplication: Application = {
-      ...applicationData,
-      id: `app-${Date.now()}`,
-      lastUpdated: new Date(),
-      statusHistory: [
-        {
-          id: `status-${Date.now()}`,
-          applicationId: `app-${Date.now()}`,
-          status: applicationData.status,
-          updatedBy: applicationData.studentId,
-          updatedAt: new Date(),
-          notes: "Application created",
-        },
-      ],
-    };
+  applications: [],
+  isLoadingApplications: false,
+  fetchApplications: async () => {
+    try {
+      set({ isLoadingApplications: true });
+      const response = await apiClient.getApplications({});
 
-    set((state) => ({
-      applications: [...state.applications, newApplication],
-    }));
+      if (response.success && response.data) {
+        const applications = response.data.applications.map((app: any) => ({
+          ...app,
+          id: app._id,
+          universityId: app.university?._id || app.university,
+          courseId: app.course?._id || app.course,
+          studentId: app.student?._id || app.student,
+          lastUpdated: new Date(app.lastUpdated),
+          submittedAt: app.submittedAt ? new Date(app.submittedAt) : undefined,
+          interviewDate: app.interviewDate
+            ? new Date(app.interviewDate)
+            : undefined,
+          decisionDate: app.decisionDate
+            ? new Date(app.decisionDate)
+            : undefined,
+        }));
+
+        set({ applications, isLoadingApplications: false });
+      }
+    } catch (error) {
+      console.error("Error fetching applications:", error);
+      set({ isLoadingApplications: false });
+    }
   },
-  updateApplication: (id: string, updates: Partial<Application>) => {
-    set((state) => ({
-      applications: state.applications.map((app) =>
-        app.id === id
-          ? {
-              ...app,
-              ...updates,
-              lastUpdated: new Date(),
-            }
-          : app
-      ),
-    }));
+  addApplication: async (applicationData) => {
+    try {
+      const response = await apiClient.createApplication({
+        university: applicationData.universityId,
+        course: applicationData.courseId,
+        personalStatement: applicationData.personalStatement,
+        additionalInfo: applicationData.additionalInfo,
+      });
+
+      if (response.success && response.data) {
+        const newApplication = {
+          ...response.data.application,
+          id: response.data.application._id,
+          universityId: response.data.application.university,
+          courseId: response.data.application.course,
+          studentId: response.data.application.student,
+          lastUpdated: new Date(response.data.application.lastUpdated),
+          submittedAt: response.data.application.submittedAt
+            ? new Date(response.data.application.submittedAt)
+            : undefined,
+        };
+
+        set((state) => ({
+          applications: [...state.applications, newApplication],
+        }));
+
+        return newApplication.id;
+      }
+      throw new Error("Failed to create application");
+    } catch (error) {
+      console.error("Error creating application:", error);
+      throw error;
+    }
+  },
+  updateApplication: async (id: string, updates: Partial<Application>) => {
+    try {
+      const response = await apiClient.updateApplication(id, updates);
+
+      if (response.success && response.data) {
+        const updatedApplication = {
+          ...response.data.application,
+          id: response.data.application._id,
+          universityId: response.data.application.university,
+          courseId: response.data.application.course,
+          studentId: response.data.application.student,
+          lastUpdated: new Date(response.data.application.lastUpdated),
+          submittedAt: response.data.application.submittedAt
+            ? new Date(response.data.application.submittedAt)
+            : undefined,
+        };
+
+        set((state) => ({
+          applications: state.applications.map((app) =>
+            app.id === id ? updatedApplication : app
+          ),
+        }));
+      }
+    } catch (error) {
+      console.error("Error updating application:", error);
+      throw error;
+    }
   },
   addDocumentToApplication: (
     applicationId: string,
@@ -495,36 +558,41 @@ export const useStore = create<Store>((set, get) => ({
       ),
     }));
   },
-  updateApplicationStatus: (
+  updateApplicationStatus: async (
     id: string,
     status: Application["status"],
     notes?: string
   ) => {
-    const { user } = get();
-    if (!user) return;
+    try {
+      const response = await apiClient.updateApplicationStatus(
+        id,
+        status,
+        notes
+      );
 
-    set((state) => ({
-      applications: state.applications.map((app) => {
-        if (app.id === id) {
-          const statusUpdate = {
-            id: `status-${Date.now()}`,
-            applicationId: id,
-            status,
-            updatedBy: user.id,
-            updatedAt: new Date(),
-            notes: notes || `Status updated to ${status}`,
-          };
+      if (response.success && response.data) {
+        const updatedApplication = {
+          ...response.data.application,
+          id: response.data.application._id,
+          universityId: response.data.application.university,
+          courseId: response.data.application.course,
+          studentId: response.data.application.student,
+          lastUpdated: new Date(response.data.application.lastUpdated),
+          submittedAt: response.data.application.submittedAt
+            ? new Date(response.data.application.submittedAt)
+            : undefined,
+        };
 
-          return {
-            ...app,
-            status,
-            lastUpdated: new Date(),
-            statusHistory: [...app.statusHistory, statusUpdate],
-          };
-        }
-        return app;
-      }),
-    }));
+        set((state) => ({
+          applications: state.applications.map((app) =>
+            app.id === id ? updatedApplication : app
+          ),
+        }));
+      }
+    } catch (error) {
+      console.error("Error updating application status:", error);
+      throw error;
+    }
   },
   getApplicationsByStudent: (studentId: string) => {
     return get().applications.filter((app) => app.studentId === studentId);

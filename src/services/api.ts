@@ -1,5 +1,6 @@
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 // Types for API responses
 interface ApiResponse<T> {
@@ -31,12 +32,12 @@ class ApiClient {
 
   constructor(baseURL: string) {
     this.baseURL = baseURL;
-    this.token = localStorage.getItem('token');
+    this.token = localStorage.getItem("token");
   }
 
   private getHeaders(): HeadersInit {
     const headers: HeadersInit = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     };
 
     if (this.token) {
@@ -61,12 +62,12 @@ class ApiClient {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'API request failed');
+        throw new Error(data.message || "API request failed");
       }
 
       return data;
     } catch (error) {
-      console.error('API request error:', error);
+      console.error("API request error:", error);
       throw error;
     }
   }
@@ -74,18 +75,21 @@ class ApiClient {
   setToken(token: string | null) {
     this.token = token;
     if (token) {
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
     } else {
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
     }
   }
 
   // Auth endpoints
   async login(email: string, password: string) {
-    const response = await this.request<{ user: any; token: string }>('/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await this.request<{ user: any; token: string }>(
+      "/auth/login",
+      {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      }
+    );
 
     if (response.success && response.data?.token) {
       this.setToken(response.data.token);
@@ -99,12 +103,15 @@ class ApiClient {
     password: string;
     firstName: string;
     lastName: string;
-    role: 'student' | 'counselor';
+    role: "student" | "counselor";
   }) {
-    const response = await this.request<{ user: any; token: string }>('/auth/register', {
-      method: 'POST',
-      body: JSON.stringify(userData),
-    });
+    const response = await this.request<{ user: any; token: string }>(
+      "/auth/register",
+      {
+        method: "POST",
+        body: JSON.stringify(userData),
+      }
+    );
 
     if (response.success && response.data?.token) {
       this.setToken(response.data.token);
@@ -114,12 +121,12 @@ class ApiClient {
   }
 
   async getCurrentUser() {
-    return this.request<{ user: any }>('/auth/me');
+    return this.request<{ user: any }>("/auth/me");
   }
 
   async updateProfile(userData: any) {
-    return this.request<{ user: any }>('/auth/profile', {
-      method: 'PUT',
+    return this.request<{ user: any }>("/auth/profile", {
+      method: "PUT",
       body: JSON.stringify(userData),
     });
   }
@@ -130,59 +137,71 @@ class ApiClient {
   }
 
   // Universities endpoints
-  async getUniversities(params: {
-    page?: number;
-    limit?: number;
-    country?: string;
-    type?: string;
-    minTuition?: number;
-    maxTuition?: number;
-    maxWorldRanking?: number;
-    search?: string;
-    featured?: boolean;
-  } = {}) {
+  async getUniversities(
+    params: {
+      page?: number;
+      limit?: number;
+      country?: string;
+      type?: string;
+      minTuition?: number;
+      maxTuition?: number;
+      maxWorldRanking?: number;
+      search?: string;
+      featured?: boolean;
+    } = {}
+  ) {
     const queryParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
+      if (value !== undefined && value !== null && value !== "") {
         queryParams.append(key, value.toString());
       }
     });
 
-    const endpoint = `/universities${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
-    return this.request<PaginationResponse<any>['data']>(endpoint);
+    const endpoint = `/universities${
+      queryParams.toString() ? `?${queryParams.toString()}` : ""
+    }`;
+    return this.request<PaginationResponse<any>["data"]>(endpoint);
   }
 
   async getUniversity(id: string) {
-    return this.request<{ university: any; courses: any[] }>(`/universities/${id}`);
+    return this.request<{ university: any; courses: any[] }>(
+      `/universities/${id}`
+    );
   }
 
   async getCountries() {
-    return this.request<{ countries: string[] }>('/universities/meta/countries');
+    return this.request<{ countries: string[] }>(
+      "/universities/meta/countries"
+    );
   }
 
   // Courses endpoints
-  async getCourses(params: {
-    page?: number;
-    limit?: number;
-    university?: string;
-    degree?: string;
-    field?: string;
-    mode?: string;
-    language?: string;
-    minTuition?: number;
-    maxTuition?: number;
-    search?: string;
-    featured?: boolean;
-  } = {}) {
+  async getCourses(
+    params: {
+      page?: number;
+      limit?: number;
+      university?: string;
+      degree?: string;
+      field?: string;
+      mode?: string;
+      language?: string;
+      minTuition?: number;
+      maxTuition?: number;
+      search?: string;
+      featured?: boolean;
+    } = {}
+  ) {
     const queryParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
+      if (value !== undefined && value !== null && value !== "") {
         queryParams.append(key, value.toString());
       }
     });
 
-    const endpoint = `/courses${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
-    return this.request<PaginationResponse<any>['data']>(endpoint);
+    const endpoint = `/courses${
+      queryParams.toString() ? `?${queryParams.toString()}` : ""
+    }`;
+    return this.request<PaginationResponse<any>["data"]>(endpoint);
   }
 
   async getCourse(id: string) {
@@ -190,27 +209,31 @@ class ApiClient {
   }
 
   async getFields() {
-    return this.request<{ fields: string[] }>('/courses/meta/fields');
+    return this.request<{ fields: string[] }>("/courses/meta/fields");
   }
 
   // Applications endpoints
-  async getApplications(params: {
-    page?: number;
-    limit?: number;
-    status?: string;
-    university?: string;
-    course?: string;
-    student?: string;
-  } = {}) {
+  async getApplications(
+    params: {
+      page?: number;
+      limit?: number;
+      status?: string;
+      university?: string;
+      course?: string;
+      student?: string;
+    } = {}
+  ) {
     const queryParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
+      if (value !== undefined && value !== null && value !== "") {
         queryParams.append(key, value.toString());
       }
     });
 
-    const endpoint = `/applications${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
-    return this.request<PaginationResponse<any>['data']>(endpoint);
+    const endpoint = `/applications${
+      queryParams.toString() ? `?${queryParams.toString()}` : ""
+    }`;
+    return this.request<PaginationResponse<any>["data"]>(endpoint);
   }
 
   async getApplication(id: string) {
@@ -223,35 +246,46 @@ class ApiClient {
     personalStatement?: string;
     additionalInfo?: string;
   }) {
-    return this.request<{ application: any }>('/applications', {
-      method: 'POST',
+    return this.request<{ application: any }>("/applications", {
+      method: "POST",
       body: JSON.stringify(applicationData),
     });
   }
 
+  async updateApplication(id: string, updates: any) {
+    return this.request<{ application: any }>(`/applications/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(updates),
+    });
+  }
+
   async updateApplicationStatus(id: string, status: string, notes?: string) {
-    return this.request<{ application: any }>(`/applications/${id}/status`, {
-      method: 'PUT',
-      body: JSON.stringify({ status, notes }),
+    return this.request<{ application: any }>(`/applications/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ status, statusNotes: notes }),
     });
   }
 
   // Users endpoints
-  async getUsers(params: {
-    page?: number;
-    limit?: number;
-    role?: string;
-    search?: string;
-  } = {}) {
+  async getUsers(
+    params: {
+      page?: number;
+      limit?: number;
+      role?: string;
+      search?: string;
+    } = {}
+  ) {
     const queryParams = new URLSearchParams();
     Object.entries(params).forEach(([key, value]) => {
-      if (value !== undefined && value !== null && value !== '') {
+      if (value !== undefined && value !== null && value !== "") {
         queryParams.append(key, value.toString());
       }
     });
 
-    const endpoint = `/users${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
-    return this.request<PaginationResponse<any>['data']>(endpoint);
+    const endpoint = `/users${
+      queryParams.toString() ? `?${queryParams.toString()}` : ""
+    }`;
+    return this.request<PaginationResponse<any>["data"]>(endpoint);
   }
 
   async getUser(id: string) {
@@ -260,7 +294,7 @@ class ApiClient {
 
   async updateUser(id: string, userData: any) {
     return this.request<{ user: any }>(`/users/${id}`, {
-      method: 'PUT',
+      method: "PUT",
       body: JSON.stringify(userData),
     });
   }
@@ -268,7 +302,7 @@ class ApiClient {
   // Upload endpoints
   async uploadDocument(file: File) {
     const formData = new FormData();
-    formData.append('document', file);
+    formData.append("document", file);
 
     const headers: HeadersInit = {};
     if (this.token) {
@@ -276,7 +310,7 @@ class ApiClient {
     }
 
     const response = await fetch(`${this.baseURL}/upload/document`, {
-      method: 'POST',
+      method: "POST",
       headers,
       body: formData,
     });
@@ -284,7 +318,7 @@ class ApiClient {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || 'Upload failed');
+      throw new Error(data.message || "Upload failed");
     }
 
     return data;
@@ -292,7 +326,7 @@ class ApiClient {
 
   async uploadAvatar(file: File) {
     const formData = new FormData();
-    formData.append('avatar', file);
+    formData.append("avatar", file);
 
     const headers: HeadersInit = {};
     if (this.token) {
@@ -300,7 +334,7 @@ class ApiClient {
     }
 
     const response = await fetch(`${this.baseURL}/upload/avatar`, {
-      method: 'POST',
+      method: "POST",
       headers,
       body: formData,
     });
@@ -308,7 +342,7 @@ class ApiClient {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || 'Upload failed');
+      throw new Error(data.message || "Upload failed");
     }
 
     return data;

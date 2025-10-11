@@ -21,10 +21,13 @@ import ApplicationForm from "./ApplicationForm";
 const StudentDashboard: React.FC = () => {
   const {
     user,
+    applications,
+    fetchApplications,
     getApplicationsByStudent,
     getUniversityById,
     getCourseById,
     setCurrentPage,
+    isLoadingApplications,
   } = useStore();
 
   const [activeTab, setActiveTab] = useState<
@@ -39,33 +42,38 @@ const StudentDashboard: React.FC = () => {
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
   const [isRefreshing, setIsRefreshing] = useState(false);
 
-  // Refresh applications when component mounts or user changes
+  // Fetch applications when component mounts or user changes
   useEffect(() => {
     if (user?.id) {
-      const userApplications = getApplicationsByStudent(user.id);
-      setApplications(userApplications);
+      fetchApplications();
     }
-  }, [user?.id, getApplicationsByStudent]);
+  }, [user?.id, fetchApplications]);
 
   // Refresh applications when returning to applications tab
   useEffect(() => {
     if (activeTab === "applications" && user?.id) {
-      const userApplications = getApplicationsByStudent(user.id);
-      setApplications(userApplications);
+      fetchApplications();
     }
-  }, [activeTab, user?.id, getApplicationsByStudent]);
+  }, [activeTab, user?.id, fetchApplications]);
 
   // Real-time status tracking - check for updates every 10 seconds
   useEffect(() => {
     if (user?.id && activeTab === "applications") {
       const interval = setInterval(() => {
-        const userApplications = getApplicationsByStudent(user.id);
-        setApplications(userApplications);
+        fetchApplications();
       }, 10000); // Check every 10 seconds
 
       return () => clearInterval(interval);
     }
-  }, [user?.id, activeTab, getApplicationsByStudent]);
+  }, [user?.id, activeTab, fetchApplications]);
+
+  // Update local applications state when store applications change
+  useEffect(() => {
+    if (user?.id) {
+      const userApplications = getApplicationsByStudent(user.id);
+      setApplications(userApplications);
+    }
+  }, [applications, user?.id, getApplicationsByStudent]);
 
   if (!user || user.role !== "student") {
     return (
@@ -96,12 +104,14 @@ const StudentDashboard: React.FC = () => {
   const refreshApplications = async () => {
     if (user?.id) {
       setIsRefreshing(true);
-      // Simulate a small delay to show loading state
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      const userApplications = getApplicationsByStudent(user.id);
-      setApplications(userApplications);
-      setLastRefreshed(new Date());
-      setIsRefreshing(false);
+      try {
+        await fetchApplications();
+        setLastRefreshed(new Date());
+      } catch (error) {
+        console.error("Error refreshing applications:", error);
+      } finally {
+        setIsRefreshing(false);
+      }
     }
   };
 

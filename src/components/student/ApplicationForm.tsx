@@ -124,19 +124,24 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!application) return;
 
-    updateApplication(applicationId, {
-      personalStatement: formData.personalStatement,
-      additionalInfo: formData.additionalInfo,
-      status: "draft",
-    });
+    try {
+      await updateApplication(applicationId, {
+        personalStatement: formData.personalStatement,
+        additionalInfo: formData.additionalInfo,
+        status: "draft",
+      });
 
-    alert("Application saved successfully!");
+      alert("Application saved successfully!");
+    } catch (error) {
+      console.error("Error saving application:", error);
+      alert("Failed to save application");
+    }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!application) return;
 
     // Validate required fields
@@ -156,15 +161,20 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
       return;
     }
 
-    updateApplication(applicationId, {
-      personalStatement: formData.personalStatement,
-      additionalInfo: formData.additionalInfo,
-      status: "submitted",
-      submittedAt: new Date(),
-    });
+    try {
+      await updateApplication(applicationId, {
+        personalStatement: formData.personalStatement,
+        additionalInfo: formData.additionalInfo,
+        status: "submitted",
+        submittedAt: new Date(),
+      });
 
-    alert("Application submitted successfully!");
-    onClose();
+      alert("Application submitted successfully!");
+      onClose();
+    } catch (error) {
+      console.error("Error submitting application:", error);
+      alert("Failed to submit application");
+    }
   };
 
   const getStepProgress = () => {
