@@ -259,7 +259,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
   }
 
   return (
-    <React.Fragment>
+    <>
       {/* Main Application Form Modal */}
       <div
         className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200"
@@ -1187,8 +1187,8 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
             </div>
           </div>
         </div>
-        </div>
       </div>
+        </div>
       </div>
 
       {/* Document Upload Modal */}
@@ -1206,7 +1206,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
           onClose={() => setShowBulkUpload(false)}
         />
       )}
-    </React.Fragment>
+    </>
   );
 };
 
