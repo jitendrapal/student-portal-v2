@@ -109,16 +109,16 @@ const BulkDocumentUpload: React.FC<BulkDocumentUploadProps> = ({
       return;
     }
 
-    // Check if all required documents are uploaded
-    const missingRequired = requiredDocumentTypes.filter(
-      (reqType) => !filesToUpload.some((doc) => doc.type === reqType.value)
-    );
+    // Required documents validation temporarily disabled for testing
+    // const missingRequired = requiredDocumentTypes.filter(
+    //   (reqType) => !filesToUpload.some((doc) => doc.type === reqType.value)
+    // );
 
-    if (missingRequired.length > 0) {
-      const missingNames = missingRequired.map((doc) => doc.label).join(", ");
-      alert(`Please upload all required documents: ${missingNames}`);
-      return;
-    }
+    // if (missingRequired.length > 0) {
+    //   const missingNames = missingRequired.map((doc) => doc.label).join(", ");
+    //   alert(`Please upload all required documents: ${missingNames}`);
+    //   return;
+    // }
 
     if (!applicationId) {
       alert("No application selected");

@@ -149,24 +149,25 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
       return;
     }
 
-    // Validate required fields
-    const requiredDocuments = ["transcript", "passport", "english_test"];
-    const uploadedDocTypes = (application.documents || []).map(
-      (doc) => doc.type
-    );
-    const missingDocs = requiredDocuments.filter(
-      (type) => !uploadedDocTypes.includes(type)
-    );
+    // Validate required fields (documents validation temporarily disabled for testing)
+    // const requiredDocuments = ["transcript", "passport", "english_test"];
+    // const uploadedDocTypes = (application.documents || []).map(
+    //   (doc) => doc.type
+    // );
+    // const missingDocs = requiredDocuments.filter(
+    //   (type) => !uploadedDocTypes.includes(type)
+    // );
 
-    if (missingDocs.length > 0) {
-      alert(`Please upload required documents: ${missingDocs.join(", ")}`);
-      return;
-    }
+    // if (missingDocs.length > 0) {
+    //   alert(`Please upload required documents: ${missingDocs.join(", ")}`);
+    //   return;
+    // }
 
-    if (!formData.personalStatement.trim()) {
-      alert("Please write your personal statement");
-      return;
-    }
+    // Personal statement validation temporarily disabled for testing
+    // if (!formData.personalStatement.trim()) {
+    //   alert("Please write your personal statement");
+    //   return;
+    // }
 
     try {
       console.log("Submitting application:", {
