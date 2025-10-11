@@ -516,7 +516,9 @@ export const useStore = create<Store>((set, get) => ({
   },
   updateApplication: async (id: string, updates: Partial<Application>) => {
     try {
+      console.log("Updating application:", { id, updates });
       const response = await apiClient.updateApplication(id, updates);
+      console.log("Update response:", response);
 
       if (response.success && response.data) {
         const updatedApplication = {

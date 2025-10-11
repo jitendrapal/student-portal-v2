@@ -142,11 +142,16 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
   };
 
   const handleSubmit = async () => {
-    if (!application) return;
+    if (!application) {
+      alert("Application not found. Please try again.");
+      return;
+    }
 
     // Validate required fields
     const requiredDocuments = ["transcript", "passport", "english_test"];
-    const uploadedDocTypes = application.documents.map((doc) => doc.type);
+    const uploadedDocTypes = (application.documents || []).map(
+      (doc) => doc.type
+    );
     const missingDocs = requiredDocuments.filter(
       (type) => !uploadedDocTypes.includes(type)
     );
@@ -162,6 +167,13 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
     }
 
     try {
+      console.log("Submitting application:", {
+        applicationId,
+        personalStatement: formData.personalStatement,
+        additionalInfo: formData.additionalInfo,
+        status: "submitted",
+      });
+
       await updateApplication(applicationId, {
         personalStatement: formData.personalStatement,
         additionalInfo: formData.additionalInfo,
@@ -173,7 +185,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
       onClose();
     } catch (error) {
       console.error("Error submitting application:", error);
-      alert("Failed to submit application");
+      alert(`Failed to submit application: ${error.message || error}`);
     }
   };
 
@@ -192,7 +204,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
       completed++;
 
     // Documents check
-    if (application && application.documents.length > 0) completed++;
+    if (application && (application.documents || []).length > 0) completed++;
 
     // Essays check
     if (formData.personalStatement.length > 100) completed++;
@@ -661,53 +673,56 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
 
                   <div className="space-y-6">
                     {/* Uploaded Documents */}
-                    {application && application.documents.length > 0 && (
-                      <div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                          Uploaded Documents
-                        </h3>
-                        <div className="space-y-3">
-                          {application.documents.map((doc, index) => (
-                            <div
-                              key={index}
-                              className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-lg"
-                            >
-                              <div className="flex items-center">
-                                <FileText className="w-5 h-5 text-blue-600 mr-3" />
-                                <div>
-                                  <div className="font-medium text-gray-900">
-                                    {doc.name}
-                                  </div>
-                                  <div className="text-sm text-gray-600">
-                                    {doc.type.replace("_", " ").toUpperCase()} •{" "}
-                                    {(doc.fileSize / 1024 / 1024).toFixed(2)} MB
+                    {application &&
+                      (application.documents || []).length > 0 && (
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                            Uploaded Documents
+                          </h3>
+                          <div className="space-y-3">
+                            {(application.documents || []).map((doc, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-lg"
+                              >
+                                <div className="flex items-center">
+                                  <FileText className="w-5 h-5 text-blue-600 mr-3" />
+                                  <div>
+                                    <div className="font-medium text-gray-900">
+                                      {doc.name}
+                                    </div>
+                                    <div className="text-sm text-gray-600">
+                                      {doc.type.replace("_", " ").toUpperCase()}{" "}
+                                      •{" "}
+                                      {(doc.fileSize / 1024 / 1024).toFixed(2)}{" "}
+                                      MB
+                                    </div>
                                   </div>
                                 </div>
+                                <div className="flex items-center space-x-2">
+                                  <span
+                                    className={`px-2 py-1 text-xs font-medium rounded-full ${
+                                      doc.status === "verified"
+                                        ? "bg-green-100 text-green-800"
+                                        : doc.status === "rejected"
+                                        ? "bg-red-100 text-red-800"
+                                        : "bg-yellow-100 text-yellow-800"
+                                    }`}
+                                  >
+                                    {doc.status}
+                                  </span>
+                                  <button className="p-1 text-gray-400 hover:text-gray-600">
+                                    <Eye className="w-4 h-4" />
+                                  </button>
+                                  <button className="p-1 text-gray-400 hover:text-gray-600">
+                                    <Download className="w-4 h-4" />
+                                  </button>
+                                </div>
                               </div>
-                              <div className="flex items-center space-x-2">
-                                <span
-                                  className={`px-2 py-1 text-xs font-medium rounded-full ${
-                                    doc.status === "verified"
-                                      ? "bg-green-100 text-green-800"
-                                      : doc.status === "rejected"
-                                      ? "bg-red-100 text-red-800"
-                                      : "bg-yellow-100 text-yellow-800"
-                                  }`}
-                                >
-                                  {doc.status}
-                                </span>
-                                <button className="p-1 text-gray-400 hover:text-gray-600">
-                                  <Eye className="w-4 h-4" />
-                                </button>
-                                <button className="p-1 text-gray-400 hover:text-gray-600">
-                                  <Download className="w-4 h-4" />
-                                </button>
-                              </div>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
 
                     {/* Upload New Document */}
                     <div>
@@ -724,7 +739,8 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
                         </button>
                       </div>
 
-                      {(!application || application.documents.length === 0) && (
+                      {(!application ||
+                        (application.documents || []).length === 0) && (
                         <div className="text-center py-12 border-2 border-dashed border-gray-300 rounded-lg">
                           <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                           <h3 className="text-lg font-semibold text-gray-900 mb-2">
