@@ -34,6 +34,7 @@ const Navbar: React.FC = () => {
     setCourseFilters,
     setSelectedCourse,
     getCoursesByUniversity,
+    setSelectedUniversity,
   } = useStore();
 
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -216,9 +217,19 @@ const Navbar: React.FC = () => {
                                           key={university.id}
                                           className="pl-4"
                                         >
-                                          <div className="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-50">
+                                          <button
+                                            onClick={() => {
+                                              setSelectedUniversity(university);
+                                              setCurrentPage(
+                                                "university-detail"
+                                              );
+                                              setShowUniversityDropdown(false);
+                                              setMobileMenuOpen(false);
+                                            }}
+                                            className="w-full text-left px-2 py-1 text-xs font-medium text-gray-700 bg-gray-50 hover:bg-gray-100 hover:text-blue-600 rounded"
+                                          >
                                             {university.name}
-                                          </div>
+                                          </button>
                                           {/* Courses for this university */}
                                           <div className="ml-2">
                                             {universityCourses
@@ -536,9 +547,16 @@ const Navbar: React.FC = () => {
                                       key={university.id}
                                       className="space-y-1"
                                     >
-                                      <div className="px-3 py-1 text-xs font-medium text-gray-600 bg-gray-50 rounded">
+                                      <button
+                                        onClick={() => {
+                                          setSelectedUniversity(university);
+                                          setCurrentPage("university-detail");
+                                          setMobileMenuOpen(false);
+                                        }}
+                                        className="w-full text-left px-3 py-1 text-xs font-medium text-gray-600 bg-gray-50 hover:bg-gray-100 hover:text-blue-600 rounded"
+                                      >
                                         {university.name}
-                                      </div>
+                                      </button>
                                       {/* Courses for this university */}
                                       <div className="ml-4 space-y-1">
                                         {universityCourses
