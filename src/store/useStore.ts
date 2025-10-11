@@ -230,7 +230,15 @@ export const useStore = create<Store>((set, get) => ({
     try {
       const response = await apiClient.login(email, password);
       if (response.success && response.data) {
-        set({ user: response.data.user, isAuthenticated: true });
+        // Transform user data to match frontend interface
+        const user = {
+          ...response.data.user,
+          id: response.data.user._id,
+          createdAt: new Date(response.data.user.createdAt),
+          updatedAt: new Date(response.data.user.updatedAt),
+        };
+        console.log("✅ User logged in:", user);
+        set({ user, isAuthenticated: true });
         return true;
       }
       return false;

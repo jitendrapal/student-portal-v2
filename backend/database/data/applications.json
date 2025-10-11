@@ -75,5 +75,27 @@
     "lastUpdated": "2025-10-11T19:40:02.662Z",
     "createdAt": "2025-10-11T19:40:02.664Z",
     "updatedAt": "2025-10-11T19:40:02.664Z"
+  },
+  {
+    "_id": "1760212133548d5ji8lkej",
+    "student": "1760189422960rrr6pxcf1",
+    "university": "1760189422968axy0ck2sq",
+    "course": "1760189422990p8cbuv97m",
+    "personalStatement": "Test application from API test script",
+    "additionalInfo": "This is a test application",
+    "status": "draft",
+    "documents": [],
+    "statusHistory": [
+      {
+        "status": "draft",
+        "updatedBy": "1760189422960rrr6pxcf1",
+        "timestamp": "2025-10-11T19:48:53.547Z",
+        "notes": "Application created"
+      }
+    ],
+    "submittedAt": null,
+    "lastUpdated": "2025-10-11T19:48:53.547Z",
+    "createdAt": "2025-10-11T19:48:53.548Z",
+    "updatedAt": "2025-10-11T19:48:53.548Z"
   }
 ]
