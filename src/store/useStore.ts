@@ -335,11 +335,15 @@ export const useStore = create<Store>((set, get) => ({
       const response = await apiClient.getCourses();
       if (response.success && response.data) {
         const courses = response.data.courses || [];
+        // Set courses and apply existing filters
         set({
           courses,
-          filteredCourses: courses,
           isLoading: false,
         });
+
+        // Apply existing filters to the newly fetched courses
+        const { courseFilters } = get();
+        get().setCourseFilters(courseFilters);
       } else {
         console.error("Failed to fetch courses - invalid response:", response);
         set({ isLoading: false });
@@ -410,9 +414,12 @@ export const useStore = create<Store>((set, get) => ({
     set({ selectedCourse: course });
   },
   getCoursesByUniversity: (universityId: string) => {
-    return get().courses.filter(
+    const allCourses = get().courses;
+    const filteredCourses = allCourses.filter(
       (course) => course.universityId === universityId
     );
+
+    return filteredCourses;
   },
   getCourseById: (id: string) => {
     return get().courses.find((course) => course.id === id);

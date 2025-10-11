@@ -23,6 +23,7 @@ const CourseDetail: React.FC = () => {
     setCurrentPage,
     user,
     isAuthenticated,
+    addApplication,
   } = useStore();
   const [activeTab, setActiveTab] = useState<
     "overview" | "curriculum" | "requirements" | "career"
@@ -52,12 +53,31 @@ const CourseDetail: React.FC = () => {
   }
 
   const handleApply = () => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !user) {
       setCurrentPage("login");
       return;
     }
-    // In a real app, this would open an application form
-    alert(`Application for ${course.name} started!`);
+
+    if (!course) {
+      alert("Course not found!");
+      return;
+    }
+
+    // Create the application
+    addApplication({
+      studentId: user.id,
+      universityId: course.universityId,
+      courseId: course.id,
+      status: "draft",
+      submittedAt: new Date(),
+      documents: [],
+      personalStatement: "",
+      additionalInfo: "",
+    });
+
+    alert(
+      `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
+    );
   };
 
   const tabs = [

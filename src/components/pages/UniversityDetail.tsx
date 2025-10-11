@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   MapPin,
   Star,
@@ -22,13 +22,20 @@ const UniversityDetail: React.FC = () => {
     getCoursesByUniversity,
     setCurrentPage,
     setSelectedCourse,
+    fetchCourses,
     user,
     isAuthenticated,
+    addApplication,
   } = useStore();
   const [activeTab, setActiveTab] = useState<
     "overview" | "courses" | "admissions" | "reviews"
   >("overview");
   const [isFavorited, setIsFavorited] = useState(false);
+
+  // Fetch courses when component mounts
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
 
   // Use selectedUniversity if available, otherwise fall back to first university
   const university = selectedUniversity || universities[0];
@@ -60,12 +67,33 @@ const UniversityDetail: React.FC = () => {
   ];
 
   const handleApply = (courseId: string) => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !user) {
       setCurrentPage("login");
       return;
     }
-    // In a real app, this would open an application form
-    alert(`Application for course ${courseId} started!`);
+
+    // Find the course to get information
+    const course = courses.find((c) => c.id === courseId);
+    if (!course) {
+      alert("Course not found!");
+      return;
+    }
+
+    // Create the application
+    addApplication({
+      studentId: user.id,
+      universityId: course.universityId,
+      courseId: courseId,
+      status: "draft",
+      submittedAt: new Date(),
+      documents: [],
+      personalStatement: "",
+      additionalInfo: "",
+    });
+
+    alert(
+      `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
+    );
   };
 
   return (
@@ -124,7 +152,7 @@ const UniversityDetail: React.FC = () => {
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                {university.ranking.world && (
+                {university.ranking?.world && (
                   <div className="flex items-center">
                     <Star className="w-5 h-5 mr-2 text-yellow-400" />
                     <div>
@@ -152,8 +180,8 @@ const UniversityDetail: React.FC = () => {
                   <DollarSign className="w-5 h-5 mr-2 text-green-500" />
                   <div>
                     <div className="font-semibold">
-                      {university.tuitionRange.currency}{" "}
-                      {university.tuitionRange.min.toLocaleString()}+
+                      {university.tuitionRange?.currency}{" "}
+                      {university.tuitionRange?.min?.toLocaleString()}+
                     </div>
                     <div className="text-sm text-gray-600">Tuition/year</div>
                   </div>
@@ -222,13 +250,13 @@ const UniversityDetail: React.FC = () => {
               </div>
 
               {/* Images */}
-              {university.images && university.images.length > 0 && (
+              {university.images && university.images?.length > 0 && (
                 <div className="bg-white rounded-lg shadow-sm p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-4">
                     Campus
                   </h2>
                   <div className="grid md:grid-cols-2 gap-4">
-                    {university.images.map((image, index) => (
+                    {university.images?.map((image, index) => (
                       <img
                         key={index}
                         src={image}
@@ -241,13 +269,13 @@ const UniversityDetail: React.FC = () => {
               )}
 
               {/* Facilities */}
-              {university.facilities && university.facilities.length > 0 && (
+              {university.facilities && university.facilities?.length > 0 && (
                 <div className="bg-white rounded-lg shadow-sm p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-4">
                     Facilities
                   </h2>
                   <div className="grid md:grid-cols-2 gap-2">
-                    {university.facilities.map((facility, index) => (
+                    {university.facilities?.map((facility, index) => (
                       <div key={index} className="flex items-center">
                         <Building className="w-4 h-4 mr-2 text-gray-400" />
                         <span className="text-gray-600">{facility}</span>
@@ -293,31 +321,35 @@ const UniversityDetail: React.FC = () => {
 
               {/* Accreditations */}
               {university.accreditations &&
-                university.accreditations.length > 0 && (
+                university.accreditations?.length > 0 && (
                   <div className="bg-white rounded-lg shadow-sm p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">
                       Accreditations
                     </h3>
                     <div className="space-y-2">
-                      {university.accreditations.map((accreditation, index) => (
-                        <div key={index} className="flex items-center">
-                          <Award className="w-4 h-4 mr-2 text-green-500" />
-                          <span className="text-gray-600">{accreditation}</span>
-                        </div>
-                      ))}
+                      {university.accreditations?.map(
+                        (accreditation, index) => (
+                          <div key={index} className="flex items-center">
+                            <Award className="w-4 h-4 mr-2 text-green-500" />
+                            <span className="text-gray-600">
+                              {accreditation}
+                            </span>
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
                 )}
 
               {/* Partnerships */}
               {university.partnerships &&
-                university.partnerships.length > 0 && (
+                university.partnerships?.length > 0 && (
                   <div className="bg-white rounded-lg shadow-sm p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">
                       Partnerships
                     </h3>
                     <div className="space-y-2">
-                      {university.partnerships.map((partnership, index) => (
+                      {university.partnerships?.map((partnership, index) => (
                         <div key={index} className="flex items-center">
                           <Globe className="w-4 h-4 mr-2 text-blue-500" />
                           <span className="text-gray-600">{partnership}</span>
@@ -357,11 +389,11 @@ const UniversityDetail: React.FC = () => {
                       </div>
                       <div className="mt-4 md:mt-0 text-right">
                         <div className="text-lg font-semibold text-gray-900">
-                          {course.tuitionFee.currency}{" "}
-                          {course.tuitionFee.amount.toLocaleString()}
+                          {course.tuitionFee?.currency}{" "}
+                          {course.tuitionFee?.amount?.toLocaleString()}
                         </div>
                         <div className="text-sm text-gray-600">
-                          per {course.tuitionFee.period}
+                          per {course.tuitionFee?.period}
                         </div>
                       </div>
                     </div>
@@ -372,8 +404,8 @@ const UniversityDetail: React.FC = () => {
                       <div className="flex items-center space-x-4 text-sm text-gray-600">
                         <span>Mode: {course.mode}</span>
                         <span>Language: {course.language}</span>
-                        {course.eligibility.minGPA && (
-                          <span>Min GPA: {course.eligibility.minGPA}</span>
+                        {course.eligibility?.minGPA && (
+                          <span>Min GPA: {course.eligibility?.minGPA}</span>
                         )}
                       </div>
                       <div className="flex space-x-3">

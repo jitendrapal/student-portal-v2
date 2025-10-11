@@ -25,6 +25,8 @@ const Courses: React.FC = () => {
     setSelectedCourse,
     isAuthenticated,
     isLoading,
+    user,
+    addApplication,
   } = useStore();
 
   const [showFilters, setShowFilters] = useState(false);
@@ -93,12 +95,33 @@ const Courses: React.FC = () => {
   ].sort();
 
   const handleApply = (courseId: string) => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !user) {
       setCurrentPage("login");
       return;
     }
-    // In a real app, this would open an application form
-    alert(`Application for course ${courseId} started!`);
+
+    // Find the course to get university information
+    const course = courses.find((c) => c.id === courseId);
+    if (!course) {
+      alert("Course not found!");
+      return;
+    }
+
+    // Create the application
+    addApplication({
+      studentId: user.id,
+      universityId: course.universityId,
+      courseId: courseId,
+      status: "draft",
+      submittedAt: new Date(),
+      documents: [],
+      personalStatement: "",
+      additionalInfo: "",
+    });
+
+    alert(
+      `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
+    );
   };
 
   return (
