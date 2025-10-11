@@ -18,6 +18,7 @@ import { useStore } from "../../store/useStore";
 import DocumentUpload from "./DocumentUpload";
 import BulkDocumentUpload from "./BulkDocumentUpload";
 import ApplicationForm from "./ApplicationForm";
+import InterviewCard from "./InterviewCard";
 
 const StudentDashboard: React.FC = () => {
   const {
@@ -158,11 +159,21 @@ const StudentDashboard: React.FC = () => {
     }
   };
 
+  // Get scheduled interviews
+  const scheduledInterviews = userApplications.filter(
+    (app) => app.status === "interview_scheduled" && app.interviewDetails
+  );
+
   const tabs = [
     {
       id: "applications",
       label: "My Applications",
       count: userApplications.length,
+    },
+    {
+      id: "interviews",
+      label: "Interviews",
+      count: scheduledInterviews.length,
     },
     { id: "documents", label: "Documents", count: 0 },
     { id: "profile", label: "Profile", count: 0 },
@@ -472,17 +483,13 @@ const StudentDashboard: React.FC = () => {
                             </div>
                           </div>
 
-                          {application.interviewDate && (
-                            <div className="mt-4 p-3 bg-purple-50 rounded-lg">
-                              <div className="flex items-center text-purple-800">
-                                <Calendar className="w-4 h-4 mr-2" />
-                                <span className="font-medium">
-                                  Interview scheduled for{" "}
-                                  {application.interviewDate.toLocaleDateString()}
-                                </span>
+                          {/* Interview Card */}
+                          {application.status === "interview_scheduled" &&
+                            application.interviewDetails && (
+                              <div className="mt-4">
+                                <InterviewCard application={application} />
                               </div>
-                            </div>
-                          )}
+                            )}
 
                           {application.scholarshipOffered && (
                             <div className="mt-4 p-3 bg-green-50 rounded-lg">
@@ -500,6 +507,50 @@ const StudentDashboard: React.FC = () => {
                         </div>
                       );
                     })}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {activeTab === "interviews" && (
+              <div>
+                <div className="flex justify-between items-center mb-6">
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-900">
+                      My Interviews ({scheduledInterviews.length})
+                    </h2>
+                    <p className="text-sm text-gray-600 mt-1">
+                      View and manage your scheduled interviews
+                    </p>
+                  </div>
+                </div>
+
+                {scheduledInterviews.length === 0 ? (
+                  <div className="text-center py-12">
+                    <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      No Interviews Scheduled
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      Your scheduled interviews will appear here once counselors
+                      schedule them
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {scheduledInterviews.map((application) => (
+                      <div key={application.id}>
+                        <div className="mb-3">
+                          <h3 className="text-lg font-semibold text-gray-900">
+                            {getCourseById(application.courseId)?.name}
+                          </h3>
+                          <p className="text-sm text-gray-600">
+                            {getUniversityById(application.universityId)?.name}
+                          </p>
+                        </div>
+                        <InterviewCard application={application} />
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>

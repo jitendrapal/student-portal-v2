@@ -203,7 +203,8 @@ interface ApplicationState {
   updateApplicationStatus: (
     id: string,
     status: Application["status"],
-    notes?: string
+    notes?: string,
+    interviewDetails?: any
   ) => Promise<void>;
   getApplicationsByStudent: (studentId: string) => Application[];
   getApplicationsByCounselor: (counselorId: string) => Application[];
@@ -571,14 +572,18 @@ export const useStore = create<Store>((set, get) => ({
   updateApplicationStatus: async (
     id: string,
     status: Application["status"],
-    notes?: string
+    notes?: string,
+    interviewDetails?: any
   ) => {
     try {
-      const response = await apiClient.updateApplicationStatus(
-        id,
-        status,
-        notes
-      );
+      const updateData: any = { status };
+      if (notes) updateData.statusNotes = notes;
+      if (interviewDetails) {
+        updateData.interviewDate = interviewDetails.date;
+        updateData.interviewDetails = interviewDetails;
+      }
+
+      const response = await apiClient.updateApplication(id, updateData);
 
       if (response.success && response.data) {
         const updatedApplication = {

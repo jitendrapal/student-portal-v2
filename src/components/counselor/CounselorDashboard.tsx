@@ -14,6 +14,7 @@ import {
   Bell,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
+import InterviewScheduler from "./InterviewScheduler";
 
 const CounselorDashboard: React.FC = () => {
   const {
@@ -39,6 +40,7 @@ const CounselorDashboard: React.FC = () => {
   const [lastChecked, setLastChecked] = useState(new Date());
   const [showNotesModal, setShowNotesModal] = useState(false);
   const [showApplicationModal, setShowApplicationModal] = useState(false);
+  const [showInterviewScheduler, setShowInterviewScheduler] = useState(false);
   const [selectedApplicationId, setSelectedApplicationId] = useState<
     string | null
   >(null);
@@ -172,22 +174,14 @@ const CounselorDashboard: React.FC = () => {
     setShowApplicationModal(true);
   };
 
-  const handleScheduleInterview = async (applicationId: string) => {
-    const interviewDate = prompt("Enter interview date (YYYY-MM-DD):");
-    if (interviewDate) {
-      try {
-        await updateApplicationStatus(
-          applicationId,
-          "interview_scheduled",
-          `Interview scheduled for ${interviewDate}`
-        );
-        // Refresh applications to get updated data
-        await fetchApplications();
-      } catch (error) {
-        console.error("Error scheduling interview:", error);
-        alert("Failed to schedule interview");
-      }
-    }
+  const handleScheduleInterview = (applicationId: string) => {
+    setSelectedApplicationId(applicationId);
+    setShowInterviewScheduler(true);
+  };
+
+  const handleInterviewScheduled = async () => {
+    // Refresh applications to get updated data
+    await fetchApplications();
   };
 
   const handleAcceptApplication = async (applicationId: string) => {
@@ -997,6 +991,20 @@ const CounselorDashboard: React.FC = () => {
             })()}
           </div>
         </div>
+      )}
+
+      {/* Interview Scheduler Modal */}
+      {showInterviewScheduler && selectedApplicationId && (
+        <InterviewScheduler
+          application={applications.find(
+            (app) => app.id === selectedApplicationId
+          )}
+          onClose={() => {
+            setShowInterviewScheduler(false);
+            setSelectedApplicationId(null);
+          }}
+          onScheduled={handleInterviewScheduled}
+        />
       )}
     </div>
   );
