@@ -1184,10 +1184,6 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
               </div>
             </div>
           </div>
-        </div>
-            </div>
-          </div>
-        </div>
 
         {/* Document Upload Modal */}
         {showDocumentUpload && (
