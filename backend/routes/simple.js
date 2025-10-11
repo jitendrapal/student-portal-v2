@@ -120,10 +120,16 @@ export function createSimpleRoutes(app, db) {
 
       const result = await db.paginate("universities", filter, { page, limit });
 
+      // Transform _id to id for frontend compatibility
+      const transformedUniversities = result.data.map((university) => ({
+        ...university,
+        id: university._id,
+      }));
+
       res.json({
         success: true,
         data: {
-          universities: result.data,
+          universities: transformedUniversities,
           pagination: result.pagination,
         },
       });
@@ -141,11 +147,26 @@ export function createSimpleRoutes(app, db) {
           .json({ success: false, message: "University not found" });
       }
 
-      const courses = await db.find("courses", { university: req.params.id });
+      // Fix: Use universityId instead of university for courses lookup
+      const courses = await db.find("courses", { universityId: req.params.id });
+
+      // Transform _id to id for frontend compatibility
+      const transformedUniversity = {
+        ...university,
+        id: university._id,
+      };
+
+      const transformedCourses = courses.map((course) => ({
+        ...course,
+        id: course._id,
+      }));
 
       res.json({
         success: true,
-        data: { university, courses },
+        data: {
+          university: transformedUniversity,
+          courses: transformedCourses,
+        },
       });
     } catch (error) {
       res.status(500).json({ success: false, message: "Server error" });
@@ -176,21 +197,33 @@ export function createSimpleRoutes(app, db) {
 
       const result = await db.paginate("courses", filter, { page, limit });
 
-      // Populate university data
+      // Populate university data and transform _id to id
+      const transformedCourses = [];
       for (let course of result.data) {
+        const transformedCourse = {
+          ...course,
+          id: course._id,
+        };
+
         if (course.universityId) {
           const university = await db.findById(
             "universities",
             course.universityId
           );
-          course.university = university;
+          if (university) {
+            transformedCourse.university = {
+              ...university,
+              id: university._id,
+            };
+          }
         }
+        transformedCourses.push(transformedCourse);
       }
 
       res.json({
         success: true,
         data: {
-          courses: result.data,
+          courses: transformedCourses,
           pagination: result.pagination,
         },
       });
@@ -208,12 +241,27 @@ export function createSimpleRoutes(app, db) {
           .json({ success: false, message: "Course not found" });
       }
 
-      if (course.university) {
-        const university = await db.findById("universities", course.university);
-        course.university = university;
+      // Transform _id to id for frontend compatibility
+      const transformedCourse = {
+        ...course,
+        id: course._id,
+      };
+
+      // Fix: Use universityId instead of university for lookup
+      if (course.universityId) {
+        const university = await db.findById(
+          "universities",
+          course.universityId
+        );
+        if (university) {
+          transformedCourse.university = {
+            ...university,
+            id: university._id,
+          };
+        }
       }
 
-      res.json({ success: true, data: { course } });
+      res.json({ success: true, data: { course: transformedCourse } });
     } catch (error) {
       res.status(500).json({ success: false, message: "Server error" });
     }
