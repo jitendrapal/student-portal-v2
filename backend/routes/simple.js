@@ -288,14 +288,22 @@ export function createSimpleRoutes(app, db) {
 
       if (user.role === "student") {
         filter.student = req.user.userId;
-      } else if (user.role === "counselor") {
-        // Counselors can see all submitted applications (not drafts)
-        filter.status = { $ne: "draft" };
       }
+      // Note: For counselors, we'll filter after fetching since file DB doesn't support $ne
 
       if (req.query.status) filter.status = req.query.status;
 
       const result = await db.paginate("applications", filter, { page, limit });
+
+      // Filter for counselors after fetching (since file DB doesn't support $ne)
+      if (user.role === "counselor") {
+        result.data = result.data.filter((app) => app.status !== "draft");
+        // Update pagination counts
+        result.pagination.total = result.data.length;
+        result.pagination.totalPages = Math.ceil(result.data.length / limit);
+        result.pagination.hasNext = page < result.pagination.totalPages;
+        result.pagination.hasPrev = page > 1;
+      }
 
       // Populate related data
       for (let app of result.data) {

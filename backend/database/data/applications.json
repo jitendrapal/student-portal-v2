@@ -97,5 +97,27 @@
     "lastUpdated": "2025-10-11T19:48:53.547Z",
     "createdAt": "2025-10-11T19:48:53.548Z",
     "updatedAt": "2025-10-11T19:48:53.548Z"
+  },
+  {
+    "_id": "17602123541514auvem3w1",
+    "student": "1760189422960rrr6pxcf1",
+    "university": "1760189422973gve9fe2ek",
+    "course": "17601894229936m52na0s7",
+    "personalStatement": "",
+    "additionalInfo": "",
+    "status": "draft",
+    "documents": [],
+    "statusHistory": [
+      {
+        "status": "draft",
+        "updatedBy": "1760189422960rrr6pxcf1",
+        "timestamp": "2025-10-11T19:52:34.150Z",
+        "notes": "Application created"
+      }
+    ],
+    "submittedAt": null,
+    "lastUpdated": "2025-10-11T19:52:34.150Z",
+    "createdAt": "2025-10-11T19:52:34.151Z",
+    "updatedAt": "2025-10-11T19:52:34.151Z"
   }
 ]
