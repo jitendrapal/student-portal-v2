@@ -189,6 +189,11 @@ interface ApplicationState {
   addApplication: (
     application: Omit<Application, "id" | "lastUpdated" | "statusHistory">
   ) => void;
+  updateApplication: (id: string, updates: Partial<Application>) => void;
+  addDocumentToApplication: (
+    applicationId: string,
+    document: Omit<any, "id" | "applicationId">
+  ) => void;
   updateApplicationStatus: (
     id: string,
     status: Application["status"],
@@ -446,6 +451,43 @@ export const useStore = create<Store>((set, get) => ({
 
     set((state) => ({
       applications: [...state.applications, newApplication],
+    }));
+  },
+  updateApplication: (id: string, updates: Partial<Application>) => {
+    set((state) => ({
+      applications: state.applications.map((app) =>
+        app.id === id
+          ? {
+              ...app,
+              ...updates,
+              lastUpdated: new Date(),
+            }
+          : app
+      ),
+    }));
+  },
+  addDocumentToApplication: (
+    applicationId: string,
+    document: Omit<any, "id" | "applicationId">
+  ) => {
+    const newDocument = {
+      ...document,
+      id: `doc-${Date.now()}`,
+      applicationId,
+      uploadedAt: new Date(),
+      status: "pending" as const,
+    };
+
+    set((state) => ({
+      applications: state.applications.map((app) =>
+        app.id === applicationId
+          ? {
+              ...app,
+              documents: [...app.documents, newDocument],
+              lastUpdated: new Date(),
+            }
+          : app
+      ),
     }));
   },
   updateApplicationStatus: (

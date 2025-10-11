@@ -1,31 +1,53 @@
-import React, { useState } from 'react';
-import { 
-  FileText, Upload, Clock, CheckCircle, XCircle, AlertCircle, 
-  Plus, Eye, Download, Calendar, MapPin, DollarSign 
-} from 'lucide-react';
-import { useStore } from '../../store/useStore';
-import DocumentUpload from './DocumentUpload';
+import React, { useState } from "react";
+import {
+  FileText,
+  Upload,
+  Clock,
+  CheckCircle,
+  XCircle,
+  AlertCircle,
+  Plus,
+  Eye,
+  Download,
+  Calendar,
+  MapPin,
+  DollarSign,
+  Edit,
+} from "lucide-react";
+import { useStore } from "../../store/useStore";
+import DocumentUpload from "./DocumentUpload";
+import ApplicationForm from "./ApplicationForm";
 
 const StudentDashboard: React.FC = () => {
-  const { 
-    user, 
-    getApplicationsByStudent, 
-    getUniversityById, 
+  const {
+    user,
+    getApplicationsByStudent,
+    getUniversityById,
     getCourseById,
-    setCurrentPage 
+    setCurrentPage,
   } = useStore();
 
-  const [activeTab, setActiveTab] = useState<'applications' | 'documents' | 'profile'>('applications');
+  const [activeTab, setActiveTab] = useState<
+    "applications" | "documents" | "profile"
+  >("applications");
   const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
+  const [selectedApplicationId, setSelectedApplicationId] = useState<
+    string | null
+  >(null);
 
-  if (!user || user.role !== 'student') {
+  if (!user || user.role !== "student") {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h2>
-          <p className="text-gray-600 mb-4">Please login as a student to access this page.</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            Access Denied
+          </h2>
+          <p className="text-gray-600 mb-4">
+            Please login as a student to access this page.
+          </p>
           <button
-            onClick={() => setCurrentPage('login')}
+            onClick={() => setCurrentPage("login")}
             className="btn-primary"
           >
             Login
@@ -37,32 +59,53 @@ const StudentDashboard: React.FC = () => {
 
   const applications = getApplicationsByStudent(user.id);
 
+  const handleContinueApplication = (applicationId: string) => {
+    setSelectedApplicationId(applicationId);
+    setShowApplicationForm(true);
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'draft': return 'text-gray-600 bg-gray-100';
-      case 'submitted': return 'text-blue-600 bg-blue-100';
-      case 'under_review': return 'text-yellow-600 bg-yellow-100';
-      case 'interview_scheduled': return 'text-purple-600 bg-purple-100';
-      case 'accepted': return 'text-green-600 bg-green-100';
-      case 'rejected': return 'text-red-600 bg-red-100';
-      case 'waitlisted': return 'text-orange-600 bg-orange-100';
-      default: return 'text-gray-600 bg-gray-100';
+      case "draft":
+        return "text-gray-600 bg-gray-100";
+      case "submitted":
+        return "text-blue-600 bg-blue-100";
+      case "under_review":
+        return "text-yellow-600 bg-yellow-100";
+      case "interview_scheduled":
+        return "text-purple-600 bg-purple-100";
+      case "accepted":
+        return "text-green-600 bg-green-100";
+      case "rejected":
+        return "text-red-600 bg-red-100";
+      case "waitlisted":
+        return "text-orange-600 bg-orange-100";
+      default:
+        return "text-gray-600 bg-gray-100";
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'accepted': return <CheckCircle className="w-4 h-4" />;
-      case 'rejected': return <XCircle className="w-4 h-4" />;
-      case 'under_review': return <Clock className="w-4 h-4" />;
-      default: return <AlertCircle className="w-4 h-4" />;
+      case "accepted":
+        return <CheckCircle className="w-4 h-4" />;
+      case "rejected":
+        return <XCircle className="w-4 h-4" />;
+      case "under_review":
+        return <Clock className="w-4 h-4" />;
+      default:
+        return <AlertCircle className="w-4 h-4" />;
     }
   };
 
   const tabs = [
-    { id: 'applications', label: 'My Applications', count: applications.length },
-    { id: 'documents', label: 'Documents', count: 0 },
-    { id: 'profile', label: 'Profile', count: 0 }
+    {
+      id: "applications",
+      label: "My Applications",
+      count: applications.length,
+    },
+    { id: "documents", label: "Documents", count: 0 },
+    { id: "profile", label: "Profile", count: 0 },
   ];
 
   return (
@@ -86,12 +129,14 @@ const StudentDashboard: React.FC = () => {
                 <FileText className="w-6 h-6 text-blue-600" />
               </div>
               <div className="ml-4">
-                <div className="text-2xl font-bold text-gray-900">{applications.length}</div>
+                <div className="text-2xl font-bold text-gray-900">
+                  {applications.length}
+                </div>
                 <div className="text-sm text-gray-600">Total Applications</div>
               </div>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-lg shadow-sm p-6">
             <div className="flex items-center">
               <div className="p-2 bg-yellow-100 rounded-lg">
@@ -99,7 +144,10 @@ const StudentDashboard: React.FC = () => {
               </div>
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">
-                  {applications.filter(app => app.status === 'under_review').length}
+                  {
+                    applications.filter((app) => app.status === "under_review")
+                      .length
+                  }
                 </div>
                 <div className="text-sm text-gray-600">Under Review</div>
               </div>
@@ -113,7 +161,10 @@ const StudentDashboard: React.FC = () => {
               </div>
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">
-                  {applications.filter(app => app.status === 'accepted').length}
+                  {
+                    applications.filter((app) => app.status === "accepted")
+                      .length
+                  }
                 </div>
                 <div className="text-sm text-gray-600">Accepted</div>
               </div>
@@ -127,7 +178,7 @@ const StudentDashboard: React.FC = () => {
               </div>
               <div className="ml-4">
                 <div className="text-2xl font-bold text-gray-900">
-                  {applications.filter(app => app.interviewDate).length}
+                  {applications.filter((app) => app.interviewDate).length}
                 </div>
                 <div className="text-sm text-gray-600">Interviews</div>
               </div>
@@ -145,8 +196,8 @@ const StudentDashboard: React.FC = () => {
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`py-4 px-1 border-b-2 font-medium text-sm ${
                     activeTab === tab.id
-                      ? 'border-primary-500 text-primary-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                      ? "border-primary-500 text-primary-600"
+                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
                   }`}
                 >
                   {tab.label}
@@ -161,12 +212,14 @@ const StudentDashboard: React.FC = () => {
           </div>
 
           <div className="p-6">
-            {activeTab === 'applications' && (
+            {activeTab === "applications" && (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-lg font-semibold text-gray-900">My Applications</h2>
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    My Applications
+                  </h2>
                   <button
-                    onClick={() => setCurrentPage('universities')}
+                    onClick={() => setCurrentPage("universities")}
                     className="btn-primary flex items-center"
                   >
                     <Plus className="w-4 h-4 mr-2" />
@@ -177,10 +230,15 @@ const StudentDashboard: React.FC = () => {
                 {applications.length === 0 ? (
                   <div className="text-center py-12">
                     <FileText className="w-12 h-12 mx-auto text-gray-300 mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900 mb-2">No applications yet</h3>
-                    <p className="text-gray-600 mb-6">Start your study abroad journey by applying to universities</p>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      No applications yet
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      Start your study abroad journey by applying to
+                      universities
+                    </p>
                     <button
-                      onClick={() => setCurrentPage('universities')}
+                      onClick={() => setCurrentPage("universities")}
                       className="btn-primary"
                     >
                       Browse Universities
@@ -189,43 +247,65 @@ const StudentDashboard: React.FC = () => {
                 ) : (
                   <div className="space-y-4">
                     {applications.map((application) => {
-                      const university = getUniversityById(application.universityId);
+                      const university = getUniversityById(
+                        application.universityId
+                      );
                       const course = getCourseById(application.courseId);
-                      
+
                       return (
-                        <div key={application.id} className="border border-gray-200 rounded-lg p-6">
+                        <div
+                          key={application.id}
+                          className="border border-gray-200 rounded-lg p-6"
+                        >
                           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                             <div className="flex-1">
                               <div className="flex items-center space-x-3 mb-2">
                                 <h3 className="text-lg font-semibold text-gray-900">
                                   {course?.name}
                                 </h3>
-                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(application.status)}`}>
+                                <span
+                                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(
+                                    application.status
+                                  )}`}
+                                >
                                   {getStatusIcon(application.status)}
-                                  <span className="ml-1 capitalize">{application.status.replace('_', ' ')}</span>
+                                  <span className="ml-1 capitalize">
+                                    {application.status.replace("_", " ")}
+                                  </span>
                                 </span>
                               </div>
-                              
+
                               <div className="flex items-center text-gray-600 mb-2">
                                 <MapPin className="w-4 h-4 mr-1" />
                                 <span>{university?.name}</span>
                                 <span className="mx-2">•</span>
-                                <span>{university?.city}, {university?.country}</span>
+                                <span>
+                                  {university?.city}, {university?.country}
+                                </span>
                               </div>
 
                               <div className="flex items-center space-x-4 text-sm text-gray-600">
                                 <div className="flex items-center">
                                   <Calendar className="w-4 h-4 mr-1" />
-                                  <span>Applied: {application.submittedAt?.toLocaleDateString()}</span>
+                                  <span>
+                                    Applied:{" "}
+                                    {application.submittedAt?.toLocaleDateString()}
+                                  </span>
                                 </div>
                                 <div className="flex items-center">
                                   <FileText className="w-4 h-4 mr-1" />
-                                  <span>{application.documents.length} documents</span>
+                                  <span>
+                                    {application.documents.length} documents
+                                  </span>
                                 </div>
                                 {course && (
                                   <div className="flex items-center">
                                     <DollarSign className="w-4 h-4 mr-1" />
-                                    <span>{course.tuitionFee.currency} {course.tuitionFee.amount.toLocaleString()}/year</span>
+                                    <span>
+                                      {course.tuitionFee.currency}{" "}
+                                      {course.tuitionFee.amount.toLocaleString()}
+                                      /year
+                                    </span>
                                   </div>
                                 )}
                               </div>
@@ -236,8 +316,14 @@ const StudentDashboard: React.FC = () => {
                                 <Eye className="w-4 h-4 mr-2" />
                                 View Details
                               </button>
-                              {application.status === 'draft' && (
-                                <button className="btn-primary">
+                              {application.status === "draft" && (
+                                <button
+                                  onClick={() =>
+                                    handleContinueApplication(application.id)
+                                  }
+                                  className="btn-primary flex items-center"
+                                >
+                                  <Edit className="w-4 h-4 mr-2" />
                                   Continue Application
                                 </button>
                               )}
@@ -249,7 +335,8 @@ const StudentDashboard: React.FC = () => {
                               <div className="flex items-center text-purple-800">
                                 <Calendar className="w-4 h-4 mr-2" />
                                 <span className="font-medium">
-                                  Interview scheduled for {application.interviewDate.toLocaleDateString()}
+                                  Interview scheduled for{" "}
+                                  {application.interviewDate.toLocaleDateString()}
                                 </span>
                               </div>
                             </div>
@@ -260,7 +347,10 @@ const StudentDashboard: React.FC = () => {
                               <div className="flex items-center text-green-800">
                                 <DollarSign className="w-4 h-4 mr-2" />
                                 <span className="font-medium">
-                                  Scholarship offered: {application.scholarshipOffered.currency} {application.scholarshipOffered.amount.toLocaleString()} ({application.scholarshipOffered.type})
+                                  Scholarship offered:{" "}
+                                  {application.scholarshipOffered.currency}{" "}
+                                  {application.scholarshipOffered.amount.toLocaleString()}{" "}
+                                  ({application.scholarshipOffered.type})
                                 </span>
                               </div>
                             </div>
@@ -273,10 +363,12 @@ const StudentDashboard: React.FC = () => {
               </div>
             )}
 
-            {activeTab === 'documents' && (
+            {activeTab === "documents" && (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-lg font-semibold text-gray-900">My Documents</h2>
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    My Documents
+                  </h2>
                   <button
                     onClick={() => setShowUploadModal(true)}
                     className="btn-primary flex items-center"
@@ -288,8 +380,12 @@ const StudentDashboard: React.FC = () => {
 
                 <div className="text-center py-12">
                   <Upload className="w-12 h-12 mx-auto text-gray-300 mb-4" />
-                  <h3 className="text-lg font-medium text-gray-900 mb-2">No documents uploaded</h3>
-                  <p className="text-gray-600 mb-6">Upload your academic documents to speed up applications</p>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    No documents uploaded
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Upload your academic documents to speed up applications
+                  </p>
                   <button
                     onClick={() => setShowUploadModal(true)}
                     className="btn-primary"
@@ -300,13 +396,17 @@ const StudentDashboard: React.FC = () => {
               </div>
             )}
 
-            {activeTab === 'profile' && (
+            {activeTab === "profile" && (
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 mb-6">Profile Information</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-6">
+                  Profile Information
+                </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        First Name
+                      </label>
                       <input
                         type="text"
                         value={user.firstName}
@@ -315,7 +415,9 @@ const StudentDashboard: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Last Name
+                      </label>
                       <input
                         type="text"
                         value={user.lastName}
@@ -324,7 +426,9 @@ const StudentDashboard: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Email
+                      </label>
                       <input
                         type="email"
                         value={user.email}
@@ -335,7 +439,9 @@ const StudentDashboard: React.FC = () => {
                   </div>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Role
+                      </label>
                       <input
                         type="text"
                         value={user.role}
@@ -344,7 +450,9 @@ const StudentDashboard: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Member Since</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Member Since
+                      </label>
                       <input
                         type="text"
                         value={user.createdAt.toLocaleDateString()}
@@ -368,6 +476,17 @@ const StudentDashboard: React.FC = () => {
         <DocumentUpload
           onClose={() => setShowUploadModal(false)}
           applicationId={applications[0]?.id}
+        />
+      )}
+
+      {/* Application Form Modal */}
+      {showApplicationForm && selectedApplicationId && (
+        <ApplicationForm
+          applicationId={selectedApplicationId}
+          onClose={() => {
+            setShowApplicationForm(false);
+            setSelectedApplicationId(null);
+          }}
         />
       )}
     </div>
