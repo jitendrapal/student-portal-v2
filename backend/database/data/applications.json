@@ -33,7 +33,7 @@
     "course": "17601894229936m52na0s7",
     "personalStatement": "ok",
     "additionalInfo": "",
-    "status": "waitlisted",
+    "status": "interview_scheduled",
     "documents": [],
     "statusHistory": [
       {
@@ -65,12 +65,18 @@
         "updatedBy": "1760189422964zaef093ri",
         "timestamp": "2025-10-11T21:05:53.400Z",
         "notes": "Status updated by counselor"
+      },
+      {
+        "status": "interview_scheduled",
+        "updatedBy": "1760189422964zaef093ri",
+        "timestamp": "2025-10-11T21:19:53.128Z",
+        "notes": "Status updated by counselor"
       }
     ],
     "submittedAt": "2025-10-11T21:01:27.675Z",
-    "lastUpdated": "2025-10-11T21:05:53.399Z",
+    "lastUpdated": "2025-10-11T21:19:53.128Z",
     "createdAt": "2025-10-11T19:31:07.892Z",
-    "updatedAt": "2025-10-11T21:05:53.422Z",
+    "updatedAt": "2025-10-11T21:19:53.149Z",
     "statusNotes": "Status updated by counselor"
   },
   {

@@ -184,6 +184,22 @@ const CounselorDashboard: React.FC = () => {
     await fetchApplications();
   };
 
+  const handleScheduleInterviews = () => {
+    // Switch to applications tab and filter for under_review applications
+    setActiveTab("applications");
+    setStatusFilter("under_review");
+
+    // Scroll to applications section
+    setTimeout(() => {
+      const applicationsSection = document.getElementById(
+        "applications-section"
+      );
+      if (applicationsSection) {
+        applicationsSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   const handleAcceptApplication = async (applicationId: string) => {
     if (confirm("Are you sure you want to accept this application?")) {
       try {
@@ -446,7 +462,12 @@ const CounselorDashboard: React.FC = () => {
                           {stats.pendingInterviews} interviews to schedule
                         </div>
                       </div>
-                      <button className="btn-primary">Schedule</button>
+                      <button
+                        onClick={handleScheduleInterviews}
+                        className="btn-primary"
+                      >
+                        Schedule
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -454,7 +475,7 @@ const CounselorDashboard: React.FC = () => {
             )}
 
             {activeTab === "applications" && (
-              <div>
+              <div id="applications-section">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
                   <h2 className="text-lg font-semibold text-gray-900">
                     All Applications
@@ -489,6 +510,20 @@ const CounselorDashboard: React.FC = () => {
                     </select>
                   </div>
                 </div>
+
+                {/* Helper message for interview scheduling */}
+                {statusFilter === "under_review" &&
+                  filteredApplications.length > 0 && (
+                    <div className="mb-4 p-3 bg-purple-50 border border-purple-200 rounded-lg">
+                      <div className="flex items-center text-purple-800">
+                        <Calendar className="w-4 h-4 mr-2" />
+                        <span className="text-sm font-medium">
+                          These applications are ready for interview scheduling.
+                          Click "Schedule Interview" on any application below.
+                        </span>
+                      </div>
+                    </div>
+                  )}
 
                 <div className="space-y-4">
                   {filteredApplications.map((application) => {
