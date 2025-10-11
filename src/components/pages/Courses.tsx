@@ -22,6 +22,7 @@ const Courses: React.FC = () => {
     universities,
     getUniversityById,
     setCurrentPage,
+    setSelectedCourse,
     isAuthenticated,
     isLoading,
   } = useStore();
@@ -455,9 +456,10 @@ const Courses: React.FC = () => {
                               </div>
                               <div className="flex space-x-3">
                                 <button
-                                  onClick={() =>
-                                    setCurrentPage("course-detail")
-                                  }
+                                  onClick={() => {
+                                    setSelectedCourse(course);
+                                    setCurrentPage("course-detail");
+                                  }}
                                   className="btn-secondary"
                                 >
                                   View Details

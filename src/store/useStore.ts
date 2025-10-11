@@ -172,8 +172,10 @@ interface CourseState {
   courses: Course[];
   filteredCourses: Course[];
   courseFilters: CourseFilters;
+  selectedCourse: Course | null;
   fetchCourses: () => Promise<void>;
   setCourseFilters: (filters: CourseFilters) => void;
+  setSelectedCourse: (course: Course | null) => void;
   getCoursesByUniversity: (universityId: string) => Course[];
   getCourseById: (id: string) => Course | undefined;
 }
@@ -318,6 +320,7 @@ export const useStore = create<Store>((set, get) => ({
   courses: [],
   filteredCourses: [],
   courseFilters: {},
+  selectedCourse: null,
   fetchCourses: async () => {
     try {
       set({ isLoading: true });
@@ -382,6 +385,9 @@ export const useStore = create<Store>((set, get) => ({
     }
 
     set({ filteredCourses: filtered });
+  },
+  setSelectedCourse: (course: Course | null) => {
+    set({ selectedCourse: course });
   },
   getCoursesByUniversity: (universityId: string) => {
     return get().courses.filter(
