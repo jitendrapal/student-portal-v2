@@ -118,16 +118,16 @@ const Navbar: React.FC = () => {
     { id: "home", label: "Home", icon: Home },
     { id: "universities", label: "Universities", icon: BookOpen },
     { id: "courses", label: "Courses", icon: BookOpen },
-    ...(isAuthenticated
-      ? [
-          {
-            id: user?.role === "student" ? "applications" : "dashboard",
-            label: user?.role === "student" ? "My Applications" : "Dashboard",
-            icon: Users,
-          },
-        ]
-      : []),
   ];
+
+  // Add authenticated user items
+  if (isAuthenticated) {
+    navItems.push({
+      id: user?.role === "student" ? "applications" : "dashboard",
+      label: user?.role === "student" ? "My Applications" : "Dashboard",
+      icon: Users,
+    });
+  }
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
