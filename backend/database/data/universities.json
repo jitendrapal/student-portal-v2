@@ -1,0 +1,227 @@
+[
+  {
+    "_id": "1760189422968axy0ck2sq",
+    "name": "University of Toronto",
+    "description": "A prestigious public research university in Toronto, Ontario, Canada.",
+    "country": "Canada",
+    "city": "Toronto",
+    "establishedYear": 1827,
+    "type": "public",
+    "ranking": {
+      "world": 18,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 45000,
+      "max": 65000,
+      "currency": "CAD"
+    },
+    "acceptanceRate": 43,
+    "studentPopulation": 97000,
+    "internationalStudents": 25000,
+    "website": "https://www.utoronto.ca",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.968Z",
+    "updatedAt": "2025-10-11T13:30:22.968Z"
+  },
+  {
+    "_id": "1760189422970vgbxp3rfx",
+    "name": "Harvard University",
+    "description": "A private Ivy League research university in Cambridge, Massachusetts.",
+    "country": "United States",
+    "city": "Cambridge",
+    "establishedYear": 1636,
+    "type": "private",
+    "ranking": {
+      "world": 3,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 75000,
+      "max": 85000,
+      "currency": "USD"
+    },
+    "acceptanceRate": 5,
+    "studentPopulation": 23000,
+    "internationalStudents": 5000,
+    "website": "https://www.harvard.edu",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.970Z",
+    "updatedAt": "2025-10-11T13:30:22.970Z"
+  },
+  {
+    "_id": "1760189422973gve9fe2ek",
+    "name": "University of Melbourne",
+    "description": "A public research university located in Melbourne, Australia.",
+    "country": "Australia",
+    "city": "Melbourne",
+    "establishedYear": 1853,
+    "type": "public",
+    "ranking": {
+      "world": 33,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 35000,
+      "max": 55000,
+      "currency": "AUD"
+    },
+    "acceptanceRate": 70,
+    "studentPopulation": 50000,
+    "internationalStudents": 18000,
+    "website": "https://www.unimelb.edu.au",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.973Z",
+    "updatedAt": "2025-10-11T13:30:22.973Z"
+  },
+  {
+    "_id": "1760189422974b2vgtq68p",
+    "name": "University of Oxford",
+    "description": "A collegiate research university in Oxford, England.",
+    "country": "United Kingdom",
+    "city": "Oxford",
+    "establishedYear": 1096,
+    "type": "public",
+    "ranking": {
+      "world": 5,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 40000,
+      "max": 60000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 17,
+    "studentPopulation": 24000,
+    "internationalStudents": 12000,
+    "website": "https://www.ox.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.974Z",
+    "updatedAt": "2025-10-11T13:30:22.974Z"
+  },
+  {
+    "_id": "1760189422975nocvffuoy",
+    "name": "Technical University of Munich (TUM)",
+    "description": "One of Europe's top universities, focusing on engineering, technology, medicine, and applied sciences.",
+    "country": "Germany",
+    "city": "Munich",
+    "establishedYear": 1868,
+    "type": "public",
+    "ranking": {
+      "world": 50,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 3000,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 8,
+    "studentPopulation": 45000,
+    "internationalStudents": 15000,
+    "website": "https://www.tum.de",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.975Z",
+    "updatedAt": "2025-10-11T13:30:22.975Z"
+  },
+  {
+    "_id": "1760189422978gq4cnegep",
+    "name": "Ludwig Maximilian University of Munich (LMU)",
+    "description": "A leading research university in Germany with excellence in humanities, social sciences, and natural sciences.",
+    "country": "Germany",
+    "city": "Munich",
+    "establishedYear": 1472,
+    "type": "public",
+    "ranking": {
+      "world": 64,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 2500,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 15,
+    "studentPopulation": 52000,
+    "internationalStudents": 8000,
+    "website": "https://www.lmu.de",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.978Z",
+    "updatedAt": "2025-10-11T13:30:22.978Z"
+  },
+  {
+    "_id": "1760189422981zacn4xavr",
+    "name": "Heidelberg University",
+    "description": "Germany's oldest university, renowned for research in medicine, natural sciences, and humanities.",
+    "country": "Germany",
+    "city": "Heidelberg",
+    "establishedYear": 1386,
+    "type": "public",
+    "ranking": {
+      "world": 66,
+      "national": 3
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 3000,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 12,
+    "studentPopulation": 30000,
+    "internationalStudents": 6000,
+    "website": "https://www.uni-heidelberg.de",
+    "featured": false,
+    "createdAt": "2025-10-11T13:30:22.981Z",
+    "updatedAt": "2025-10-11T13:30:22.981Z"
+  },
+  {
+    "_id": "1760189422984ump9x1qkz",
+    "name": "Humboldt University of Berlin",
+    "description": "A prestigious university in the heart of Berlin, known for philosophy, social sciences, and natural sciences.",
+    "country": "Germany",
+    "city": "Berlin",
+    "establishedYear": 1810,
+    "type": "public",
+    "ranking": {
+      "world": 87,
+      "national": 4
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 2000,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 18,
+    "studentPopulation": 35000,
+    "internationalStudents": 7000,
+    "website": "https://www.hu-berlin.de",
+    "featured": false,
+    "createdAt": "2025-10-11T13:30:22.984Z",
+    "updatedAt": "2025-10-11T13:30:22.984Z"
+  },
+  {
+    "_id": "1760189422986vy7tgduut",
+    "name": "RWTH Aachen University",
+    "description": "Leading technical university in Germany, specializing in engineering and technology with strong industry connections.",
+    "country": "Germany",
+    "city": "Aachen",
+    "establishedYear": 1870,
+    "type": "public",
+    "ranking": {
+      "world": 106,
+      "national": 5
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 3500,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 10,
+    "studentPopulation": 47000,
+    "internationalStudents": 12000,
+    "website": "https://www.rwth-aachen.de",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.986Z",
+    "updatedAt": "2025-10-11T13:30:22.986Z"
+  }
+]

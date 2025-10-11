@@ -1,0 +1,173 @@
+[
+  {
+    "_id": "1760189422990p8cbuv97m",
+    "name": "Master of Computer Science",
+    "universityId": "1760189422968axy0ck2sq",
+    "degree": "Master",
+    "field": "Computer Science",
+    "duration": "2 years",
+    "description": "Advanced computer science program covering AI, machine learning, and software engineering.",
+    "tuitionFee": {
+      "amount": 55000,
+      "currency": "CAD",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.990Z",
+    "updatedAt": "2025-10-11T13:30:22.990Z"
+  },
+  {
+    "_id": "17601894229914zb26sab3",
+    "name": "MBA - Master of Business Administration",
+    "universityId": "1760189422970vgbxp3rfx",
+    "degree": "Master",
+    "field": "Business Administration",
+    "duration": "2 years",
+    "description": "Comprehensive MBA program for future business leaders.",
+    "tuitionFee": {
+      "amount": 80000,
+      "currency": "USD",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.991Z",
+    "updatedAt": "2025-10-11T13:30:22.991Z"
+  },
+  {
+    "_id": "17601894229936m52na0s7",
+    "name": "Bachelor of Engineering",
+    "universityId": "1760189422973gve9fe2ek",
+    "degree": "Bachelor",
+    "field": "Engineering",
+    "duration": "4 years",
+    "description": "Comprehensive engineering program with multiple specializations.",
+    "tuitionFee": {
+      "amount": 45000,
+      "currency": "AUD",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": false,
+    "createdAt": "2025-10-11T13:30:22.993Z",
+    "updatedAt": "2025-10-11T13:30:22.993Z"
+  },
+  {
+    "_id": "1760189422996bdri1ahm9",
+    "name": "Master of Data Science",
+    "universityId": "1760189422974b2vgtq68p",
+    "degree": "Master",
+    "field": "Data Science",
+    "duration": "1.5 years",
+    "description": "Cutting-edge data science program with industry partnerships.",
+    "tuitionFee": {
+      "amount": 50000,
+      "currency": "GBP",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "hybrid",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.996Z",
+    "updatedAt": "2025-10-11T13:30:22.996Z"
+  },
+  {
+    "_id": "176018942299814a1yynre",
+    "name": "Master of Science in Computer Science",
+    "universityId": "1760189422975nocvffuoy",
+    "degree": "Master",
+    "field": "Computer Science",
+    "duration": "2 years",
+    "description": "Advanced computer science program at TUM with focus on AI, robotics, and software engineering.",
+    "tuitionFee": {
+      "amount": 0,
+      "currency": "EUR",
+      "period": "semester"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.998Z",
+    "updatedAt": "2025-10-11T13:30:22.998Z"
+  },
+  {
+    "_id": "1760189423001efzjpw4d6",
+    "name": "Master of Science in Mechanical Engineering",
+    "universityId": "1760189422986vy7tgduut",
+    "degree": "Master",
+    "field": "Mechanical Engineering",
+    "duration": "2 years",
+    "description": "World-class mechanical engineering program with strong industry connections.",
+    "tuitionFee": {
+      "amount": 0,
+      "currency": "EUR",
+      "period": "semester"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.001Z",
+    "updatedAt": "2025-10-11T13:30:23.001Z"
+  },
+  {
+    "_id": "1760189423002gs7x80w1i",
+    "name": "Bachelor of Science in Medicine",
+    "universityId": "1760189422981zacn4xavr",
+    "degree": "Bachelor",
+    "field": "Medicine",
+    "duration": "6 years",
+    "description": "Comprehensive medical program at one of Germany's most prestigious universities.",
+    "tuitionFee": {
+      "amount": 0,
+      "currency": "EUR",
+      "period": "semester"
+    },
+    "language": "German",
+    "mode": "on-campus",
+    "featured": false,
+    "createdAt": "2025-10-11T13:30:23.002Z",
+    "updatedAt": "2025-10-11T13:30:23.002Z"
+  },
+  {
+    "_id": "1760189423007azbuc6rox",
+    "name": "Master of Arts in Philosophy",
+    "universityId": "1760189422984ump9x1qkz",
+    "degree": "Master",
+    "field": "Philosophy",
+    "duration": "2 years",
+    "description": "Advanced philosophy program in the heart of Berlin with renowned faculty.",
+    "tuitionFee": {
+      "amount": 0,
+      "currency": "EUR",
+      "period": "semester"
+    },
+    "language": "German",
+    "mode": "on-campus",
+    "featured": false,
+    "createdAt": "2025-10-11T13:30:23.007Z",
+    "updatedAt": "2025-10-11T13:30:23.007Z"
+  },
+  {
+    "_id": "1760189423009o2h89qw2s",
+    "name": "Master of Science in Physics",
+    "universityId": "1760189422978gq4cnegep",
+    "degree": "Master",
+    "field": "Physics",
+    "duration": "2 years",
+    "description": "Cutting-edge physics program with access to world-class research facilities.",
+    "tuitionFee": {
+      "amount": 0,
+      "currency": "EUR",
+      "period": "semester"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.009Z",
+    "updatedAt": "2025-10-11T13:30:23.009Z"
+  }
+]

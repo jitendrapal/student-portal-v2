@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "1760189422960rrr6pxcf1",
+    "email": "john.doe@email.com",
+    "password": "$2a$12$75nZcTMP7Oq.bVygPFWZs.SkHslCIpAvpTC67aZ4qPFp/QHkeQd/u",
+    "firstName": "John",
+    "lastName": "Doe",
+    "role": "student",
+    "createdAt": "2025-10-11T13:30:22.960Z",
+    "updatedAt": "2025-10-11T13:30:22.960Z"
+  },
+  {
+    "_id": "1760189422964zaef093ri",
+    "email": "sarah.wilson@portal.com",
+    "password": "$2a$12$NhExkGfB1TEkJq56m/kVlubeGR6no/BuCFNQo5b4jgpf6SAL26wwm",
+    "firstName": "Sarah",
+    "lastName": "Wilson",
+    "role": "counselor",
+    "createdAt": "2025-10-11T13:30:22.964Z",
+    "updatedAt": "2025-10-11T13:30:22.964Z"
+  },
+  {
+    "_id": "17601894229668grb9zggh",
+    "email": "admin@portal.com",
+    "password": "$2a$12$GX6iL5uGD10rkWwKRivcX.GxExr3MOI7kiD2NS4h..JeVpeDe4Niu",
+    "firstName": "Admin",
+    "lastName": "User",
+    "role": "admin",
+    "createdAt": "2025-10-11T13:30:22.966Z",
+    "updatedAt": "2025-10-11T13:30:22.966Z"
+  }
+]
