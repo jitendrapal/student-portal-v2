@@ -156,6 +156,7 @@ interface AuthState {
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
   switchRole: (role: "student" | "counselor") => void;
+  getUserById: (userId: string) => User | undefined;
 }
 
 interface UniversityState {
@@ -246,6 +247,10 @@ export const useStore = create<Store>((set, get) => ({
         set({ user: newUser });
       }
     }
+  },
+  getUserById: (userId: string) => {
+    const allUsers = [...mockStudents, ...mockCounselors];
+    return allUsers.find((user) => user.id === userId);
   },
 
   // University State
@@ -525,8 +530,9 @@ export const useStore = create<Store>((set, get) => ({
     return get().applications.filter((app) => app.studentId === studentId);
   },
   getApplicationsByCounselor: (counselorId: string) => {
-    // In a real app, this would filter by assigned counselor
-    return get().applications;
+    // Return all submitted applications for counselors to review
+    // In a real app, this could filter by assigned counselor or region
+    return get().applications.filter((app) => app.status !== "draft");
   },
 
   // UI State
