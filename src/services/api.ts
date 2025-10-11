@@ -33,10 +33,6 @@ class ApiClient {
   constructor(baseURL: string) {
     this.baseURL = baseURL;
     this.token = localStorage.getItem("token");
-    console.log(
-      "🚀 API Client initialized with token:",
-      this.token ? this.token.substring(0, 20) + "..." : "null"
-    );
   }
 
   private getHeaders(): HeadersInit {
@@ -46,12 +42,6 @@ class ApiClient {
 
     if (this.token) {
       headers.Authorization = `Bearer ${this.token}`;
-      console.log(
-        "🔑 API Client using token:",
-        this.token.substring(0, 20) + "..."
-      );
-    } else {
-      console.log("❌ API Client: No token available");
     }
 
     return headers;
@@ -83,17 +73,11 @@ class ApiClient {
   }
 
   setToken(token: string | null) {
-    console.log(
-      "🔄 Setting token:",
-      token ? token.substring(0, 20) + "..." : "null"
-    );
     this.token = token;
     if (token) {
       localStorage.setItem("token", token);
-      console.log("💾 Token saved to localStorage");
     } else {
       localStorage.removeItem("token");
-      console.log("🗑️ Token removed from localStorage");
     }
   }
 
