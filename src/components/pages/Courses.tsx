@@ -94,7 +94,7 @@ const Courses: React.FC = () => {
     ...new Set(courses.map((course) => course.language)),
   ].sort();
 
-  const handleApply = (courseId: string) => {
+  const handleApply = async (courseId: string) => {
     if (!isAuthenticated || !user) {
       setCurrentPage("login");
       return;
@@ -107,21 +107,26 @@ const Courses: React.FC = () => {
       return;
     }
 
-    // Create the application
-    addApplication({
-      studentId: user.id,
-      universityId: course.universityId,
-      courseId: courseId,
-      status: "draft",
-      submittedAt: new Date(),
-      documents: [],
-      personalStatement: "",
-      additionalInfo: "",
-    });
+    try {
+      // Create the application
+      await addApplication({
+        studentId: user.id,
+        universityId: course.universityId,
+        courseId: courseId,
+        status: "draft",
+        submittedAt: new Date(),
+        documents: [],
+        personalStatement: "",
+        additionalInfo: "",
+      });
 
-    alert(
-      `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
-    );
+      alert(
+        `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
+      );
+    } catch (error) {
+      console.error("Error creating application:", error);
+      alert("Failed to create application. Please try again.");
+    }
   };
 
   return (

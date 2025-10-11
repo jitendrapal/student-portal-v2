@@ -445,8 +445,10 @@ export const useStore = create<Store>((set, get) => ({
   isLoadingApplications: false,
   fetchApplications: async () => {
     try {
+      console.log("🔄 Fetching applications from API...");
       set({ isLoadingApplications: true });
       const response = await apiClient.getApplications({});
+      console.log("📥 API Response:", response);
 
       if (response.success && response.data) {
         const applications = response.data.applications.map((app: any) => ({
@@ -465,21 +467,25 @@ export const useStore = create<Store>((set, get) => ({
             : undefined,
         }));
 
+        console.log("✅ Processed applications:", applications);
         set({ applications, isLoadingApplications: false });
       }
     } catch (error) {
-      console.error("Error fetching applications:", error);
+      console.error("❌ Error fetching applications:", error);
       set({ isLoadingApplications: false });
     }
   },
   addApplication: async (applicationData) => {
     try {
+      console.log("🚀 Creating application:", applicationData);
       const response = await apiClient.createApplication({
         university: applicationData.universityId,
         course: applicationData.courseId,
         personalStatement: applicationData.personalStatement,
         additionalInfo: applicationData.additionalInfo,
       });
+
+      console.log("📥 Create application response:", response);
 
       if (response.success && response.data) {
         const newApplication = {
@@ -494,6 +500,7 @@ export const useStore = create<Store>((set, get) => ({
             : undefined,
         };
 
+        console.log("✅ Adding application to store:", newApplication);
         set((state) => ({
           applications: [...state.applications, newApplication],
         }));
@@ -502,7 +509,7 @@ export const useStore = create<Store>((set, get) => ({
       }
       throw new Error("Failed to create application");
     } catch (error) {
-      console.error("Error creating application:", error);
+      console.error("❌ Error creating application:", error);
       throw error;
     }
   },

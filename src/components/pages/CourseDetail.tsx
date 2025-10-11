@@ -52,7 +52,7 @@ const CourseDetail: React.FC = () => {
     );
   }
 
-  const handleApply = () => {
+  const handleApply = async () => {
     if (!isAuthenticated || !user) {
       setCurrentPage("login");
       return;
@@ -63,21 +63,26 @@ const CourseDetail: React.FC = () => {
       return;
     }
 
-    // Create the application
-    addApplication({
-      studentId: user.id,
-      universityId: course.universityId,
-      courseId: course.id,
-      status: "draft",
-      submittedAt: new Date(),
-      documents: [],
-      personalStatement: "",
-      additionalInfo: "",
-    });
+    try {
+      // Create the application
+      await addApplication({
+        studentId: user.id,
+        universityId: course.universityId,
+        courseId: course.id,
+        status: "draft",
+        submittedAt: new Date(),
+        documents: [],
+        personalStatement: "",
+        additionalInfo: "",
+      });
 
-    alert(
-      `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
-    );
+      alert(
+        `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
+      );
+    } catch (error) {
+      console.error("Error creating application:", error);
+      alert("Failed to create application. Please try again.");
+    }
   };
 
   const tabs = [
