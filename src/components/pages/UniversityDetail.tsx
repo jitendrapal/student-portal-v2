@@ -22,6 +22,7 @@ const UniversityDetail: React.FC = () => {
     getCoursesByUniversity,
     setCurrentPage,
     setSelectedCourse,
+    courses: allCourses,
     user,
     isAuthenticated,
   } = useStore();
@@ -33,6 +34,18 @@ const UniversityDetail: React.FC = () => {
   // Use selectedUniversity if available, otherwise fall back to first university
   const university = selectedUniversity || universities[0];
   const courses = university ? getCoursesByUniversity(university.id) : [];
+
+  // Debug logging
+  console.log("University Detail Debug:", {
+    university: university?.name,
+    universityId: university?.id,
+    coursesCount: courses.length,
+    totalCoursesInStore: allCourses.length,
+    allCoursesUniversityIds: allCourses.map((c) => c.universityId),
+    matchingCourses: allCourses.filter(
+      (c) => c.universityId === university?.id
+    ),
+  });
 
   if (!university) {
     return (
