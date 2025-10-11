@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FileText,
   Upload,
@@ -35,6 +35,37 @@ const StudentDashboard: React.FC = () => {
   const [selectedApplicationId, setSelectedApplicationId] = useState<
     string | null
   >(null);
+  const [applications, setApplications] = useState<any[]>([]);
+  const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date());
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+  // Refresh applications when component mounts or user changes
+  useEffect(() => {
+    if (user?.id) {
+      const userApplications = getApplicationsByStudent(user.id);
+      setApplications(userApplications);
+    }
+  }, [user?.id, getApplicationsByStudent]);
+
+  // Refresh applications when returning to applications tab
+  useEffect(() => {
+    if (activeTab === "applications" && user?.id) {
+      const userApplications = getApplicationsByStudent(user.id);
+      setApplications(userApplications);
+    }
+  }, [activeTab, user?.id, getApplicationsByStudent]);
+
+  // Real-time status tracking - check for updates every 10 seconds
+  useEffect(() => {
+    if (user?.id && activeTab === "applications") {
+      const interval = setInterval(() => {
+        const userApplications = getApplicationsByStudent(user.id);
+        setApplications(userApplications);
+      }, 10000); // Check every 10 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [user?.id, activeTab, getApplicationsByStudent]);
 
   if (!user || user.role !== "student") {
     return (
@@ -57,11 +88,28 @@ const StudentDashboard: React.FC = () => {
     );
   }
 
-  const applications = getApplicationsByStudent(user.id);
-
   const handleContinueApplication = (applicationId: string) => {
     setSelectedApplicationId(applicationId);
     setShowApplicationForm(true);
+  };
+
+  const refreshApplications = async () => {
+    if (user?.id) {
+      setIsRefreshing(true);
+      // Simulate a small delay to show loading state
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      const userApplications = getApplicationsByStudent(user.id);
+      setApplications(userApplications);
+      setLastRefreshed(new Date());
+      setIsRefreshing(false);
+    }
+  };
+
+  const handleCloseApplicationForm = () => {
+    setShowApplicationForm(false);
+    setSelectedApplicationId(null);
+    // Refresh applications to show any new ones
+    refreshApplications();
   };
 
   const getStatusColor = (status: string) => {
@@ -215,16 +263,39 @@ const StudentDashboard: React.FC = () => {
             {activeTab === "applications" && (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-lg font-semibold text-gray-900">
-                    My Applications
-                  </h2>
-                  <button
-                    onClick={() => setCurrentPage("universities")}
-                    className="btn-primary flex items-center"
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    New Application
-                  </button>
+                  <div>
+                    <h2 className="text-lg font-semibold text-gray-900">
+                      My Applications ({applications.length})
+                    </h2>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Track your application status and progress • Last updated:{" "}
+                      {lastRefreshed.toLocaleTimeString()}
+                    </p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <button
+                      onClick={refreshApplications}
+                      disabled={isRefreshing}
+                      className={`btn-secondary flex items-center ${
+                        isRefreshing ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
+                      title="Refresh Applications"
+                    >
+                      <Clock
+                        className={`w-4 h-4 mr-2 ${
+                          isRefreshing ? "animate-spin" : ""
+                        }`}
+                      />
+                      {isRefreshing ? "Refreshing..." : "Refresh"}
+                    </button>
+                    <button
+                      onClick={() => setCurrentPage("universities")}
+                      className="btn-primary flex items-center"
+                    >
+                      <Plus className="w-4 h-4 mr-2" />
+                      New Application
+                    </button>
+                  </div>
                 </div>
 
                 {applications.length === 0 ? (
@@ -284,18 +355,27 @@ const StudentDashboard: React.FC = () => {
                                 </span>
                               </div>
 
-                              <div className="flex items-center space-x-4 text-sm text-gray-600">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-600">
                                 <div className="flex items-center">
                                   <Calendar className="w-4 h-4 mr-1" />
                                   <span>
                                     Applied:{" "}
-                                    {application.submittedAt?.toLocaleDateString()}
+                                    {application.submittedAt?.toLocaleDateString() ||
+                                      "Not submitted"}
+                                  </span>
+                                </div>
+                                <div className="flex items-center">
+                                  <Clock className="w-4 h-4 mr-1" />
+                                  <span>
+                                    Updated:{" "}
+                                    {application.lastUpdated.toLocaleDateString()}
                                   </span>
                                 </div>
                                 <div className="flex items-center">
                                   <FileText className="w-4 h-4 mr-1" />
                                   <span>
                                     {application.documents.length} documents
+                                    uploaded
                                   </span>
                                 </div>
                                 {course && (
@@ -309,6 +389,56 @@ const StudentDashboard: React.FC = () => {
                                   </div>
                                 )}
                               </div>
+
+                              {/* Status-specific information */}
+                              {application.status === "interview_scheduled" &&
+                                application.interviewDate && (
+                                  <div className="mt-3 p-3 bg-blue-50 rounded-lg">
+                                    <div className="flex items-center text-blue-800">
+                                      <Calendar className="w-4 h-4 mr-2" />
+                                      <span className="font-medium">
+                                        Interview scheduled for{" "}
+                                        {application.interviewDate.toLocaleDateString()}
+                                      </span>
+                                    </div>
+                                  </div>
+                                )}
+
+                              {application.status === "accepted" && (
+                                <div className="mt-3 p-3 bg-green-50 rounded-lg">
+                                  <div className="flex items-center text-green-800">
+                                    <CheckCircle className="w-4 h-4 mr-2" />
+                                    <span className="font-medium">
+                                      Congratulations! Your application has been
+                                      accepted.
+                                    </span>
+                                  </div>
+                                </div>
+                              )}
+
+                              {application.status === "rejected" && (
+                                <div className="mt-3 p-3 bg-red-50 rounded-lg">
+                                  <div className="flex items-center text-red-800">
+                                    <XCircle className="w-4 h-4 mr-2" />
+                                    <span className="font-medium">
+                                      Application was not successful this time.
+                                    </span>
+                                  </div>
+                                </div>
+                              )}
+
+                              {application.counselorNotes && (
+                                <div className="mt-3 p-3 bg-gray-50 rounded-lg">
+                                  <div className="text-sm">
+                                    <span className="font-medium text-gray-900">
+                                      Counselor Notes:
+                                    </span>
+                                    <p className="text-gray-700 mt-1">
+                                      {application.counselorNotes}
+                                    </p>
+                                  </div>
+                                </div>
+                              )}
                             </div>
 
                             <div className="mt-4 lg:mt-0 flex space-x-3">
@@ -483,10 +613,7 @@ const StudentDashboard: React.FC = () => {
       {showApplicationForm && selectedApplicationId && (
         <ApplicationForm
           applicationId={selectedApplicationId}
-          onClose={() => {
-            setShowApplicationForm(false);
-            setSelectedApplicationId(null);
-          }}
+          onClose={handleCloseApplicationForm}
         />
       )}
     </div>
