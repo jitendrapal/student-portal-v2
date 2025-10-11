@@ -384,8 +384,8 @@ const StudentDashboard: React.FC = () => {
                                 <div className="flex items-center">
                                   <FileText className="w-4 h-4 mr-1" />
                                   <span>
-                                    {application.documents.length} documents
-                                    uploaded
+                                    {(application.documents || []).length}{" "}
+                                    documents uploaded
                                   </span>
                                 </div>
                                 {course && (

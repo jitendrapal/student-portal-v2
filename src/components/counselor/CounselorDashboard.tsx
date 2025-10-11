@@ -73,7 +73,9 @@ const CounselorDashboard: React.FC = () => {
   }, [user?.id, fetchApplications]);
 
   // Get counselor applications from store
-  const counselorApplications = getApplicationsByCounselor(user.id);
+  const counselorApplications = user?.id
+    ? getApplicationsByCounselor(user.id)
+    : [];
 
   // Check for new applications every 5 seconds
   useEffect(() => {
@@ -381,9 +383,12 @@ const CounselorDashboard: React.FC = () => {
                       );
                       const course = getCourseById(application.courseId);
                       const lastUpdate =
-                        application.statusHistory[
-                          application.statusHistory.length - 1
-                        ];
+                        application.statusHistory &&
+                        application.statusHistory.length > 0
+                          ? application.statusHistory[
+                              application.statusHistory.length - 1
+                            ]
+                          : null;
 
                       return (
                         <div
@@ -396,8 +401,16 @@ const CounselorDashboard: React.FC = () => {
                               {university?.name}
                             </div>
                             <div className="text-sm text-gray-600">
-                              {lastUpdate.notes} •{" "}
-                              {lastUpdate.updatedAt.toLocaleDateString()}
+                              {lastUpdate ? (
+                                <>
+                                  {lastUpdate.notes} •{" "}
+                                  {new Date(
+                                    lastUpdate.timestamp
+                                  ).toLocaleDateString()}
+                                </>
+                              ) : (
+                                "No status updates"
+                              )}
                             </div>
                           </div>
                           <span
@@ -935,7 +948,7 @@ const CounselorDashboard: React.FC = () => {
                         Status History
                       </h4>
                       <div className="space-y-3">
-                        {application.statusHistory.map((status) => (
+                        {(application.statusHistory || []).map((status) => (
                           <div
                             key={status.id}
                             className="flex items-start space-x-3 p-3 border-l-4 border-blue-200 bg-gray-50"
