@@ -21,6 +21,7 @@ const UniversityDetail: React.FC = () => {
     selectedUniversity,
     getCoursesByUniversity,
     setCurrentPage,
+    setSelectedCourse,
     user,
     isAuthenticated,
   } = useStore();
@@ -376,7 +377,15 @@ const UniversityDetail: React.FC = () => {
                         )}
                       </div>
                       <div className="flex space-x-3">
-                        <button className="btn-secondary">View Details</button>
+                        <button
+                          onClick={() => {
+                            setSelectedCourse(course);
+                            setCurrentPage("course-detail");
+                          }}
+                          className="btn-secondary"
+                        >
+                          View Details
+                        </button>
                         <button
                           onClick={() => handleApply(course.id)}
                           className="btn-primary"
