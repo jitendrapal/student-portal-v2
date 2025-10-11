@@ -20,6 +20,7 @@ const Universities: React.FC = () => {
     setCurrentPage,
     getCoursesByUniversity,
     setCourseFilters,
+    setSelectedUniversity,
   } = useStore();
 
   const [showFilters, setShowFilters] = useState(false);
@@ -348,9 +349,10 @@ const Universities: React.FC = () => {
                             </div>
                             <div className="flex space-x-3">
                               <button
-                                onClick={() =>
-                                  setCurrentPage("university-detail")
-                                }
+                                onClick={() => {
+                                  setSelectedUniversity(university);
+                                  setCurrentPage("university-detail");
+                                }}
                                 className="btn-secondary"
                               >
                                 View Details

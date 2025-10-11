@@ -164,9 +164,11 @@ interface UniversityState {
   filters: UniversityFilters;
   searchQuery: string;
   isLoading: boolean;
+  selectedUniversity: University | null;
   fetchUniversities: () => Promise<void>;
   setFilters: (filters: UniversityFilters) => void;
   setSearchQuery: (query: string) => void;
+  setSelectedUniversity: (university: University | null) => void;
   getUniversityById: (id: string) => University | undefined;
 }
 
@@ -247,6 +249,7 @@ export const useStore = create<Store>((set, get) => ({
   filters: {},
   searchQuery: "",
   isLoading: false,
+  selectedUniversity: null,
   fetchUniversities: async () => {
     try {
       set({ isLoading: true });
@@ -313,6 +316,9 @@ export const useStore = create<Store>((set, get) => ({
     set({ searchQuery: query });
     const { filters } = get();
     get().setFilters(filters); // Re-apply filters with new search
+  },
+  setSelectedUniversity: (university: University | null) => {
+    set({ selectedUniversity: university });
   },
   getUniversityById: (id: string) => {
     return get().universities.find((uni) => uni.id === id);
