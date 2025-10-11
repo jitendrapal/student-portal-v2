@@ -35,6 +35,7 @@ const CounselorDashboard: React.FC = () => {
   const [newApplicationsCount, setNewApplicationsCount] = useState(0);
   const [lastChecked, setLastChecked] = useState(new Date());
   const [showNotesModal, setShowNotesModal] = useState(false);
+  const [showApplicationModal, setShowApplicationModal] = useState(false);
   const [selectedApplicationId, setSelectedApplicationId] = useState<
     string | null
   >(null);
@@ -144,6 +145,55 @@ const CounselorDashboard: React.FC = () => {
       setShowNotesModal(false);
       setSelectedApplicationId(null);
       setNotesText("");
+    }
+  };
+
+  const handleViewApplication = (applicationId: string) => {
+    setSelectedApplicationId(applicationId);
+    setShowApplicationModal(true);
+  };
+
+  const handleScheduleInterview = (applicationId: string) => {
+    const interviewDate = prompt("Enter interview date (YYYY-MM-DD):");
+    if (interviewDate) {
+      updateApplication(applicationId, {
+        status: "interview_scheduled",
+        interviewDate: new Date(interviewDate),
+      });
+      updateApplicationStatus(
+        applicationId,
+        "interview_scheduled",
+        `Interview scheduled for ${interviewDate}`
+      );
+    }
+  };
+
+  const handleAcceptApplication = (applicationId: string) => {
+    if (confirm("Are you sure you want to accept this application?")) {
+      updateApplication(applicationId, {
+        status: "accepted",
+        decisionDate: new Date(),
+      });
+      updateApplicationStatus(
+        applicationId,
+        "accepted",
+        "Application accepted by counselor"
+      );
+    }
+  };
+
+  const handleRejectApplication = (applicationId: string) => {
+    const reason = prompt("Please provide a reason for rejection:");
+    if (reason) {
+      updateApplication(applicationId, {
+        status: "rejected",
+        decisionDate: new Date(),
+      });
+      updateApplicationStatus(
+        applicationId,
+        "rejected",
+        `Application rejected: ${reason}`
+      );
     }
   };
 
@@ -481,37 +531,113 @@ const CounselorDashboard: React.FC = () => {
                               <option value="waitlisted">Waitlisted</option>
                             </select>
 
-                            <button
-                              onClick={() =>
-                                handleCallStudent(application.studentId)
-                              }
-                              className="p-2 text-gray-400 hover:text-green-600 rounded-lg hover:bg-green-50"
-                              title="Call Student"
-                            >
-                              <Phone className="w-4 h-4" />
-                            </button>
+                            <div className="flex items-center space-x-2">
+                              {/* Quick Action Buttons */}
+                              <button
+                                onClick={() =>
+                                  handleViewApplication(application.id)
+                                }
+                                className="p-2 text-gray-400 hover:text-blue-600 rounded-lg hover:bg-blue-50"
+                                title="View Details"
+                              >
+                                <Eye className="w-4 h-4" />
+                              </button>
 
-                            <button
-                              onClick={() =>
-                                handleMessageStudent(application.studentId)
-                              }
-                              className="p-2 text-gray-400 hover:text-blue-600 rounded-lg hover:bg-blue-50"
-                              title="Message Student"
-                            >
-                              <MessageSquare className="w-4 h-4" />
-                            </button>
+                              <button
+                                onClick={() => handleAddNotes(application.id)}
+                                className="p-2 text-gray-400 hover:text-purple-600 rounded-lg hover:bg-purple-50"
+                                title="Add Notes"
+                              >
+                                <FileText className="w-4 h-4" />
+                              </button>
 
-                            <button
-                              onClick={() => handleAddNotes(application.id)}
-                              className="p-2 text-gray-400 hover:text-purple-600 rounded-lg hover:bg-purple-50"
-                              title="Add Notes"
-                            >
-                              <FileText className="w-4 h-4" />
-                            </button>
+                              <button
+                                onClick={() =>
+                                  handleCallStudent(application.studentId)
+                                }
+                                className="p-2 text-gray-400 hover:text-green-600 rounded-lg hover:bg-green-50"
+                                title="Call Student"
+                              >
+                                <Phone className="w-4 h-4" />
+                              </button>
 
-                            <button className="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-50">
-                              <Eye className="w-4 h-4" />
-                            </button>
+                              <button
+                                onClick={() =>
+                                  handleMessageStudent(application.studentId)
+                                }
+                                className="p-2 text-gray-400 hover:text-blue-600 rounded-lg hover:bg-blue-50"
+                                title="Message Student"
+                              >
+                                <MessageSquare className="w-4 h-4" />
+                              </button>
+                            </div>
+
+                            {/* Action Buttons based on Status */}
+                            <div className="flex items-center space-x-2 mt-2 lg:mt-0">
+                              {application.status === "submitted" && (
+                                <button
+                                  onClick={() =>
+                                    handleStatusUpdate(
+                                      application.id,
+                                      "under_review"
+                                    )
+                                  }
+                                  className="btn-secondary text-xs px-3 py-1"
+                                >
+                                  Start Review
+                                </button>
+                              )}
+
+                              {application.status === "under_review" && (
+                                <>
+                                  <button
+                                    onClick={() =>
+                                      handleScheduleInterview(application.id)
+                                    }
+                                    className="btn-secondary text-xs px-3 py-1"
+                                  >
+                                    Schedule Interview
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      handleAcceptApplication(application.id)
+                                    }
+                                    className="bg-green-600 text-white text-xs px-3 py-1 rounded hover:bg-green-700"
+                                  >
+                                    Accept
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      handleRejectApplication(application.id)
+                                    }
+                                    className="bg-red-600 text-white text-xs px-3 py-1 rounded hover:bg-red-700"
+                                  >
+                                    Reject
+                                  </button>
+                                </>
+                              )}
+
+                              {application.status === "interview_scheduled" && (
+                                <>
+                                  <button
+                                    onClick={() =>
+                                      handleAcceptApplication(application.id)
+                                    }
+                                    className="bg-green-600 text-white text-xs px-3 py-1 rounded hover:bg-green-700"
+                                  >
+                                    Accept
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      handleRejectApplication(application.id)
+                                    }
+                                    className="bg-red-600 text-white text-xs px-3 py-1 rounded hover:bg-red-700"
+                                  >
+                                    Reject
+                                  </button>
+                                </>
+                              )}
+                            </div>
                           </div>
                         </div>
 
@@ -607,6 +733,225 @@ const CounselorDashboard: React.FC = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Application Details Modal */}
+      {showApplicationModal && selectedApplicationId && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {(() => {
+              const application = applications.find(
+                (app) => app.id === selectedApplicationId
+              );
+              const university = application
+                ? getUniversityById(application.universityId)
+                : null;
+              const course = application
+                ? getCourseById(application.courseId)
+                : null;
+              const student = application
+                ? getUserById(application.studentId)
+                : null;
+
+              if (!application) return null;
+
+              return (
+                <>
+                  <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900">
+                        Application Details
+                      </h3>
+                      <p className="text-gray-600 mt-1">
+                        {course?.name} at {university?.name}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setShowApplicationModal(false)}
+                      className="text-gray-400 hover:text-gray-600"
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  <div className="p-6 space-y-6">
+                    {/* Student Information */}
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-3">
+                        Student Information
+                      </h4>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <span className="font-medium">Name:</span>{" "}
+                          {student?.firstName} {student?.lastName}
+                        </div>
+                        <div>
+                          <span className="font-medium">Email:</span>{" "}
+                          {student?.email}
+                        </div>
+                        <div>
+                          <span className="font-medium">Phone:</span>{" "}
+                          {student?.phone || "Not provided"}
+                        </div>
+                        <div>
+                          <span className="font-medium">Student ID:</span>{" "}
+                          {application.studentId}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Application Status */}
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900 mb-3">
+                        Application Status
+                      </h4>
+                      <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                          <span className="font-medium">Current Status:</span>
+                          <span
+                            className={`ml-2 px-2 py-1 rounded-full text-xs ${getStatusColor(
+                              application.status
+                            )}`}
+                          >
+                            {application.status.replace("_", " ")}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-medium">Submitted:</span>{" "}
+                          {application.submittedAt?.toLocaleDateString()}
+                        </div>
+                        <div>
+                          <span className="font-medium">Last Updated:</span>{" "}
+                          {application.lastUpdated.toLocaleDateString()}
+                        </div>
+                        {application.interviewDate && (
+                          <div>
+                            <span className="font-medium">Interview Date:</span>{" "}
+                            {application.interviewDate.toLocaleDateString()}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Documents */}
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-3">
+                        Documents ({application.documents.length})
+                      </h4>
+                      <div className="space-y-2">
+                        {application.documents.map((doc) => (
+                          <div
+                            key={doc.id}
+                            className="flex items-center justify-between p-3 border rounded-lg"
+                          >
+                            <div className="flex items-center space-x-3">
+                              <FileText className="w-5 h-5 text-gray-400" />
+                              <div>
+                                <div className="font-medium">{doc.name}</div>
+                                <div className="text-sm text-gray-600">
+                                  {doc.type.replace("_", " ")} •{" "}
+                                  {(doc.fileSize / 1024 / 1024).toFixed(2)} MB
+                                </div>
+                              </div>
+                            </div>
+                            <span
+                              className={`px-2 py-1 rounded-full text-xs ${
+                                doc.status === "verified"
+                                  ? "bg-green-100 text-green-800"
+                                  : doc.status === "pending"
+                                  ? "bg-yellow-100 text-yellow-800"
+                                  : "bg-red-100 text-red-800"
+                              }`}
+                            >
+                              {doc.status}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Personal Statement */}
+                    {application.personalStatement && (
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-3">
+                          Personal Statement
+                        </h4>
+                        <div className="bg-gray-50 rounded-lg p-4">
+                          <p className="text-gray-700 whitespace-pre-wrap">
+                            {application.personalStatement}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Counselor Notes */}
+                    {application.counselorNotes && (
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-3">
+                          Counselor Notes
+                        </h4>
+                        <div className="bg-blue-50 rounded-lg p-4">
+                          <p className="text-gray-700 whitespace-pre-wrap">
+                            {application.counselorNotes}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Status History */}
+                    <div>
+                      <h4 className="font-semibold text-gray-900 mb-3">
+                        Status History
+                      </h4>
+                      <div className="space-y-3">
+                        {application.statusHistory.map((status) => (
+                          <div
+                            key={status.id}
+                            className="flex items-start space-x-3 p-3 border-l-4 border-blue-200 bg-gray-50"
+                          >
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-2">
+                                <span className="font-medium">
+                                  {status.status.replace("_", " ")}
+                                </span>
+                                <span className="text-sm text-gray-600">
+                                  {status.updatedAt.toLocaleDateString()}
+                                </span>
+                              </div>
+                              {status.notes && (
+                                <p className="text-sm text-gray-600 mt-1">
+                                  {status.notes}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-end space-x-3 p-6 border-t border-gray-200">
+                    <button
+                      onClick={() => setShowApplicationModal(false)}
+                      className="btn-secondary"
+                    >
+                      Close
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowApplicationModal(false);
+                        handleAddNotes(application.id);
+                      }}
+                      className="btn-primary"
+                    >
+                      Add Notes
+                    </button>
+                  </div>
+                </>
+              );
+            })()}
           </div>
         </div>
       )}
