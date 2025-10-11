@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
     setFilters,
     courses,
     fetchCourses,
-    setSelectedCourse,
+    setCourseFilters,
   } = useStore();
 
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -253,8 +253,11 @@ const Navbar: React.FC = () => {
                                 <button
                                   key={course.id}
                                   onClick={() => {
-                                    setSelectedCourse(course);
-                                    setCurrentPage("course-detail");
+                                    // Filter courses page to show only this course
+                                    setCourseFilters({
+                                      courseNames: [course.name],
+                                    });
+                                    setCurrentPage("courses");
                                     setShowCourseDropdown(false);
                                     setMobileMenuOpen(false);
                                   }}
@@ -506,8 +509,11 @@ const Navbar: React.FC = () => {
                             <button
                               key={course.id}
                               onClick={() => {
-                                setSelectedCourse(course);
-                                setCurrentPage("course-detail");
+                                // Filter courses page to show only this course
+                                setCourseFilters({
+                                  courseNames: [course.name],
+                                });
+                                setCurrentPage("courses");
                                 setMobileMenuOpen(false);
                               }}
                               className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md"

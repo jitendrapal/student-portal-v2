@@ -138,6 +138,7 @@ interface CourseFilters {
   mode?: Course["mode"][];
   language?: string[];
   countries?: string[];
+  courseNames?: string[];
 }
 
 import {
@@ -382,6 +383,12 @@ export const useStore = create<Store>((set, get) => ({
         );
         return university && filters.countries!.includes(university.country);
       });
+    }
+
+    if (filters.courseNames?.length) {
+      filtered = filtered.filter((course) =>
+        filters.courseNames!.includes(course.name)
+      );
     }
 
     set({ filteredCourses: filtered });
