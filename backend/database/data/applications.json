@@ -9,5 +9,27 @@
     "assignedCounselor": "1760189422964zaef093ri",
     "createdAt": "2025-10-11T13:30:23.011Z",
     "updatedAt": "2025-10-11T13:30:23.011Z"
+  },
+  {
+    "_id": "1760211067891y9ssz2ufb",
+    "student": "1760189422960rrr6pxcf1",
+    "university": "1760189422973gve9fe2ek",
+    "course": "17601894229936m52na0s7",
+    "personalStatement": "",
+    "additionalInfo": "",
+    "status": "draft",
+    "documents": [],
+    "statusHistory": [
+      {
+        "status": "draft",
+        "updatedBy": "1760189422960rrr6pxcf1",
+        "timestamp": "2025-10-11T19:31:07.889Z",
+        "notes": "Application created"
+      }
+    ],
+    "submittedAt": null,
+    "lastUpdated": "2025-10-11T19:31:07.889Z",
+    "createdAt": "2025-10-11T19:31:07.892Z",
+    "updatedAt": "2025-10-11T19:31:07.892Z"
   }
 ]
