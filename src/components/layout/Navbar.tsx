@@ -32,6 +32,8 @@ const Navbar: React.FC = () => {
     courses,
     fetchCourses,
     setCourseFilters,
+    setSelectedCourse,
+    getCoursesByUniversity,
   } = useStore();
 
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -172,7 +174,7 @@ const Navbar: React.FC = () => {
 
                     {/* Universities Dropdown Menu */}
                     {showUniversityDropdown && (
-                      <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 z-50">
+                      <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-md shadow-lg border border-gray-200 z-50 max-h-96 overflow-y-auto">
                         <div className="py-2">
                           <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wide border-b border-gray-100">
                             Browse by Country
@@ -185,20 +187,78 @@ const Navbar: React.FC = () => {
                             All Universities
                           </button>
                           {countries.map((country) => {
-                            const universityCount = universities.filter(
+                            const countryUniversities = universities.filter(
                               (u) => u.country === country
-                            ).length;
+                            );
                             return (
-                              <button
+                              <div
                                 key={country}
-                                onClick={() => handleCountrySelect(country)}
-                                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-between"
+                                className="border-b border-gray-100 last:border-b-0"
                               >
-                                <span>{country}</span>
-                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                                  {universityCount}
-                                </span>
-                              </button>
+                                <button
+                                  onClick={() => handleCountrySelect(country)}
+                                  className="w-full text-left px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-50 flex items-center justify-between"
+                                >
+                                  <span>{country}</span>
+                                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                    {countryUniversities.length}
+                                  </span>
+                                </button>
+                                {/* Universities in this country */}
+                                <div className="ml-4 border-l border-gray-200">
+                                  {countryUniversities
+                                    .slice(0, 3)
+                                    .map((university) => {
+                                      const universityCourses =
+                                        getCoursesByUniversity(university.id);
+                                      return (
+                                        <div
+                                          key={university.id}
+                                          className="pl-4"
+                                        >
+                                          <div className="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-50">
+                                            {university.name}
+                                          </div>
+                                          {/* Courses for this university */}
+                                          <div className="ml-2">
+                                            {universityCourses
+                                              .slice(0, 2)
+                                              .map((course) => (
+                                                <button
+                                                  key={course.id}
+                                                  onClick={() => {
+                                                    setSelectedCourse(course);
+                                                    setCurrentPage(
+                                                      "course-detail"
+                                                    );
+                                                    setShowUniversityDropdown(
+                                                      false
+                                                    );
+                                                    setMobileMenuOpen(false);
+                                                  }}
+                                                  className="w-full text-left px-2 py-1 text-xs text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded"
+                                                >
+                                                  {course.name}
+                                                </button>
+                                              ))}
+                                            {universityCourses.length > 2 && (
+                                              <div className="px-2 py-1 text-xs text-gray-500">
+                                                +{universityCourses.length - 2}{" "}
+                                                more courses
+                                              </div>
+                                            )}
+                                          </div>
+                                        </div>
+                                      );
+                                    })}
+                                  {countryUniversities.length > 3 && (
+                                    <div className="pl-6 px-2 py-1 text-xs text-gray-500">
+                                      +{countryUniversities.length - 3} more
+                                      universities
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
                             );
                           })}
                         </div>
@@ -438,7 +498,7 @@ const Navbar: React.FC = () => {
                     </button>
 
                     {/* Mobile Country List */}
-                    <div className="ml-4 space-y-1">
+                    <div className="ml-4 space-y-1 max-h-64 overflow-y-auto">
                       <div className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase tracking-wide">
                         By Country
                       </div>
@@ -450,20 +510,70 @@ const Navbar: React.FC = () => {
                         <span>All Universities</span>
                       </button>
                       {countries.map((country) => {
-                        const universityCount = universities.filter(
+                        const countryUniversities = universities.filter(
                           (u) => u.country === country
-                        ).length;
+                        );
                         return (
-                          <button
-                            key={country}
-                            onClick={() => handleCountrySelect(country)}
-                            className="flex items-center justify-between w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
-                          >
-                            <span>{country}</span>
-                            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                              {universityCount}
-                            </span>
-                          </button>
+                          <div key={country} className="space-y-1">
+                            <button
+                              onClick={() => handleCountrySelect(country)}
+                              className="flex items-center justify-between w-full px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                            >
+                              <span>{country}</span>
+                              <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                {countryUniversities.length}
+                              </span>
+                            </button>
+                            {/* Universities in this country */}
+                            <div className="ml-4 space-y-1">
+                              {countryUniversities
+                                .slice(0, 2)
+                                .map((university) => {
+                                  const universityCourses =
+                                    getCoursesByUniversity(university.id);
+                                  return (
+                                    <div
+                                      key={university.id}
+                                      className="space-y-1"
+                                    >
+                                      <div className="px-3 py-1 text-xs font-medium text-gray-600 bg-gray-50 rounded">
+                                        {university.name}
+                                      </div>
+                                      {/* Courses for this university */}
+                                      <div className="ml-4 space-y-1">
+                                        {universityCourses
+                                          .slice(0, 2)
+                                          .map((course) => (
+                                            <button
+                                              key={course.id}
+                                              onClick={() => {
+                                                setSelectedCourse(course);
+                                                setCurrentPage("course-detail");
+                                                setMobileMenuOpen(false);
+                                              }}
+                                              className="w-full text-left px-3 py-1 text-xs text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded"
+                                            >
+                                              {course.name}
+                                            </button>
+                                          ))}
+                                        {universityCourses.length > 2 && (
+                                          <div className="px-3 py-1 text-xs text-gray-500">
+                                            +{universityCourses.length - 2} more
+                                            courses
+                                          </div>
+                                        )}
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              {countryUniversities.length > 2 && (
+                                <div className="px-3 py-1 text-xs text-gray-500">
+                                  +{countryUniversities.length - 2} more
+                                  universities
+                                </div>
+                              )}
+                            </div>
+                          </div>
                         );
                       })}
                     </div>
