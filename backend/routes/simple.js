@@ -415,7 +415,12 @@ export function createSimpleRoutes(app, db) {
   // Update application
   app.put("/api/applications/:id", auth, async (req, res) => {
     try {
+      console.log("🔄 Updating application:", req.params.id);
+      console.log("📝 Request body:", req.body);
+      console.log("👤 User ID:", req.user.userId);
+
       const application = await db.findById("applications", req.params.id);
+      console.log("📋 Found application:", application ? "Yes" : "No");
       if (!application) {
         return res
           .status(404)
@@ -453,10 +458,14 @@ export function createSimpleRoutes(app, db) {
         }
       }
 
-      const updatedApplication = await db.update(
+      const updatedApplication = await db.updateById(
         "applications",
         req.params.id,
         updates
+      );
+      console.log(
+        "✅ Application updated successfully:",
+        updatedApplication ? "Yes" : "No"
       );
 
       res.json({
@@ -464,7 +473,12 @@ export function createSimpleRoutes(app, db) {
         data: { application: updatedApplication },
       });
     } catch (error) {
-      res.status(500).json({ success: false, message: "Server error" });
+      console.error("❌ Error updating application:", error);
+      res.status(500).json({
+        success: false,
+        message: "Server error",
+        error: error.message,
+      });
     }
   });
 
