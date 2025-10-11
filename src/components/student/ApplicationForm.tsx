@@ -259,22 +259,24 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
   }
 
   return (
-    <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200"
-      onClick={(e) => {
-        // Close modal if clicking on backdrop
-        if (e.target === e.currentTarget) {
-          onClose();
-        }
-      }}
-    >
+    <>
+      {/* Main Application Form Modal */}
       <div
-        className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[95vh] overflow-hidden flex flex-col animate-in slide-in-from-bottom-4 duration-300"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="application-form-title"
-        onClick={(e) => e.stopPropagation()}
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200"
+        onClick={(e) => {
+          // Close modal if clicking on backdrop
+          if (e.target === e.currentTarget) {
+            onClose();
+          }
+        }}
       >
+        <div
+          className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[95vh] overflow-hidden flex flex-col animate-in slide-in-from-bottom-4 duration-300"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="application-form-title"
+          onClick={(e) => e.stopPropagation()}
+        >
         {/* Header */}
         <div className="bg-white border-b px-6 py-4 flex-shrink-0">
           <div className="flex items-center justify-between">
@@ -1184,24 +1186,26 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
               </div>
             </div>
           </div>
-
-        {/* Document Upload Modal */}
-        {showDocumentUpload && (
-          <DocumentUpload
-            applicationId={applicationId}
-            onClose={() => setShowDocumentUpload(false)}
-          />
-        )}
-
-        {/* Bulk Document Upload Modal */}
-        {showBulkUpload && (
-          <BulkDocumentUpload
-            applicationId={applicationId}
-            onClose={() => setShowBulkUpload(false)}
-          />
-        )}
+        </div>
+        </div>
       </div>
-    </div>
+
+      {/* Document Upload Modal */}
+      {showDocumentUpload && (
+        <DocumentUpload
+          applicationId={applicationId}
+          onClose={() => setShowDocumentUpload(false)}
+        />
+      )}
+
+      {/* Bulk Document Upload Modal */}
+      {showBulkUpload && (
+        <BulkDocumentUpload
+          applicationId={applicationId}
+          onClose={() => setShowBulkUpload(false)}
+        />
+      )}
+    </>
   );
 };
 
