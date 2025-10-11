@@ -83,6 +83,27 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
     }
   }, [application]);
 
+  // Prevent body scroll when modal is open and improve accessibility
+  useEffect(() => {
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+
+    // Handle escape key
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
+
   const steps = [
     {
       id: "personal",
@@ -238,30 +259,55 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center">
+    <div
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 animate-in fade-in duration-200"
+      onClick={(e) => {
+        // Close modal if clicking on backdrop
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <div
+        className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[95vh] overflow-hidden flex flex-col animate-in slide-in-from-bottom-4 duration-300"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="application-form-title"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="bg-white border-b px-6 py-4 flex-shrink-0">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
               <button
                 onClick={onClose}
-                className="mr-4 p-2 text-gray-400 hover:text-gray-600"
+                className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
               >
-                <ArrowLeft className="w-5 h-5" />
+                <X className="w-5 h-5 mr-2" />
+                Close
               </button>
+              <div className="h-6 w-px bg-gray-300"></div>
               <div>
-                <h1 className="text-xl font-semibold text-gray-900">
-                  Application for {course.name}
+                <h1
+                  id="application-form-title"
+                  className="text-xl font-semibold text-gray-900"
+                >
+                  Application Form
                 </h1>
                 <p className="text-sm text-gray-600">
-                  {university.name} • {university.country}
+                  {course.name} at {university.name}
                 </p>
               </div>
             </div>
             <div className="flex items-center space-x-3">
               <div className="text-sm text-gray-600">
                 Progress: {getStepProgress()}%
+              </div>
+              <div className="w-32 bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-primary-600 h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${getStepProgress()}%` }}
+                ></div>
               </div>
               <button
                 onClick={handleSave}
@@ -273,10 +319,11 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex">
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto">
+          <div className="p-6">
+            <div className="flex">
           {/* Sidebar - Steps */}
           <div className="w-64 mr-8">
             <div className="bg-white rounded-lg shadow-sm p-6">
@@ -1138,23 +1185,26 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
             </div>
           </div>
         </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Document Upload Modal */}
+        {showDocumentUpload && (
+          <DocumentUpload
+            applicationId={applicationId}
+            onClose={() => setShowDocumentUpload(false)}
+          />
+        )}
+
+        {/* Bulk Document Upload Modal */}
+        {showBulkUpload && (
+          <BulkDocumentUpload
+            applicationId={applicationId}
+            onClose={() => setShowBulkUpload(false)}
+          />
+        )}
       </div>
-
-      {/* Document Upload Modal */}
-      {showDocumentUpload && (
-        <DocumentUpload
-          applicationId={applicationId}
-          onClose={() => setShowDocumentUpload(false)}
-        />
-      )}
-
-      {/* Bulk Document Upload Modal */}
-      {showBulkUpload && (
-        <BulkDocumentUpload
-          applicationId={applicationId}
-          onClose={() => setShowBulkUpload(false)}
-        />
-      )}
     </div>
   );
 };
