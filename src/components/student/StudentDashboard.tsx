@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import DocumentUpload from "./DocumentUpload";
+import BulkDocumentUpload from "./BulkDocumentUpload";
 import ApplicationForm from "./ApplicationForm";
 
 const StudentDashboard: React.FC = () => {
@@ -34,6 +35,7 @@ const StudentDashboard: React.FC = () => {
     "applications" | "documents" | "profile"
   >("applications");
   const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showBulkUploadModal, setShowBulkUploadModal] = useState(false);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [selectedApplicationId, setSelectedApplicationId] = useState<
     string | null
@@ -509,13 +511,22 @@ const StudentDashboard: React.FC = () => {
                   <h2 className="text-lg font-semibold text-gray-900">
                     My Documents
                   </h2>
-                  <button
-                    onClick={() => setShowUploadModal(true)}
-                    className="btn-primary flex items-center"
-                  >
-                    <Upload className="w-4 h-4 mr-2" />
-                    Upload Document
-                  </button>
+                  <div className="flex space-x-3">
+                    <button
+                      onClick={() => setShowBulkUploadModal(true)}
+                      className="btn-primary flex items-center"
+                    >
+                      <Upload className="w-4 h-4 mr-2" />
+                      Upload All Documents
+                    </button>
+                    <button
+                      onClick={() => setShowUploadModal(true)}
+                      className="btn-secondary flex items-center"
+                    >
+                      <Upload className="w-4 h-4 mr-2" />
+                      Upload Single Document
+                    </button>
+                  </div>
                 </div>
 
                 <div className="text-center py-12">
@@ -526,12 +537,20 @@ const StudentDashboard: React.FC = () => {
                   <p className="text-gray-600 mb-6">
                     Upload your academic documents to speed up applications
                   </p>
-                  <button
-                    onClick={() => setShowUploadModal(true)}
-                    className="btn-primary"
-                  >
-                    Upload First Document
-                  </button>
+                  <div className="flex space-x-3 justify-center">
+                    <button
+                      onClick={() => setShowBulkUploadModal(true)}
+                      className="btn-primary"
+                    >
+                      Upload All Documents
+                    </button>
+                    <button
+                      onClick={() => setShowUploadModal(true)}
+                      className="btn-secondary"
+                    >
+                      Upload Single Document
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
@@ -615,6 +634,14 @@ const StudentDashboard: React.FC = () => {
       {showUploadModal && (
         <DocumentUpload
           onClose={() => setShowUploadModal(false)}
+          applicationId={userApplications[0]?.id}
+        />
+      )}
+
+      {/* Bulk Document Upload Modal */}
+      {showBulkUploadModal && (
+        <BulkDocumentUpload
+          onClose={() => setShowBulkUploadModal(false)}
           applicationId={userApplications[0]?.id}
         />
       )}

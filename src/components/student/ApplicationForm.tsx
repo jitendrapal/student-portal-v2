@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import DocumentUpload from "./DocumentUpload";
+import BulkDocumentUpload from "./BulkDocumentUpload";
 
 interface ApplicationFormProps {
   applicationId: string;
@@ -37,6 +38,7 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
 
   const [activeStep, setActiveStep] = useState(0);
   const [showDocumentUpload, setShowDocumentUpload] = useState(false);
+  const [showBulkUpload, setShowBulkUpload] = useState(false);
   const [formData, setFormData] = useState({
     personalStatement: "",
     additionalInfo: "",
@@ -728,15 +730,24 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
                     <div>
                       <div className="flex items-center justify-between mb-4">
                         <h3 className="text-lg font-semibold text-gray-900">
-                          Upload New Document
+                          Upload Documents
                         </h3>
-                        <button
-                          onClick={() => setShowDocumentUpload(true)}
-                          className="btn-primary flex items-center"
-                        >
-                          <Plus className="w-4 h-4 mr-2" />
-                          Add Document
-                        </button>
+                        <div className="flex space-x-3">
+                          <button
+                            onClick={() => setShowBulkUpload(true)}
+                            className="btn-primary flex items-center"
+                          >
+                            <Upload className="w-4 h-4 mr-2" />
+                            Upload All Required
+                          </button>
+                          <button
+                            onClick={() => setShowDocumentUpload(true)}
+                            className="btn-secondary flex items-center"
+                          >
+                            <Plus className="w-4 h-4 mr-2" />
+                            Add Single Document
+                          </button>
+                        </div>
                       </div>
 
                       {(!application ||
@@ -747,8 +758,9 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
                             No documents uploaded yet
                           </h3>
                           <p className="text-gray-600 mb-4">
-                            Click "Add Document" to upload your required
-                            documents
+                            Click "Upload All Required" to upload all documents
+                            at once, or "Add Single Document" to upload one at a
+                            time
                           </p>
                         </div>
                       )}
@@ -1132,6 +1144,14 @@ const ApplicationForm: React.FC<ApplicationFormProps> = ({
         <DocumentUpload
           applicationId={applicationId}
           onClose={() => setShowDocumentUpload(false)}
+        />
+      )}
+
+      {/* Bulk Document Upload Modal */}
+      {showBulkUpload && (
+        <BulkDocumentUpload
+          applicationId={applicationId}
+          onClose={() => setShowBulkUpload(false)}
         />
       )}
     </div>
