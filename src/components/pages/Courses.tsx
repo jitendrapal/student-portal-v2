@@ -160,6 +160,41 @@ const Courses: React.FC = () => {
                   </div>
                 )}
 
+              {/* Active University Filter */}
+              {courseFilters.universityIds &&
+                courseFilters.universityIds.length > 0 && (
+                  <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="text-sm font-medium text-green-900">
+                          Showing courses from:
+                        </div>
+                        <div className="text-sm text-green-700">
+                          {(() => {
+                            const university = universities.find(
+                              (u) => u.id === courseFilters.universityIds![0]
+                            );
+                            return university
+                              ? university.name
+                              : "Unknown University";
+                          })()}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() =>
+                          setCourseFilters({
+                            ...courseFilters,
+                            universityIds: undefined,
+                          })
+                        }
+                        className="text-green-600 hover:text-green-800 text-sm"
+                      >
+                        Clear
+                      </button>
+                    </div>
+                  </div>
+                )}
+
               {/* Mobile Filter Toggle */}
               <button
                 onClick={() => setShowFilters(!showFilters)}

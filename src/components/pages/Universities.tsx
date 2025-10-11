@@ -1,53 +1,64 @@
-import React, { useState } from 'react';
-import { Filter, MapPin, Star, Users, DollarSign, ExternalLink, ChevronDown } from 'lucide-react';
-import { useStore } from '../../store/useStore';
-import { countries, fields } from '../../data/mockData';
+import React, { useState } from "react";
+import {
+  Filter,
+  MapPin,
+  Star,
+  Users,
+  DollarSign,
+  ExternalLink,
+  ChevronDown,
+} from "lucide-react";
+import { useStore } from "../../store/useStore";
+import { countries, fields } from "../../data/mockData";
 
 const Universities: React.FC = () => {
-  const { 
-    filteredUniversities, 
-    filters, 
-    setFilters, 
+  const {
+    filteredUniversities,
+    filters,
+    setFilters,
     searchQuery,
     setCurrentPage,
-    getCoursesByUniversity 
+    getCoursesByUniversity,
+    setCourseFilters,
   } = useStore();
 
   const [showFilters, setShowFilters] = useState(false);
-  const [sortBy, setSortBy] = useState<'ranking' | 'tuition' | 'acceptance'>('ranking');
+  const [sortBy, setSortBy] = useState<"ranking" | "tuition" | "acceptance">(
+    "ranking"
+  );
 
   const handleFilterChange = (key: string, value: any) => {
     setFilters({
       ...filters,
-      [key]: value
+      [key]: value,
     });
   };
 
   const handleCountryFilter = (country: string) => {
     const currentCountries = filters.countries || [];
     const newCountries = currentCountries.includes(country)
-      ? currentCountries.filter(c => c !== country)
+      ? currentCountries.filter((c) => c !== country)
       : [...currentCountries, country];
-    
-    handleFilterChange('countries', newCountries);
+
+    handleFilterChange("countries", newCountries);
   };
 
-  const handleTypeFilter = (type: 'public' | 'private') => {
+  const handleTypeFilter = (type: "public" | "private") => {
     const currentTypes = filters.type || [];
     const newTypes = currentTypes.includes(type)
-      ? currentTypes.filter(t => t !== type)
+      ? currentTypes.filter((t) => t !== type)
       : [...currentTypes, type];
-    
-    handleFilterChange('type', newTypes);
+
+    handleFilterChange("type", newTypes);
   };
 
   const sortedUniversities = [...filteredUniversities].sort((a, b) => {
     switch (sortBy) {
-      case 'ranking':
+      case "ranking":
         return (a.ranking.world || 999) - (b.ranking.world || 999);
-      case 'tuition':
+      case "tuition":
         return a.tuitionRange.min - b.tuitionRange.min;
-      case 'acceptance':
+      case "acceptance":
         return (b.acceptanceRate || 0) - (a.acceptanceRate || 0);
       default:
         return 0;
@@ -63,9 +74,13 @@ const Universities: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Universities</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Universities
+          </h1>
           <p className="text-gray-600">
-            {searchQuery ? `Search results for "${searchQuery}"` : 'Discover top universities worldwide'}
+            {searchQuery
+              ? `Search results for "${searchQuery}"`
+              : "Discover top universities worldwide"}
           </p>
           <div className="mt-4 text-sm text-gray-500">
             Showing {sortedUniversities.length} universities
@@ -95,10 +110,18 @@ const Universities: React.FC = () => {
                 className="lg:hidden w-full mb-4 p-2 border border-gray-300 rounded-lg flex items-center justify-between"
               >
                 <span>Show Filters</span>
-                <ChevronDown className={`w-4 h-4 transform ${showFilters ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transform ${
+                    showFilters ? "rotate-180" : ""
+                  }`}
+                />
               </button>
 
-              <div className={`space-y-6 ${showFilters ? 'block' : 'hidden lg:block'}`}>
+              <div
+                className={`space-y-6 ${
+                  showFilters ? "block" : "hidden lg:block"
+                }`}
+              >
                 {/* Country Filter */}
                 <div>
                   <h3 className="font-medium text-gray-900 mb-3">Country</h3>
@@ -107,11 +130,15 @@ const Universities: React.FC = () => {
                       <label key={country} className="flex items-center">
                         <input
                           type="checkbox"
-                          checked={filters.countries?.includes(country) || false}
+                          checked={
+                            filters.countries?.includes(country) || false
+                          }
                           onChange={() => handleCountryFilter(country)}
                           className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                         />
-                        <span className="ml-2 text-sm text-gray-700">{country}</span>
+                        <span className="ml-2 text-sm text-gray-700">
+                          {country}
+                        </span>
                       </label>
                     ))}
                   </div>
@@ -121,15 +148,19 @@ const Universities: React.FC = () => {
                 <div>
                   <h3 className="font-medium text-gray-900 mb-3">Type</h3>
                   <div className="space-y-2">
-                    {['public', 'private'].map((type) => (
+                    {["public", "private"].map((type) => (
                       <label key={type} className="flex items-center">
                         <input
                           type="checkbox"
                           checked={filters.type?.includes(type as any) || false}
-                          onChange={() => handleTypeFilter(type as 'public' | 'private')}
+                          onChange={() =>
+                            handleTypeFilter(type as "public" | "private")
+                          }
                           className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
                         />
-                        <span className="ml-2 text-sm text-gray-700 capitalize">{type}</span>
+                        <span className="ml-2 text-sm text-gray-700 capitalize">
+                          {type}
+                        </span>
                       </label>
                     ))}
                   </div>
@@ -137,31 +168,45 @@ const Universities: React.FC = () => {
 
                 {/* Tuition Range */}
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-3">Tuition Range (USD)</h3>
+                  <h3 className="font-medium text-gray-900 mb-3">
+                    Tuition Range (USD)
+                  </h3>
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-sm text-gray-700 mb-1">Minimum</label>
+                      <label className="block text-sm text-gray-700 mb-1">
+                        Minimum
+                      </label>
                       <input
                         type="number"
                         placeholder="0"
-                        value={filters.tuitionRange?.min || ''}
-                        onChange={(e) => handleFilterChange('tuitionRange', {
-                          ...filters.tuitionRange,
-                          min: e.target.value ? parseInt(e.target.value) : undefined
-                        })}
+                        value={filters.tuitionRange?.min || ""}
+                        onChange={(e) =>
+                          handleFilterChange("tuitionRange", {
+                            ...filters.tuitionRange,
+                            min: e.target.value
+                              ? parseInt(e.target.value)
+                              : undefined,
+                          })
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-gray-700 mb-1">Maximum</label>
+                      <label className="block text-sm text-gray-700 mb-1">
+                        Maximum
+                      </label>
                       <input
                         type="number"
                         placeholder="100000"
-                        value={filters.tuitionRange?.max || ''}
-                        onChange={(e) => handleFilterChange('tuitionRange', {
-                          ...filters.tuitionRange,
-                          max: e.target.value ? parseInt(e.target.value) : undefined
-                        })}
+                        value={filters.tuitionRange?.max || ""}
+                        onChange={(e) =>
+                          handleFilterChange("tuitionRange", {
+                            ...filters.tuitionRange,
+                            max: e.target.value
+                              ? parseInt(e.target.value)
+                              : undefined,
+                          })
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                       />
                     </div>
@@ -170,15 +215,23 @@ const Universities: React.FC = () => {
 
                 {/* World Ranking */}
                 <div>
-                  <h3 className="font-medium text-gray-900 mb-3">World Ranking</h3>
+                  <h3 className="font-medium text-gray-900 mb-3">
+                    World Ranking
+                  </h3>
                   <div>
-                    <label className="block text-sm text-gray-700 mb-1">Top</label>
+                    <label className="block text-sm text-gray-700 mb-1">
+                      Top
+                    </label>
                     <select
-                      value={filters.ranking?.maxWorld || ''}
-                      onChange={(e) => handleFilterChange('ranking', {
-                        ...filters.ranking,
-                        maxWorld: e.target.value ? parseInt(e.target.value) : undefined
-                      })}
+                      value={filters.ranking?.maxWorld || ""}
+                      onChange={(e) =>
+                        handleFilterChange("ranking", {
+                          ...filters.ranking,
+                          maxWorld: e.target.value
+                            ? parseInt(e.target.value)
+                            : undefined,
+                        })
+                      }
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                     >
                       <option value="">Any ranking</option>
@@ -206,7 +259,9 @@ const Universities: React.FC = () => {
                 >
                   <option value="ranking">World Ranking</option>
                   <option value="tuition">Tuition (Low to High)</option>
-                  <option value="acceptance">Acceptance Rate (High to Low)</option>
+                  <option value="acceptance">
+                    Acceptance Rate (High to Low)
+                  </option>
                 </select>
               </div>
             </div>
@@ -216,7 +271,10 @@ const Universities: React.FC = () => {
               {sortedUniversities.map((university) => {
                 const courses = getCoursesByUniversity(university.id);
                 return (
-                  <div key={university.id} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                  <div
+                    key={university.id}
+                    className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  >
                     <div className="p-6">
                       <div className="flex flex-col md:flex-row gap-6">
                         {/* University Logo */}
@@ -229,7 +287,9 @@ const Universities: React.FC = () => {
                             />
                           ) : (
                             <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                              <span className="text-gray-500 text-xs">Logo</span>
+                              <span className="text-gray-500 text-xs">
+                                Logo
+                              </span>
                             </div>
                           )}
                         </div>
@@ -243,26 +303,35 @@ const Universities: React.FC = () => {
                               </h3>
                               <div className="flex items-center text-gray-600 mb-2">
                                 <MapPin className="w-4 h-4 mr-1" />
-                                <span>{university.city}, {university.country}</span>
+                                <span>
+                                  {university.city}, {university.country}
+                                </span>
                               </div>
                               <div className="flex items-center space-x-4 text-sm text-gray-600">
                                 {university.ranking.world && (
                                   <div className="flex items-center">
                                     <Star className="w-4 h-4 mr-1 text-yellow-400" />
-                                    <span>#{university.ranking.world} World</span>
+                                    <span>
+                                      #{university.ranking.world} World
+                                    </span>
                                   </div>
                                 )}
                                 {university.acceptanceRate && (
                                   <div className="flex items-center">
                                     <Users className="w-4 h-4 mr-1" />
-                                    <span>{university.acceptanceRate}% acceptance</span>
+                                    <span>
+                                      {university.acceptanceRate}% acceptance
+                                    </span>
                                   </div>
                                 )}
                                 <div className="flex items-center">
                                   <DollarSign className="w-4 h-4 mr-1" />
                                   <span>
-                                    {university.tuitionRange.currency} {university.tuitionRange.min.toLocaleString()}-
-                                    {university.tuitionRange.max.toLocaleString()}/year
+                                    {university.tuitionRange.currency}{" "}
+                                    {university.tuitionRange.min.toLocaleString()}
+                                    -
+                                    {university.tuitionRange.max.toLocaleString()}
+                                    /year
                                   </span>
                                 </div>
                               </div>
@@ -279,13 +348,21 @@ const Universities: React.FC = () => {
                             </div>
                             <div className="flex space-x-3">
                               <button
-                                onClick={() => setCurrentPage('university-detail')}
+                                onClick={() =>
+                                  setCurrentPage("university-detail")
+                                }
                                 className="btn-secondary"
                               >
                                 View Details
                               </button>
                               <button
-                                onClick={() => setCurrentPage('courses')}
+                                onClick={() => {
+                                  // Filter courses page to show only this university's courses
+                                  setCourseFilters({
+                                    universityIds: [university.id],
+                                  });
+                                  setCurrentPage("courses");
+                                }}
                                 className="btn-primary"
                               >
                                 View Courses
@@ -302,11 +379,10 @@ const Universities: React.FC = () => {
 
             {sortedUniversities.length === 0 && (
               <div className="text-center py-12">
-                <div className="text-gray-500 mb-4">No universities found matching your criteria</div>
-                <button
-                  onClick={clearFilters}
-                  className="btn-primary"
-                >
+                <div className="text-gray-500 mb-4">
+                  No universities found matching your criteria
+                </div>
+                <button onClick={clearFilters} className="btn-primary">
                   Clear Filters
                 </button>
               </div>
