@@ -15,18 +15,27 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Trust proxy for Railway deployment (required for rate limiting and IP detection)
-app.set("trust proxy", true);
+// Use more secure proxy configuration for production
+if (process.env.NODE_ENV === "production") {
+  // Railway uses specific proxy configuration
+  app.set("trust proxy", 1); // Trust first proxy only
+} else {
+  // Development - trust all proxies
+  app.set("trust proxy", true);
+}
 
 // Security middleware
 app.use(helmet());
 
-// Rate limiting - More permissive for development
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 1000, // limit each IP to 1000 requests per windowMs (increased for development)
-  message: "Too many requests from this IP, please try again later.",
-});
-app.use("/api/", limiter);
+// Rate limiting - Disabled in production to avoid proxy issues, enabled in development
+if (process.env.NODE_ENV !== "production") {
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 1000, // limit each IP to 1000 requests per windowMs
+    message: "Too many requests from this IP, please try again later.",
+  });
+  app.use("/api/", limiter);
+}
 
 // CORS configuration
 const allowedOrigins = [
