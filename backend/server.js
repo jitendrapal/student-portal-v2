@@ -14,6 +14,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// Trust proxy for Railway deployment (required for rate limiting and IP detection)
+app.set("trust proxy", true);
+
 // Security middleware
 app.use(helmet());
 
