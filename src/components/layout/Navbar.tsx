@@ -13,6 +13,7 @@ import {
   Globe,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
+import SearchWithSuggestions from "../common/SearchWithSuggestions";
 
 const Navbar: React.FC = () => {
   const {
@@ -22,8 +23,6 @@ const Navbar: React.FC = () => {
     switchRole,
     isMobileMenuOpen,
     setMobileMenuOpen,
-    searchQuery,
-    setSearchQuery,
     currentPage,
     setCurrentPage,
     universities,
@@ -79,11 +78,6 @@ const Navbar: React.FC = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    setCurrentPage("universities");
-  };
 
   const handleNavigation = (page: string) => {
     setCurrentPage(page);
@@ -308,18 +302,10 @@ const Navbar: React.FC = () => {
 
           {/* Search Bar */}
           <div className="hidden md:flex flex-1 max-w-lg mx-8">
-            <form onSubmit={handleSearch} className="w-full">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <input
-                  type="text"
-                  placeholder="Search universities, courses..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
-              </div>
-            </form>
+            <SearchWithSuggestions
+              placeholder="Search universities, courses..."
+              className="w-full"
+            />
           </div>
 
           {/* User Menu */}
@@ -399,18 +385,10 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Search */}
         <div className="md:hidden pb-4">
-          <form onSubmit={handleSearch}>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <input
-                type="text"
-                placeholder="Search universities, courses..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-          </form>
+          <SearchWithSuggestions
+            placeholder="Search universities, courses..."
+            className="w-full"
+          />
         </div>
       </div>
 

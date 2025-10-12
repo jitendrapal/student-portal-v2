@@ -9,6 +9,8 @@ import {
   Star,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
+import SearchWithSuggestions from "../common/SearchWithSuggestions";
+import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
 
 const Home: React.FC = () => {
   const {
@@ -86,23 +88,13 @@ const Home: React.FC = () => {
             </p>
 
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="max-w-2xl mx-auto mb-8">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  name="search"
-                  placeholder="Search universities, courses, or countries..."
-                  className="w-full pl-12 pr-4 py-4 text-gray-900 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-accent-400"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-accent-500 hover:bg-accent-600 text-white px-6 py-2 rounded-md transition-colors"
-                >
-                  Search
-                </button>
-              </div>
-            </form>
+            <div className="max-w-2xl mx-auto mb-8">
+              <SearchWithSuggestions
+                placeholder="Search universities, courses, or countries..."
+                className="w-full"
+                showButton={true}
+              />
+            </div>
 
             {/* Quick Actions */}
             <div className="flex flex-wrap justify-center gap-4">
@@ -122,6 +114,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Study Goals Carousel */}
+      <StudyGoalsCarousel />
 
       {/* Stats Section */}
       <section className="py-16 bg-white">
