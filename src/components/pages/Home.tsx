@@ -11,6 +11,7 @@ import {
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
 import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
+import TopCollegesSection from "../common/TopCollegesSection";
 
 const Home: React.FC = () => {
   const {
@@ -76,19 +77,19 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Your Gateway to
-              <span className="block text-purple-300">Global Education</span>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Your Gateway to{" "}
+              <span className="text-purple-300">Global Education</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl mb-6 text-blue-100 max-w-2xl mx-auto">
               Discover top universities worldwide, find your perfect course, and
               get expert guidance for your study abroad journey.
             </p>
 
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto mb-8">
+            <div className="max-w-2xl mx-auto mb-6">
               <SearchWithSuggestions
                 placeholder="Search universities, courses, or countries..."
                 className="w-full"
@@ -97,16 +98,16 @@ const Home: React.FC = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               <button
                 onClick={() => setCurrentPage("universities")}
-                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
+                className="bg-white text-blue-600 px-5 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors text-sm"
               >
                 Browse Universities
               </button>
               <button
                 onClick={() => setCurrentPage("courses")}
-                className="border border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors"
+                className="border border-white text-white px-5 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors text-sm"
               >
                 Explore Courses
               </button>
@@ -117,6 +118,9 @@ const Home: React.FC = () => {
 
       {/* Study Goals Carousel */}
       <StudyGoalsCarousel />
+
+      {/* Top Colleges Section */}
+      <TopCollegesSection />
 
       {/* Stats Section */}
       <section className="py-16 bg-white">

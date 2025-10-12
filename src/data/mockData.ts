@@ -517,18 +517,20 @@ export const mockApplications: Application[] = [
   },
 ];
 
-// Countries and Fields for filters
+// European Countries for filters
 export const countries = [
-  "United States",
-  "United Kingdom",
-  "Canada",
-  "Australia",
-  "Germany",
+  "Austria",
+  "Belgium",
+  "Denmark",
   "France",
+  "Germany",
+  "Ireland",
+  "Italy",
   "Netherlands",
+  "Poland",
   "Sweden",
   "Switzerland",
-  "New Zealand",
+  "United Kingdom",
 ];
 
 export const fields = [

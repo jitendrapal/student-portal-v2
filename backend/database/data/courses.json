@@ -2,14 +2,14 @@
   {
     "_id": "1760189422990p8cbuv97m",
     "name": "Master of Computer Science",
-    "universityId": "1760189422968axy0ck2sq",
+    "universityId": "1760189422976b2vgtq68r",
     "degree": "Master",
     "field": "Computer Science",
     "duration": "2 years",
-    "description": "Advanced computer science program covering AI, machine learning, and software engineering.",
+    "description": "Advanced computer science program covering AI, machine learning, and software engineering at ETH Zurich.",
     "tuitionFee": {
-      "amount": 55000,
-      "currency": "CAD",
+      "amount": 2500,
+      "currency": "CHF",
       "period": "year"
     },
     "language": "English",
@@ -21,14 +21,14 @@
   {
     "_id": "17601894229914zb26sab3",
     "name": "MBA - Master of Business Administration",
-    "universityId": "1760189422970vgbxp3rfx",
+    "universityId": "1760189422979b2vgtq68u",
     "degree": "Master",
     "field": "Business Administration",
     "duration": "2 years",
-    "description": "Comprehensive MBA program for future business leaders.",
+    "description": "Comprehensive MBA program for future business leaders at London School of Economics.",
     "tuitionFee": {
-      "amount": 80000,
-      "currency": "USD",
+      "amount": 38000,
+      "currency": "GBP",
       "period": "year"
     },
     "language": "English",
@@ -40,14 +40,14 @@
   {
     "_id": "17601894229936m52na0s7",
     "name": "Bachelor of Engineering",
-    "universityId": "1760189422973gve9fe2ek",
+    "universityId": "1760189423012b2vgtq717",
     "degree": "Bachelor",
     "field": "Engineering",
-    "duration": "4 years",
-    "description": "Comprehensive engineering program with multiple specializations.",
+    "duration": "3 years",
+    "description": "Comprehensive engineering program with multiple specializations at Politecnico di Milano.",
     "tuitionFee": {
-      "amount": 45000,
-      "currency": "AUD",
+      "amount": 3500,
+      "currency": "EUR",
       "period": "year"
     },
     "language": "English",
@@ -63,9 +63,9 @@
     "degree": "Master",
     "field": "Data Science",
     "duration": "1.5 years",
-    "description": "Cutting-edge data science program with industry partnerships.",
+    "description": "Cutting-edge data science program with industry partnerships at University of Oxford.",
     "tuitionFee": {
-      "amount": 50000,
+      "amount": 42000,
       "currency": "GBP",
       "period": "year"
     },
@@ -78,7 +78,7 @@
   {
     "_id": "176018942299814a1yynre",
     "name": "Master of Science in Computer Science",
-    "universityId": "1760189422975nocvffuoy",
+    "universityId": "1760189422981b2vgtq68w",
     "degree": "Master",
     "field": "Computer Science",
     "duration": "2 years",
@@ -169,5 +169,195 @@
     "featured": true,
     "createdAt": "2025-10-11T13:30:23.009Z",
     "updatedAt": "2025-10-11T13:30:23.009Z"
+  },
+  {
+    "_id": "1760189423020b2vgtq720",
+    "name": "Master of International Law",
+    "universityId": "1760189423004b2vgtq709",
+    "degree": "Master",
+    "field": "Law",
+    "duration": "1 year",
+    "description": "Advanced international law program at Leiden University, renowned for legal studies.",
+    "tuitionFee": {
+      "amount": 12500,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.020Z",
+    "updatedAt": "2025-10-11T13:30:23.020Z"
+  },
+  {
+    "_id": "1760189423021b2vgtq721",
+    "name": "Bachelor of Medicine",
+    "universityId": "1760189423007b2vgtq712",
+    "degree": "Bachelor",
+    "field": "Medicine",
+    "duration": "6 years",
+    "description": "Comprehensive medical program at Jagiellonian University, one of Europe's oldest medical schools.",
+    "tuitionFee": {
+      "amount": 3000,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.021Z",
+    "updatedAt": "2025-10-11T13:30:23.021Z"
+  },
+  {
+    "_id": "1760189423022b2vgtq722",
+    "name": "Master of Engineering in Robotics",
+    "universityId": "1760189423008b2vgtq713",
+    "degree": "Master",
+    "field": "Engineering",
+    "duration": "2 years",
+    "description": "Advanced robotics and automation program at Warsaw University of Technology.",
+    "tuitionFee": {
+      "amount": 4000,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.022Z",
+    "updatedAt": "2025-10-11T13:30:23.022Z"
+  },
+  {
+    "_id": "1760189423023b2vgtq723",
+    "name": "Bachelor of Architecture",
+    "universityId": "1760189423012b2vgtq717",
+    "degree": "Bachelor",
+    "field": "Architecture",
+    "duration": "3 years",
+    "description": "Innovative architecture program at Politecnico di Milano, Italy's premier design university.",
+    "tuitionFee": {
+      "amount": 3500,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.023Z",
+    "updatedAt": "2025-10-11T13:30:23.023Z"
+  },
+  {
+    "_id": "1760189423024b2vgtq724",
+    "name": "Master of European Studies",
+    "universityId": "1760189423009b2vgtq714",
+    "degree": "Master",
+    "field": "European Studies",
+    "duration": "2 years",
+    "description": "Interdisciplinary European studies program at Sapienza University of Rome.",
+    "tuitionFee": {
+      "amount": 2500,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.024Z",
+    "updatedAt": "2025-10-11T13:30:23.024Z"
+  },
+  {
+    "_id": "1760189423025b2vgtq725",
+    "name": "Bachelor of Psychology",
+    "universityId": "1760189423005b2vgtq710",
+    "degree": "Bachelor",
+    "field": "Psychology",
+    "duration": "3 years",
+    "description": "Comprehensive psychology program at Utrecht University with research opportunities.",
+    "tuitionFee": {
+      "amount": 2168,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.025Z",
+    "updatedAt": "2025-10-11T13:30:23.025Z"
+  },
+  {
+    "_id": "1760189423026b2vgtq726",
+    "name": "Master of Classical Studies",
+    "universityId": "1760189423010b2vgtq715",
+    "degree": "Master",
+    "field": "Classical Studies",
+    "duration": "2 years",
+    "description": "Advanced classical studies at University of Bologna, the world's oldest university.",
+    "tuitionFee": {
+      "amount": 2200,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.026Z",
+    "updatedAt": "2025-10-11T13:30:23.026Z"
+  },
+  {
+    "_id": "1760189423027b2vgtq727",
+    "name": "Bachelor of Economics",
+    "universityId": "1760189423006b2vgtq711",
+    "degree": "Bachelor",
+    "field": "Economics",
+    "duration": "3 years",
+    "description": "Comprehensive economics program at University of Warsaw with European focus.",
+    "tuitionFee": {
+      "amount": 3500,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.027Z",
+    "updatedAt": "2025-10-11T13:30:23.027Z"
+  },
+  {
+    "_id": "1760189423028b2vgtq728",
+    "name": "Master of Biomedical Sciences",
+    "universityId": "1760189423011b2vgtq716",
+    "degree": "Master",
+    "field": "Biomedical Sciences",
+    "duration": "2 years",
+    "description": "Advanced biomedical research program at University of Milan with hospital partnerships.",
+    "tuitionFee": {
+      "amount": 3200,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.028Z",
+    "updatedAt": "2025-10-11T13:30:23.028Z"
+  },
+  {
+    "_id": "1760189423029b2vgtq729",
+    "name": "Bachelor of Art History",
+    "universityId": "1760189423013b2vgtq718",
+    "degree": "Bachelor",
+    "field": "Art History",
+    "duration": "3 years",
+    "description": "Art history program at University of Padua with access to Italian Renaissance masterpieces.",
+    "tuitionFee": {
+      "amount": 2000,
+      "currency": "EUR",
+      "period": "year"
+    },
+    "language": "English",
+    "mode": "on-campus",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.029Z",
+    "updatedAt": "2025-10-11T13:30:23.029Z"
   }
 ]

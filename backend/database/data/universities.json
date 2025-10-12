@@ -1,94 +1,19 @@
 [
   {
-    "_id": "1760189422968axy0ck2sq",
-    "name": "University of Toronto",
-    "description": "A prestigious public research university in Toronto, Ontario, Canada.",
-    "country": "Canada",
-    "city": "Toronto",
-    "establishedYear": 1827,
-    "type": "public",
-    "ranking": {
-      "world": 18,
-      "national": 1
-    },
-    "tuitionRange": {
-      "min": 45000,
-      "max": 65000,
-      "currency": "CAD"
-    },
-    "acceptanceRate": 43,
-    "studentPopulation": 97000,
-    "internationalStudents": 25000,
-    "website": "https://www.utoronto.ca",
-    "featured": true,
-    "createdAt": "2025-10-11T13:30:22.968Z",
-    "updatedAt": "2025-10-11T13:30:22.968Z"
-  },
-  {
-    "_id": "1760189422970vgbxp3rfx",
-    "name": "Harvard University",
-    "description": "A private Ivy League research university in Cambridge, Massachusetts.",
-    "country": "United States",
-    "city": "Cambridge",
-    "establishedYear": 1636,
-    "type": "private",
-    "ranking": {
-      "world": 3,
-      "national": 2
-    },
-    "tuitionRange": {
-      "min": 75000,
-      "max": 85000,
-      "currency": "USD"
-    },
-    "acceptanceRate": 5,
-    "studentPopulation": 23000,
-    "internationalStudents": 5000,
-    "website": "https://www.harvard.edu",
-    "featured": true,
-    "createdAt": "2025-10-11T13:30:22.970Z",
-    "updatedAt": "2025-10-11T13:30:22.970Z"
-  },
-  {
-    "_id": "1760189422973gve9fe2ek",
-    "name": "University of Melbourne",
-    "description": "A public research university located in Melbourne, Australia.",
-    "country": "Australia",
-    "city": "Melbourne",
-    "establishedYear": 1853,
-    "type": "public",
-    "ranking": {
-      "world": 33,
-      "national": 2
-    },
-    "tuitionRange": {
-      "min": 35000,
-      "max": 55000,
-      "currency": "AUD"
-    },
-    "acceptanceRate": 70,
-    "studentPopulation": 50000,
-    "internationalStudents": 18000,
-    "website": "https://www.unimelb.edu.au",
-    "featured": true,
-    "createdAt": "2025-10-11T13:30:22.973Z",
-    "updatedAt": "2025-10-11T13:30:22.973Z"
-  },
-  {
     "_id": "1760189422974b2vgtq68p",
     "name": "University of Oxford",
-    "description": "A collegiate research university in Oxford, England.",
+    "description": "A collegiate research university in Oxford, England. World's oldest English-speaking university with exceptional academic tradition.",
     "country": "United Kingdom",
     "city": "Oxford",
     "establishedYear": 1096,
     "type": "public",
     "ranking": {
-      "world": 5,
+      "world": 1,
       "national": 1
     },
     "tuitionRange": {
-      "min": 40000,
-      "max": 60000,
+      "min": 28000,
+      "max": 45000,
       "currency": "GBP"
     },
     "acceptanceRate": 17,
@@ -100,19 +25,169 @@
     "updatedAt": "2025-10-11T13:30:22.974Z"
   },
   {
-    "_id": "1760189422975nocvffuoy",
+    "_id": "1760189422975b2vgtq68q",
+    "name": "University of Cambridge",
+    "description": "World-renowned university known for academic excellence, research innovation, and the distinctive college system.",
+    "country": "United Kingdom",
+    "city": "Cambridge",
+    "establishedYear": 1209,
+    "type": "public",
+    "ranking": {
+      "world": 2,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 27000,
+      "max": 44000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 21,
+    "studentPopulation": 21000,
+    "internationalStudents": 8000,
+    "website": "https://www.cam.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.975Z",
+    "updatedAt": "2025-10-11T13:30:22.975Z"
+  },
+  {
+    "_id": "1760189422976b2vgtq68r",
+    "name": "ETH Zurich",
+    "description": "Leading European university for science, technology, engineering and mathematics with strong industry connections.",
+    "country": "Switzerland",
+    "city": "Zurich",
+    "establishedYear": 1855,
+    "type": "public",
+    "ranking": {
+      "world": 3,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 1500,
+      "max": 3000,
+      "currency": "CHF"
+    },
+    "acceptanceRate": 8,
+    "studentPopulation": 22000,
+    "internationalStudents": 8000,
+    "website": "https://ethz.ch",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.976Z",
+    "updatedAt": "2025-10-11T13:30:22.976Z"
+  },
+  {
+    "_id": "1760189422977b2vgtq68s",
+    "name": "Imperial College London",
+    "description": "World-class university specializing in science, engineering, medicine and business with cutting-edge research.",
+    "country": "United Kingdom",
+    "city": "London",
+    "establishedYear": 1907,
+    "type": "public",
+    "ranking": {
+      "world": 4,
+      "national": 3
+    },
+    "tuitionRange": {
+      "min": 32000,
+      "max": 52000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 14,
+    "studentPopulation": 17000,
+    "internationalStudents": 9000,
+    "website": "https://www.imperial.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.977Z",
+    "updatedAt": "2025-10-11T13:30:22.977Z"
+  },
+  {
+    "_id": "1760189422978b2vgtq68t",
+    "name": "University College London (UCL)",
+    "description": "London's leading multidisciplinary university with global reputation for research excellence and innovation.",
+    "country": "United Kingdom",
+    "city": "London",
+    "establishedYear": 1826,
+    "type": "public",
+    "ranking": {
+      "world": 5,
+      "national": 4
+    },
+    "tuitionRange": {
+      "min": 24000,
+      "max": 48000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 63,
+    "studentPopulation": 42000,
+    "internationalStudents": 18000,
+    "website": "https://www.ucl.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.978Z",
+    "updatedAt": "2025-10-11T13:30:22.978Z"
+  },
+  {
+    "_id": "1760189422979b2vgtq68u",
+    "name": "London School of Economics (LSE)",
+    "description": "Premier institution for social sciences, economics, politics and related subjects with global influence.",
+    "country": "United Kingdom",
+    "city": "London",
+    "establishedYear": 1895,
+    "type": "public",
+    "ranking": {
+      "world": 6,
+      "national": 5
+    },
+    "tuitionRange": {
+      "min": 22000,
+      "max": 42000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 8,
+    "studentPopulation": 12000,
+    "internationalStudents": 7000,
+    "website": "https://www.lse.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.979Z",
+    "updatedAt": "2025-10-11T13:30:22.979Z"
+  },
+  {
+    "_id": "1760189422980b2vgtq68v",
+    "name": "Sorbonne University",
+    "description": "Historic French university renowned for humanities, sciences, and medicine with rich cultural heritage.",
+    "country": "France",
+    "city": "Paris",
+    "establishedYear": 1257,
+    "type": "public",
+    "ranking": {
+      "world": 7,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 170,
+      "max": 3770,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 32,
+    "studentPopulation": 55000,
+    "internationalStudents": 10000,
+    "website": "https://www.sorbonne-universite.fr",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.980Z",
+    "updatedAt": "2025-10-11T13:30:22.980Z"
+  },
+  {
+    "_id": "1760189422981b2vgtq68w",
     "name": "Technical University of Munich (TUM)",
-    "description": "One of Europe's top universities, focusing on engineering, technology, medicine, and applied sciences.",
+    "description": "Germany's top technical university with strong industry connections and excellence in engineering and technology.",
     "country": "Germany",
     "city": "Munich",
     "establishedYear": 1868,
     "type": "public",
     "ranking": {
-      "world": 50,
+      "world": 8,
       "national": 1
     },
     "tuitionRange": {
-      "min": 0,
+      "min": 150,
       "max": 3000,
       "currency": "EUR"
     },
@@ -121,19 +196,144 @@
     "internationalStudents": 15000,
     "website": "https://www.tum.de",
     "featured": true,
-    "createdAt": "2025-10-11T13:30:22.975Z",
-    "updatedAt": "2025-10-11T13:30:22.975Z"
+    "createdAt": "2025-10-11T13:30:22.981Z",
+    "updatedAt": "2025-10-11T13:30:22.981Z"
   },
   {
-    "_id": "1760189422978gq4cnegep",
+    "_id": "1760189422982b2vgtq68x",
+    "name": "University of Edinburgh",
+    "description": "Scotland's premier university with rich history and academic excellence in research and teaching.",
+    "country": "United Kingdom",
+    "city": "Edinburgh",
+    "establishedYear": 1583,
+    "type": "public",
+    "ranking": {
+      "world": 9,
+      "national": 6
+    },
+    "tuitionRange": {
+      "min": 20000,
+      "max": 40000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 40,
+    "studentPopulation": 35000,
+    "internationalStudents": 15000,
+    "website": "https://www.ed.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.982Z",
+    "updatedAt": "2025-10-11T13:30:22.982Z"
+  },
+  {
+    "_id": "1760189422983b2vgtq68y",
+    "name": "KU Leuven",
+    "description": "Belgium's largest university with strong research focus and international outlook in multiple disciplines.",
+    "country": "Belgium",
+    "city": "Leuven",
+    "establishedYear": 1425,
+    "type": "public",
+    "ranking": {
+      "world": 10,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 906,
+      "max": 4175,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 25,
+    "studentPopulation": 58000,
+    "internationalStudents": 12000,
+    "website": "https://www.kuleuven.be",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.983Z",
+    "updatedAt": "2025-10-11T13:30:22.983Z"
+  },
+  {
+    "_id": "1760189422984b2vgtq68z",
+    "name": "King's College London",
+    "description": "One of England's oldest and most prestigious universities, renowned for humanities, law, and medical sciences.",
+    "country": "United Kingdom",
+    "city": "London",
+    "establishedYear": 1829,
+    "type": "public",
+    "ranking": {
+      "world": 11,
+      "national": 7
+    },
+    "tuitionRange": {
+      "min": 19000,
+      "max": 45000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 13,
+    "studentPopulation": 31000,
+    "internationalStudents": 12000,
+    "website": "https://www.kcl.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.984Z",
+    "updatedAt": "2025-10-11T13:30:22.984Z"
+  },
+  {
+    "_id": "1760189422985b2vgtq690",
+    "name": "École Polytechnique Fédérale de Lausanne (EPFL)",
+    "description": "Leading Swiss technical university specializing in engineering, technology, and natural sciences.",
+    "country": "Switzerland",
+    "city": "Lausanne",
+    "establishedYear": 1853,
+    "type": "public",
+    "ranking": {
+      "world": 12,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 1266,
+      "max": 2532,
+      "currency": "CHF"
+    },
+    "acceptanceRate": 12,
+    "studentPopulation": 11000,
+    "internationalStudents": 6000,
+    "website": "https://www.epfl.ch",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.985Z",
+    "updatedAt": "2025-10-11T13:30:22.985Z"
+  },
+  {
+    "_id": "1760189422986b2vgtq691",
+    "name": "University of Manchester",
+    "description": "Major British university with strong research reputation and comprehensive academic programs.",
+    "country": "United Kingdom",
+    "city": "Manchester",
+    "establishedYear": 1824,
+    "type": "public",
+    "ranking": {
+      "world": 13,
+      "national": 8
+    },
+    "tuitionRange": {
+      "min": 19000,
+      "max": 47000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 56,
+    "studentPopulation": 40000,
+    "internationalStudents": 12000,
+    "website": "https://www.manchester.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.986Z",
+    "updatedAt": "2025-10-11T13:30:22.986Z"
+  },
+  {
+    "_id": "1760189422987b2vgtq692",
     "name": "Ludwig Maximilian University of Munich (LMU)",
-    "description": "A leading research university in Germany with excellence in humanities, social sciences, and natural sciences.",
+    "description": "Leading research university in Germany with excellence in humanities, social sciences, and natural sciences.",
     "country": "Germany",
     "city": "Munich",
     "establishedYear": 1472,
     "type": "public",
     "ranking": {
-      "world": 64,
+      "world": 14,
       "national": 2
     },
     "tuitionRange": {
@@ -146,11 +346,61 @@
     "internationalStudents": 8000,
     "website": "https://www.lmu.de",
     "featured": true,
-    "createdAt": "2025-10-11T13:30:22.978Z",
-    "updatedAt": "2025-10-11T13:30:22.978Z"
+    "createdAt": "2025-10-11T13:30:22.987Z",
+    "updatedAt": "2025-10-11T13:30:22.987Z"
   },
   {
-    "_id": "1760189422981zacn4xavr",
+    "_id": "1760189422988b2vgtq693",
+    "name": "Delft University of Technology",
+    "description": "Netherlands' premier technical university, renowned for engineering, technology, and applied sciences.",
+    "country": "Netherlands",
+    "city": "Delft",
+    "establishedYear": 1842,
+    "type": "public",
+    "ranking": {
+      "world": 15,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 2168,
+      "max": 18750,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 56,
+    "studentPopulation": 26000,
+    "internationalStudents": 8000,
+    "website": "https://www.tudelft.nl",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.988Z",
+    "updatedAt": "2025-10-11T13:30:22.988Z"
+  },
+  {
+    "_id": "1760189422989b2vgtq694",
+    "name": "University of Warwick",
+    "description": "Leading British university known for business, economics, and interdisciplinary research excellence.",
+    "country": "United Kingdom",
+    "city": "Coventry",
+    "establishedYear": 1965,
+    "type": "public",
+    "ranking": {
+      "world": 16,
+      "national": 9
+    },
+    "tuitionRange": {
+      "min": 20000,
+      "max": 45000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 14,
+    "studentPopulation": 27000,
+    "internationalStudents": 9000,
+    "website": "https://warwick.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.989Z",
+    "updatedAt": "2025-10-11T13:30:22.989Z"
+  },
+  {
+    "_id": "1760189422990b2vgtq695",
     "name": "Heidelberg University",
     "description": "Germany's oldest university, renowned for research in medicine, natural sciences, and humanities.",
     "country": "Germany",
@@ -158,7 +408,7 @@
     "establishedYear": 1386,
     "type": "public",
     "ranking": {
-      "world": 66,
+      "world": 17,
       "national": 3
     },
     "tuitionRange": {
@@ -170,20 +420,95 @@
     "studentPopulation": 30000,
     "internationalStudents": 6000,
     "website": "https://www.uni-heidelberg.de",
-    "featured": false,
-    "createdAt": "2025-10-11T13:30:22.981Z",
-    "updatedAt": "2025-10-11T13:30:22.981Z"
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.990Z",
+    "updatedAt": "2025-10-11T13:30:22.990Z"
   },
   {
-    "_id": "1760189422984ump9x1qkz",
+    "_id": "1760189422991b2vgtq696",
+    "name": "University of Amsterdam",
+    "description": "Leading Dutch university with strong international reputation in social sciences and humanities.",
+    "country": "Netherlands",
+    "city": "Amsterdam",
+    "establishedYear": 1632,
+    "type": "public",
+    "ranking": {
+      "world": 18,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 2168,
+      "max": 15000,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 35,
+    "studentPopulation": 33000,
+    "internationalStudents": 5000,
+    "website": "https://www.uva.nl",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.991Z",
+    "updatedAt": "2025-10-11T13:30:22.991Z"
+  },
+  {
+    "_id": "1760189422992b2vgtq697",
+    "name": "Karolinska Institute",
+    "description": "Sweden's premier medical university, renowned for medical research and Nobel Prize connections.",
+    "country": "Sweden",
+    "city": "Stockholm",
+    "establishedYear": 1810,
+    "type": "public",
+    "ranking": {
+      "world": 19,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 140000,
+      "currency": "SEK"
+    },
+    "acceptanceRate": 4,
+    "studentPopulation": 6000,
+    "internationalStudents": 1500,
+    "website": "https://ki.se",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.992Z",
+    "updatedAt": "2025-10-11T13:30:22.992Z"
+  },
+  {
+    "_id": "1760189422993b2vgtq698",
+    "name": "University of Bristol",
+    "description": "Prestigious British university known for research excellence and strong academic reputation.",
+    "country": "United Kingdom",
+    "city": "Bristol",
+    "establishedYear": 1876,
+    "type": "public",
+    "ranking": {
+      "world": 20,
+      "national": 10
+    },
+    "tuitionRange": {
+      "min": 19000,
+      "max": 42000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 13,
+    "studentPopulation": 25000,
+    "internationalStudents": 6000,
+    "website": "https://www.bristol.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.993Z",
+    "updatedAt": "2025-10-11T13:30:22.993Z"
+  },
+  {
+    "_id": "1760189422994b2vgtq699",
     "name": "Humboldt University of Berlin",
-    "description": "A prestigious university in the heart of Berlin, known for philosophy, social sciences, and natural sciences.",
+    "description": "Prestigious university in Berlin, known for philosophy, social sciences, and natural sciences.",
     "country": "Germany",
     "city": "Berlin",
     "establishedYear": 1810,
     "type": "public",
     "ranking": {
-      "world": 87,
+      "world": 21,
       "national": 4
     },
     "tuitionRange": {
@@ -195,12 +520,12 @@
     "studentPopulation": 35000,
     "internationalStudents": 7000,
     "website": "https://www.hu-berlin.de",
-    "featured": false,
-    "createdAt": "2025-10-11T13:30:22.984Z",
-    "updatedAt": "2025-10-11T13:30:22.984Z"
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.994Z",
+    "updatedAt": "2025-10-11T13:30:22.994Z"
   },
   {
-    "_id": "1760189422986vy7tgduut",
+    "_id": "1760189422995b2vgtq700",
     "name": "RWTH Aachen University",
     "description": "Leading technical university in Germany, specializing in engineering and technology with strong industry connections.",
     "country": "Germany",
@@ -208,7 +533,7 @@
     "establishedYear": 1870,
     "type": "public",
     "ranking": {
-      "world": 106,
+      "world": 22,
       "national": 5
     },
     "tuitionRange": {
@@ -221,7 +546,457 @@
     "internationalStudents": 12000,
     "website": "https://www.rwth-aachen.de",
     "featured": true,
-    "createdAt": "2025-10-11T13:30:22.986Z",
-    "updatedAt": "2025-10-11T13:30:22.986Z"
+    "createdAt": "2025-10-11T13:30:22.995Z",
+    "updatedAt": "2025-10-11T13:30:22.995Z"
+  },
+  {
+    "_id": "1760189422996b2vgtq701",
+    "name": "Trinity College Dublin",
+    "description": "Ireland's oldest university with prestigious academic tradition and beautiful historic campus.",
+    "country": "Ireland",
+    "city": "Dublin",
+    "establishedYear": 1592,
+    "type": "public",
+    "ranking": {
+      "world": 23,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 18000,
+      "max": 45000,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 35,
+    "studentPopulation": 18000,
+    "internationalStudents": 3000,
+    "website": "https://www.tcd.ie",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.996Z",
+    "updatedAt": "2025-10-11T13:30:22.996Z"
+  },
+  {
+    "_id": "1760189422997b2vgtq702",
+    "name": "University of Glasgow",
+    "description": "Ancient Scottish university with strong research tradition and comprehensive academic programs.",
+    "country": "United Kingdom",
+    "city": "Glasgow",
+    "establishedYear": 1451,
+    "type": "public",
+    "ranking": {
+      "world": 24,
+      "national": 11
+    },
+    "tuitionRange": {
+      "min": 19000,
+      "max": 40000,
+      "currency": "GBP"
+    },
+    "acceptanceRate": 74,
+    "studentPopulation": 29000,
+    "internationalStudents": 8000,
+    "website": "https://www.gla.ac.uk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.997Z",
+    "updatedAt": "2025-10-11T13:30:22.997Z"
+  },
+  {
+    "_id": "1760189422998b2vgtq703",
+    "name": "École Normale Supérieure (ENS Paris)",
+    "description": "Elite French institution known for producing intellectuals, researchers, and government leaders.",
+    "country": "France",
+    "city": "Paris",
+    "establishedYear": 1794,
+    "type": "public",
+    "ranking": {
+      "world": 25,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 2770,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 5,
+    "studentPopulation": 2400,
+    "internationalStudents": 400,
+    "website": "https://www.ens.psl.eu",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.998Z",
+    "updatedAt": "2025-10-11T13:30:22.998Z"
+  },
+  {
+    "_id": "1760189422999b2vgtq704",
+    "name": "University of Copenhagen",
+    "description": "Denmark's oldest and largest university with strong research reputation across multiple disciplines.",
+    "country": "Denmark",
+    "city": "Copenhagen",
+    "establishedYear": 1479,
+    "type": "public",
+    "ranking": {
+      "world": 26,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 15000,
+      "currency": "DKK"
+    },
+    "acceptanceRate": 35,
+    "studentPopulation": 37000,
+    "internationalStudents": 4000,
+    "website": "https://www.ku.dk",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:22.999Z",
+    "updatedAt": "2025-10-11T13:30:22.999Z"
+  },
+  {
+    "_id": "1760189423000b2vgtq705",
+    "name": "Eindhoven University of Technology",
+    "description": "Leading Dutch technical university specializing in engineering and technology innovation.",
+    "country": "Netherlands",
+    "city": "Eindhoven",
+    "establishedYear": 1956,
+    "type": "public",
+    "ranking": {
+      "world": 27,
+      "national": 3
+    },
+    "tuitionRange": {
+      "min": 2168,
+      "max": 16500,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 35,
+    "studentPopulation": 12000,
+    "internationalStudents": 3000,
+    "website": "https://www.tue.nl",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.000Z",
+    "updatedAt": "2025-10-11T13:30:23.000Z"
+  },
+  {
+    "_id": "1760189423001b2vgtq706",
+    "name": "University of Zurich",
+    "description": "Switzerland's largest university with comprehensive programs and strong research reputation.",
+    "country": "Switzerland",
+    "city": "Zurich",
+    "establishedYear": 1833,
+    "type": "public",
+    "ranking": {
+      "world": 28,
+      "national": 3
+    },
+    "tuitionRange": {
+      "min": 1558,
+      "max": 3116,
+      "currency": "CHF"
+    },
+    "acceptanceRate": 19,
+    "studentPopulation": 26000,
+    "internationalStudents": 5000,
+    "website": "https://www.uzh.ch",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.001Z",
+    "updatedAt": "2025-10-11T13:30:23.001Z"
+  },
+  {
+    "_id": "1760189423002b2vgtq707",
+    "name": "Lund University",
+    "description": "Sweden's top comprehensive university with strong international reputation and research excellence.",
+    "country": "Sweden",
+    "city": "Lund",
+    "establishedYear": 1666,
+    "type": "public",
+    "ranking": {
+      "world": 29,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 140000,
+      "currency": "SEK"
+    },
+    "acceptanceRate": 25,
+    "studentPopulation": 42000,
+    "internationalStudents": 4000,
+    "website": "https://www.lu.se",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.002Z",
+    "updatedAt": "2025-10-11T13:30:23.002Z"
+  },
+  {
+    "_id": "1760189423003b2vgtq708",
+    "name": "University of Vienna",
+    "description": "Austria's largest university with rich history and comprehensive academic programs across disciplines.",
+    "country": "Austria",
+    "city": "Vienna",
+    "establishedYear": 1365,
+    "type": "public",
+    "ranking": {
+      "world": 30,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 726,
+      "max": 1500,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 30,
+    "studentPopulation": 94000,
+    "internationalStudents": 28000,
+    "website": "https://www.univie.ac.at",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.003Z",
+    "updatedAt": "2025-10-11T13:30:23.003Z"
+  },
+  {
+    "_id": "1760189423004b2vgtq709",
+    "name": "Leiden University",
+    "description": "Netherlands' oldest university with strong reputation in law, social sciences, and humanities.",
+    "country": "Netherlands",
+    "city": "Leiden",
+    "establishedYear": 1575,
+    "type": "public",
+    "ranking": {
+      "world": 31,
+      "national": 4
+    },
+    "tuitionRange": {
+      "min": 2168,
+      "max": 14500,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 40,
+    "studentPopulation": 27000,
+    "internationalStudents": 4000,
+    "website": "https://www.universiteitleiden.nl",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.004Z",
+    "updatedAt": "2025-10-11T13:30:23.004Z"
+  },
+  {
+    "_id": "1760189423005b2vgtq710",
+    "name": "Utrecht University",
+    "description": "Leading Dutch university known for research excellence and comprehensive academic programs.",
+    "country": "Netherlands",
+    "city": "Utrecht",
+    "establishedYear": 1636,
+    "type": "public",
+    "ranking": {
+      "world": 32,
+      "national": 5
+    },
+    "tuitionRange": {
+      "min": 2168,
+      "max": 15000,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 22,
+    "studentPopulation": 32000,
+    "internationalStudents": 7000,
+    "website": "https://www.uu.nl",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.005Z",
+    "updatedAt": "2025-10-11T13:30:23.005Z"
+  },
+  {
+    "_id": "1760189423006b2vgtq711",
+    "name": "University of Warsaw",
+    "description": "Poland's premier university with strong tradition in humanities, social sciences, and natural sciences.",
+    "country": "Poland",
+    "city": "Warsaw",
+    "establishedYear": 1816,
+    "type": "public",
+    "ranking": {
+      "world": 33,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 4000,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 70,
+    "studentPopulation": 46000,
+    "internationalStudents": 3000,
+    "website": "https://www.uw.edu.pl",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.006Z",
+    "updatedAt": "2025-10-11T13:30:23.006Z"
+  },
+  {
+    "_id": "1760189423007b2vgtq712",
+    "name": "Jagiellonian University",
+    "description": "One of Europe's oldest universities, located in Krakow with excellence in medicine and humanities.",
+    "country": "Poland",
+    "city": "Krakow",
+    "establishedYear": 1364,
+    "type": "public",
+    "ranking": {
+      "world": 34,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 3500,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 45,
+    "studentPopulation": 43000,
+    "internationalStudents": 2500,
+    "website": "https://www.uj.edu.pl",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.007Z",
+    "updatedAt": "2025-10-11T13:30:23.007Z"
+  },
+  {
+    "_id": "1760189423008b2vgtq713",
+    "name": "Warsaw University of Technology",
+    "description": "Poland's leading technical university specializing in engineering, technology, and applied sciences.",
+    "country": "Poland",
+    "city": "Warsaw",
+    "establishedYear": 1826,
+    "type": "public",
+    "ranking": {
+      "world": 35,
+      "national": 3
+    },
+    "tuitionRange": {
+      "min": 0,
+      "max": 4500,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 60,
+    "studentPopulation": 32000,
+    "internationalStudents": 2000,
+    "website": "https://www.pw.edu.pl",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.008Z",
+    "updatedAt": "2025-10-11T13:30:23.008Z"
+  },
+  {
+    "_id": "1760189423009b2vgtq714",
+    "name": "Sapienza University of Rome",
+    "description": "Italy's largest university with comprehensive programs and strong research tradition in Rome.",
+    "country": "Italy",
+    "city": "Rome",
+    "establishedYear": 1303,
+    "type": "public",
+    "ranking": {
+      "world": 36,
+      "national": 1
+    },
+    "tuitionRange": {
+      "min": 150,
+      "max": 3000,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 75,
+    "studentPopulation": 115000,
+    "internationalStudents": 8000,
+    "website": "https://www.uniroma1.it",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.009Z",
+    "updatedAt": "2025-10-11T13:30:23.009Z"
+  },
+  {
+    "_id": "1760189423010b2vgtq715",
+    "name": "University of Bologna",
+    "description": "World's oldest university in continuous operation, renowned for law, medicine, and humanities.",
+    "country": "Italy",
+    "city": "Bologna",
+    "establishedYear": 1088,
+    "type": "public",
+    "ranking": {
+      "world": 37,
+      "national": 2
+    },
+    "tuitionRange": {
+      "min": 156,
+      "max": 2800,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 70,
+    "studentPopulation": 85000,
+    "internationalStudents": 5000,
+    "website": "https://www.unibo.it",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.010Z",
+    "updatedAt": "2025-10-11T13:30:23.010Z"
+  },
+  {
+    "_id": "1760189423011b2vgtq716",
+    "name": "University of Milan",
+    "description": "Leading Italian university known for medicine, natural sciences, and social sciences.",
+    "country": "Italy",
+    "city": "Milan",
+    "establishedYear": 1924,
+    "type": "public",
+    "ranking": {
+      "world": 38,
+      "national": 3
+    },
+    "tuitionRange": {
+      "min": 156,
+      "max": 3900,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 65,
+    "studentPopulation": 64000,
+    "internationalStudents": 4000,
+    "website": "https://www.unimi.it",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.011Z",
+    "updatedAt": "2025-10-11T13:30:23.011Z"
+  },
+  {
+    "_id": "1760189423012b2vgtq717",
+    "name": "Politecnico di Milano",
+    "description": "Italy's premier technical university specializing in engineering, architecture, and design.",
+    "country": "Italy",
+    "city": "Milan",
+    "establishedYear": 1863,
+    "type": "public",
+    "ranking": {
+      "world": 39,
+      "national": 4
+    },
+    "tuitionRange": {
+      "min": 156,
+      "max": 3900,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 30,
+    "studentPopulation": 47000,
+    "internationalStudents": 6000,
+    "website": "https://www.polimi.it",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.012Z",
+    "updatedAt": "2025-10-11T13:30:23.012Z"
+  },
+  {
+    "_id": "1760189423013b2vgtq718",
+    "name": "University of Padua",
+    "description": "Historic Italian university with strong tradition in medicine, science, and research excellence.",
+    "country": "Italy",
+    "city": "Padua",
+    "establishedYear": 1222,
+    "type": "public",
+    "ranking": {
+      "world": 40,
+      "national": 5
+    },
+    "tuitionRange": {
+      "min": 156,
+      "max": 2700,
+      "currency": "EUR"
+    },
+    "acceptanceRate": 60,
+    "studentPopulation": 65000,
+    "internationalStudents": 3500,
+    "website": "https://www.unipd.it",
+    "featured": true,
+    "createdAt": "2025-10-11T13:30:23.013Z",
+    "updatedAt": "2025-10-11T13:30:23.013Z"
   }
 ]

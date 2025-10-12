@@ -262,7 +262,7 @@ const SearchWithSuggestions: React.FC<SearchWithSuggestionsProps> = ({
             onChange={handleInputChange}
             onFocus={handleInputFocus}
             onKeyDown={handleKeyDown}
-            className={`w-full pl-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+            className={`w-full pl-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 ${
               showButton ? "pr-24" : "pr-10"
             }`}
           />
@@ -278,7 +278,7 @@ const SearchWithSuggestions: React.FC<SearchWithSuggestionsProps> = ({
           {showButton && (
             <button
               type="submit"
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-md text-sm transition-colors"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-400 hover:bg-blue-500 text-white px-4 py-1 rounded-md text-sm transition-colors"
             >
               Search
             </button>
@@ -297,7 +297,7 @@ const SearchWithSuggestions: React.FC<SearchWithSuggestionsProps> = ({
 
       {/* Suggestions Dropdown */}
       {isOpen && suggestions.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-[9999] max-h-80 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-100 rounded-lg shadow-md z-[9999] max-h-80 overflow-y-auto">
           {suggestions.map((suggestion, index) => (
             <div
               key={`${suggestion.type}-${suggestion.id}`}

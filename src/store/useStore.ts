@@ -277,9 +277,15 @@ export const useStore = create<Store>((set, get) => ({
   fetchUniversities: async () => {
     try {
       set({ isLoading: true });
-      const response = await apiClient.getUniversities({ featured: true });
+      // Fetch ALL universities, not just featured ones
+      const response = await apiClient.getUniversities({ limit: 50 });
       if (response.success && response.data) {
         const universities = response.data.universities || [];
+        console.log("🎓 Fetched universities:", universities.length);
+        console.log(
+          "🌍 Countries found:",
+          [...new Set(universities.map((u) => u.country))].sort()
+        );
         set({
           universities,
           filteredUniversities: universities,

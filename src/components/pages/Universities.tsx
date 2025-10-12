@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Filter,
   MapPin,
@@ -9,11 +9,12 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
-import { countries, fields } from "../../data/mockData";
+import { fields } from "../../data/mockData";
 
 const Universities: React.FC = () => {
   const {
     filteredUniversities,
+    universities,
     filters,
     setFilters,
     searchQuery,
@@ -21,12 +22,21 @@ const Universities: React.FC = () => {
     getCoursesByUniversity,
     setCourseFilters,
     setSelectedUniversity,
+    fetchUniversities,
   } = useStore();
 
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState<"ranking" | "tuition" | "acceptance">(
     "ranking"
   );
+
+  // Fetch universities when component mounts
+  useEffect(() => {
+    fetchUniversities();
+  }, [fetchUniversities]);
+
+  // Get dynamic countries from actual universities data
+  const countries = [...new Set(universities.map((u) => u.country))].sort();
 
   const handleFilterChange = (key: string, value: any) => {
     setFilters({

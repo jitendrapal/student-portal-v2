@@ -102,6 +102,22 @@ const Navbar: React.FC = () => {
     setShowCourseDropdown(!showCourseDropdown);
   };
 
+  const handleUniversityMouseEnter = () => {
+    setShowUniversityDropdown(true);
+  };
+
+  const handleUniversityMouseLeave = () => {
+    setShowUniversityDropdown(false);
+  };
+
+  const handleCourseMouseEnter = () => {
+    setShowCourseDropdown(true);
+  };
+
+  const handleCourseMouseLeave = () => {
+    setShowCourseDropdown(false);
+  };
+
   const handleRoleSwitch = () => {
     const newRole = user?.role === "student" ? "counselor" : "student";
     switchRole(newRole);
@@ -150,7 +166,13 @@ const Navbar: React.FC = () => {
               // Special handling for Universities dropdown
               if (item.id === "universities") {
                 return (
-                  <div key={item.id} className="relative" ref={dropdownRef}>
+                  <div
+                    key={item.id}
+                    className="relative"
+                    ref={dropdownRef}
+                    onMouseEnter={handleUniversityMouseEnter}
+                    onMouseLeave={handleUniversityMouseLeave}
+                  >
                     <button
                       onClick={handleUniversityMenuClick}
                       className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -209,6 +231,8 @@ const Navbar: React.FC = () => {
                     key={item.id}
                     className="relative"
                     ref={courseDropdownRef}
+                    onMouseEnter={handleCourseMouseEnter}
+                    onMouseLeave={handleCourseMouseLeave}
                   >
                     <button
                       onClick={handleCourseMenuClick}
