@@ -26,17 +26,27 @@ const limiter = rateLimit({
 app.use("/api/", limiter);
 
 // CORS configuration
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:5175",
+  "http://localhost:5176",
+  "http://localhost:5177",
+  "http://localhost:3000",
+  process.env.FRONTEND_URL,
+];
+
+// Add production CORS origins if specified
+if (process.env.CORS_ORIGINS) {
+  allowedOrigins.push(...process.env.CORS_ORIGINS.split(","));
+}
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "http://localhost:5175",
-      "http://localhost:5176",
-      "http://localhost:5177",
-      process.env.FRONTEND_URL,
-    ].filter(Boolean),
+    origin: allowedOrigins.filter(Boolean),
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
