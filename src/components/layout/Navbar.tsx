@@ -28,6 +28,7 @@ const Navbar: React.FC = () => {
     universities,
     fetchUniversities,
     setFilters,
+    setSelectedUniversity,
     courses,
     fetchCourses,
     setCourseFilters,
@@ -88,9 +89,26 @@ const Navbar: React.FC = () => {
   };
 
   const handleCountrySelect = (country: string) => {
+    // Clear all filters and set only the country filter
     setFilters({ countries: [country] });
     setCurrentPage("universities");
     setShowUniversityDropdown(false);
+    setMobileMenuOpen(false);
+  };
+
+  const handleAllUniversities = () => {
+    // Clear all filters to show all universities
+    setFilters({});
+    setCurrentPage("universities");
+    setShowUniversityDropdown(false);
+    setMobileMenuOpen(false);
+  };
+
+  const handleAllCourses = () => {
+    // Clear all course filters to show all courses
+    setCourseFilters({});
+    setCurrentPage("courses");
+    setShowCourseDropdown(false);
     setMobileMenuOpen(false);
   };
 
@@ -188,35 +206,155 @@ const Navbar: React.FC = () => {
 
                     {/* Universities Dropdown Menu */}
                     {showUniversityDropdown && (
-                      <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-lg border border-gray-200 z-50">
-                        <div className="py-2">
-                          <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wide border-b border-gray-100">
-                            Browse by Country
+                      <div className="absolute top-full left-0 mt-1 w-[800px] bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                        <div className="p-6">
+                          {/* Header */}
+                          <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
+                            <h3 className="text-lg font-semibold text-gray-900">
+                              European Universities
+                            </h3>
+                            <button
+                              onClick={handleAllUniversities}
+                              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                            >
+                              View All →
+                            </button>
                           </div>
-                          <button
-                            onClick={() => handleNavigation("universities")}
-                            className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
-                          >
-                            <Globe className="w-4 h-4 mr-2" />
-                            All Universities
-                          </button>
-                          {countries.map((country) => {
-                            const universityCount = universities.filter(
-                              (u) => u.country === country
-                            ).length;
-                            return (
+
+                          {/* Multi-column layout */}
+                          <div className="grid grid-cols-3 gap-6">
+                            {/* Countries Column */}
+                            <div>
+                              <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                <Globe className="w-4 h-4 mr-2" />
+                                By Country
+                              </h4>
+                              <div className="space-y-1">
+                                <button
+                                  onClick={handleAllUniversities}
+                                  className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                >
+                                  All Countries
+                                </button>
+                                {countries.slice(0, 8).map((country) => {
+                                  const universityCount = universities.filter(
+                                    (u) => u.country === country
+                                  ).length;
+                                  return (
+                                    <button
+                                      key={country}
+                                      onClick={() =>
+                                        handleCountrySelect(country)
+                                      }
+                                      className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors flex items-center justify-between"
+                                    >
+                                      <span>{country}</span>
+                                      <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                        {universityCount}
+                                      </span>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            {/* Top Universities Column */}
+                            <div>
+                              <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                <BookOpen className="w-4 h-4 mr-2" />
+                                Top Universities
+                              </h4>
+                              <div className="space-y-1">
+                                {universities
+                                  .sort(
+                                    (a, b) =>
+                                      (a.ranking?.world || 999) -
+                                      (b.ranking?.world || 999)
+                                  )
+                                  .slice(0, 8)
+                                  .map((university) => (
+                                    <button
+                                      key={university.id}
+                                      onClick={() => {
+                                        setSelectedUniversity(university);
+                                        setCurrentPage("university-detail");
+                                        setShowUniversityDropdown(false);
+                                      }}
+                                      className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                    >
+                                      <div className="flex items-center justify-between">
+                                        <span className="truncate">
+                                          {university.name}
+                                        </span>
+                                        <span className="text-xs text-gray-500 ml-2">
+                                          #{university.ranking?.world || "N/A"}
+                                        </span>
+                                      </div>
+                                      <div className="text-xs text-gray-500 mt-1">
+                                        {university.country}
+                                      </div>
+                                    </button>
+                                  ))}
+                              </div>
+                            </div>
+
+                            {/* Featured Programs Column */}
+                            <div>
+                              <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                <Users className="w-4 h-4 mr-2" />
+                                Popular Programs
+                              </h4>
+                              <div className="space-y-1">
+                                {[
+                                  "Computer Science",
+                                  "Business Administration",
+                                  "Engineering",
+                                  "Medicine",
+                                  "Law",
+                                  "Economics",
+                                  "Psychology",
+                                  "International Relations",
+                                ].map((program) => (
+                                  <button
+                                    key={program}
+                                    onClick={() => {
+                                      setCourseFilters({ search: program });
+                                      setCurrentPage("courses");
+                                      setShowUniversityDropdown(false);
+                                    }}
+                                    className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                  >
+                                    {program}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Footer */}
+                          <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div className="text-sm text-gray-500">
+                              {universities.length} European universities
+                              available
+                            </div>
+                            <div className="flex space-x-4">
                               <button
-                                key={country}
-                                onClick={() => handleCountrySelect(country)}
-                                className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-between"
+                                onClick={handleAllUniversities}
+                                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
                               >
-                                <span>{country}</span>
-                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                                  {universityCount}
-                                </span>
+                                Browse All
                               </button>
-                            );
-                          })}
+                              <button
+                                onClick={() => {
+                                  setCurrentPage("courses");
+                                  setShowUniversityDropdown(false);
+                                }}
+                                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                              >
+                                View Courses
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     )}
@@ -249,57 +387,116 @@ const Navbar: React.FC = () => {
 
                     {/* Courses Dropdown Menu */}
                     {showCourseDropdown && (
-                      <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-md shadow-lg border border-gray-200 z-50 max-h-96 overflow-y-auto">
-                        <div className="py-2">
-                          <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wide border-b border-gray-100">
-                            Browse Courses
+                      <div className="absolute top-full left-0 mt-1 w-[700px] bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                        <div className="p-6">
+                          {/* Header */}
+                          <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
+                            <h3 className="text-lg font-semibold text-gray-900">
+                              Course Programs
+                            </h3>
+                            <button
+                              onClick={handleAllCourses}
+                              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                            >
+                              View All →
+                            </button>
                           </div>
-                          <button
-                            onClick={() => handleNavigation("courses")}
-                            className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center"
-                          >
-                            <BookOpen className="w-4 h-4 mr-2" />
-                            All Courses
-                          </button>
-                          {courses
-                            .sort((a, b) => a.name.localeCompare(b.name))
-                            .map((course) => {
-                              const university = universities.find(
-                                (u) => u.id === course.universityId
-                              );
-                              return (
-                                <button
-                                  key={course.id}
-                                  onClick={() => {
-                                    // Filter courses page to show only this course
-                                    setCourseFilters({
-                                      courseNames: [course.name],
-                                    });
-                                    setCurrentPage("courses");
-                                    setShowCourseDropdown(false);
-                                    setMobileMenuOpen(false);
-                                  }}
-                                  className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center justify-between"
-                                >
-                                  <div className="flex-1">
-                                    <div className="font-medium">
-                                      {course.name}
-                                    </div>
-                                    <div className="text-xs text-gray-500">
-                                      {course.degree} • {course.field} •{" "}
-                                      {university?.name}
-                                    </div>
-                                  </div>
-                                  <div className="text-xs text-gray-500">
-                                    {course.tuitionFee.amount === 0
-                                      ? "Free"
-                                      : `${
-                                          course.tuitionFee.currency
-                                        } ${course.tuitionFee.amount.toLocaleString()}`}
-                                  </div>
-                                </button>
-                              );
-                            })}
+
+                          {/* Multi-column layout */}
+                          <div className="grid grid-cols-2 gap-6">
+                            {/* Popular Programs Column */}
+                            <div>
+                              <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                <BookOpen className="w-4 h-4 mr-2" />
+                                Popular Programs
+                              </h4>
+                              <div className="space-y-1">
+                                {[
+                                  "Computer Science",
+                                  "Business Administration",
+                                  "Engineering",
+                                  "Medicine",
+                                  "Law",
+                                  "Economics",
+                                  "Psychology",
+                                  "International Relations",
+                                  "Data Science",
+                                  "Environmental Science",
+                                ].map((program) => (
+                                  <button
+                                    key={program}
+                                    onClick={() => {
+                                      setCourseFilters({ search: program });
+                                      setCurrentPage("courses");
+                                      setShowCourseDropdown(false);
+                                    }}
+                                    className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                  >
+                                    {program}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+
+                            {/* Featured Courses Column */}
+                            <div>
+                              <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                <Users className="w-4 h-4 mr-2" />
+                                Featured Courses
+                              </h4>
+                              <div className="space-y-1 max-h-64 overflow-y-auto">
+                                {courses
+                                  .sort((a, b) => a.name.localeCompare(b.name))
+                                  .slice(0, 10)
+                                  .map((course) => {
+                                    const university = universities.find(
+                                      (u) => u.id === course.universityId
+                                    );
+                                    return (
+                                      <button
+                                        key={course.id}
+                                        onClick={() => {
+                                          setCourseFilters({
+                                            courseNames: [course.name],
+                                          });
+                                          setCurrentPage("courses");
+                                          setShowCourseDropdown(false);
+                                        }}
+                                        className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                      >
+                                        <div className="font-medium truncate">
+                                          {course.name}
+                                        </div>
+                                        <div className="text-xs text-gray-500 truncate">
+                                          {course.degree} • {university?.name}
+                                        </div>
+                                      </button>
+                                    );
+                                  })}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Footer */}
+                          <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div className="text-sm text-gray-500">
+                              {courses.length} courses available
+                            </div>
+                            <div className="flex space-x-4">
+                              <button
+                                onClick={handleAllCourses}
+                                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                              >
+                                Browse All
+                              </button>
+                              <button
+                                onClick={handleAllUniversities}
+                                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                              >
+                                View Universities
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     )}
@@ -445,7 +642,7 @@ const Navbar: React.FC = () => {
                         By Country
                       </div>
                       <button
-                        onClick={() => handleNavigation("universities")}
+                        onClick={handleAllUniversities}
                         className="flex items-center space-x-2 w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
                       >
                         <Globe className="w-4 h-4" />

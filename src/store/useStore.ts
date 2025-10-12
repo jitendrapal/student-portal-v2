@@ -140,6 +140,7 @@ interface CourseFilters {
   countries?: string[];
   courseNames?: string[];
   universityIds?: string[];
+  search?: string;
 }
 
 import {
@@ -385,8 +386,25 @@ export const useStore = create<Store>((set, get) => ({
   },
   setCourseFilters: (filters: CourseFilters) => {
     set({ courseFilters: filters });
-    const { courses } = get();
+    const { courses, universities } = get();
     let filtered = courses;
+
+    // Apply search filter first
+    if (filters.search) {
+      const searchLower = filters.search.toLowerCase();
+      filtered = filtered.filter((course) => {
+        const university = universities.find(
+          (u) => u.id === course.universityId
+        );
+        return (
+          course.name.toLowerCase().includes(searchLower) ||
+          course.field.toLowerCase().includes(searchLower) ||
+          course.degree.toLowerCase().includes(searchLower) ||
+          (university && university.name.toLowerCase().includes(searchLower)) ||
+          (university && university.country.toLowerCase().includes(searchLower))
+        );
+      });
+    }
 
     if (filters.degrees?.length) {
       filtered = filtered.filter((course) =>
@@ -417,7 +435,6 @@ export const useStore = create<Store>((set, get) => ({
     }
 
     if (filters.countries?.length) {
-      const { universities } = get();
       filtered = filtered.filter((course) => {
         const university = universities.find(
           (u) => u.id === course.universityId
