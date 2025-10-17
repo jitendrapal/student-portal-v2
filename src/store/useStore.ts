@@ -150,6 +150,16 @@ import {
   mockStudents,
   mockCounselors,
 } from "../data/mockData";
+import type {
+  HealthcareJob,
+  HealthcareApplication,
+  HealthcareFilters,
+} from "../types/healthcare";
+import { healthcareJobs } from "../data/healthcareJobs";
+import {
+  submitToGoogleSheets,
+  validateGoogleSheetsConfig,
+} from "../services/googleSheets";
 
 interface AuthState {
   user: User | null;
@@ -218,11 +228,29 @@ interface UIState {
   setCurrentPage: (page: string) => void;
 }
 
+interface HealthcareState {
+  healthcareJobs: HealthcareJob[];
+  filteredHealthcareJobs: HealthcareJob[];
+  healthcareFilters: HealthcareFilters;
+  selectedHealthcareJob: HealthcareJob | null;
+  healthcareApplications: HealthcareApplication[];
+  fetchHealthcareJobs: () => void;
+  setHealthcareFilters: (filters: HealthcareFilters) => void;
+  setSelectedHealthcareJob: (job: HealthcareJob | null) => void;
+  submitHealthcareApplication: (
+    application: Omit<HealthcareApplication, "id" | "submittedAt" | "status">
+  ) => Promise<void>;
+  getHealthcareJobsByCategory: (
+    category: HealthcareJob["category"]
+  ) => HealthcareJob[];
+}
+
 type Store = AuthState &
   UniversityState &
   CourseState &
   ApplicationState &
-  UIState;
+  UIState &
+  HealthcareState;
 
 export const useStore = create<Store>((set, get) => ({
   // Auth State
@@ -649,5 +677,113 @@ export const useStore = create<Store>((set, get) => ({
   currentPage: "home",
   setCurrentPage: (page: string) => {
     set({ currentPage: page });
+  },
+
+  // Healthcare State
+  healthcareJobs: healthcareJobs,
+  filteredHealthcareJobs: healthcareJobs,
+  healthcareFilters: {},
+  selectedHealthcareJob: null,
+  healthcareApplications: [],
+  fetchHealthcareJobs: () => {
+    set({
+      healthcareJobs: healthcareJobs,
+      filteredHealthcareJobs: healthcareJobs,
+    });
+  },
+  setHealthcareFilters: (filters: HealthcareFilters) => {
+    set({ healthcareFilters: filters });
+    const { healthcareJobs } = get();
+    let filtered = healthcareJobs;
+
+    // Apply search filter
+    if (filters.search) {
+      const searchLower = filters.search.toLowerCase();
+      filtered = filtered.filter(
+        (job) =>
+          job.title.toLowerCase().includes(searchLower) ||
+          job.hospital.toLowerCase().includes(searchLower) ||
+          job.location.toLowerCase().includes(searchLower) ||
+          job.country.toLowerCase().includes(searchLower) ||
+          job.description.toLowerCase().includes(searchLower)
+      );
+    }
+
+    // Apply category filter
+    if (filters.categories?.length) {
+      filtered = filtered.filter((job) =>
+        filters.categories!.includes(job.category)
+      );
+    }
+
+    // Apply country filter
+    if (filters.countries?.length) {
+      filtered = filtered.filter((job) =>
+        filters.countries!.includes(job.country)
+      );
+    }
+
+    // Apply employment type filter
+    if (filters.employmentTypes?.length) {
+      filtered = filtered.filter((job) =>
+        filters.employmentTypes!.includes(job.employmentType)
+      );
+    }
+
+    // Apply salary range filter
+    if (filters.salaryRange) {
+      filtered = filtered.filter((job) => {
+        const { min, max } = filters.salaryRange!;
+        return (
+          (!min || job.salary.min >= min) && (!max || job.salary.max <= max)
+        );
+      });
+    }
+
+    set({ filteredHealthcareJobs: filtered });
+  },
+  setSelectedHealthcareJob: (job: HealthcareJob | null) => {
+    set({ selectedHealthcareJob: job });
+  },
+  submitHealthcareApplication: async (application) => {
+    try {
+      const newApplication: HealthcareApplication = {
+        ...application,
+        id: Date.now().toString(),
+        submittedAt: new Date(),
+        status: "pending",
+      };
+
+      console.log("Submitting healthcare application:", newApplication);
+
+      // Submit to Google Sheets if configured
+      if (validateGoogleSheetsConfig()) {
+        try {
+          await submitToGoogleSheets(newApplication);
+          console.log("Successfully submitted to Google Sheets");
+        } catch (sheetsError) {
+          console.error("Failed to submit to Google Sheets:", sheetsError);
+          // Continue with local storage even if Google Sheets fails
+        }
+      } else {
+        console.warn(
+          "Google Sheets not configured. Application saved locally only."
+        );
+      }
+
+      // Store locally regardless of Google Sheets status
+      set((state) => ({
+        healthcareApplications: [
+          ...state.healthcareApplications,
+          newApplication,
+        ],
+      }));
+    } catch (error) {
+      console.error("Error submitting healthcare application:", error);
+      throw error;
+    }
+  },
+  getHealthcareJobsByCategory: (category: HealthcareJob["category"]) => {
+    return get().healthcareJobs.filter((job) => job.category === category);
   },
 }));

@@ -5,6 +5,8 @@ import Universities from "./components/pages/Universities";
 import UniversityDetail from "./components/pages/UniversityDetail";
 import Courses from "./components/pages/Courses";
 import CourseDetail from "./components/pages/CourseDetail";
+import HealthcareJobs from "./components/pages/HealthcareJobs";
+import HealthcareJobDetail from "./components/pages/HealthcareJobDetail";
 import Login from "./components/auth/Login";
 import StudentDashboard from "./components/student/StudentDashboard";
 import CounselorDashboard from "./components/counselor/CounselorDashboard";
@@ -24,6 +26,10 @@ function App() {
         return <Courses />;
       case "course-detail":
         return <CourseDetail />;
+      case "healthcare-jobs":
+        return <HealthcareJobs />;
+      case "healthcare-job-detail":
+        return <HealthcareJobDetail />;
       case "login":
         return <Login />;
       case "applications":

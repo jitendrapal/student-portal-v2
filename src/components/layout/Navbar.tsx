@@ -11,6 +11,8 @@ import {
   Home,
   ChevronDown,
   Globe,
+  Heart,
+  Stethoscope,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
@@ -32,21 +34,29 @@ const Navbar: React.FC = () => {
     courses,
     fetchCourses,
     setCourseFilters,
+    healthcareJobs,
+    fetchHealthcareJobs,
+    setHealthcareFilters,
+    setSelectedHealthcareJob,
+    getHealthcareJobsByCategory,
   } = useStore();
 
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showUniversityDropdown, setShowUniversityDropdown] = useState(false);
   const [showCourseDropdown, setShowCourseDropdown] = useState(false);
+  const [showHealthcareDropdown, setShowHealthcareDropdown] = useState(false);
   const [countries, setCountries] = useState<string[]>([]);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const courseDropdownRef = useRef<HTMLDivElement>(null);
+  const healthcareDropdownRef = useRef<HTMLDivElement>(null);
 
-  // Fetch universities and courses, extract countries
+  // Fetch universities, courses, and healthcare jobs, extract countries
   useEffect(() => {
     fetchUniversities();
     fetchCourses();
-  }, [fetchUniversities, fetchCourses]);
+    fetchHealthcareJobs();
+  }, [fetchUniversities, fetchCourses, fetchHealthcareJobs]);
 
   useEffect(() => {
     if (universities.length > 0) {
@@ -120,6 +130,26 @@ const Navbar: React.FC = () => {
     setShowCourseDropdown(!showCourseDropdown);
   };
 
+  const handleHealthcareMenuClick = () => {
+    setShowHealthcareDropdown(!showHealthcareDropdown);
+  };
+
+  const handleHealthcareJobSelect = (
+    category: "nurse" | "doctor" | "dentist"
+  ) => {
+    setHealthcareFilters({ categories: [category] });
+    setCurrentPage("healthcare-jobs");
+    setShowHealthcareDropdown(false);
+    setMobileMenuOpen(false);
+  };
+
+  const handleAllHealthcareJobs = () => {
+    setHealthcareFilters({});
+    setCurrentPage("healthcare-jobs");
+    setShowHealthcareDropdown(false);
+    setMobileMenuOpen(false);
+  };
+
   const handleUniversityMouseEnter = () => {
     setShowUniversityDropdown(true);
   };
@@ -146,6 +176,7 @@ const Navbar: React.FC = () => {
     { id: "home", label: "Home", icon: Home },
     { id: "universities", label: "Universities", icon: BookOpen },
     { id: "courses", label: "Courses", icon: BookOpen },
+    { id: "healthcare-jobs", label: "Healthcare Jobs", icon: Heart },
   ];
 
   // Add authenticated user items
@@ -504,6 +535,175 @@ const Navbar: React.FC = () => {
                 );
               }
 
+              // Special handling for Healthcare Jobs dropdown
+              if (item.id === "healthcare-jobs") {
+                return (
+                  <div
+                    key={item.id}
+                    className="relative"
+                    ref={healthcareDropdownRef}
+                    onMouseEnter={() => setShowHealthcareDropdown(true)}
+                    onMouseLeave={() => setShowHealthcareDropdown(false)}
+                  >
+                    <button
+                      onClick={handleHealthcareMenuClick}
+                      className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        currentPage === "healthcare-jobs"
+                          ? "text-blue-600 bg-blue-50"
+                          : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                      }`}
+                    >
+                      <Heart className="w-4 h-4" />
+                      <span>Healthcare Jobs</span>
+                      <ChevronDown className="w-4 h-4 ml-1" />
+                    </button>
+
+                    {/* Healthcare Jobs Dropdown Menu */}
+                    {showHealthcareDropdown && (
+                      <div className="absolute top-full left-0 mt-1 w-[600px] bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                        <div className="p-6">
+                          {/* Header */}
+                          <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
+                            <h3 className="text-lg font-semibold text-gray-900">
+                              Healthcare Opportunities
+                            </h3>
+                            <button
+                              onClick={handleAllHealthcareJobs}
+                              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                            >
+                              View All →
+                            </button>
+                          </div>
+
+                          {/* Content Grid */}
+                          <div className="grid grid-cols-2 gap-6">
+                            {/* Job Categories */}
+                            <div>
+                              <div className="mb-3">
+                                <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                                  Job Categories
+                                </h4>
+                              </div>
+                              <div className="space-y-1">
+                                <button
+                                  onClick={() =>
+                                    handleHealthcareJobSelect("nurse")
+                                  }
+                                  className="flex items-center space-x-3 w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                >
+                                  <Heart className="w-4 h-4 text-red-500" />
+                                  <div className="text-left">
+                                    <div className="font-medium">
+                                      Nursing Jobs
+                                    </div>
+                                    <div className="text-xs text-gray-500">
+                                      {
+                                        getHealthcareJobsByCategory("nurse")
+                                          .length
+                                      }{" "}
+                                      positions
+                                    </div>
+                                  </div>
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    handleHealthcareJobSelect("doctor")
+                                  }
+                                  className="flex items-center space-x-3 w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                >
+                                  <Stethoscope className="w-4 h-4 text-blue-500" />
+                                  <div className="text-left">
+                                    <div className="font-medium">
+                                      Doctor Positions
+                                    </div>
+                                    <div className="text-xs text-gray-500">
+                                      {
+                                        getHealthcareJobsByCategory("doctor")
+                                          .length
+                                      }{" "}
+                                      positions
+                                    </div>
+                                  </div>
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    handleHealthcareJobSelect("dentist")
+                                  }
+                                  className="flex items-center space-x-3 w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                >
+                                  <Users className="w-4 h-4 text-green-500" />
+                                  <div className="text-left">
+                                    <div className="font-medium">
+                                      Dental Jobs
+                                    </div>
+                                    <div className="text-xs text-gray-500">
+                                      {
+                                        getHealthcareJobsByCategory("dentist")
+                                          .length
+                                      }{" "}
+                                      positions
+                                    </div>
+                                  </div>
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* Featured Jobs */}
+                            <div>
+                              <div className="mb-3">
+                                <h4 className="text-sm font-semibold text-gray-700 mb-2">
+                                  Featured Positions
+                                </h4>
+                              </div>
+                              <div className="space-y-1">
+                                {healthcareJobs.slice(0, 4).map((job) => (
+                                  <button
+                                    key={job.id}
+                                    onClick={() => {
+                                      setSelectedHealthcareJob(job);
+                                      setCurrentPage("healthcare-job-detail");
+                                      setShowHealthcareDropdown(false);
+                                    }}
+                                    className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                                  >
+                                    <div className="font-medium truncate">
+                                      {job.title}
+                                    </div>
+                                    <div className="text-xs text-gray-500 truncate">
+                                      {job.hospital} • {job.location}
+                                    </div>
+                                    <div className="text-xs text-green-600 font-medium">
+                                      {job.salary.currency}{" "}
+                                      {job.salary.min.toLocaleString()}-
+                                      {job.salary.max.toLocaleString()}
+                                    </div>
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Footer */}
+                          <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                            <div className="text-sm text-gray-500">
+                              {healthcareJobs.length} healthcare jobs available
+                            </div>
+                            <div className="flex space-x-4">
+                              <button
+                                onClick={handleAllHealthcareJobs}
+                                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                              >
+                                Browse All Jobs
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
               return (
                 <button
                   key={item.id}
@@ -725,6 +925,69 @@ const Navbar: React.FC = () => {
                             </button>
                           );
                         })}
+                    </div>
+                  </div>
+                );
+              }
+
+              // Special handling for Healthcare Jobs in mobile
+              if (item.id === "healthcare-jobs") {
+                return (
+                  <div key={item.id} className="space-y-1">
+                    <button
+                      onClick={() => handleNavigation(item.id)}
+                      className={`flex items-center space-x-2 w-full px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                        currentPage === item.id
+                          ? "text-blue-600 bg-blue-50"
+                          : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                      }`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </button>
+
+                    {/* Mobile Healthcare Jobs List */}
+                    <div className="ml-4 space-y-1">
+                      <div className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+                        Job Categories
+                      </div>
+                      <button
+                        onClick={handleAllHealthcareJobs}
+                        className="flex items-center space-x-2 w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                      >
+                        <Heart className="w-4 h-4" />
+                        <span>All Healthcare Jobs</span>
+                      </button>
+                      <button
+                        onClick={() => handleHealthcareJobSelect("nurse")}
+                        className="flex items-center space-x-2 w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                      >
+                        <Heart className="w-4 h-4 text-red-500" />
+                        <span>
+                          Nursing Jobs (
+                          {getHealthcareJobsByCategory("nurse").length})
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => handleHealthcareJobSelect("doctor")}
+                        className="flex items-center space-x-2 w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                      >
+                        <Stethoscope className="w-4 h-4 text-blue-500" />
+                        <span>
+                          Doctor Positions (
+                          {getHealthcareJobsByCategory("doctor").length})
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => handleHealthcareJobSelect("dentist")}
+                        className="flex items-center space-x-2 w-full px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 rounded-md"
+                      >
+                        <Users className="w-4 h-4 text-green-500" />
+                        <span>
+                          Dental Jobs (
+                          {getHealthcareJobsByCategory("dentist").length})
+                        </span>
+                      </button>
                     </div>
                   </div>
                 );
