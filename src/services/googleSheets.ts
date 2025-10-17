@@ -39,14 +39,18 @@ export const submitToGoogleSheets = async (
       submittedAt: application.submittedAt.toISOString(),
     };
 
-    // Send data to Google Apps Script
-    const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(sheetData),
+    // Send data to Google Apps Script using URL parameters to avoid CORS
+    const params = new URLSearchParams();
+    Object.keys(sheetData).forEach((key) => {
+      params.append(key, sheetData[key as keyof typeof sheetData]);
     });
+
+    const response = await fetch(
+      `${GOOGLE_APPS_SCRIPT_URL}?${params.toString()}`,
+      {
+        method: "GET",
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

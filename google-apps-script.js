@@ -1,11 +1,56 @@
 function doPost(e) {
   try {
-    // Parse the incoming data
-    const data = JSON.parse(e.postData.contents);
-    
+    // Parse the incoming data from form data or JSON
+    let data;
+    if (e.postData && e.postData.type === "application/json") {
+      data = JSON.parse(e.postData.contents);
+    } else {
+      // Handle form data
+      data = JSON.parse(e.parameter.data || e.postData.contents);
+    }
+
+    return processApplication(data);
+  } catch (error) {
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        success: false,
+        error: error.toString(),
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function doGet(e) {
+  try {
+    // Handle GET request with URL parameters
+    const data = e.parameter;
+
+    // Check if this is an application submission
+    if (data.applicationId && data.firstName) {
+      return processApplication(data);
+    }
+
+    // Default response
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        message: "Healthcare Application API is running",
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    return ContentService.createTextOutput(
+      JSON.stringify({
+        success: false,
+        error: error.toString(),
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function processApplication(data) {
+  try {
     // Open the Google Sheet (replace YOUR_SHEET_ID with your actual sheet ID)
-    const sheet = SpreadsheetApp.openById('YOUR_SHEET_ID').getActiveSheet();
-    
+    const sheet = SpreadsheetApp.openById("YOUR_SHEET_ID").getActiveSheet();
+
     // Prepare the row data
     const rowData = [
       data.timestamp,
@@ -21,27 +66,25 @@ function doPost(e) {
       data.availability,
       data.coverLetter,
       data.status,
-      data.submittedAt
+      data.submittedAt,
     ];
-    
+
     // Add the data to the sheet
     sheet.appendRow(rowData);
-    
+
     // Return success response
-    return ContentService
-      .createTextOutput(JSON.stringify({
+    return ContentService.createTextOutput(
+      JSON.stringify({
         success: true,
-        message: 'Application submitted successfully'
-      }))
-      .setMimeType(ContentService.MimeType.JSON);
-      
+        message: "Application submitted successfully",
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
-    // Return error response
-    return ContentService
-      .createTextOutput(JSON.stringify({
+    return ContentService.createTextOutput(
+      JSON.stringify({
         success: false,
-        error: error.toString()
-      }))
-      .setMimeType(ContentService.MimeType.JSON);
+        error: error.toString(),
+      })
+    ).setMimeType(ContentService.MimeType.JSON);
   }
 }
