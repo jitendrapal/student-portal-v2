@@ -42,16 +42,9 @@ export const submitToGoogleSheets = async (
     let resumeMimeType = "";
 
     if (application.resumeFile) {
-      console.log(
-        "Processing resume file:",
-        application.resumeFile.name,
-        application.resumeFile.type,
-        application.resumeFile.size
-      );
       resumeBase64 = await fileToBase64(application.resumeFile);
       resumeFileName = application.resumeFile.name;
       resumeMimeType = application.resumeFile.type;
-      console.log("Resume converted to base64, length:", resumeBase64.length);
     }
 
     // Prepare the data for Google Sheets
@@ -77,42 +70,32 @@ export const submitToGoogleSheets = async (
 
     // For large files, use POST with FormData instead of GET with URL parameters
     if (resumeBase64.length > 0) {
-      console.log("Sending POST request with resume file");
       // Use POST for file uploads
       const formData = new FormData();
       Object.keys(sheetData).forEach((key) => {
         formData.append(key, sheetData[key as keyof typeof sheetData]);
       });
 
-      console.log("FormData prepared, sending to:", GOOGLE_APPS_SCRIPT_URL);
       await fetch(GOOGLE_APPS_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         body: formData,
       });
-      console.log("POST request sent successfully");
     } else {
-      console.log("Sending GET request without resume file");
       // Use GET for applications without files
       const params = new URLSearchParams();
       Object.keys(sheetData).forEach((key) => {
         params.append(key, sheetData[key as keyof typeof sheetData]);
       });
 
-      console.log(
-        "Sending GET request to:",
-        `${GOOGLE_APPS_SCRIPT_URL}?${params.toString().substring(0, 100)}...`
-      );
       await fetch(`${GOOGLE_APPS_SCRIPT_URL}?${params.toString()}`, {
         method: "GET",
         mode: "no-cors",
       });
-      console.log("GET request sent successfully");
     }
 
     // With no-cors mode, we can't read the response, but the request will go through
     // We'll assume success if no error is thrown
-    console.log("Request sent to Google Sheets (no-cors mode)");
   } catch (error) {
     console.error("Error submitting to Google Sheets:", error);
     throw error;
