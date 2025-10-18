@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ChevronLeft,
   ChevronRight,
@@ -249,7 +250,8 @@ const studyGoals: StudyGoal[] = [
 ];
 
 const StudyGoalsCarousel: React.FC = () => {
-  const { setCourseFilters, setCurrentPage } = useStore();
+  const navigate = useNavigate();
+  const { setCourseFilters } = useStore();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
@@ -281,7 +283,7 @@ const StudyGoalsCarousel: React.FC = () => {
       courseNames: [],
       universityIds: [],
     });
-    setCurrentPage("courses");
+    navigate("/courses");
   };
 
   return (

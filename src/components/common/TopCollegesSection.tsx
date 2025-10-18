@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   MapPin,
   Star,
@@ -40,6 +41,7 @@ interface University {
   facilities?: string[];
   accreditations?: string[];
   partnerships?: string[];
+  featured?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -145,8 +147,8 @@ const formatStudentPopulation = (population?: number): string => {
 };
 
 const TopCollegesSection: React.FC = () => {
-  const { universities, fetchUniversities, setCurrentPage, setFilters } =
-    useStore();
+  const navigate = useNavigate();
+  const { universities, fetchUniversities, setFilters } = useStore();
 
   useEffect(() => {
     if (universities.length === 0) {
@@ -163,11 +165,11 @@ const TopCollegesSection: React.FC = () => {
   const handleCollegeClick = (university: University) => {
     // Filter universities by the selected university's country and navigate
     setFilters({ countries: [university.country] });
-    setCurrentPage("universities");
+    navigate("/universities");
   };
 
   const handleViewAllClick = () => {
-    setCurrentPage("universities");
+    navigate("/universities");
   };
 
   return (

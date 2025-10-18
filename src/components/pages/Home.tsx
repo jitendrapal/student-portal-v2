@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Search,
   Globe,
@@ -22,13 +23,9 @@ import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
 import TopCollegesSection from "../common/TopCollegesSection";
 
 const Home: React.FC = () => {
-  const {
-    setCurrentPage,
-    setSearchQuery,
-    universities,
-    fetchUniversities,
-    isLoading,
-  } = useStore();
+  const navigate = useNavigate();
+  const { setSearchQuery, universities, fetchUniversities, isLoading } =
+    useStore();
 
   useEffect(() => {
     // Fetch universities when component mounts
@@ -40,7 +37,7 @@ const Home: React.FC = () => {
     const formData = new FormData(e.currentTarget);
     const query = formData.get("search") as string;
     setSearchQuery(query);
-    setCurrentPage("universities");
+    navigate("/universities");
   };
 
   const featuredUniversities = universities
@@ -109,13 +106,13 @@ const Home: React.FC = () => {
             {/* Quick Actions */}
             <div className="flex flex-wrap justify-center gap-3">
               <button
-                onClick={() => setCurrentPage("universities")}
+                onClick={() => navigate("/universities")}
                 className="bg-white text-blue-600 px-5 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors text-sm"
               >
                 Browse Universities
               </button>
               <button
-                onClick={() => setCurrentPage("courses")}
+                onClick={() => navigate("/courses")}
                 className="border border-white text-white px-5 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors text-sm"
               >
                 Explore Courses
@@ -198,7 +195,7 @@ const Home: React.FC = () => {
               </p>
             </div>
             <button
-              onClick={() => setCurrentPage("universities")}
+              onClick={() => navigate("/universities")}
               className="hidden md:flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium"
             >
               <span>View All</span>
@@ -272,7 +269,7 @@ const Home: React.FC = () => {
                       {university.tuitionRange.min.toLocaleString()}/year
                     </div>
                     <button
-                      onClick={() => setCurrentPage("universities")}
+                      onClick={() => navigate("/universities")}
                       className="text-blue-600 hover:text-blue-700 font-medium text-sm"
                     >
                       View Details
@@ -291,7 +288,7 @@ const Home: React.FC = () => {
 
           <div className="text-center mt-8 md:hidden">
             <button
-              onClick={() => setCurrentPage("universities")}
+              onClick={() => navigate("/universities")}
               className="btn-primary"
             >
               View All Universities
@@ -313,13 +310,13 @@ const Home: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => setCurrentPage("login")}
+              onClick={() => navigate("/login")}
               className="bg-white text-blue-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
             >
               Get Started Today
             </button>
             <button
-              onClick={() => setCurrentPage("universities")}
+              onClick={() => navigate("/universities")}
               className="border border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors"
             >
               Explore Universities

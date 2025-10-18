@@ -41,6 +41,7 @@ interface University {
   facilities?: string[];
   accreditations?: string[];
   partnerships?: string[];
+  featured?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
