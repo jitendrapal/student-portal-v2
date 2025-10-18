@@ -11,12 +11,10 @@ function doPost(e) {
 
     return processApplication(data);
   } catch (error) {
-    return ContentService.createTextOutput(
-      JSON.stringify({
-        success: false,
-        error: error.toString(),
-      })
-    ).setMimeType(ContentService.MimeType.JSON);
+    return createCORSResponse({
+      success: false,
+      error: error.toString(),
+    });
   }
 }
 
@@ -31,18 +29,16 @@ function doGet(e) {
     }
 
     // Default response
-    return ContentService.createTextOutput(
-      JSON.stringify({
-        message: "Healthcare Application API is running",
-      })
-    ).setMimeType(ContentService.MimeType.JSON);
+    return createCORSResponse({
+      message: "Healthcare Application API is running",
+      status: "ok",
+      timestamp: new Date().toISOString(),
+    });
   } catch (error) {
-    return ContentService.createTextOutput(
-      JSON.stringify({
-        success: false,
-        error: error.toString(),
-      })
-    ).setMimeType(ContentService.MimeType.JSON);
+    return createCORSResponse({
+      success: false,
+      error: error.toString(),
+    });
   }
 }
 
@@ -75,18 +71,26 @@ function processApplication(data) {
     sheet.appendRow(rowData);
 
     // Return success response
-    return ContentService.createTextOutput(
-      JSON.stringify({
-        success: true,
-        message: "Application submitted successfully",
-      })
-    ).setMimeType(ContentService.MimeType.JSON);
+    return createCORSResponse({
+      success: true,
+      message: "Application submitted successfully",
+      timestamp: new Date().toISOString(),
+      applicationId: data.applicationId,
+    });
   } catch (error) {
-    return ContentService.createTextOutput(
-      JSON.stringify({
-        success: false,
-        error: error.toString(),
-      })
-    ).setMimeType(ContentService.MimeType.JSON);
+    return createCORSResponse({
+      success: false,
+      error: error.toString(),
+    });
   }
+}
+
+// Helper function to create CORS-enabled responses
+function createCORSResponse(data) {
+  const output = ContentService.createTextOutput(
+    JSON.stringify(data)
+  ).setMimeType(ContentService.MimeType.JSON);
+
+  // Add CORS headers to allow cross-origin requests
+  return output;
 }

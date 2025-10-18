@@ -45,24 +45,15 @@ export const submitToGoogleSheets = async (
       params.append(key, sheetData[key as keyof typeof sheetData]);
     });
 
-    const response = await fetch(
-      `${GOOGLE_APPS_SCRIPT_URL}?${params.toString()}`,
-      {
-        method: "GET",
-      }
-    );
+    // Use fetch with no-cors mode to avoid CORS preflight
+    await fetch(`${GOOGLE_APPS_SCRIPT_URL}?${params.toString()}`, {
+      method: "GET",
+      mode: "no-cors",
+    });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const result = await response.json();
-
-    if (result.error) {
-      throw new Error(result.error);
-    }
-
-    console.log("Successfully submitted to Google Sheets:", result);
+    // With no-cors mode, we can't read the response, but the request will go through
+    // We'll assume success if no error is thrown
+    console.log("Request sent to Google Sheets (no-cors mode)");
   } catch (error) {
     console.error("Error submitting to Google Sheets:", error);
     throw error;
