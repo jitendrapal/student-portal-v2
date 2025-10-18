@@ -115,7 +115,12 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
 
     const validationError = validateForm();
     if (validationError) {
-      setError(validationError);
+      // For captcha errors, we'll show them inline, not in the main error banner
+      if (validationError !== "Captcha answer is incorrect.") {
+        setError(validationError);
+      } else {
+        setError(validationError); // This will be shown inline next to the captcha input
+      }
       return;
     }
 
@@ -201,7 +206,7 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Error Message */}
-            {error && (
+            {error && error !== "Captcha answer is incorrect." && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center space-x-2">
                 <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
                 <span className="text-red-700">{error}</span>
@@ -399,15 +404,23 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   What is {captchaQuestion.num1} + {captchaQuestion.num2}? *
                 </label>
-                <input
-                  type="number"
-                  name="captcha"
-                  value={formData.captcha}
-                  onChange={handleInputChange}
-                  className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  required
-                  placeholder="Enter answer"
-                />
+                <div className="flex items-center space-x-3">
+                  <input
+                    type="number"
+                    name="captcha"
+                    value={formData.captcha}
+                    onChange={handleInputChange}
+                    className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                    placeholder="Enter answer"
+                  />
+                  {error === "Captcha answer is incorrect." && (
+                    <div className="flex items-center space-x-1 text-red-600 text-sm">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>Captcha answer is incorrect.</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
