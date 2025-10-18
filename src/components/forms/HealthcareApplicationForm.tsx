@@ -383,13 +383,19 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
               </div>
             </div>
 
-            {/* Captcha */}
+            {/* Security Verification */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center space-x-2">
-                <Shield className="w-5 h-5" />
-                <span>Security Verification</span>
-              </h2>
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="mb-4">
+                <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center space-x-2">
+                  <Shield className="w-5 h-5" />
+                  <span>Security Verification</span>
+                </h2>
+                <p className="text-sm text-gray-600">
+                  Please complete this simple math problem to verify you're
+                  human and help us prevent spam submissions.
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   What is {captchaQuestion.num1} + {captchaQuestion.num2}? *
                 </label>
@@ -400,6 +406,7 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
                   onChange={handleInputChange}
                   className="w-32 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   required
+                  placeholder="Enter answer"
                 />
               </div>
             </div>

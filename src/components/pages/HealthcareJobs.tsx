@@ -238,7 +238,7 @@ const HealthcareJobs: React.FC = () => {
               className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
             >
               <div className="flex items-start justify-between">
-                <div className="flex-1">
+                <div className="flex-1 pr-6">
                   <div className="flex items-center space-x-3 mb-2">
                     {getCategoryIcon(job.category)}
                     <h3 className="text-xl font-semibold text-gray-900">
@@ -281,24 +281,24 @@ const HealthcareJobs: React.FC = () => {
                       Posted {new Date(job.postedDate).toLocaleDateString()}
                     </div>
                   </div>
+                </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex items-center space-x-3 mt-4 pt-4 border-t border-gray-100">
-                    <button
-                      onClick={() => handleViewDetails(job)}
-                      className="flex items-center space-x-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors font-medium"
-                    >
-                      <Eye className="w-4 h-4" />
-                      <span>View Details</span>
-                    </button>
-                    <button
-                      onClick={() => handleApplyClick(job)}
-                      className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-                    >
-                      <FileText className="w-4 h-4" />
-                      <span>Apply Now</span>
-                    </button>
-                  </div>
+                {/* Action Buttons - Moved to Right Side */}
+                <div className="flex flex-col space-y-3 ml-4">
+                  <button
+                    onClick={() => handleViewDetails(job)}
+                    className="flex items-center space-x-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors font-medium whitespace-nowrap"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span>View Details</span>
+                  </button>
+                  <button
+                    onClick={() => handleApplyClick(job)}
+                    className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium whitespace-nowrap"
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>Apply Now</span>
+                  </button>
                 </div>
               </div>
             </div>
