@@ -81,21 +81,59 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-12"></div>
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/5 to-transparent transform skew-y-12"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
           <div className="text-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">
-              Your Gateway to{" "}
-              <span className="text-purple-300">European Careers</span>
+            {/* Company Badge */}
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
+              <span className="text-sm font-medium text-blue-100">
+                🇪🇺 Europe Job Center
+              </span>
+              <span className="mx-2 text-blue-200">•</span>
+              <span className="text-sm text-blue-200">
+                Your European Career Partner
+              </span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Build Your Future in{" "}
+              <span className="bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                Europe
+              </span>
             </h1>
-            <p className="text-lg md:text-xl mb-6 text-blue-100 max-w-2xl mx-auto">
-              Discover top universities across Europe, explore healthcare job
-              opportunities, and get expert guidance for your career journey in
-              Europe.
+
+            {/* Subheading */}
+            <p className="text-xl md:text-2xl mb-4 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+              Connect with top European universities, discover healthcare career
+              opportunities, and get expert guidance for your professional
+              journey across Europe.
             </p>
 
+            {/* Key Value Proposition */}
+            <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm">
+              <div className="flex items-center text-blue-200">
+                <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                1000+ Partner Universities
+              </div>
+              <div className="flex items-center text-blue-200">
+                <span className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>
+                Healthcare Jobs in Germany
+              </div>
+              <div className="flex items-center text-blue-200">
+                <span className="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>
+                Expert Career Counseling
+              </div>
+            </div>
+
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto mb-6">
+            <div className="max-w-2xl mx-auto mb-8">
               <SearchWithSuggestions
                 placeholder="Search universities, healthcare jobs, or countries..."
                 className="w-full"
@@ -104,19 +142,50 @@ const Home: React.FC = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-4">
               <button
                 onClick={() => navigate("/universities")}
-                className="bg-white text-blue-600 px-5 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors text-sm"
+                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
-                Browse Universities
+                🎓 Browse Universities
               </button>
               <button
                 onClick={() => navigate("/courses")}
-                className="border border-white text-white px-5 py-2 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition-colors text-sm"
+                className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
-                Explore Courses
+                📚 Explore Courses
               </button>
+              <button
+                onClick={() => navigate("/healthcare-jobs")}
+                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                🏥 Healthcare Jobs
+              </button>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="mt-12 pt-8 border-t border-white/20">
+              <p className="text-blue-200 text-sm mb-4">
+                Trusted by students and professionals across Europe
+              </p>
+              <div className="flex justify-center items-center space-x-8 opacity-60">
+                <div className="text-xs text-center">
+                  <div className="font-bold text-lg">50+</div>
+                  <div>Countries</div>
+                </div>
+                <div className="text-xs text-center">
+                  <div className="font-bold text-lg">10K+</div>
+                  <div>Students Placed</div>
+                </div>
+                <div className="text-xs text-center">
+                  <div className="font-bold text-lg">95%</div>
+                  <div>Success Rate</div>
+                </div>
+                <div className="text-xs text-center">
+                  <div className="font-bold text-lg">24/7</div>
+                  <div>Support</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

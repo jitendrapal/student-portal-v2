@@ -262,7 +262,7 @@ const SearchWithSuggestions: React.FC<SearchWithSuggestionsProps> = ({
             onChange={handleInputChange}
             onFocus={handleInputFocus}
             onKeyDown={handleKeyDown}
-            className={`w-full pl-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 ${
+            className={`w-full pl-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 text-gray-900 placeholder-gray-500 ${
               showButton ? "pr-24" : "pr-10"
             }`}
           />
