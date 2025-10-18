@@ -4,9 +4,12 @@ function doPost(e) {
     let data;
     if (e.postData && e.postData.type === "application/json") {
       data = JSON.parse(e.postData.contents);
+    } else if (e.postData && e.postData.type === "multipart/form-data") {
+      // Handle FormData from frontend
+      data = e.parameter;
     } else {
-      // Handle form data
-      data = JSON.parse(e.parameter.data || e.postData.contents);
+      // Handle other form data
+      data = e.parameter || JSON.parse(e.postData.contents);
     }
 
     return processApplication(data);
@@ -49,6 +52,22 @@ function processApplication(data) {
     const SHEET_ID = "REPLACE_WITH_YOUR_ACTUAL_GOOGLE_SHEET_ID";
     const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
 
+    // Handle resume upload if present
+    let resumeUrl = "";
+    if (data.resumeBase64 && data.resumeFileName) {
+      try {
+        resumeUrl = uploadResumeToDrive(
+          data.resumeBase64,
+          data.resumeFileName,
+          data.resumeMimeType,
+          data.applicationId
+        );
+      } catch (resumeError) {
+        console.error("Resume upload failed:", resumeError);
+        resumeUrl = "Upload failed: " + resumeError.toString();
+      }
+    }
+
     // Prepare the row data
     const rowData = [
       data.timestamp,
@@ -65,6 +84,7 @@ function processApplication(data) {
       data.coverLetter,
       data.status,
       data.submittedAt,
+      resumeUrl, // Add resume URL to the row
     ];
 
     // Add the data to the sheet
@@ -82,6 +102,45 @@ function processApplication(data) {
       success: false,
       error: error.toString(),
     });
+  }
+}
+
+// Helper function to upload resume to Google Drive
+function uploadResumeToDrive(base64Data, fileName, mimeType, applicationId) {
+  try {
+    // Create or get the Healthcare Applications folder
+    const folderName = "Healthcare Application Resumes";
+    let folder;
+    const folders = DriveApp.getFoldersByName(folderName);
+    if (folders.hasNext()) {
+      folder = folders.next();
+    } else {
+      folder = DriveApp.createFolder(folderName);
+      // Make the folder publicly viewable (optional)
+      folder.setSharing(
+        DriveApp.Access.ANYONE_WITH_LINK,
+        DriveApp.Permission.VIEW
+      );
+    }
+
+    // Convert base64 to blob
+    const blob = Utilities.newBlob(
+      Utilities.base64Decode(base64Data),
+      mimeType,
+      `${applicationId}_${fileName}`
+    );
+
+    // Create the file in the folder
+    const file = folder.createFile(blob);
+
+    // Make the file publicly viewable
+    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+
+    // Return the shareable link
+    return file.getUrl();
+  } catch (error) {
+    console.error("Error uploading resume to Drive:", error);
+    throw new Error("Failed to upload resume: " + error.toString());
   }
 }
 

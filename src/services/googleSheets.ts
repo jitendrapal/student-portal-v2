@@ -17,10 +17,36 @@ const GOOGLE_APPS_SCRIPT_URL =
  * This function sends the application data to a Google Apps Script web app
  * which then writes the data to Google Sheets
  */
+// Helper function to convert File to Base64
+const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const result = reader.result as string;
+      // Remove the data:application/pdf;base64, prefix
+      const base64 = result.split(",")[1];
+      resolve(base64);
+    };
+    reader.onerror = (error) => reject(error);
+  });
+};
+
 export const submitToGoogleSheets = async (
   application: HealthcareApplication
 ): Promise<void> => {
   try {
+    // Convert resume file to base64 if present
+    let resumeBase64 = "";
+    let resumeFileName = "";
+    let resumeMimeType = "";
+
+    if (application.resumeFile) {
+      resumeBase64 = await fileToBase64(application.resumeFile);
+      resumeFileName = application.resumeFile.name;
+      resumeMimeType = application.resumeFile.type;
+    }
+
     // Prepare the data for Google Sheets
     const sheetData = {
       timestamp: new Date().toISOString(),
@@ -37,19 +63,36 @@ export const submitToGoogleSheets = async (
       coverLetter: application.coverLetter || "",
       status: application.status,
       submittedAt: application.submittedAt.toISOString(),
+      resumeBase64: resumeBase64,
+      resumeFileName: resumeFileName,
+      resumeMimeType: resumeMimeType,
     };
 
-    // Send data to Google Apps Script using URL parameters to avoid CORS
-    const params = new URLSearchParams();
-    Object.keys(sheetData).forEach((key) => {
-      params.append(key, sheetData[key as keyof typeof sheetData]);
-    });
+    // For large files, use POST with FormData instead of GET with URL parameters
+    if (resumeBase64.length > 0) {
+      // Use POST for file uploads
+      const formData = new FormData();
+      Object.keys(sheetData).forEach((key) => {
+        formData.append(key, sheetData[key as keyof typeof sheetData]);
+      });
 
-    // Use fetch with no-cors mode to avoid CORS preflight
-    await fetch(`${GOOGLE_APPS_SCRIPT_URL}?${params.toString()}`, {
-      method: "GET",
-      mode: "no-cors",
-    });
+      await fetch(GOOGLE_APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+    } else {
+      // Use GET for applications without files
+      const params = new URLSearchParams();
+      Object.keys(sheetData).forEach((key) => {
+        params.append(key, sheetData[key as keyof typeof sheetData]);
+      });
+
+      await fetch(`${GOOGLE_APPS_SCRIPT_URL}?${params.toString()}`, {
+        method: "GET",
+        mode: "no-cors",
+      });
+    }
 
     // With no-cors mode, we can't read the response, but the request will go through
     // We'll assume success if no error is thrown
