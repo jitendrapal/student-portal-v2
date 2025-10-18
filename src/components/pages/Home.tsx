@@ -81,17 +81,18 @@ const Home: React.FC = () => {
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">
               Your Gateway to{" "}
-              <span className="text-purple-300">Global Education</span>
+              <span className="text-purple-300">European Careers</span>
             </h1>
             <p className="text-lg md:text-xl mb-6 text-blue-100 max-w-2xl mx-auto">
-              Discover top universities worldwide, find your perfect course, and
-              get expert guidance for your study abroad journey.
+              Discover top universities across Europe, explore healthcare job
+              opportunities, and get expert guidance for your career journey in
+              Europe.
             </p>
 
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto mb-6">
               <SearchWithSuggestions
-                placeholder="Search universities, courses, or countries..."
+                placeholder="Search universities, healthcare jobs, or countries..."
                 className="w-full"
                 showButton={true}
               />
@@ -295,11 +296,12 @@ const Home: React.FC = () => {
       <section className="py-16 bg-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to Start Your Journey?
+            Ready to Start Your European Career?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of students who have successfully achieved their
-            study abroad dreams with our expert guidance.
+            Join thousands of professionals who have successfully launched their
+            careers in Europe with our expert guidance and job placement
+            services.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
