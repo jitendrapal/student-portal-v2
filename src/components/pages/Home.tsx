@@ -158,11 +158,11 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose StudyPortal?
+              Why Choose Europe Job Consultancy?
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide comprehensive support for your study abroad journey,
-              from university selection to application success.
+              We provide comprehensive support for your study and career abroad
+              journey, from university selection to application success.
             </p>
           </div>
 

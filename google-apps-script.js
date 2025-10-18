@@ -48,8 +48,10 @@ function doGet(e) {
 
 function processApplication(data) {
   try {
-    // Open the Google Sheet (replace YOUR_SHEET_ID with your actual sheet ID)
-    const sheet = SpreadsheetApp.openById("YOUR_SHEET_ID").getActiveSheet();
+    // Open the Google Sheet - REPLACE WITH YOUR ACTUAL SHEET ID
+    // Get your Sheet ID from: https://docs.google.com/spreadsheets/d/[SHEET_ID]/edit
+    const SHEET_ID = "REPLACE_WITH_YOUR_ACTUAL_GOOGLE_SHEET_ID";
+    const sheet = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
 
     // Prepare the row data
     const rowData = [
