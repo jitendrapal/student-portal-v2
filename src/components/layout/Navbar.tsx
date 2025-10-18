@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Search,
   Menu,
@@ -19,6 +20,8 @@ import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
 
 const Navbar: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const {
     user,
     isAuthenticated,
@@ -26,8 +29,6 @@ const Navbar: React.FC = () => {
     switchRole,
     isMobileMenuOpen,
     setMobileMenuOpen,
-    currentPage,
-    setCurrentPage,
     universities,
     fetchUniversities,
     setFilters,
@@ -51,6 +52,34 @@ const Navbar: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const courseDropdownRef = useRef<HTMLDivElement>(null);
   const healthcareDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Helper function to map item.id to paths
+  const getPathFromId = (id: string) => {
+    switch (id) {
+      case "home":
+        return "/";
+      case "universities":
+        return "/universities";
+      case "courses":
+        return "/courses";
+      case "healthcare-jobs":
+        return "/healthcare-jobs";
+      case "login":
+        return "/login";
+      case "applications":
+        return "/applications";
+      case "dashboard":
+        return "/dashboard";
+      default:
+        return `/${id}`;
+    }
+  };
+
+  // Helper function to check if current path matches item
+  const isActiveItem = (id: string) => {
+    const itemPath = getPathFromId(id);
+    return location.pathname === itemPath;
+  };
 
   // Fetch universities, courses, and healthcare jobs, extract countries
   useEffect(() => {
@@ -91,8 +120,9 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
-  const handleNavigation = (page: string) => {
-    setCurrentPage(page);
+  const handleNavigation = (id: string) => {
+    const path = getPathFromId(id);
+    navigate(path);
     setMobileMenuOpen(false);
     setShowUserMenu(false);
     setShowUniversityDropdown(false);
@@ -102,7 +132,7 @@ const Navbar: React.FC = () => {
   const handleCountrySelect = (country: string) => {
     // Clear all filters and set only the country filter
     setFilters({ countries: [country] });
-    setCurrentPage("universities");
+    navigate("/universities");
     setShowUniversityDropdown(false);
     setMobileMenuOpen(false);
   };
@@ -110,7 +140,7 @@ const Navbar: React.FC = () => {
   const handleAllUniversities = () => {
     // Clear all filters to show all universities
     setFilters({});
-    setCurrentPage("universities");
+    navigate("/universities");
     setShowUniversityDropdown(false);
     setMobileMenuOpen(false);
   };
@@ -118,7 +148,7 @@ const Navbar: React.FC = () => {
   const handleAllCourses = () => {
     // Clear all course filters to show all courses
     setCourseFilters({});
-    setCurrentPage("courses");
+    navigate("/courses");
     setShowCourseDropdown(false);
     setMobileMenuOpen(false);
   };
@@ -139,14 +169,14 @@ const Navbar: React.FC = () => {
     category: "nurse" | "doctor" | "dentist"
   ) => {
     setHealthcareFilters({ categories: [category] });
-    setCurrentPage("healthcare-jobs");
+    navigate("/healthcare-jobs");
     setShowHealthcareDropdown(false);
     setMobileMenuOpen(false);
   };
 
   const handleAllHealthcareJobs = () => {
     setHealthcareFilters({});
-    setCurrentPage("healthcare-jobs");
+    navigate("/healthcare-jobs");
     setShowHealthcareDropdown(false);
     setMobileMenuOpen(false);
   };
@@ -195,17 +225,14 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <button
-              onClick={() => handleNavigation("home")}
-              className="flex items-center space-x-2"
-            >
+            <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Briefcase className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-gray-900">
                 Europe Job
               </span>
-            </button>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -226,7 +253,7 @@ const Navbar: React.FC = () => {
                     <button
                       onClick={handleUniversityMenuClick}
                       className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        currentPage === item.id
+                        location.pathname === "/universities"
                           ? "text-blue-600 bg-blue-50"
                           : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                       }`}
@@ -309,7 +336,9 @@ const Navbar: React.FC = () => {
                                       key={university.id}
                                       onClick={() => {
                                         setSelectedUniversity(university);
-                                        setCurrentPage("university-detail");
+                                        navigate(
+                                          `/university/${university.id}`
+                                        );
                                         setShowUniversityDropdown(false);
                                       }}
                                       className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
@@ -351,7 +380,7 @@ const Navbar: React.FC = () => {
                                     key={program}
                                     onClick={() => {
                                       setCourseFilters({ search: program });
-                                      setCurrentPage("courses");
+                                      navigate("/courses");
                                       setShowUniversityDropdown(false);
                                     }}
                                     className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
@@ -378,7 +407,7 @@ const Navbar: React.FC = () => {
                               </button>
                               <button
                                 onClick={() => {
-                                  setCurrentPage("courses");
+                                  navigate("/courses");
                                   setShowUniversityDropdown(false);
                                 }}
                                 className="text-sm text-blue-600 hover:text-blue-700 font-medium"
@@ -407,7 +436,7 @@ const Navbar: React.FC = () => {
                     <button
                       onClick={handleCourseMenuClick}
                       className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        currentPage === item.id
+                        location.pathname === "/courses"
                           ? "text-blue-600 bg-blue-50"
                           : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                       }`}
@@ -459,7 +488,7 @@ const Navbar: React.FC = () => {
                                     key={program}
                                     onClick={() => {
                                       setCourseFilters({ search: program });
-                                      setCurrentPage("courses");
+                                      navigate("/courses");
                                       setShowCourseDropdown(false);
                                     }}
                                     className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
@@ -491,7 +520,7 @@ const Navbar: React.FC = () => {
                                           setCourseFilters({
                                             courseNames: [course.name],
                                           });
-                                          setCurrentPage("courses");
+                                          navigate("/courses");
                                           setShowCourseDropdown(false);
                                         }}
                                         className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
@@ -549,7 +578,7 @@ const Navbar: React.FC = () => {
                     <button
                       onClick={handleHealthcareMenuClick}
                       className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        currentPage === "healthcare-jobs"
+                        location.pathname === "/healthcare-jobs"
                           ? "text-blue-600 bg-blue-50"
                           : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                       }`}
@@ -662,7 +691,7 @@ const Navbar: React.FC = () => {
                                     key={job.id}
                                     onClick={() => {
                                       setSelectedHealthcareJob(job);
-                                      setCurrentPage("healthcare-job-detail");
+                                      navigate(`/healthcare-job/${job.id}`);
                                       setShowHealthcareDropdown(false);
                                     }}
                                     className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
@@ -710,7 +739,7 @@ const Navbar: React.FC = () => {
                   key={item.id}
                   onClick={() => handleNavigation(item.id)}
                   className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    currentPage === item.id
+                    isActiveItem(item.id)
                       ? "text-blue-600 bg-blue-50"
                       : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                   }`}
@@ -828,7 +857,7 @@ const Navbar: React.FC = () => {
                     <button
                       onClick={() => handleNavigation(item.id)}
                       className={`flex items-center space-x-2 w-full px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                        currentPage === item.id
+                        isActiveItem(item.id)
                           ? "text-blue-600 bg-blue-50"
                           : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                       }`}
@@ -878,7 +907,7 @@ const Navbar: React.FC = () => {
                     <button
                       onClick={() => handleNavigation(item.id)}
                       className={`flex items-center space-x-2 w-full px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                        currentPage === item.id
+                        isActiveItem(item.id)
                           ? "text-blue-600 bg-blue-50"
                           : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                       }`}
@@ -913,7 +942,7 @@ const Navbar: React.FC = () => {
                                 setCourseFilters({
                                   courseNames: [course.name],
                                 });
-                                setCurrentPage("courses");
+                                navigate("/courses");
                                 setMobileMenuOpen(false);
                               }}
                               className="w-full text-left px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-md"
@@ -938,7 +967,7 @@ const Navbar: React.FC = () => {
                     <button
                       onClick={() => handleNavigation(item.id)}
                       className={`flex items-center space-x-2 w-full px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                        currentPage === item.id
+                        isActiveItem(item.id)
                           ? "text-blue-600 bg-blue-50"
                           : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                       }`}
@@ -999,7 +1028,7 @@ const Navbar: React.FC = () => {
                   key={item.id}
                   onClick={() => handleNavigation(item.id)}
                   className={`flex items-center space-x-2 w-full px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                    currentPage === item.id
+                    isActiveItem(item.id)
                       ? "text-blue-600 bg-blue-50"
                       : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                   }`}

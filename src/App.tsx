@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useStore } from "./store/useStore";
 import Navbar from "./components/layout/Navbar";
 import Home from "./components/pages/Home";
@@ -12,40 +13,41 @@ import StudentDashboard from "./components/student/StudentDashboard";
 import CounselorDashboard from "./components/counselor/CounselorDashboard";
 
 function App() {
-  const { currentPage, user } = useStore();
-
-  const renderPage = () => {
-    switch (currentPage) {
-      case "home":
-        return <Home />;
-      case "universities":
-        return <Universities />;
-      case "university-detail":
-        return <UniversityDetail />;
-      case "courses":
-        return <Courses />;
-      case "course-detail":
-        return <CourseDetail />;
-      case "healthcare-jobs":
-        return <HealthcareJobs />;
-      case "healthcare-job-detail":
-        return <HealthcareJobDetail />;
-      case "login":
-        return <Login />;
-      case "applications":
-        return user?.role === "student" ? <StudentDashboard /> : <Home />;
-      case "dashboard":
-        return user?.role === "counselor" ? <CounselorDashboard /> : <Home />;
-      default:
-        return <Home />;
-    }
-  };
+  const { user } = useStore();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      <main>{renderPage()}</main>
-    </div>
+    <Router>
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/universities" element={<Universities />} />
+            <Route path="/university/:id" element={<UniversityDetail />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/course/:id" element={<CourseDetail />} />
+            <Route path="/healthcare-jobs" element={<HealthcareJobs />} />
+            <Route
+              path="/healthcare-job/:id"
+              element={<HealthcareJobDetail />}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/applications"
+              element={
+                user?.role === "student" ? <StudentDashboard /> : <Home />
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                user?.role === "counselor" ? <CounselorDashboard /> : <Home />
+              }
+            />
+          </Routes>
+        </main>
+      </div>
+    </Router>
   );
 }
 
