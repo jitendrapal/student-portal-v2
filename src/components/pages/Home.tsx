@@ -88,10 +88,10 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/5 to-transparent transform skew-y-12"></div>
         </div>
 
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
           <div className="text-center">
             {/* Company Badge */}
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6">
+            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-4">
               <span className="text-sm font-medium text-blue-100">
                 🇪🇺 Europe Job Center
               </span>
@@ -102,7 +102,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
               Build Your Future in{" "}
               <span className="bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
                 Europe
@@ -110,14 +110,14 @@ const Home: React.FC = () => {
             </h1>
 
             {/* Subheading */}
-            <p className="text-xl md:text-2xl mb-4 text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl mb-3 text-blue-100 max-w-2xl mx-auto leading-relaxed">
               Connect with top European universities, discover healthcare career
               opportunities, and get expert guidance for your professional
               journey across Europe.
             </p>
 
             {/* Key Value Proposition */}
-            <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm">
+            <div className="flex flex-wrap justify-center gap-4 mb-6 text-sm">
               <div className="flex items-center text-blue-200">
                 <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
                 1000+ Partner Universities
@@ -133,7 +133,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Search Bar */}
-            <div className="max-w-2xl mx-auto mb-8">
+            <div className="max-w-2xl mx-auto mb-6">
               <SearchWithSuggestions
                 placeholder="Search universities, healthcare jobs, or countries..."
                 className="w-full"
@@ -161,31 +161,6 @@ const Home: React.FC = () => {
               >
                 🏥 Healthcare Jobs
               </button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="mt-12 pt-8 border-t border-white/20">
-              <p className="text-blue-200 text-sm mb-4">
-                Trusted by students and professionals across Europe
-              </p>
-              <div className="flex justify-center items-center space-x-8 opacity-60">
-                <div className="text-xs text-center">
-                  <div className="font-bold text-lg">50+</div>
-                  <div>Countries</div>
-                </div>
-                <div className="text-xs text-center">
-                  <div className="font-bold text-lg">10K+</div>
-                  <div>Students Placed</div>
-                </div>
-                <div className="text-xs text-center">
-                  <div className="font-bold text-lg">95%</div>
-                  <div>Success Rate</div>
-                </div>
-                <div className="text-xs text-center">
-                  <div className="font-bold text-lg">24/7</div>
-                  <div>Support</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
