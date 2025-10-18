@@ -7,6 +7,14 @@ import {
   BookOpen,
   ArrowRight,
   Star,
+  Code,
+  Stethoscope,
+  TrendingUp,
+  Palette,
+  Wrench,
+  Clock,
+  MapPin,
+  Euro,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";

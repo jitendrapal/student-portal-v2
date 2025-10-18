@@ -43,10 +43,11 @@ const studyGoals: StudyGoal[] = [
       "Civil Engineering",
     ],
     popularCourses: [
-      "Software Engineering",
-      "Data Science",
-      "Robotics",
-      "AI & Machine Learning",
+      "Artificial Intelligence & Machine Learning",
+      "Cybersecurity Engineering",
+      "Cloud Computing & DevOps",
+      "Full-Stack Web Development",
+      "Data Science & Analytics",
     ],
   },
   {
@@ -58,10 +59,11 @@ const studyGoals: StudyGoal[] = [
     bgColor: "bg-green-50",
     fields: ["MBA", "Finance", "Marketing", "Operations"],
     popularCourses: [
-      "Business Administration",
-      "Digital Marketing",
-      "Financial Management",
-      "Entrepreneurship",
+      "Digital Marketing & E-commerce",
+      "Financial Technology (FinTech)",
+      "Supply Chain Management",
+      "Business Analytics & Intelligence",
+      "Sustainable Business Management",
     ],
   },
   {
@@ -73,10 +75,11 @@ const studyGoals: StudyGoal[] = [
     bgColor: "bg-red-50",
     fields: ["Medicine", "Nursing", "Pharmacy", "Public Health"],
     popularCourses: [
-      "General Medicine",
-      "Nursing Science",
-      "Biomedical Sciences",
-      "Healthcare Management",
+      "Digital Health & Telemedicine",
+      "Mental Health & Psychology",
+      "Geriatric Care & Aging Studies",
+      "Medical Technology & Devices",
+      "Public Health & Epidemiology",
     ],
   },
   {
@@ -88,10 +91,11 @@ const studyGoals: StudyGoal[] = [
     bgColor: "bg-purple-50",
     fields: ["Fine Arts", "Graphic Design", "Fashion", "Architecture"],
     popularCourses: [
-      "Visual Arts",
-      "UI/UX Design",
-      "Fashion Design",
-      "Interior Design",
+      "UI/UX Design & User Experience",
+      "Digital Art & Animation",
+      "Sustainable Fashion Design",
+      "Game Design & Development",
+      "Brand Identity & Visual Communication",
     ],
   },
   {
@@ -103,10 +107,11 @@ const studyGoals: StudyGoal[] = [
     bgColor: "bg-indigo-50",
     fields: ["Biology", "Chemistry", "Physics", "Environmental Science"],
     popularCourses: [
-      "Biotechnology",
-      "Environmental Studies",
-      "Research Methods",
-      "Laboratory Sciences",
+      "Climate Science & Sustainability",
+      "Biotechnology & Genetic Engineering",
+      "Renewable Energy Systems",
+      "Marine Biology & Conservation",
+      "Food Science & Technology",
     ],
   },
   {
@@ -123,10 +128,11 @@ const studyGoals: StudyGoal[] = [
       "Actuarial Science",
     ],
     popularCourses: [
-      "Data Analytics",
-      "Statistical Modeling",
-      "Mathematical Finance",
-      "Operations Research",
+      "Data Science & Big Data Analytics",
+      "Quantitative Finance & Risk Management",
+      "Machine Learning Mathematics",
+      "Cryptocurrency & Blockchain Analytics",
+      "Predictive Modeling & Forecasting",
     ],
   },
   {
@@ -138,10 +144,11 @@ const studyGoals: StudyGoal[] = [
     bgColor: "bg-teal-50",
     fields: ["Psychology", "Sociology", "Political Science", "Anthropology"],
     popularCourses: [
-      "International Relations",
-      "Social Work",
-      "Cultural Studies",
-      "Public Policy",
+      "Digital Sociology & Social Media",
+      "International Relations & Diplomacy",
+      "Social Entrepreneurship",
+      "Migration & Refugee Studies",
+      "Gender Studies & Human Rights",
     ],
   },
   {
@@ -153,10 +160,11 @@ const studyGoals: StudyGoal[] = [
     bgColor: "bg-gray-50",
     fields: ["Law", "Legal Studies", "Criminology", "International Law"],
     popularCourses: [
-      "Corporate Law",
-      "Human Rights Law",
-      "Criminal Justice",
-      "Legal Practice",
+      "Cyber Law & Digital Rights",
+      "Environmental Law & Climate Policy",
+      "International Trade Law",
+      "Immigration & Refugee Law",
+      "Intellectual Property & Technology Law",
     ],
   },
   {
@@ -173,10 +181,11 @@ const studyGoals: StudyGoal[] = [
       "Culinary Arts",
     ],
     popularCourses: [
-      "Hotel Administration",
-      "Tourism Management",
-      "Event Planning",
-      "Culinary Sciences",
+      "Sustainable Tourism & Eco-Travel",
+      "Digital Hospitality Management",
+      "Luxury Brand Management",
+      "Event Technology & Virtual Events",
+      "Culinary Arts & Food Innovation",
     ],
   },
   {
@@ -193,10 +202,11 @@ const studyGoals: StudyGoal[] = [
       "Digital Media",
     ],
     popularCourses: [
-      "Digital Journalism",
-      "Film Production",
-      "Public Relations",
-      "Content Creation",
+      "Social Media & Influencer Marketing",
+      "Podcast Production & Audio Content",
+      "Video Content & YouTube Strategy",
+      "Data Journalism & Fact-Checking",
+      "Virtual Reality & Immersive Media",
     ],
   },
   {
@@ -208,10 +218,11 @@ const studyGoals: StudyGoal[] = [
     bgColor: "bg-rose-50",
     fields: ["Music", "Theatre", "Dance", "Performance Studies"],
     popularCourses: [
-      "Music Production",
-      "Theatre Arts",
-      "Dance Performance",
-      "Audio Engineering",
+      "Music Production & Sound Design",
+      "Musical Theatre & Performance",
+      "Digital Music & Electronic Arts",
+      "Music Therapy & Wellness",
+      "Live Event Production & Management",
     ],
   },
   {
@@ -228,10 +239,11 @@ const studyGoals: StudyGoal[] = [
       "Interior Design",
     ],
     popularCourses: [
-      "Architectural Design",
-      "Urban Development",
-      "Sustainable Design",
-      "Space Planning",
+      "Sustainable Architecture & Green Building",
+      "Smart Cities & Urban Technology",
+      "3D Modeling & Virtual Architecture",
+      "Historic Preservation & Restoration",
+      "Landscape Architecture & Ecology",
     ],
   },
 ];
@@ -328,7 +340,7 @@ const StudyGoalsCarousel: React.FC = () => {
                     Popular Courses:
                   </h4>
                   <div className="flex flex-wrap gap-1">
-                    {goal.popularCourses.slice(0, 2).map((course, index) => (
+                    {goal.popularCourses.slice(0, 3).map((course, index) => (
                       <span
                         key={index}
                         className="inline-block bg-white px-1.5 md:px-2 py-0.5 md:py-1 rounded text-xs text-gray-600 border"
@@ -336,9 +348,9 @@ const StudyGoalsCarousel: React.FC = () => {
                         {course}
                       </span>
                     ))}
-                    {goal.popularCourses.length > 2 && (
+                    {goal.popularCourses.length > 3 && (
                       <span className="inline-block px-1.5 md:px-2 py-0.5 md:py-1 rounded text-xs text-gray-500">
-                        +{goal.popularCourses.length - 2} more
+                        +{goal.popularCourses.length - 3} more
                       </span>
                     )}
                   </div>
