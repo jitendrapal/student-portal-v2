@@ -3,15 +3,41 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import session from "express-session";
+
+// Load environment variables FIRST
+dotenv.config();
+
+// Debug environment variables in production
+if (process.env.NODE_ENV === "production") {
+  console.log("🔍 Environment Variables Check:");
+  console.log("   NODE_ENV:", process.env.NODE_ENV);
+  console.log("   PORT:", process.env.PORT);
+  console.log(
+    "   GOOGLE_CLIENT_ID:",
+    process.env.GOOGLE_CLIENT_ID ? "✅ Set" : "❌ Missing"
+  );
+  console.log(
+    "   GOOGLE_CLIENT_SECRET:",
+    process.env.GOOGLE_CLIENT_SECRET ? "✅ Set" : "❌ Missing"
+  );
+  console.log(
+    "   JWT_SECRET:",
+    process.env.JWT_SECRET ? "✅ Set" : "❌ Missing"
+  );
+  console.log(
+    "   SESSION_SECRET:",
+    process.env.SESSION_SECRET ? "✅ Set" : "❌ Missing"
+  );
+  console.log("   FRONTEND_URL:", process.env.FRONTEND_URL);
+}
+
+// Import after environment variables are loaded
 import passport from "./config/passport.js";
 import fileDb from "./database/fileDb.js";
 
 // Import simplified routes
 import { createSimpleRoutes } from "./routes/simple.js";
 import oauthRoutes from "./routes/oauth.js";
-
-// Load environment variables
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
