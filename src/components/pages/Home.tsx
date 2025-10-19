@@ -109,29 +109,6 @@ const Home: React.FC = () => {
               </span>
             </h1>
 
-            {/* Subheading */}
-            <p className="text-lg md:text-xl mb-3 text-blue-100 max-w-2xl mx-auto leading-relaxed">
-              Connect with top European universities, discover healthcare career
-              opportunities, and get expert guidance for your professional
-              journey across Europe.
-            </p>
-
-            {/* Key Value Proposition */}
-            <div className="flex flex-wrap justify-center gap-4 mb-6 text-sm">
-              <div className="flex items-center text-blue-200">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-                1000+ Partner Universities
-              </div>
-              <div className="flex items-center text-blue-200">
-                <span className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>
-                Healthcare Jobs in Germany
-              </div>
-              <div className="flex items-center text-blue-200">
-                <span className="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>
-                Expert Career Counseling
-              </div>
-            </div>
-
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto mb-6">
               <SearchWithSuggestions
@@ -161,6 +138,32 @@ const Home: React.FC = () => {
               >
                 🏥 Healthcare Jobs
               </button>
+            </div>
+
+            {/* Description and Key Value Proposition - Moved below buttons */}
+            <div className="mt-8 text-center">
+              {/* Subheading */}
+              <p className="text-lg md:text-xl mb-6 text-blue-100 max-w-2xl mx-auto leading-relaxed">
+                Connect with top European universities, discover healthcare
+                career opportunities, and get expert guidance for your
+                professional journey across Europe.
+              </p>
+
+              {/* Key Value Proposition */}
+              <div className="flex flex-wrap justify-center gap-4 text-sm">
+                <div className="flex items-center text-blue-200">
+                  <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                  1000+ Partner Universities
+                </div>
+                <div className="flex items-center text-blue-200">
+                  <span className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>
+                  Healthcare Jobs in Germany
+                </div>
+                <div className="flex items-center text-blue-200">
+                  <span className="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>
+                  Expert Career Counseling
+                </div>
+              </div>
             </div>
           </div>
         </div>
