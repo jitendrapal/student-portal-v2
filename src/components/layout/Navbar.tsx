@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
+import AppLauncher from "../common/AppLauncher";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -779,6 +780,8 @@ const Navbar: React.FC = () => {
 
           {/* User Menu */}
           <div className="flex items-center space-x-4">
+            {/* App Launcher */}
+            <AppLauncher />
             {isAuthenticated ? (
               <div className="relative">
                 <button
