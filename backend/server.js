@@ -2,10 +2,13 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
+import session from "express-session";
+import passport from "./config/passport.js";
 import fileDb from "./database/fileDb.js";
 
 // Import simplified routes
 import { createSimpleRoutes } from "./routes/simple.js";
+import oauthRoutes from "./routes/oauth.js";
 
 // Load environment variables
 dotenv.config();
@@ -51,11 +54,31 @@ app.use(
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
+// Session configuration for OAuth
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "your-session-secret-key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    },
+  })
+);
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Initialize file database
 console.log("✅ Using File Database for quick setup");
 
 // Routes - using simplified file-based routes
 createSimpleRoutes(app, fileDb);
+
+// OAuth routes
+app.use("/api/auth", oauthRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {

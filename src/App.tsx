@@ -9,6 +9,7 @@ import CourseDetail from "./components/pages/CourseDetail";
 import HealthcareJobs from "./components/pages/HealthcareJobs";
 import HealthcareJobDetail from "./components/pages/HealthcareJobDetail";
 import Login from "./components/auth/Login";
+import OAuthSuccess from "./components/auth/OAuthSuccess";
 import StudentDashboard from "./components/student/StudentDashboard";
 import CounselorDashboard from "./components/counselor/CounselorDashboard";
 
@@ -32,6 +33,7 @@ function App() {
               element={<HealthcareJobDetail />}
             />
             <Route path="/login" element={<Login />} />
+            <Route path="/auth/success" element={<OAuthSuccess />} />
             <Route
               path="/applications"
               element={
