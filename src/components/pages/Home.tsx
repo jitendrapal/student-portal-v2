@@ -145,8 +145,7 @@ const Home: React.FC = () => {
               {/* Subheading */}
               <p className="text-lg md:text-xl mb-6 text-blue-100 max-w-2xl mx-auto leading-relaxed">
                 Connect with top European universities, discover healthcare
-                career opportunities, and get expert guidance for your
-                professional journey across Europe.
+                career opportunities.
               </p>
 
               {/* Key Value Proposition */}
