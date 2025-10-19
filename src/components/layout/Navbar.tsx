@@ -832,7 +832,8 @@ const Navbar: React.FC = () => {
             ) : (
               <button
                 onClick={() => handleNavigation("login")}
-                className="btn-primary"
+                className="btn-primary opacity-50 cursor-not-allowed"
+                disabled
               >
                 Sign In
               </button>
