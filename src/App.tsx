@@ -18,6 +18,12 @@ import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import TermsOfService from "./components/pages/TermsOfService";
 import CookiePolicy from "./components/pages/CookiePolicy";
 import RefundPolicy from "./components/pages/RefundPolicy";
+import AboutUs from "./components/pages/AboutUs";
+import HowItWorks from "./components/pages/HowItWorks";
+import SuccessStories from "./components/pages/SuccessStories";
+import Blog from "./components/pages/Blog";
+import CareerCounseling from "./components/pages/CareerCounseling";
+import Scholarships from "./components/pages/Scholarships";
 
 function App() {
   const { user } = useStore();
