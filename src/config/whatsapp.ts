@@ -1,7 +1,7 @@
 // WhatsApp Business Configuration
 export const whatsappConfig = {
   // Replace with your actual WhatsApp Business number (include country code without +)
-  phoneNumber: import.meta.env.VITE_WHATSAPP_PHONE || "49123456789", // Example: German number
+  phoneNumber: import.meta.env.VITE_WHATSAPP_PHONE || "31683078160", // Example: German number
 
   // Business information
   businessName:
@@ -26,9 +26,6 @@ export const whatsappConfig = {
     "I need help with university applications",
     "What are the admission requirements?",
     "I want to schedule a consultation",
-    "How much do the programs cost?",
-    "What documents do I need?",
-    "Tell me about visa requirements",
   ],
 
   // Business hours (optional - for display purposes)
