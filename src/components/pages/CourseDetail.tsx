@@ -241,12 +241,18 @@ const CourseDetail: React.FC = () => {
                   University
                 </h3>
                 <div className="flex items-center space-x-3 mb-4">
-                  {university.logo && (
+                  {university.logo ? (
                     <img
                       src={university.logo}
                       alt={university.name}
-                      className="w-12 h-12 object-contain"
+                      className="w-12 h-12 object-contain rounded-lg border border-gray-200"
                     />
+                  ) : (
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-sm">
+                      <span className="text-white text-sm font-bold">
+                        {university.name.charAt(0)}
+                      </span>
+                    </div>
                   )}
                   <div>
                     <div className="font-medium text-gray-900">

@@ -295,12 +295,12 @@ const Universities: React.FC = () => {
                             <img
                               src={university.logo}
                               alt={university.name}
-                              className="w-16 h-16 object-contain"
+                              className="w-16 h-16 object-contain rounded-lg border border-gray-200"
                             />
                           ) : (
-                            <div className="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
-                              <span className="text-gray-500 text-xs">
-                                Logo
+                            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-sm">
+                              <span className="text-white text-lg font-bold">
+                                {university.name.charAt(0)}
                               </span>
                             </div>
                           )}
