@@ -10,6 +10,25 @@ const isGoogleConfigured =
 const isLinkedInConfigured =
   process.env.LINKEDIN_CLIENT_ID && process.env.LINKEDIN_CLIENT_SECRET;
 
+// Debug OAuth configuration
+console.log("🔍 OAuth Configuration Check:");
+console.log(
+  "   Google Client ID:",
+  process.env.GOOGLE_CLIENT_ID ? "✅ Set" : "❌ Missing"
+);
+console.log(
+  "   Google Client Secret:",
+  process.env.GOOGLE_CLIENT_SECRET ? "✅ Set" : "❌ Missing"
+);
+console.log(
+  "   Google OAuth Configured:",
+  isGoogleConfigured ? "✅ Yes" : "❌ No"
+);
+console.log(
+  "   LinkedIn OAuth Configured:",
+  isLinkedInConfigured ? "✅ Yes" : "❌ No"
+);
+
 // Generate JWT token
 const generateToken = (userId) => {
   return jwt.sign({ userId }, process.env.JWT_SECRET, {
@@ -17,16 +36,30 @@ const generateToken = (userId) => {
   });
 };
 
+// Debug route to test OAuth routes are accessible
+router.get("/debug", (req, res) => {
+  res.json({
+    success: true,
+    message: "OAuth routes are accessible",
+    configuration: {
+      googleConfigured: isGoogleConfigured,
+      linkedinConfigured: isLinkedInConfigured,
+      environment: process.env.NODE_ENV,
+    },
+  });
+});
+
 // Google OAuth routes (only if configured)
 if (isGoogleConfigured) {
-  router.get(
-    "/google",
+  router.get("/google", (req, res, next) => {
+    console.log("🔗 Google OAuth route hit - redirecting to Google...");
     passport.authenticate("google", {
       scope: ["profile", "email"],
-    })
-  );
+    })(req, res, next);
+  });
 } else {
   router.get("/google", (req, res) => {
+    console.log("❌ Google OAuth route hit but not configured");
     res.status(503).json({
       error: "Google OAuth not configured",
       message: "Google OAuth is not available. Please contact administrator.",

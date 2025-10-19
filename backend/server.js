@@ -100,11 +100,13 @@ app.use(passport.session());
 // Initialize file database
 console.log("✅ Using File Database for quick setup");
 
+// OAuth routes (must be before simple routes to avoid 404 handler)
+console.log("🔐 Registering OAuth routes...");
+app.use("/api/auth", oauthRoutes);
+console.log("✅ OAuth routes registered at /api/auth");
+
 // Routes - using simplified file-based routes
 createSimpleRoutes(app, fileDb);
-
-// OAuth routes
-app.use("/api/auth", oauthRoutes);
 
 // Health check endpoint
 app.get("/api/health", (req, res) => {

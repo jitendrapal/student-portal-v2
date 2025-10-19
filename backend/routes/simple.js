@@ -482,8 +482,5 @@ export function createSimpleRoutes(app, db) {
     }
   });
 
-  // 404 handler
-  app.use("*", (req, res) => {
-    res.status(404).json({ success: false, message: "API endpoint not found" });
-  });
+  // Note: 404 handler is in server.js to avoid conflicts with other routes
 }
