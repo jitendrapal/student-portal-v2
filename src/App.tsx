@@ -14,6 +14,10 @@ import OAuthSuccess from "./components/auth/OAuthSuccess";
 import StudentDashboard from "./components/student/StudentDashboard";
 import CounselorDashboard from "./components/counselor/CounselorDashboard";
 import WhatsAppChat from "./components/common/WhatsAppChat";
+import PrivacyPolicy from "./components/pages/PrivacyPolicy";
+import TermsOfService from "./components/pages/TermsOfService";
+import CookiePolicy from "./components/pages/CookiePolicy";
+import RefundPolicy from "./components/pages/RefundPolicy";
 
 function App() {
   const { user } = useStore();
@@ -48,6 +52,12 @@ function App() {
                 user?.role === "counselor" ? <CounselorDashboard /> : <Home />
               }
             />
+
+            {/* Legal Pages */}
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsOfService />} />
+            <Route path="/cookies" element={<CookiePolicy />} />
+            <Route path="/refund" element={<RefundPolicy />} />
           </Routes>
         </main>
 
