@@ -9,7 +9,6 @@ import {
   Settings,
   BookOpen,
   Users,
-  Home,
   ChevronDown,
   Globe,
   Heart,
@@ -206,7 +205,6 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { id: "home", label: "Home", icon: Home },
     { id: "universities", label: "Universities", icon: BookOpen },
     { id: "courses", label: "Courses", icon: BookOpen },
     { id: "healthcare-jobs", label: "Healthcare Jobs", icon: Heart },
