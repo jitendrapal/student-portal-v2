@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Eye, EyeOff, Mail, Lock, User, BookOpen } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import EnvDebug from "../debug/EnvDebug";
 
 const Login: React.FC = () => {
   const { login } = useStore();
@@ -37,15 +38,19 @@ const Login: React.FC = () => {
 
   // OAuth handlers
   const handleGoogleLogin = () => {
-    window.location.href = `${
-      process.env.REACT_APP_API_URL || "http://localhost:5001"
-    }/api/auth/google`;
+    const apiUrl =
+      import.meta.env.VITE_API_BASE_URL ||
+      process.env.REACT_APP_API_URL ||
+      "http://localhost:5001";
+    window.location.href = `${apiUrl}/api/auth/google`;
   };
 
   const handleLinkedInLogin = () => {
-    window.location.href = `${
-      process.env.REACT_APP_API_URL || "http://localhost:5001"
-    }/api/auth/linkedin`;
+    const apiUrl =
+      import.meta.env.VITE_API_BASE_URL ||
+      process.env.REACT_APP_API_URL ||
+      "http://localhost:5001";
+    window.location.href = `${apiUrl}/api/auth/linkedin`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -385,6 +390,7 @@ const Login: React.FC = () => {
           </div>
         </div>
       </div>
+      <EnvDebug />
     </div>
   );
 };
