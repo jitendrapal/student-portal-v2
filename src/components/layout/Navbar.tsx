@@ -15,6 +15,8 @@ import {
   Heart,
   Stethoscope,
   Briefcase,
+  Phone,
+  Mail,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
@@ -223,8 +225,8 @@ const Navbar: React.FC = () => {
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo and Contact Info */}
+          <div className="flex items-center space-x-6">
             <Link to="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Briefcase className="w-5 h-5 text-white" />
@@ -233,6 +235,24 @@ const Navbar: React.FC = () => {
                 Europe Job
               </span>
             </Link>
+
+            {/* Contact Information */}
+            <div className="hidden lg:flex items-center space-x-4 text-sm text-gray-600">
+              <a
+                href="tel:+31620371533"
+                className="flex items-center space-x-1 hover:text-blue-600 transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                <span>+31620371533</span>
+              </a>
+              <a
+                href="mailto:info@ejcgroup.eu"
+                className="flex items-center space-x-1 hover:text-blue-600 transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span>info@ejcgroup.eu</span>
+              </a>
+            </div>
           </div>
 
           {/* Desktop Navigation */}

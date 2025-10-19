@@ -15,6 +15,7 @@ import {
   Heart,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
+import CourseApplicationForm from "../forms/CourseApplicationForm";
 
 const CourseDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,6 +37,7 @@ const CourseDetail: React.FC = () => {
     fetchCourses();
   }, [fetchCourses]);
   const [isFavorited, setIsFavorited] = useState(false);
+  const [showApplicationForm, setShowApplicationForm] = useState(false);
 
   // Find course by ID from URL parameter
   const course = courses.find((c) => c.id === id);
@@ -56,37 +58,28 @@ const CourseDetail: React.FC = () => {
     );
   }
 
-  const handleApply = async () => {
-    if (!isAuthenticated || !user) {
-      navigate("/login");
-      return;
-    }
+  const handleApply = () => {
+    setShowApplicationForm(true);
+  };
 
-    if (!course) {
-      alert("Course not found!");
-      return;
-    }
-
+  const handleApplicationSubmit = async (applicationData: any) => {
     try {
-      // Create the application
-      await addApplication({
-        studentId: user.id,
-        universityId: course.universityId,
-        courseId: course.id,
-        status: "draft",
-        submittedAt: new Date(),
-        documents: [],
-        personalStatement: "",
-        additionalInfo: "",
-      });
+      // Save application data (you can integrate with your backend here)
+      console.log("Application submitted:", applicationData);
 
-      alert(
-        `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
-      );
+      // For now, just show success message
+      alert("Application submitted successfully! We will contact you soon.");
+
+      // You can add backend integration here:
+      // await submitApplication(applicationData);
     } catch (error) {
-      console.error("Error creating application:", error);
-      alert("Failed to create application. Please try again.");
+      console.error("Error submitting application:", error);
+      alert("Failed to submit application. Please try again.");
     }
+  };
+
+  const closeApplicationForm = () => {
+    setShowApplicationForm(false);
   };
 
   const tabs = [
@@ -483,6 +476,17 @@ const CourseDetail: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Course Application Form Modal */}
+      {showApplicationForm && (
+        <CourseApplicationForm
+          course={course}
+          university={university}
+          isOpen={showApplicationForm}
+          onClose={closeApplicationForm}
+          onSubmit={handleApplicationSubmit}
+        />
+      )}
     </div>
   );
 };

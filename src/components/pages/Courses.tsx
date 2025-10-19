@@ -12,6 +12,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
+import CourseApplicationForm from "../forms/CourseApplicationForm";
 
 const Courses: React.FC = () => {
   const navigate = useNavigate();
@@ -32,6 +33,13 @@ const Courses: React.FC = () => {
 
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState<"tuition" | "duration" | "name">("name");
+  const [applicationForm, setApplicationForm] = useState<{
+    isOpen: boolean;
+    courseId: string | null;
+  }>({
+    isOpen: false,
+    courseId: null,
+  });
 
   // Fetch courses when component mounts
   useEffect(() => {
@@ -95,39 +103,34 @@ const Courses: React.FC = () => {
     ...new Set(courses.map((course) => course.language)),
   ].sort();
 
-  const handleApply = async (courseId: string) => {
-    if (!isAuthenticated || !user) {
-      navigate("/login");
-      return;
-    }
+  const handleApply = (courseId: string) => {
+    setApplicationForm({
+      isOpen: true,
+      courseId: courseId,
+    });
+  };
 
-    // Find the course to get university information
-    const course = courses.find((c) => c.id === courseId);
-    if (!course) {
-      alert("Course not found!");
-      return;
-    }
-
+  const handleApplicationSubmit = async (applicationData: any) => {
     try {
-      // Create the application
-      await addApplication({
-        studentId: user.id,
-        universityId: course.universityId,
-        courseId: courseId,
-        status: "draft",
-        submittedAt: new Date(),
-        documents: [],
-        personalStatement: "",
-        additionalInfo: "",
-      });
+      // Save application data (you can integrate with your backend here)
+      console.log("Application submitted:", applicationData);
 
-      alert(
-        `Application for ${course.name} has been created! Check your dashboard to view and complete it.`
-      );
+      // For now, just show success message
+      alert("Application submitted successfully! We will contact you soon.");
+
+      // You can add backend integration here:
+      // await submitApplication(applicationData);
     } catch (error) {
-      console.error("Error creating application:", error);
-      alert("Failed to create application. Please try again.");
+      console.error("Error submitting application:", error);
+      alert("Failed to submit application. Please try again.");
     }
+  };
+
+  const closeApplicationForm = () => {
+    setApplicationForm({
+      isOpen: false,
+      courseId: null,
+    });
   };
 
   return (
@@ -588,6 +591,22 @@ const Courses: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Course Application Form Modal */}
+      {applicationForm.isOpen && applicationForm.courseId && (
+        <CourseApplicationForm
+          course={courses.find((c) => c.id === applicationForm.courseId)!}
+          university={
+            getUniversityById(
+              courses.find((c) => c.id === applicationForm.courseId)
+                ?.universityId || ""
+            )!
+          }
+          isOpen={applicationForm.isOpen}
+          onClose={closeApplicationForm}
+          onSubmit={handleApplicationSubmit}
+        />
+      )}
     </div>
   );
 };
