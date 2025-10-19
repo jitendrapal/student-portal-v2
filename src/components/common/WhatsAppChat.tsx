@@ -46,7 +46,21 @@ const WhatsAppChat: React.FC<WhatsAppChatProps> = ({
   const quickMessages = whatsappConfig.quickMessages;
 
   const handleQuickMessage = (quickMsg: string) => {
-    setMessage(quickMsg);
+    console.log("🔥 Quick message clicked:", quickMsg);
+
+    // Simple direct implementation
+    const phone = phoneNumber || whatsappConfig.phoneNumber || "31620371533";
+    const formattedPhone = phone.replace(/[+\s-()]/g, "");
+    const encodedMessage = encodeURIComponent(quickMsg);
+    const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
+
+    console.log("📱 Opening WhatsApp URL:", whatsappUrl);
+
+    // Open WhatsApp
+    window.open(whatsappUrl, "_blank");
+
+    // Close chat widget
+    setIsOpen(false);
   };
 
   return (
@@ -89,15 +103,24 @@ const WhatsAppChat: React.FC<WhatsAppChatProps> = ({
 
             {/* Quick Messages */}
             <div className="mb-4">
-              <p className="text-xs text-gray-500 mb-2">Quick messages:</p>
+              <p className="text-xs text-gray-500 mb-2">
+                Click to send directly on WhatsApp:
+              </p>
               <div className="space-y-2">
                 {quickMessages.map((quickMsg, index) => (
                   <button
                     key={index}
-                    onClick={() => handleQuickMessage(quickMsg)}
-                    className="w-full text-left text-xs bg-gray-50 hover:bg-gray-100 p-2 rounded border transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log("Button clicked for message:", quickMsg);
+                      handleQuickMessage(quickMsg);
+                    }}
+                    className="w-full text-left text-xs bg-green-50 hover:bg-green-100 border border-green-200 hover:border-green-300 p-2 rounded transition-colors flex items-center justify-between group cursor-pointer"
+                    type="button"
                   >
-                    {quickMsg}
+                    <span>{quickMsg}</span>
+                    <MessageCircle className="w-3 h-3 text-green-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </button>
                 ))}
               </div>
