@@ -21,10 +21,8 @@ export const whatsappConfig = {
 
   // Quick message templates
   quickMessages: [
-    "I want to know about study programs in Germany",
+    "I want to know about study programs in Europe",
     "Tell me about healthcare job opportunities",
-    "I need help with university applications",
-    "What are the admission requirements?",
     "I want to schedule a consultation",
   ],
 
