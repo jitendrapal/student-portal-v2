@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   MapPin,
@@ -16,11 +17,12 @@ import {
 import { useStore } from "../../store/useStore";
 
 const CourseDetail: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const {
     courses,
-    selectedCourse,
     getUniversityById,
-    setCurrentPage,
+    fetchCourses,
     user,
     isAuthenticated,
     addApplication,
@@ -28,10 +30,15 @@ const CourseDetail: React.FC = () => {
   const [activeTab, setActiveTab] = useState<
     "overview" | "curriculum" | "requirements" | "career"
   >("overview");
+
+  // Fetch courses when component mounts
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
   const [isFavorited, setIsFavorited] = useState(false);
 
-  // Use selectedCourse if available, otherwise fall back to first course
-  const course = selectedCourse || courses[0];
+  // Find course by ID from URL parameter
+  const course = courses.find((c) => c.id === id);
   const university = course ? getUniversityById(course.universityId) : null;
 
   if (!course || !university) {
@@ -41,10 +48,7 @@ const CourseDetail: React.FC = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
             Course not found
           </h2>
-          <button
-            onClick={() => setCurrentPage("courses")}
-            className="btn-primary"
-          >
+          <button onClick={() => navigate("/courses")} className="btn-primary">
             Back to Courses
           </button>
         </div>
@@ -54,7 +58,7 @@ const CourseDetail: React.FC = () => {
 
   const handleApply = async () => {
     if (!isAuthenticated || !user) {
-      setCurrentPage("login");
+      navigate("/login");
       return;
     }
 
@@ -99,7 +103,7 @@ const CourseDetail: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between mb-6">
             <button
-              onClick={() => setCurrentPage("courses")}
+              onClick={() => navigate("/courses")}
               className="flex items-center text-gray-600 hover:text-gray-900"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -269,7 +273,7 @@ const CourseDetail: React.FC = () => {
                 )}
 
                 <button
-                  onClick={() => setCurrentPage("university-detail")}
+                  onClick={() => navigate(`/university/${university.id}`)}
                   className="w-full btn-secondary"
                 >
                   View University
