@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Filter,
   MapPin,
@@ -12,13 +13,13 @@ import { useStore } from "../../store/useStore";
 import { fields } from "../../data/mockData";
 
 const Universities: React.FC = () => {
+  const navigate = useNavigate();
   const {
     filteredUniversities,
     universities,
     filters,
     setFilters,
     searchQuery,
-    setCurrentPage,
     getCoursesByUniversity,
     setCourseFilters,
     setSelectedUniversity,
@@ -361,7 +362,7 @@ const Universities: React.FC = () => {
                               <button
                                 onClick={() => {
                                   setSelectedUniversity(university);
-                                  setCurrentPage("university-detail");
+                                  navigate(`/university/${university.id}`);
                                 }}
                                 className="btn-secondary"
                               >
@@ -373,7 +374,7 @@ const Universities: React.FC = () => {
                                   setCourseFilters({
                                     universityIds: [university.id],
                                   });
-                                  setCurrentPage("courses");
+                                  navigate("/courses");
                                 }}
                                 className="btn-primary"
                               >

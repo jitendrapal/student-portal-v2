@@ -13,7 +13,6 @@ import OAuthSuccess from "./components/auth/OAuthSuccess";
 import StudentDashboard from "./components/student/StudentDashboard";
 import CounselorDashboard from "./components/counselor/CounselorDashboard";
 import WhatsAppChat from "./components/common/WhatsAppChat";
-import WhatsAppTest from "./components/debug/WhatsAppTest";
 
 function App() {
   const { user } = useStore();
@@ -53,9 +52,6 @@ function App() {
 
         {/* WhatsApp Chat Widget - Available on all pages */}
         <WhatsAppChat />
-
-        {/* Debug component - remove in production */}
-        <WhatsAppTest />
       </div>
     </Router>
   );

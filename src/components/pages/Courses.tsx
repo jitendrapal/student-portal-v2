@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Filter,
   BookOpen,
@@ -13,6 +14,7 @@ import {
 import { useStore } from "../../store/useStore";
 
 const Courses: React.FC = () => {
+  const navigate = useNavigate();
   const {
     courses,
     filteredCourses,
@@ -21,7 +23,6 @@ const Courses: React.FC = () => {
     fetchCourses,
     universities,
     getUniversityById,
-    setCurrentPage,
     setSelectedCourse,
     isAuthenticated,
     isLoading,
@@ -96,7 +97,7 @@ const Courses: React.FC = () => {
 
   const handleApply = async (courseId: string) => {
     if (!isAuthenticated || !user) {
-      setCurrentPage("login");
+      navigate("/login");
       return;
     }
 
@@ -549,7 +550,7 @@ const Courses: React.FC = () => {
                                 <button
                                   onClick={() => {
                                     setSelectedCourse(course);
-                                    setCurrentPage("course-detail");
+                                    navigate(`/course/${course.id}`);
                                   }}
                                   className="btn-secondary"
                                 >
