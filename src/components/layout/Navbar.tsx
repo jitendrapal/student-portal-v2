@@ -829,15 +829,8 @@ const Navbar: React.FC = () => {
                   </div>
                 )}
               </div>
-            ) : (
-              <button
-                onClick={() => handleNavigation("login")}
-                className="btn-primary opacity-50 cursor-not-allowed"
-                disabled
-              >
-                Sign In
-              </button>
-            )}
+            ) : // Sign In button temporarily hidden - all auth logic preserved
+            null}
 
             {/* Mobile menu button */}
             <button
