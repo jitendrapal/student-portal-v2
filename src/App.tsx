@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useStore } from "./store/useStore";
 import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 import Home from "./components/pages/Home";
 import Universities from "./components/pages/Universities";
 import UniversityDetail from "./components/pages/UniversityDetail";
@@ -49,6 +50,9 @@ function App() {
             />
           </Routes>
         </main>
+
+        {/* Footer */}
+        <Footer />
 
         {/* WhatsApp Chat Widget - Available on all pages */}
         <WhatsAppChat />
