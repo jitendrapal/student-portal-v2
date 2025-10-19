@@ -237,7 +237,7 @@ const Navbar: React.FC = () => {
             </Link>
 
             {/* Contact Information */}
-            <div className="hidden lg:flex items-center space-x-4 text-sm text-gray-600">
+            <div className="hidden lg:flex flex-col space-y-1 text-sm text-gray-600">
               <a
                 href="tel:+31620371533"
                 className="flex items-center space-x-1 hover:text-blue-600 transition-colors"
