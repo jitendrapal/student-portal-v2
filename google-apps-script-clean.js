@@ -7,7 +7,16 @@ function doGet(e) {
     success: true,
     message: "EJC Google Apps Script is running",
     timestamp: new Date().toISOString(),
-    method: "GET"
+    method: "GET",
+  });
+}
+
+function doOptions(e) {
+  console.log("OPTIONS request received:", e);
+  return createCORSResponse({
+    success: true,
+    message: "CORS preflight response",
+    method: "OPTIONS",
   });
 }
 
@@ -15,12 +24,12 @@ function doPost(e) {
   try {
     console.log("POST request received");
     console.log("Request parameters:", e.parameter);
-    
+
     const data = e.parameter;
     const type = data.type;
-    
+
     console.log("Application type:", type);
-    
+
     if (type === "healthcare_application") {
       console.log("Routing to healthcare application processing");
       return processHealthcareApplication(data);
@@ -31,14 +40,14 @@ function doPost(e) {
       console.log("Unknown application type:", type);
       return createCORSResponse({
         success: false,
-        error: "Unknown application type: " + type
+        error: "Unknown application type: " + type,
       });
     }
   } catch (error) {
     console.error("Error in doPost:", error);
     return createCORSResponse({
       success: false,
-      error: error.toString()
+      error: error.toString(),
     });
   }
 }
@@ -60,9 +69,23 @@ function processHealthcareApplication(data) {
       sheet = spreadsheet.insertSheet("Sheet1");
 
       const headers = [
-        "Timestamp", "Application ID", "Job ID", "First Name", "Last Name", 
-        "Email", "Phone", "Gender", "Experience", "Qualifications", 
-        "Availability", "Cover Letter", "Status", "Submitted At", "Resume URL"
+        "Timestamp",
+        "Application ID",
+        "Job ID",
+        "First Name",
+        "Last Name",
+        "Email",
+        "Phone",
+        "Gender",
+        "Experience",
+        "Qualifications",
+        "Availability",
+        "Cover Letter",
+        "Status",
+        "Submitted At",
+        "Resume Base64",
+        "Resume Filename",
+        "Resume MIME Type",
       ];
 
       const headerRange = sheet.getRange(1, 1, 1, headers.length);
@@ -88,7 +111,9 @@ function processHealthcareApplication(data) {
       data.coverLetter || "",
       data.status || "submitted",
       data.submittedAt || new Date().toISOString(),
-      data.resumeUrl || ""
+      data.resumeBase64 || "",
+      data.resumeFileName || "",
+      data.resumeMimeType || "",
     ];
 
     console.log("Adding healthcare application to Sheet1");
@@ -99,13 +124,13 @@ function processHealthcareApplication(data) {
       message: "Healthcare application submitted successfully",
       timestamp: new Date().toISOString(),
       applicationId: data.applicationId,
-      sheetName: "Sheet1"
+      sheetName: "Sheet1",
     });
   } catch (error) {
     console.error("Error processing healthcare application:", error);
     return createCORSResponse({
       success: false,
-      error: error.toString()
+      error: error.toString(),
     });
   }
 }
@@ -127,15 +152,38 @@ function processCourseApplication(data) {
       sheet = spreadsheet.insertSheet("Sheet2");
 
       const headers = [
-        "Timestamp", "Application ID", "Course ID", "University ID", 
-        "Course Name", "University Name", "First Name", "Last Name", 
-        "Email", "Phone", "Date of Birth", "Nationality", "Address", 
-        "City", "Country", "Postal Code", "Previous Education", 
-        "Institution", "Graduation Year", "GPA", "English Level", 
-        "Other Languages", "Personal Statement", "Work Experience", 
-        "Extracurriculars", "Why This Course", "Has Transcripts", 
-        "Has Recommendation Letters", "Has Personal Statement", 
-        "Has Passport", "Status", "Submitted At"
+        "Timestamp",
+        "Application ID",
+        "Course ID",
+        "University ID",
+        "Course Name",
+        "University Name",
+        "First Name",
+        "Last Name",
+        "Email",
+        "Phone",
+        "Date of Birth",
+        "Nationality",
+        "Address",
+        "City",
+        "Country",
+        "Postal Code",
+        "Previous Education",
+        "Institution",
+        "Graduation Year",
+        "GPA",
+        "English Level",
+        "Other Languages",
+        "Personal Statement",
+        "Work Experience",
+        "Extracurriculars",
+        "Why This Course",
+        "Has Transcripts",
+        "Has Recommendation Letters",
+        "Has Personal Statement",
+        "Has Passport",
+        "Status",
+        "Submitted At",
       ];
 
       const headerRange = sheet.getRange(1, 1, 1, headers.length);
@@ -178,7 +226,7 @@ function processCourseApplication(data) {
       data.hasPersonalStatement || "false",
       data.hasPassport || "false",
       data.status || "submitted",
-      data.submittedAt || new Date().toISOString()
+      data.submittedAt || new Date().toISOString(),
     ];
 
     console.log("Adding course application to Sheet2");
@@ -191,26 +239,30 @@ function processCourseApplication(data) {
       applicationId: data.applicationId,
       sheetName: "Sheet2",
       courseName: data.courseName,
-      universityName: data.universityName
+      universityName: data.universityName,
     });
   } catch (error) {
     console.error("Error processing course application:", error);
     return createCORSResponse({
       success: false,
-      error: error.toString()
+      error: error.toString(),
     });
   }
 }
 
 function createCORSResponse(data) {
-  const response = ContentService.createTextOutput(JSON.stringify(data))
-    .setMimeType(ContentService.MimeType.JSON);
-  
+  const response = ContentService.createTextOutput(
+    JSON.stringify(data)
+  ).setMimeType(ContentService.MimeType.JSON);
+
   response.setHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type'
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, DELETE",
+    "Access-Control-Allow-Headers":
+      "Content-Type, Authorization, X-Requested-With, Accept, Origin",
+    "Access-Control-Max-Age": "86400",
+    "Access-Control-Allow-Credentials": "false",
   });
-  
+
   return response;
 }

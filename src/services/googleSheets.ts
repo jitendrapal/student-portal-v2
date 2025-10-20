@@ -461,6 +461,7 @@ export const testGoogleSheetsConnection = async (): Promise<boolean> => {
 
     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: "POST",
+      mode: "no-cors", // Temporary fix for CORS during development
       headers: {
         "Content-Type": "application/json",
       },
