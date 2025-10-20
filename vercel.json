@@ -1,40 +1,8 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "framework": "vite",
-  "installCommand": "npm install",
-  "env": {
-    "VITE_API_BASE_URL": "https://student-portal-v2-production.up.railway.app",
-    "VITE_API_URL": "https://student-portal-v2-production.up.railway.app/api",
-    "VITE_NODE_ENV": "production",
-    "VITE_APP_NAME": "Europe Job Center"
-  },
-  "builds": [
+  "rewrites": [
     {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/favicon.ico",
-      "dest": "/favicon.ico"
-    },
-    {
-      "src": "/vite.svg", 
-      "dest": "/vite.svg"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
