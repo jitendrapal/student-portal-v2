@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
               </a>
               <div className="flex items-center text-gray-300">
                 <MapPin className="w-4 h-4 mr-3" />
-                <span>Amsterdam, Netherlands</span>
+                <span>Amstelveen, Netherlands</span>
               </div>
             </div>
 

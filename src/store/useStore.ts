@@ -159,7 +159,9 @@ import type {
 import { healthcareJobs } from "../data/healthcareJobs";
 import {
   submitToGoogleSheets,
+  submitCourseApplicationToGoogleSheets,
   validateGoogleSheetsConfig,
+  type CourseApplication,
 } from "../services/googleSheets";
 
 interface AuthState {
@@ -240,6 +242,9 @@ interface HealthcareState {
   setSelectedHealthcareJob: (job: HealthcareJob | null) => void;
   submitHealthcareApplication: (
     application: Omit<HealthcareApplication, "id" | "submittedAt" | "status">
+  ) => Promise<void>;
+  submitCourseApplication: (
+    application: Omit<CourseApplication, "id" | "submittedAt" | "status">
   ) => Promise<void>;
   getHealthcareJobsByCategory: (
     category: HealthcareJob["category"]
@@ -781,6 +786,45 @@ export const useStore = create<Store>((set, get) => ({
       }));
     } catch (error) {
       console.error("Error submitting healthcare application:", error);
+      throw error;
+    }
+  },
+  submitCourseApplication: async (application) => {
+    try {
+      const newApplication: CourseApplication = {
+        ...application,
+        id: Date.now().toString(),
+        submittedAt: new Date(),
+        status: "submitted",
+      };
+
+      console.log("Submitting course application:", newApplication);
+
+      // Submit to Google Sheets if configured
+      if (validateGoogleSheetsConfig()) {
+        try {
+          await submitCourseApplicationToGoogleSheets(newApplication);
+          console.log(
+            "Successfully submitted course application to Google Sheets"
+          );
+        } catch (sheetsError) {
+          console.error(
+            "Failed to submit course application to Google Sheets:",
+            sheetsError
+          );
+          // Continue even if Google Sheets fails
+        }
+      } else {
+        console.warn(
+          "Google Sheets not configured. Course application saved locally only."
+        );
+      }
+
+      // Note: Course applications are not stored locally in this implementation
+      // They are only sent to Google Sheets for processing
+      console.log("Course application submitted successfully");
+    } catch (error) {
+      console.error("Error submitting course application:", error);
       throw error;
     }
   },

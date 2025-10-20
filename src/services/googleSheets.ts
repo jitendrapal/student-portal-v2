@@ -1,5 +1,40 @@
 import type { HealthcareApplication } from "../types/healthcare";
 
+// Course Application interface for Google Sheets
+export interface CourseApplication {
+  id: string;
+  courseId: string;
+  universityId: string;
+  courseName: string;
+  universityName: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  dateOfBirth: string;
+  nationality: string;
+  address: string;
+  city: string;
+  country: string;
+  postalCode: string;
+  previousEducation: string;
+  institution: string;
+  graduationYear: string;
+  gpa: string;
+  englishLevel: string;
+  otherLanguages: string;
+  personalStatement: string;
+  workExperience: string;
+  extracurriculars: string;
+  whyThisCourse: string;
+  hasTranscripts: boolean;
+  hasRecommendationLetters: boolean;
+  hasPersonalStatement: boolean;
+  hasPassport: boolean;
+  status: string;
+  submittedAt: Date;
+}
+
 // Google Sheets API configuration
 const GOOGLE_SHEETS_CONFIG = {
   // You'll need to replace these with your actual Google Sheets configuration
@@ -98,6 +133,74 @@ export const submitToGoogleSheets = async (
     // We'll assume success if no error is thrown
   } catch (error) {
     console.error("Error submitting to Google Sheets:", error);
+    throw error;
+  }
+};
+
+/**
+ * Submit course application to Google Sheets using Google Apps Script
+ */
+export const submitCourseApplicationToGoogleSheets = async (
+  application: CourseApplication
+): Promise<void> => {
+  try {
+    console.log("Submitting course application to Google Sheets:", application);
+
+    // Prepare the data for Google Sheets
+    const sheetData = {
+      type: "course_application", // Identifier for the Apps Script
+      timestamp: new Date().toISOString(),
+      applicationId: application.id,
+      courseId: application.courseId,
+      universityId: application.universityId,
+      courseName: application.courseName,
+      universityName: application.universityName,
+      firstName: application.firstName,
+      lastName: application.lastName,
+      email: application.email,
+      phone: application.phone,
+      dateOfBirth: application.dateOfBirth,
+      nationality: application.nationality,
+      address: application.address,
+      city: application.city,
+      country: application.country,
+      postalCode: application.postalCode,
+      previousEducation: application.previousEducation,
+      institution: application.institution,
+      graduationYear: application.graduationYear,
+      gpa: application.gpa,
+      englishLevel: application.englishLevel,
+      otherLanguages: application.otherLanguages,
+      personalStatement: application.personalStatement,
+      workExperience: application.workExperience,
+      extracurriculars: application.extracurriculars,
+      whyThisCourse: application.whyThisCourse,
+      hasTranscripts: application.hasTranscripts,
+      hasRecommendationLetters: application.hasRecommendationLetters,
+      hasPersonalStatement: application.hasPersonalStatement,
+      hasPassport: application.hasPassport,
+      status: application.status,
+      submittedAt: application.submittedAt.toISOString(),
+    };
+
+    // Use POST for course applications
+    const formData = new FormData();
+    Object.keys(sheetData).forEach((key) => {
+      formData.append(key, sheetData[key as keyof typeof sheetData].toString());
+    });
+
+    await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: formData,
+    });
+
+    console.log("Course application submitted to Google Sheets successfully");
+  } catch (error) {
+    console.error(
+      "Error submitting course application to Google Sheets:",
+      error
+    );
     throw error;
   }
 };
