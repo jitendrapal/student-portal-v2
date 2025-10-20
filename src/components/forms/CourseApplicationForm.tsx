@@ -608,6 +608,21 @@ const CourseApplicationForm: React.FC<CourseApplicationFormProps> = ({
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Personal Statement *
+                    </label>
+                    <textarea
+                      name="personalStatement"
+                      value={formData.personalStatement}
+                      onChange={handleInputChange}
+                      rows={4}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Write a personal statement about yourself, your goals, and why you're a good fit for this program..."
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Extracurricular Activities
                     </label>
                     <textarea
