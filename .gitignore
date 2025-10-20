@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+cors-debug.html
+debug-course-issue.html
+google-apps-script-fixed.js
+healthcare-debug.html
+production-debug.html
+quick-test.html
+test-healthcare-debug.html
+test-types.ts
