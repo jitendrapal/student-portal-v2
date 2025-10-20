@@ -1,19 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Search,
-  BookOpen,
-  ArrowRight,
-  Star,
-  Code,
-  Stethoscope,
-  TrendingUp,
-  Palette,
-  Wrench,
-  Clock,
-  MapPin,
-  Euro,
-} from "lucide-react";
+import { Search, BookOpen, ArrowRight, Star, Award, Users } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
 import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
@@ -116,6 +103,12 @@ const Home: React.FC = () => {
 
             {/* Quick Actions */}
             <div className="flex flex-wrap justify-center gap-4">
+              <button
+                onClick={() => navigate("/healthcare-jobs")}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                🚀 Get Started Today
+              </button>
               <button
                 onClick={() => navigate("/universities")}
                 className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
