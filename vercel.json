@@ -8,5 +8,15 @@
     "VITE_API_URL": "https://student-portal-v2-production.up.railway.app/api",
     "VITE_NODE_ENV": "production",
     "VITE_APP_NAME": "Europe Job Center"
-  }
+  },
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
 }
