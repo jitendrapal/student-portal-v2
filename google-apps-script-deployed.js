@@ -132,10 +132,11 @@ function processHealthcareApplication(data) {
 
 function processCourseApplication(data) {
   try {
-    console.log("Processing course application");
+    console.log("🎓 Processing course application");
+    console.log("📊 Course application data:", data);
 
     // IMPORTANT: Replace with your actual Google Sheet ID (same as healthcare)
-    const SHEET_ID = "YOUR_ACTUAL_GOOGLE_SHEET_ID_HERE";
+    const SHEET_ID = "1OqEBLLrdR237jActxjl4C_IqOMUazfuPndimj8GeVs4";
     const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
 
     // Get or create Sheet2 for course applications
