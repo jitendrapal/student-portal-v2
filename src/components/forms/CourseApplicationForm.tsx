@@ -11,7 +11,7 @@ import {
   CheckCircle,
   AlertCircle,
 } from "lucide-react";
-import { Course, University } from "../../types";
+import type { Course, University } from "../../types";
 import { useStore } from "../../store/useStore";
 
 interface CourseApplicationFormProps {

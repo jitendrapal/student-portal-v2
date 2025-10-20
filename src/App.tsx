@@ -24,6 +24,7 @@ import SuccessStories from "./components/pages/SuccessStories";
 import Blog from "./components/pages/Blog";
 import CareerCounseling from "./components/pages/CareerCounseling";
 import Scholarships from "./components/pages/Scholarships";
+import GoogleSheetsTest from "./components/debug/GoogleSheetsTest";
 
 function App() {
   const { user } = useStore();
@@ -64,6 +65,9 @@ function App() {
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/cookies" element={<CookiePolicy />} />
             <Route path="/refund" element={<RefundPolicy />} />
+
+            {/* Debug/Test Routes */}
+            <Route path="/test-google-sheets" element={<GoogleSheetsTest />} />
           </Routes>
         </main>
 

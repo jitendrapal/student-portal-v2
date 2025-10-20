@@ -71,6 +71,11 @@ export const submitToGoogleSheets = async (
   application: HealthcareApplication
 ): Promise<void> => {
   try {
+    console.log(
+      "🏥 Starting healthcare application submission to Google Sheets:",
+      application
+    );
+    console.log("🔗 Using Google Apps Script URL:", GOOGLE_APPS_SCRIPT_URL);
     // Convert resume file to base64 if present
     let resumeBase64 = "";
     let resumeFileName = "";
@@ -84,6 +89,7 @@ export const submitToGoogleSheets = async (
 
     // Prepare the data for Google Sheets
     const sheetData = {
+      type: "healthcare_application", // Add type identifier for routing
       timestamp: new Date().toISOString(),
       applicationId: application.id,
       jobId: application.jobId,
@@ -103,31 +109,39 @@ export const submitToGoogleSheets = async (
       resumeMimeType: resumeMimeType,
     };
 
-    // For large files, use POST with FormData instead of GET with URL parameters
-    if (resumeBase64.length > 0) {
-      // Use POST for file uploads
-      const formData = new FormData();
-      Object.keys(sheetData).forEach((key) => {
-        formData.append(key, sheetData[key as keyof typeof sheetData]);
-      });
+    console.log("📊 Prepared healthcare application data:", sheetData);
+    console.log("🔍 Type field:", sheetData.type);
+    console.log("🔍 Application ID:", sheetData.applicationId);
 
-      await fetch(GOOGLE_APPS_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: formData,
-      });
-    } else {
-      // Use GET for applications without files
-      const params = new URLSearchParams();
-      Object.keys(sheetData).forEach((key) => {
-        params.append(key, sheetData[key as keyof typeof sheetData]);
-      });
+    // Always use POST method for healthcare applications to ensure proper routing
+    console.log("📤 Using POST method for healthcare application");
+    const formData = new FormData();
+    Object.keys(sheetData).forEach((key) => {
+      const value = sheetData[key as keyof typeof sheetData];
+      formData.append(key, value.toString());
+      console.log(
+        `📝 FormData: ${key} = ${value.toString().substring(0, 50)}${
+          value.toString().length > 50 ? "..." : ""
+        }`
+      );
+    });
 
-      await fetch(`${GOOGLE_APPS_SCRIPT_URL}?${params.toString()}`, {
-        method: "GET",
-        mode: "no-cors",
-      });
-    }
+    console.log("🎯 FormData keys:", Array.from(formData.keys()));
+    console.log(
+      "🎯 Total FormData entries:",
+      Array.from(formData.keys()).length
+    );
+
+    await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      body: formData,
+    });
+
+    console.log("✅ Healthcare application submitted successfully");
+    console.log(
+      "🔍 Check Google Apps Script execution logs for processing details"
+    );
 
     // With no-cors mode, we can't read the response, but the request will go through
     // We'll assume success if no error is thrown
@@ -144,7 +158,11 @@ export const submitCourseApplicationToGoogleSheets = async (
   application: CourseApplication
 ): Promise<void> => {
   try {
-    console.log("Submitting course application to Google Sheets:", application);
+    console.log(
+      "🎓 Starting course application submission to Google Sheets:",
+      application
+    );
+    console.log("🔗 Using Google Apps Script URL:", GOOGLE_APPS_SCRIPT_URL);
 
     // Prepare the data for Google Sheets
     const sheetData = {
@@ -175,19 +193,30 @@ export const submitCourseApplicationToGoogleSheets = async (
       workExperience: application.workExperience,
       extracurriculars: application.extracurriculars,
       whyThisCourse: application.whyThisCourse,
-      hasTranscripts: application.hasTranscripts,
-      hasRecommendationLetters: application.hasRecommendationLetters,
-      hasPersonalStatement: application.hasPersonalStatement,
-      hasPassport: application.hasPassport,
+      hasTranscripts: application.hasTranscripts ? "true" : "false",
+      hasRecommendationLetters: application.hasRecommendationLetters
+        ? "true"
+        : "false",
+      hasPersonalStatement: application.hasPersonalStatement ? "true" : "false",
+      hasPassport: application.hasPassport ? "true" : "false",
       status: application.status,
       submittedAt: application.submittedAt.toISOString(),
     };
 
+    console.log("📊 Prepared course application data:", sheetData);
+    console.log("🔍 Type field:", sheetData.type);
+    console.log("🔍 Application ID:", sheetData.applicationId);
+
     // Use POST for course applications
     const formData = new FormData();
     Object.keys(sheetData).forEach((key) => {
-      formData.append(key, sheetData[key as keyof typeof sheetData].toString());
+      const value = sheetData[key as keyof typeof sheetData];
+      formData.append(key, value.toString());
+      console.log(`📝 FormData: ${key} = ${value}`);
     });
+
+    console.log("📤 Submitting course application via POST with FormData");
+    console.log("🎯 FormData keys:", Array.from(formData.keys()));
 
     await fetch(GOOGLE_APPS_SCRIPT_URL, {
       method: "POST",
@@ -195,7 +224,12 @@ export const submitCourseApplicationToGoogleSheets = async (
       body: formData,
     });
 
-    console.log("Course application submitted to Google Sheets successfully");
+    console.log(
+      "✅ Course application submitted to Google Sheets successfully"
+    );
+    console.log(
+      "🔍 Check Google Apps Script execution logs for processing details"
+    );
   } catch (error) {
     console.error(
       "Error submitting course application to Google Sheets:",
