@@ -8,14 +8,9 @@ import {
   Users,
   FileText,
   Search,
-  Award,
-  Globe,
-  Briefcase,
   Phone,
   Mail,
   MapPin,
-  Calendar,
-  TrendingUp,
   X,
 } from "lucide-react";
 
@@ -99,30 +94,6 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
       path: "/dashboard",
       color: "bg-indigo-500",
     },
-    {
-      id: "scholarships",
-      title: "Scholarships",
-      description: "Financial assistance",
-      icon: Award,
-      path: "/scholarships",
-      color: "bg-yellow-500",
-    },
-    {
-      id: "countries",
-      title: "Countries",
-      description: "Study destinations",
-      icon: Globe,
-      path: "/countries",
-      color: "bg-teal-500",
-    },
-    {
-      id: "careers",
-      title: "Career Center",
-      description: "Professional development",
-      icon: TrendingUp,
-      path: "/careers",
-      color: "bg-pink-500",
-    },
   ];
 
   return (
@@ -155,7 +126,7 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
             </button>
           </div>
 
-          {/* 3x3 Grid */}
+          {/* 3x2 Grid */}
           <div className="p-4">
             <div className="grid grid-cols-3 gap-3">
               {menuItems.map((item) => {
