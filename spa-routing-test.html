@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA Routing Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        .url-test {
+            display: block;
+            margin: 5px 0;
+            padding: 8px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #495057;
+        }
+        .url-test:hover {
+            background: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 SPA Routing Test for EJC</h1>
+    
+    <div class="test-section">
+        <h2>Current Issue</h2>
+        <p><strong>Problem:</strong> Direct URL access to routes like <code>/healthcare-jobs</code> returns 404</p>
+        <p><strong>Expected:</strong> All routes should redirect to index.html and let React Router handle routing</p>
+        <p><strong>Domain:</strong> www.ejcgroup.eu</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Direct URL Access</h2>
+        <p>Click these links to test direct URL access (should work after fix):</p>
+        
+        <a href="https://www.ejcgroup.eu/" class="url-test" target="_blank">
+            ✅ Home: https://www.ejcgroup.eu/
+        </a>
+        
+        <a href="https://www.ejcgroup.eu/healthcare-jobs" class="url-test" target="_blank">
+            🏥 Healthcare Jobs: https://www.ejcgroup.eu/healthcare-jobs
+        </a>
+        
+        <a href="https://www.ejcgroup.eu/courses" class="url-test" target="_blank">
+            🎓 Courses: https://www.ejcgroup.eu/courses
+        </a>
+        
+        <a href="https://www.ejcgroup.eu/universities" class="url-test" target="_blank">
+            🏫 Universities: https://www.ejcgroup.eu/universities
+        </a>
+        
+        <a href="https://www.ejcgroup.eu/about" class="url-test" target="_blank">
+            ℹ️ About: https://www.ejcgroup.eu/about
+        </a>
+        
+        <a href="https://www.ejcgroup.eu/contact" class="url-test" target="_blank">
+            📞 Contact: https://www.ejcgroup.eu/contact
+        </a>
+    </div>
+
+    <div class="test-section">
+        <h2>Automated Tests</h2>
+        <button onclick="testAllRoutes()">Test All Routes</button>
+        <button onclick="testSpecificRoute()">Test Healthcare Jobs</button>
+        <button onclick="clearResults()">Clear Results</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Deployment Checklist</h2>
+        <ol>
+            <li><strong>✅ vercel.json Updated:</strong> Added proper SPA routing configuration</li>
+            <li><strong>✅ vite.config.ts Updated:</strong> Added base path and build configuration</li>
+            <li><strong>✅ React Router:</strong> Using BrowserRouter (correct for SPA)</li>
+            <li><strong>🔄 Deployment:</strong> Need to commit and push changes</li>
+            <li><strong>⏳ Cache:</strong> May need to wait for CDN cache to clear</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>Alternative Solutions</h2>
+        
+        <h3>Option 1: Use HashRouter (Quick Fix)</h3>
+        <p>Change from BrowserRouter to HashRouter in App.tsx:</p>
+        <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+// Change this:
+import { BrowserRouter as Router } from "react-router-dom";
+
+// To this:
+import { HashRouter as Router } from "react-router-dom";
+        </pre>
+        <p><strong>URLs would become:</strong> www.ejcgroup.eu/#/healthcare-jobs</p>
+        
+        <h3>Option 2: Verify Vercel Deployment</h3>
+        <ol>
+            <li>Check Vercel dashboard for deployment status</li>
+            <li>Verify the correct branch is deployed</li>
+            <li>Check build logs for any errors</li>
+            <li>Ensure custom domain is properly configured</li>
+        </ol>
+        
+        <h3>Option 3: Manual Vercel Configuration</h3>
+        <p>In Vercel dashboard → Project Settings → Functions:</p>
+        <ul>
+            <li>Add rewrite rule: <code>/* → /index.html</code></li>
+            <li>Ensure SPA mode is enabled</li>
+        </ul>
+    </div>
+
+    <script>
+        function showResult(message, type = 'info') {
+            const results = document.getElementById('results');
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : type === 'warning' ? 'warning' : 'info';
+            const timestamp = new Date().toLocaleTimeString();
+            results.innerHTML += `<div class="result ${className}">[${timestamp}] ${message}</div>`;
+            results.scrollTop = results.scrollHeight;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        async function testRoute(url, routeName) {
+            try {
+                showResult(`🧪 Testing ${routeName}: ${url}`, 'info');
+                
+                const response = await fetch(url, {
+                    method: 'HEAD', // Use HEAD to avoid loading full content
+                    mode: 'no-cors'
+                });
+                
+                // With no-cors, we can't read the actual status
+                showResult(`✅ ${routeName}: Request completed (no-cors mode)`, 'success');
+                
+                // Try to open in a new tab for manual verification
+                const testWindow = window.open(url, '_blank');
+                if (testWindow) {
+                    showResult(`🔗 ${routeName}: Opened in new tab for manual verification`, 'info');
+                } else {
+                    showResult(`⚠️ ${routeName}: Popup blocked - manually check ${url}`, 'warning');
+                }
+                
+            } catch (error) {
+                showResult(`❌ ${routeName}: ${error.message}`, 'error');
+            }
+        }
+
+        async function testAllRoutes() {
+            clearResults();
+            showResult('🚀 Starting comprehensive route testing...', 'info');
+            
+            const routes = [
+                { url: 'https://www.ejcgroup.eu/', name: 'Home' },
+                { url: 'https://www.ejcgroup.eu/healthcare-jobs', name: 'Healthcare Jobs' },
+                { url: 'https://www.ejcgroup.eu/courses', name: 'Courses' },
+                { url: 'https://www.ejcgroup.eu/universities', name: 'Universities' },
+                { url: 'https://www.ejcgroup.eu/about', name: 'About' },
+                { url: 'https://www.ejcgroup.eu/contact', name: 'Contact' }
+            ];
+            
+            for (const route of routes) {
+                await testRoute(route.url, route.name);
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second between tests
+            }
+            
+            showResult('✅ All route tests completed. Check opened tabs for results.', 'success');
+        }
+
+        async function testSpecificRoute() {
+            clearResults();
+            await testRoute('https://www.ejcgroup.eu/healthcare-jobs', 'Healthcare Jobs (Specific Test)');
+        }
+
+        // Auto-run on page load
+        window.onload = function() {
+            showResult('🔧 SPA Routing Test Tool Ready', 'info');
+            showResult('📝 Use this tool to test direct URL access after deployment', 'info');
+            showResult('🔍 Click "Test All Routes" to verify SPA routing is working', 'warning');
+        };
+    </script>
+</body>
+</html>

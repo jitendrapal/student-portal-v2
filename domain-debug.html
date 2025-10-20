@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain & Deployment Debug</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔧 Domain & Deployment Debug</h1>
+    
+    <div class="test-section">
+        <h2>Current Issue Analysis</h2>
+        <p><strong>Problem:</strong> www.ejcgroup.eu/healthcare-jobs returns 404</p>
+        <p><strong>Error Code:</strong> fra1::2n25s-1760993536655-f4ca562f5a42 (Vercel)</p>
+        <p><strong>Expected:</strong> Should redirect to index.html and let React Router handle routing</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Deployment Tests</h2>
+        <button onclick="testMainDomain()">Test Main Domain</button>
+        <button onclick="testVercelDomain()">Test Vercel Domain</button>
+        <button onclick="testSpecificRoute()">Test Healthcare Route</button>
+        <button onclick="testAssets()">Test Assets</button>
+        <button onclick="clearResults()">Clear Results</button>
+        
+        <div id="results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Possible Issues</h2>
+        <ol>
+            <li><strong>Custom Domain Configuration:</strong>
+                <ul>
+                    <li>Custom domain (www.ejcgroup.eu) might not have proper SPA routing</li>
+                    <li>Vercel domain might work while custom domain doesn't</li>
+                    <li>DNS/CDN caching issues</li>
+                </ul>
+            </li>
+            <li><strong>Deployment Configuration:</strong>
+                <ul>
+                    <li>vercel.json not being applied correctly</li>
+                    <li>Build output directory mismatch</li>
+                    <li>Framework detection issues</li>
+                </ul>
+            </li>
+            <li><strong>Vercel Project Settings:</strong>
+                <ul>
+                    <li>Framework preset not set to "Vite"</li>
+                    <li>Build command not correct</li>
+                    <li>Output directory not set to "dist"</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>Manual Vercel Dashboard Checks</h2>
+        <ol>
+            <li><strong>Go to Vercel Dashboard:</strong>
+                <ul>
+                    <li>Check if latest deployment is successful</li>
+                    <li>Verify build logs for any errors</li>
+                    <li>Check if vercel.json is being read</li>
+                </ul>
+            </li>
+            <li><strong>Project Settings:</strong>
+                <ul>
+                    <li>Framework Preset: Should be "Vite" or "Other"</li>
+                    <li>Build Command: Should be "npm run build"</li>
+                    <li>Output Directory: Should be "dist"</li>
+                    <li>Install Command: Should be "npm install"</li>
+                </ul>
+            </li>
+            <li><strong>Domain Settings:</strong>
+                <ul>
+                    <li>Check if www.ejcgroup.eu is properly configured</li>
+                    <li>Verify SSL certificate is active</li>
+                    <li>Check if there are any domain-specific redirects</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>Alternative Solutions</h2>
+        
+        <h3>Solution 1: Test Vercel Domain First</h3>
+        <p>Find your Vercel domain (something like: your-project.vercel.app) and test:</p>
+        <ul>
+            <li>https://your-project.vercel.app/healthcare-jobs</li>
+            <li>If this works, the issue is with custom domain configuration</li>
+        </ul>
+        
+        <h3>Solution 2: Force Redeploy</h3>
+        <p>In Vercel Dashboard:</p>
+        <ol>
+            <li>Go to Deployments tab</li>
+            <li>Click "..." on latest deployment</li>
+            <li>Click "Redeploy"</li>
+            <li>This forces a fresh build with new vercel.json</li>
+        </ol>
+        
+        <h3>Solution 3: Manual Vercel Configuration</h3>
+        <p>In Vercel Dashboard → Project Settings → Functions:</p>
+        <ul>
+            <li>Add rewrite rule manually: <code>/* → /index.html</code></li>
+            <li>This overrides any file-based configuration</li>
+        </ul>
+        
+        <h3>Solution 4: Use Different Hosting</h3>
+        <p>If Vercel continues to have issues:</p>
+        <ul>
+            <li>Netlify: Automatically handles SPA routing</li>
+            <li>GitHub Pages: With proper workflow</li>
+            <li>Firebase Hosting: Built-in SPA support</li>
+        </ul>
+    </div>
+
+    <script>
+        function showResult(message, type = 'info') {
+            const results = document.getElementById('results');
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : type === 'warning' ? 'warning' : 'info';
+            const timestamp = new Date().toLocaleTimeString();
+            results.innerHTML += `<div class="result ${className}">[${timestamp}] ${message}</div>`;
+            results.scrollTop = results.scrollHeight;
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        async function testMainDomain() {
+            clearResults();
+            showResult('🧪 Testing Main Domain (www.ejcgroup.eu)...', 'info');
+            
+            try {
+                const response = await fetch('https://www.ejcgroup.eu/', {
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                showResult('✅ Main domain accessible', 'success');
+                
+                // Test if it's actually loading the React app
+                window.open('https://www.ejcgroup.eu/', '_blank');
+                showResult('🔗 Opened main domain - check if React app loads', 'info');
+                
+            } catch (error) {
+                showResult(`❌ Main domain error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testVercelDomain() {
+            clearResults();
+            showResult('🧪 Testing Vercel Domain...', 'info');
+            showResult('📝 You need to find your Vercel domain in the dashboard', 'warning');
+            showResult('🔍 Look for something like: student-portal-v2-xxx.vercel.app', 'info');
+            showResult('💡 Test that domain with /healthcare-jobs to see if SPA routing works', 'info');
+        }
+
+        async function testSpecificRoute() {
+            clearResults();
+            showResult('🧪 Testing Healthcare Route...', 'info');
+            
+            try {
+                const response = await fetch('https://www.ejcgroup.eu/healthcare-jobs', {
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                showResult('✅ Healthcare route request completed', 'success');
+                
+                // Open in new tab for manual verification
+                window.open('https://www.ejcgroup.eu/healthcare-jobs', '_blank');
+                showResult('🔗 Opened healthcare route - check if it loads or shows 404', 'info');
+                
+            } catch (error) {
+                showResult(`❌ Healthcare route error: ${error.message}`, 'error');
+            }
+        }
+
+        async function testAssets() {
+            clearResults();
+            showResult('🧪 Testing Assets...', 'info');
+            
+            const assetTests = [
+                'https://www.ejcgroup.eu/favicon.ico',
+                'https://www.ejcgroup.eu/vite.svg'
+            ];
+            
+            for (const asset of assetTests) {
+                try {
+                    const response = await fetch(asset, {
+                        method: 'HEAD',
+                        mode: 'no-cors'
+                    });
+                    showResult(`✅ Asset accessible: ${asset}`, 'success');
+                } catch (error) {
+                    showResult(`❌ Asset error: ${asset} - ${error.message}`, 'error');
+                }
+            }
+        }
+
+        // Auto-run on page load
+        window.onload = function() {
+            showResult('🔧 Domain Debug Tool Ready', 'info');
+            showResult('📝 This will help identify if the issue is domain-specific', 'info');
+            showResult('🔍 Run tests and check Vercel dashboard for deployment status', 'warning');
+        };
+    </script>
+</body>
+</html>
