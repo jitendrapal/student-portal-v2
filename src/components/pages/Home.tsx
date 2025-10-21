@@ -1,11 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Search, BookOpen, ArrowRight, Star, Award, Users } from "lucide-react";
+import {
+  Search,
+  BookOpen,
+  ArrowRight,
+  Star,
+  Award,
+  Users,
+  MessageCircle,
+} from "lucide-react";
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
 import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
 import TopCollegesSection from "../common/TopCollegesSection";
 import SEOHeadNative from "../seo/SEOHeadNative";
+import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
+import type { HealthcareJob } from "../../types/healthcare";
 import {
   createOrganizationSchema,
   createWebsiteSchema,
@@ -16,6 +26,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const { setSearchQuery, universities, fetchUniversities, isLoading } =
     useStore();
+  const [showCounselingForm, setShowCounselingForm] = useState(false);
 
   useEffect(() => {
     // Fetch universities when component mounts
@@ -28,6 +39,53 @@ const Home: React.FC = () => {
     const query = formData.get("search") as string;
     setSearchQuery(query);
     navigate("/universities");
+  };
+
+  const counselingJob: HealthcareJob = {
+    id: "counseling-consultation",
+    title: "Free Career Counseling Consultation",
+    category: "nurse",
+    hospital: "Europe Job Center",
+    location: "Online/Multiple Cities",
+    country: "Europe",
+    employmentType: "full-time",
+    experience: "All Levels Welcome",
+    salary: {
+      min: 0,
+      max: 0,
+      currency: "EUR",
+      period: "annual",
+    },
+    description:
+      "Get personalized career guidance for healthcare opportunities in Europe and study programs.",
+    requirements: [
+      "No specific requirements",
+      "Open to all backgrounds",
+      "Career guidance consultation",
+    ],
+    responsibilities: [
+      "Consultation session",
+      "Career planning",
+      "Guidance and support",
+    ],
+    benefits: [
+      "Free consultation",
+      "Expert guidance",
+      "Personalized advice",
+      "Career roadmap",
+    ],
+    postedDate: new Date(),
+    applicationDeadline: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+    contactEmail: "counseling@ejcgroup.eu",
+    isActive: true,
+  };
+
+  const handleCounselingClick = () => {
+    setShowCounselingForm(true);
+  };
+
+  const handleCloseCounselingForm = () => {
+    setShowCounselingForm(false);
   };
 
   const featuredUniversities = universities
@@ -128,10 +186,11 @@ const Home: React.FC = () => {
             {/* Quick Actions */}
             <div className="flex flex-wrap justify-center gap-4">
               <button
-                onClick={() => navigate("/healthcare-jobs")}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                onClick={handleCounselingClick}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-2"
               >
-                🚀 Get Started Today
+                <MessageCircle className="w-5 h-5" />
+                Need Counseling
               </button>
               <button
                 onClick={() => navigate("/universities")}
@@ -498,6 +557,19 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Counseling Application Form Modal */}
+      {showCounselingForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <HealthcareApplicationForm
+              job={counselingJob}
+              onClose={handleCloseCounselingForm}
+              onBack={handleCloseCounselingForm}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

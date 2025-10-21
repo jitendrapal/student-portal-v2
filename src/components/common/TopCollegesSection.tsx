@@ -178,7 +178,7 @@ const TopCollegesSection: React.FC = () => {
         {/* Header */}
         <div className="text-left mb-6">
           <h2 className="text-2xl font-bold text-gray-900">
-            Top 10 Universities Worldwide
+            Top 10 Europen Universities
           </h2>
         </div>
 
