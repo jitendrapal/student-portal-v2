@@ -254,19 +254,19 @@ const HealthcareJobs: React.FC = () => {
               key={job.id}
               className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
             >
-              <div className="flex items-start justify-between">
-                <div className="flex-1 pr-6">
-                  <div className="flex items-center space-x-3 mb-2">
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between">
+                <div className="flex-1 lg:pr-6">
+                  <div className="flex flex-wrap items-center gap-3 mb-2">
                     {getCategoryIcon(job.category)}
-                    <h3 className="text-xl font-semibold text-gray-900">
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 flex-1 min-w-0">
                       {job.title}
                     </h3>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                    <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full whitespace-nowrap">
                       {getCategoryLabel(job.category)}
                     </span>
                   </div>
 
-                  <div className="flex items-center space-x-6 text-sm text-gray-600 mb-3">
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-gray-600 mb-3">
                     <div className="flex items-center space-x-1">
                       <Building className="w-4 h-4" />
                       <span>{job.hospital}</span>
@@ -300,18 +300,18 @@ const HealthcareJobs: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Action Buttons - Moved to Right Side */}
-                <div className="flex flex-col space-y-3 ml-4">
+                {/* Action Buttons - Responsive Layout */}
+                <div className="flex flex-col sm:flex-row lg:flex-col space-y-3 sm:space-y-0 sm:space-x-3 lg:space-x-0 lg:space-y-3 mt-4 lg:mt-0 lg:ml-4">
                   <button
                     onClick={() => handleViewDetails(job)}
-                    className="flex items-center space-x-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors font-medium whitespace-nowrap"
+                    className="flex items-center justify-center space-x-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors font-medium text-sm"
                   >
                     <Eye className="w-4 h-4" />
                     <span>View Details</span>
                   </button>
                   <button
                     onClick={() => handleApplyClick(job)}
-                    className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium whitespace-nowrap"
+                    className="flex items-center justify-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium text-sm"
                   >
                     <FileText className="w-4 h-4" />
                     <span>Apply Now</span>
