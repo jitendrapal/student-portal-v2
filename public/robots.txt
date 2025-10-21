@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.ejcgroup.eu/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /_redirects
+Disallow: /.htaccess
+
+# Allow important pages
+Allow: /
+Allow: /universities
+Allow: /courses
+Allow: /healthcare-jobs
+Allow: /about
+Allow: /contact
+Allow: /how-it-works
+Allow: /success-stories
+
+# Crawl delay (optional)
+Crawl-delay: 1

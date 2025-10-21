@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import { useStore } from "./store/useStore";
+import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Home from "./components/pages/Home";
@@ -30,54 +32,60 @@ function App() {
   const { user } = useStore();
 
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50">
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/universities" element={<Universities />} />
-            <Route path="/university/:id" element={<UniversityDetail />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/course/:id" element={<CourseDetail />} />
-            <Route path="/healthcare-jobs" element={<HealthcareJobs />} />
-            <Route
-              path="/healthcare-job/:id"
-              element={<HealthcareJobDetail />}
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="/auth/success" element={<OAuthSuccess />} />
-            <Route
-              path="/applications"
-              element={
-                user?.role === "student" ? <StudentDashboard /> : <Home />
-              }
-            />
-            <Route
-              path="/dashboard"
-              element={
-                user?.role === "counselor" ? <CounselorDashboard /> : <Home />
-              }
-            />
+    <HelmetProvider>
+      <GoogleAnalytics trackingId={import.meta.env.VITE_GA_TRACKING_ID} />
+      <Router>
+        <div className="min-h-screen bg-gray-50">
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/universities" element={<Universities />} />
+              <Route path="/university/:id" element={<UniversityDetail />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/course/:id" element={<CourseDetail />} />
+              <Route path="/healthcare-jobs" element={<HealthcareJobs />} />
+              <Route
+                path="/healthcare-job/:id"
+                element={<HealthcareJobDetail />}
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/auth/success" element={<OAuthSuccess />} />
+              <Route
+                path="/applications"
+                element={
+                  user?.role === "student" ? <StudentDashboard /> : <Home />
+                }
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  user?.role === "counselor" ? <CounselorDashboard /> : <Home />
+                }
+              />
 
-            {/* Legal Pages */}
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="/terms" element={<TermsOfService />} />
-            <Route path="/cookies" element={<CookiePolicy />} />
-            <Route path="/refund" element={<RefundPolicy />} />
+              {/* Legal Pages */}
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/cookies" element={<CookiePolicy />} />
+              <Route path="/refund" element={<RefundPolicy />} />
 
-            {/* Debug/Test Routes */}
-            <Route path="/test-google-sheets" element={<GoogleSheetsTest />} />
-          </Routes>
-        </main>
+              {/* Debug/Test Routes */}
+              <Route
+                path="/test-google-sheets"
+                element={<GoogleSheetsTest />}
+              />
+            </Routes>
+          </main>
 
-        {/* Footer */}
-        <Footer />
+          {/* Footer */}
+          <Footer />
 
-        {/* WhatsApp Chat Widget - Available on all pages */}
-        <WhatsAppChat />
-      </div>
-    </Router>
+          {/* WhatsApp Chat Widget - Available on all pages */}
+          <WhatsAppChat />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 

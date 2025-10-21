@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import { fields } from "../../data/mockData";
+import SEOHead from "../seo/SEOHead";
+import { createBreadcrumbSchema } from "../../utils/structuredData";
 
 const Universities: React.FC = () => {
   const navigate = useNavigate();
@@ -81,8 +83,21 @@ const Universities: React.FC = () => {
     setFilters({});
   };
 
+  // Breadcrumb structured data
+  const breadcrumbData = createBreadcrumbSchema([
+    { name: "Home", url: "https://www.ejcgroup.eu" },
+    { name: "Universities", url: "https://www.ejcgroup.eu/universities" },
+  ]);
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead
+        title="European Universities | Browse 1000+ Universities in Europe"
+        description="Explore top European universities across 50+ countries. Find the perfect university for your studies with detailed information about programs, tuition, rankings, and admission requirements."
+        keywords="European universities, study in Europe, university rankings, European education, international students, university applications, study abroad Europe"
+        url="https://www.ejcgroup.eu/universities"
+        structuredData={breadcrumbData}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">

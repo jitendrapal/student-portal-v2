@@ -16,6 +16,8 @@ import {
 import { useStore } from "../../store/useStore";
 import type { HealthcareJob } from "../../types/healthcare";
 import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
+import SEOHead from "../seo/SEOHead";
+import { createBreadcrumbSchema } from "../../utils/structuredData";
 
 const HealthcareJobs: React.FC = () => {
   const {
@@ -90,8 +92,21 @@ const HealthcareJobs: React.FC = () => {
     return `${currency} ${min.toLocaleString()}-${max.toLocaleString()} ${periodLabel}`;
   };
 
+  // Breadcrumb structured data
+  const breadcrumbData = createBreadcrumbSchema([
+    { name: "Home", url: "https://www.ejcgroup.eu" },
+    { name: "Healthcare Jobs", url: "https://www.ejcgroup.eu/healthcare-jobs" },
+  ]);
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead
+        title="Healthcare Jobs in Europe | Medical Careers in Germany & EU"
+        description="Find healthcare jobs across Europe. Browse nursing, doctor, and medical positions in Germany, Netherlands, and other EU countries. Apply for healthcare careers with visa support."
+        keywords="healthcare jobs Europe, medical jobs Germany, nursing jobs EU, doctor positions Europe, healthcare careers, medical recruitment, nursing abroad, healthcare visa"
+        url="https://www.ejcgroup.eu/healthcare-jobs"
+        structuredData={breadcrumbData}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">

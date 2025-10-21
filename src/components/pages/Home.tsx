@@ -5,6 +5,12 @@ import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
 import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
 import TopCollegesSection from "../common/TopCollegesSection";
+import SEOHead from "../seo/SEOHead";
+import {
+  createOrganizationSchema,
+  createWebsiteSchema,
+  createServiceSchema,
+} from "../../utils/structuredData";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -55,8 +61,26 @@ const Home: React.FC = () => {
     },
   ];
 
+  // Structured data for homepage
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      createOrganizationSchema(),
+      createWebsiteSchema(),
+      createServiceSchema(),
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <SEOHead
+        title="EJC - Europe Job Center | Study & Work in Europe"
+        description="Europe Job Center helps students and professionals find opportunities to study and work in Europe. Browse universities, courses, and healthcare jobs across 50+ European countries."
+        keywords="Europe jobs, European universities, study abroad, healthcare jobs Germany, European education, work in Europe, student visa, university applications, career counseling"
+        url="https://www.ejcgroup.eu"
+        image="https://www.ejcgroup.eu/og-image.jpg"
+        structuredData={structuredData}
+      />
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white overflow-hidden">
         {/* Background Pattern */}
