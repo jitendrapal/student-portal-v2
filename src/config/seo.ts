@@ -2,10 +2,10 @@
 
 export const SEO_CONFIG = {
   defaultTitle:
-    "EJC - Europe Job Center | Healthcare Jobs Germany & European Universities",
+    "Nursing Jobs Germany | Study in Europe | Free Visa Germany - EJC",
   titleTemplate: "%s | EJC - Europe Job Center",
   defaultDescription:
-    "Europe Job Center specializes in healthcare jobs in Germany and European university admissions for Indian students. Find nursing jobs, medical careers in Germany, and study opportunities across Europe.",
+    "Find nursing jobs in Germany, doctors jobs in Germany, and study opportunities in Europe. Get free visa assistance, cheap study options, work visa support, and best study schools in Europe for Indian students.",
   siteUrl: "https://www.ejcgroup.eu",
   defaultImage: "https://www.ejcgroup.eu/og-image.jpg",
   twitterHandle: "@EuropeJobCenter",
@@ -13,10 +13,20 @@ export const SEO_CONFIG = {
 
   // Default keywords for all pages
   defaultKeywords: [
-    "Europe jobs",
-    "European universities",
-    "study abroad",
+    "nursing jobs in germany",
+    "doctors jobs in germany",
+    "study in europe",
+    "study in germany",
+    "study in poland",
+    "best study schools in europe",
+    "cheap study in europe",
+    "free study in europe",
+    "indian jobs in germany",
+    "free visa in germany",
+    "work visa in germany",
+    "doctors study in europe",
     "healthcare jobs Germany",
+    "European universities",
     "European education",
     "work in Europe",
     "student visa",
@@ -53,29 +63,42 @@ export const SEO_CONFIG = {
 // Page-specific SEO configurations
 export const PAGE_SEO = {
   home: {
-    title: "EJC - Europe Job Center | Study & Work in Europe",
+    title: "Nursing Jobs Germany | Study in Europe | Free Visa Germany - EJC",
     description:
-      "Europe Job Center helps students and professionals find opportunities to study and work in Europe. Browse universities, courses, and healthcare jobs across 50+ European countries.",
+      "Find nursing jobs in Germany, doctors jobs in Germany, and study opportunities in Europe. Get free visa assistance for Germany, cheap study options in Europe, and work visa support for Indian professionals.",
     keywords: [
-      "Europe jobs",
-      "European universities",
-      "study abroad",
+      "nursing jobs in germany",
+      "doctors jobs in germany",
+      "study in europe",
+      "study in germany",
+      "indian jobs in germany",
+      "free visa in germany",
+      "work visa in germany",
+      "cheap study in europe",
+      "free study in europe",
+      "best study schools in europe",
+      "doctors study in europe",
+      "study in poland",
       "healthcare jobs Germany",
-      "European education",
-      "work in Europe",
-      "student visa",
-      "university applications",
+      "European universities",
       "career counseling",
     ],
   },
 
   universities: {
-    title: "European Universities | Browse 1000+ Universities in Europe",
+    title: "Study in Europe | Best Study Schools Europe | Free Study Germany",
     description:
-      "Explore top European universities across 50+ countries. Find the perfect university for your studies with detailed information about programs, tuition, rankings, and admission requirements.",
+      "Discover best study schools in Europe with free and cheap study options. Study in Germany, Poland, and top European universities. Get free visa assistance and affordable education for Indian students.",
     keywords: [
+      "study in europe",
+      "study in germany",
+      "study in poland",
+      "best study schools in europe",
+      "cheap study in europe",
+      "free study in europe",
+      "doctors study in europe",
+      "free visa in germany",
       "European universities",
-      "study in Europe",
       "university rankings",
       "European education",
       "international students",
@@ -101,10 +124,15 @@ export const PAGE_SEO = {
   },
 
   healthcareJobs: {
-    title: "Healthcare Jobs in Europe | Medical Careers in Germany & EU",
+    title: "Nursing Jobs Germany | Doctors Jobs Germany | Work Visa Support",
     description:
-      "Find healthcare jobs across Europe. Browse nursing, doctor, and medical positions in Germany, Netherlands, and other EU countries. Apply for healthcare careers with visa support.",
+      "Find nursing jobs in Germany and doctors jobs in Germany with work visa support. Get Indian jobs in Germany, free visa assistance, and healthcare career opportunities across Europe.",
     keywords: [
+      "nursing jobs in germany",
+      "doctors jobs in germany",
+      "indian jobs in germany",
+      "work visa in germany",
+      "free visa in germany",
       "healthcare jobs Europe",
       "medical jobs Germany",
       "nursing jobs EU",
@@ -140,6 +168,103 @@ export const PAGE_SEO = {
       "study abroad guidance",
       "career counseling",
       "European education advice",
+    ],
+  },
+
+  // Keyword-Specific Guide Pages
+  nursingJobsGermany: {
+    title: "Nursing Jobs in Germany | Complete Guide for Indian Nurses 2024",
+    description:
+      "Find nursing jobs in Germany with visa sponsorship. Complete guide for Indian nurses including salary, requirements, application process, and free visa assistance.",
+    keywords: [
+      "nursing jobs in germany",
+      "nursing jobs germany for indian nurses",
+      "nursing jobs germany with visa sponsorship",
+      "nursing jobs germany salary",
+      "nursing jobs germany requirements",
+      "indian nurses in germany",
+      "germany nursing visa",
+      "healthcare jobs germany",
+    ],
+  },
+
+  doctorsJobsGermany: {
+    title: "Doctors Jobs in Germany | Medical Careers for Indian Doctors 2024",
+    description:
+      "Discover doctors jobs in Germany with complete guide for Indian medical professionals. Learn about medical license recognition, salary, visa process, and application requirements.",
+    keywords: [
+      "doctors jobs in germany",
+      "medical jobs germany",
+      "doctors jobs germany for indian doctors",
+      "medical license germany",
+      "doctors salary germany",
+      "medical residency germany",
+      "indian doctors in germany",
+      "medical visa germany",
+    ],
+  },
+
+  studyInEurope: {
+    title: "Study in Europe | Complete Guide for Indian Students 2024",
+    description:
+      "Study in Europe with our comprehensive guide. Discover best universities, scholarships, cheap study options, visa requirements, and application process for Indian students.",
+    keywords: [
+      "study in europe",
+      "study in europe for indian students",
+      "best universities in europe",
+      "study in europe scholarships",
+      "study in europe cost",
+      "european universities",
+      "study abroad europe",
+      "europe student visa",
+    ],
+  },
+
+  studyInGermany: {
+    title: "Study in Germany | Free Education & Universities Guide 2024",
+    description:
+      "Study in Germany for free! Complete guide to German universities, admission requirements, student visa, living costs, and scholarship opportunities for Indian students.",
+    keywords: [
+      "study in germany",
+      "study in germany for free",
+      "german universities",
+      "study in germany requirements",
+      "germany student visa",
+      "study in germany cost",
+      "free education germany",
+      "study in germany for indian students",
+    ],
+  },
+
+  freeVisaGermany: {
+    title: "Free Visa Germany | 7 Ways to Get Germany Visa Fee Waiver 2024",
+    description:
+      "Get free visa for Germany through scholarships, job offers, and fee waivers. Complete guide to Germany visa types, requirements, and free visa consultation.",
+    keywords: [
+      "free visa in germany",
+      "germany visa fee waiver",
+      "free visa consultation germany",
+      "germany visa for free",
+      "free work visa germany",
+      "free student visa germany",
+      "germany visa without fee",
+      "free visa assistance germany",
+    ],
+  },
+
+  workVisaGermany: {
+    title: "Work Visa Germany | Complete Guide & Requirements 2024",
+    description:
+      "Get work visa for Germany with our step-by-step guide. Learn about EU Blue Card, job seeker visa, requirements, application process, and visa support for Indian professionals.",
+    keywords: [
+      "work visa in germany",
+      "germany work visa",
+      "eu blue card germany",
+      "job seeker visa germany",
+      "work permit germany",
+      "germany work visa requirements",
+      "work visa germany for indian",
+      "germany employment visa",
     ],
   },
 };
