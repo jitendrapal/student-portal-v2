@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Search, BookOpen, ArrowRight, Star, Award, Users } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
@@ -323,6 +323,178 @@ const Home: React.FC = () => {
             >
               View All Universities
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Guides & Resources Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              📚 Comprehensive Guides & Resources
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Expert guidance for healthcare careers in Germany and studying in
+              Europe. Get detailed insights, requirements, and step-by-step
+              processes.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Nursing Jobs Guide */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">🩺</span>
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Nursing Jobs Germany
+                  </h3>
+                  <p className="text-sm text-green-600">
+                    Complete Career Guide
+                  </p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Salary ranges, visa process, language requirements, and top
+                hospitals hiring international nurses.
+              </p>
+              <Link
+                to="/guides/nursing-jobs-germany"
+                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
+              >
+                Read Guide
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            {/* Doctors Jobs Guide */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">👨‍⚕️</span>
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Doctors Jobs Germany
+                  </h3>
+                  <p className="text-sm text-blue-600">Medical Career Guide</p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                License recognition, specialization opportunities, and pathway
+                to medical practice in Germany.
+              </p>
+              <Link
+                to="/guides/doctors-jobs-germany"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Read Guide
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            {/* Study in Europe Guide */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">🎓</span>
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Study in Europe
+                  </h3>
+                  <p className="text-sm text-purple-600">Education Guide</p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Best universities, scholarships, free education options, and
+                application process for Indian students.
+              </p>
+              <Link
+                to="/guides/study-in-europe"
+                className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium"
+              >
+                Read Guide
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            {/* Free Visa Guide */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">🆓</span>
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Free Visa Germany
+                  </h3>
+                  <p className="text-sm text-green-600">Save €75-€150</p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                7 proven ways to get Germany visa fee waiver. Scholarship visas,
+                family reunification, and more.
+              </p>
+              <Link
+                to="/guides/free-visa-germany"
+                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
+              >
+                Read Guide
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            {/* Work Visa Guide */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">💼</span>
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Work Visa Germany
+                  </h3>
+                  <p className="text-sm text-blue-600">Complete Requirements</p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                EU Blue Card, job seeker visa, and general work permits.
+                Complete guide with requirements.
+              </p>
+              <Link
+                to="/guides/work-visa-germany"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Read Guide
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            {/* Featured CTA Card */}
+            <div className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-lg shadow-md p-6">
+              <div className="text-center">
+                <div className="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">✨</span>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">
+                  Need Personal Guidance?
+                </h3>
+                <p className="text-indigo-100 mb-4 text-sm">
+                  Get free consultation from our experts for your specific
+                  situation.
+                </p>
+                <button
+                  onClick={() => navigate("/healthcare-jobs")}
+                  className="bg-white text-indigo-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                >
+                  Free Consultation
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
