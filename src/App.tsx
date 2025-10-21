@@ -27,6 +27,13 @@ import CareerCounseling from "./components/pages/CareerCounseling";
 import Scholarships from "./components/pages/Scholarships";
 import GoogleSheetsTest from "./components/debug/GoogleSheetsTest";
 
+// Guide Pages
+import NursingJobsGermany from "./components/pages/guides/NursingJobsGermany";
+import DoctorsJobsGermany from "./components/pages/guides/DoctorsJobsGermany";
+import StudyInEurope from "./components/pages/guides/StudyInEurope";
+import FreeVisaGermany from "./components/pages/guides/FreeVisaGermany";
+import WorkVisaGermany from "./components/pages/guides/WorkVisaGermany";
+
 function App() {
   const { user } = useStore();
 
@@ -61,6 +68,28 @@ function App() {
                 element={
                   user?.role === "counselor" ? <CounselorDashboard /> : <Home />
                 }
+              />
+
+              {/* Guide Pages */}
+              <Route
+                path="/guides/nursing-jobs-germany"
+                element={<NursingJobsGermany />}
+              />
+              <Route
+                path="/guides/doctors-jobs-germany"
+                element={<DoctorsJobsGermany />}
+              />
+              <Route
+                path="/guides/study-in-europe"
+                element={<StudyInEurope />}
+              />
+              <Route
+                path="/guides/free-visa-germany"
+                element={<FreeVisaGermany />}
+              />
+              <Route
+                path="/guides/work-visa-germany"
+                element={<WorkVisaGermany />}
               />
 
               {/* Legal Pages */}
