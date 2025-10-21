@@ -13,6 +13,8 @@ import {
   MapPin,
   X,
 } from "lucide-react";
+import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
+import type { HealthcareJob } from "../../types/healthcare";
 
 interface AppLauncherProps {
   className?: string;
@@ -20,6 +22,7 @@ interface AppLauncherProps {
 
 const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showCounselingForm, setShowCounselingForm] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -43,6 +46,54 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
   const handleNavigation = (path: string) => {
     navigate(path);
     setIsOpen(false);
+  };
+
+  const counselingJob: HealthcareJob = {
+    id: "counseling-consultation-app",
+    title: "Expert Career Counseling Session",
+    category: "nurse",
+    hospital: "Europe Job Center",
+    location: "Online/Multiple Cities",
+    country: "Europe",
+    employmentType: "full-time",
+    experience: "All Levels Welcome",
+    salary: {
+      min: 0,
+      max: 0,
+      currency: "EUR",
+      period: "annual",
+    },
+    description:
+      "Get expert guidance for healthcare careers in Europe and study programs from our experienced counselors.",
+    requirements: [
+      "No specific requirements",
+      "Open to all backgrounds",
+      "Career guidance consultation",
+    ],
+    responsibilities: [
+      "Consultation session",
+      "Career planning",
+      "Guidance and support",
+    ],
+    benefits: [
+      "Free consultation",
+      "Expert guidance",
+      "Personalized advice",
+      "Career roadmap",
+    ],
+    postedDate: new Date(),
+    applicationDeadline: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
+    contactEmail: "counseling@ejcgroup.eu",
+    isActive: true,
+  };
+
+  const handleCounselingClick = () => {
+    setShowCounselingForm(true);
+    setIsOpen(false);
+  };
+
+  const handleCloseCounselingForm = () => {
+    setShowCounselingForm(false);
   };
 
   const menuItems = [
@@ -134,7 +185,11 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
                 return (
                   <button
                     key={item.id}
-                    onClick={() => handleNavigation(item.path)}
+                    onClick={() =>
+                      item.id === "counseling"
+                        ? handleCounselingClick()
+                        : handleNavigation(item.path)
+                    }
                     className="group p-3 rounded-lg hover:bg-gray-50 transition-all duration-200 text-center"
                   >
                     <div
@@ -179,6 +234,19 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
                 <span className="text-xs text-gray-600">Location</span>
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Counseling Application Form Modal */}
+      {showCounselingForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <HealthcareApplicationForm
+              job={counselingJob}
+              onClose={handleCloseCounselingForm}
+              onBack={handleCloseCounselingForm}
+            />
           </div>
         </div>
       )}
