@@ -9,6 +9,7 @@ import {
   Shield,
   CheckCircle,
   AlertCircle,
+  X,
 } from "lucide-react";
 import type { HealthcareJob } from "../../types/healthcare";
 import { useStore } from "../../store/useStore";
@@ -201,6 +202,16 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
             {job.hospital} • {job.location}, {job.country}
           </p>
         </div>
+
+        {/* Floating Cancel Button */}
+        <button
+          onClick={onClose}
+          disabled={isSubmitting}
+          className="fixed top-4 right-4 z-10 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+          title="Cancel Application"
+        >
+          <X className="w-5 h-5" />
+        </button>
 
         {/* Application Form */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
@@ -424,8 +435,8 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
               </div>
             </div>
 
-            {/* Submit Button */}
-            <div className="pt-6">
+            {/* Submit and Cancel Buttons */}
+            <div className="pt-6 space-y-3">
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -434,6 +445,14 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
                 {isSubmitting
                   ? "Submitting Application..."
                   : "Submit Application"}
+              </button>
+              <button
+                type="button"
+                onClick={onClose}
+                disabled={isSubmitting}
+                className="w-full bg-gray-100 text-gray-700 py-3 px-6 rounded-lg font-semibold hover:bg-gray-200 disabled:bg-gray-50 disabled:cursor-not-allowed transition-colors border border-gray-300"
+              >
+                Cancel Application
               </button>
             </div>
           </form>
