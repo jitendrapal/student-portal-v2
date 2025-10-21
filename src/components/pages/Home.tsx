@@ -547,7 +547,7 @@ const Home: React.FC = () => {
                   situation.
                 </p>
                 <button
-                  onClick={() => navigate("/healthcare-jobs")}
+                  onClick={handleCounselingClick}
                   className="bg-white text-indigo-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
                 >
                   Free Consultation
