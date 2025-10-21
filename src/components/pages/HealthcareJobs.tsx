@@ -16,7 +16,7 @@ import {
 import { useStore } from "../../store/useStore";
 import type { HealthcareJob } from "../../types/healthcare";
 import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
-import SEOHead from "../seo/SEOHead";
+import SEOHeadNative from "../seo/SEOHeadNative";
 import { createBreadcrumbSchema } from "../../utils/structuredData";
 
 const HealthcareJobs: React.FC = () => {
@@ -100,7 +100,7 @@ const HealthcareJobs: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SEOHead
+      <SEOHeadNative
         title="Healthcare Jobs in Europe | Medical Careers in Germany & EU"
         description="Find healthcare jobs across Europe. Browse nursing, doctor, and medical positions in Germany, Netherlands, and other EU countries. Apply for healthcare careers with visa support."
         keywords="healthcare jobs Europe, medical jobs Germany, nursing jobs EU, doctor positions Europe, healthcare careers, medical recruitment, nursing abroad, healthcare visa"

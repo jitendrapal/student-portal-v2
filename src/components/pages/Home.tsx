@@ -5,7 +5,7 @@ import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
 import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
 import TopCollegesSection from "../common/TopCollegesSection";
-import SEOHead from "../seo/SEOHead";
+import SEOHeadNative from "../seo/SEOHeadNative";
 import {
   createOrganizationSchema,
   createWebsiteSchema,
@@ -73,7 +73,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SEOHead
+      <SEOHeadNative
         title="EJC - Europe Job Center | Study & Work in Europe"
         description="Europe Job Center helps students and professionals find opportunities to study and work in Europe. Browse universities, courses, and healthcare jobs across 50+ European countries."
         keywords="Europe jobs, European universities, study abroad, healthcare jobs Germany, European education, work in Europe, student visa, university applications, career counseling"

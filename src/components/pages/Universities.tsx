@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import { fields } from "../../data/mockData";
-import SEOHead from "../seo/SEOHead";
+import SEOHeadNative from "../seo/SEOHeadNative";
 import { createBreadcrumbSchema } from "../../utils/structuredData";
 
 const Universities: React.FC = () => {
@@ -91,7 +91,7 @@ const Universities: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SEOHead
+      <SEOHeadNative
         title="European Universities | Browse 1000+ Universities in Europe"
         description="Explore top European universities across 50+ countries. Find the perfect university for your studies with detailed information about programs, tuition, rankings, and admission requirements."
         keywords="European universities, study in Europe, university rankings, European education, international students, university applications, study abroad Europe"

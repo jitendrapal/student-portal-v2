@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import { useStore } from "./store/useStore";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
 import Navbar from "./components/layout/Navbar";
@@ -32,7 +31,7 @@ function App() {
   const { user } = useStore();
 
   return (
-    <HelmetProvider>
+    <>
       <GoogleAnalytics trackingId={import.meta.env.VITE_GA_TRACKING_ID} />
       <Router>
         <div className="min-h-screen bg-gray-50">
@@ -85,7 +84,7 @@ function App() {
           <WhatsAppChat />
         </div>
       </Router>
-    </HelmetProvider>
+    </>
   );
 }
 
