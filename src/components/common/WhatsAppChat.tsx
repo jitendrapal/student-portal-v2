@@ -49,7 +49,7 @@ const WhatsAppChat: React.FC<WhatsAppChatProps> = ({
     console.log("🔥 Quick message clicked:", quickMsg);
 
     // Simple direct implementation
-    const phone = phoneNumber || whatsappConfig.phoneNumber || "31620371533";
+    const phone = phoneNumber || whatsappConfig.phoneNumber || "917701875294";
     const formattedPhone = phone.replace(/[+\s-()]/g, "");
     const encodedMessage = encodeURIComponent(quickMsg);
     const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;

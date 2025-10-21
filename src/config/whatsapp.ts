@@ -1,7 +1,7 @@
 // WhatsApp Business Configuration
 export const whatsappConfig = {
   // Replace with your actual WhatsApp Business number (include country code without +)
-  phoneNumber: import.meta.env.VITE_WHATSAPP_PHONE || "31620371533", // Netherlands number
+  phoneNumber: import.meta.env.VITE_WHATSAPP_PHONE || "917701875294", // India number
 
   // Business information
   businessName:
