@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useStore } from "./store/useStore";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
+import ScrollToTop from "./components/common/ScrollToTop";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Home from "./components/pages/Home";
@@ -41,6 +42,7 @@ function App() {
     <>
       <GoogleAnalytics trackingId={import.meta.env.VITE_GA_TRACKING_ID} />
       <Router>
+        <ScrollToTop />
         <div className="min-h-screen bg-gray-50">
           <Navbar />
           <main>
