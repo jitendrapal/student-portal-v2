@@ -184,37 +184,30 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <button
-            onClick={onBack}
-            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Job Details</span>
-          </button>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+    <>
+      {/* Modal Header */}
+      <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">
             Apply for {job.title}
-          </h1>
-          <p className="text-gray-600">
+          </h2>
+          <p className="text-gray-600 mt-1">
             {job.hospital} • {job.location}, {job.country}
           </p>
         </div>
-
-        {/* Floating Cancel Button */}
         <button
           onClick={onClose}
           disabled={isSubmitting}
-          className="fixed top-4 right-4 z-10 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-          title="Cancel Application"
+          className="text-gray-400 hover:text-gray-600 transition-colors disabled:opacity-50"
         >
-          <X className="w-5 h-5" />
+          <X className="w-6 h-6" />
         </button>
+      </div>
 
+      {/* Modal Content */}
+      <div className="p-6">
         {/* Application Form */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+        <div className="bg-white">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Error Message */}
             {error && error !== "Captcha answer is incorrect." && (
@@ -458,7 +451,7 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
           </form>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
