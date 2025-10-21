@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   ArrowLeft,
   MapPin,
@@ -17,10 +18,20 @@ import { useStore } from "../../store/useStore";
 import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
 
 const HealthcareJobDetail: React.FC = () => {
-  const { selectedHealthcareJob, setCurrentPage } = useStore();
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const { healthcareJobs, fetchHealthcareJobs } = useStore();
   const [showApplicationForm, setShowApplicationForm] = useState(false);
 
-  if (!selectedHealthcareJob) {
+  // Fetch healthcare jobs when component mounts
+  useEffect(() => {
+    fetchHealthcareJobs();
+  }, [fetchHealthcareJobs]);
+
+  // Find the job by ID from URL params
+  const job = healthcareJobs.find((j) => j.id === id);
+
+  if (!job) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
@@ -28,7 +39,7 @@ const HealthcareJobDetail: React.FC = () => {
             Job not found
           </h2>
           <button
-            onClick={() => setCurrentPage("healthcare-jobs")}
+            onClick={() => navigate("/healthcare-jobs")}
             className="text-blue-600 hover:text-blue-700 font-medium"
           >
             ← Back to Healthcare Jobs
@@ -37,8 +48,6 @@ const HealthcareJobDetail: React.FC = () => {
       </div>
     );
   }
-
-  const job = selectedHealthcareJob;
 
   const getCategoryIcon = () => {
     switch (job.category) {
@@ -68,7 +77,8 @@ const HealthcareJobDetail: React.FC = () => {
 
   const formatSalary = () => {
     const { min, max, currency, period } = job.salary;
-    const periodLabel = period === "annual" ? "/year" : period === "monthly" ? "/month" : "/hour";
+    const periodLabel =
+      period === "annual" ? "/year" : period === "monthly" ? "/month" : "/hour";
     return `${currency} ${min.toLocaleString()}-${max.toLocaleString()} ${periodLabel}`;
   };
 
@@ -87,7 +97,7 @@ const HealthcareJobDetail: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <button
-          onClick={() => setCurrentPage("healthcare-jobs")}
+          onClick={() => navigate("/healthcare-jobs")}
           className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-6"
         >
           <ArrowLeft className="w-4 h-4" />
@@ -129,14 +139,18 @@ const HealthcareJobDetail: React.FC = () => {
               <MapPin className="w-5 h-5 text-gray-400" />
               <div>
                 <div className="text-sm text-gray-500">Location</div>
-                <div className="font-medium">{job.location}, {job.country}</div>
+                <div className="font-medium">
+                  {job.location}, {job.country}
+                </div>
               </div>
             </div>
             <div className="flex items-center space-x-2">
               <Clock className="w-5 h-5 text-gray-400" />
               <div>
                 <div className="text-sm text-gray-500">Employment Type</div>
-                <div className="font-medium capitalize">{job.employmentType.replace('-', ' ')}</div>
+                <div className="font-medium capitalize">
+                  {job.employmentType.replace("-", " ")}
+                </div>
               </div>
             </div>
             <div className="flex items-center space-x-2">
@@ -168,9 +182,7 @@ const HealthcareJobDetail: React.FC = () => {
               <h2 className="text-xl font-semibold text-gray-900 mb-4">
                 Job Description
               </h2>
-              <p className="text-gray-700 leading-relaxed">
-                {job.description}
-              </p>
+              <p className="text-gray-700 leading-relaxed">{job.description}</p>
             </div>
 
             {/* Responsibilities */}
@@ -258,7 +270,8 @@ const HealthcareJobDetail: React.FC = () => {
                 Ready to Apply?
               </h3>
               <p className="text-blue-700 text-sm mb-4">
-                Join our healthcare team and make a difference in patients' lives.
+                Join our healthcare team and make a difference in patients'
+                lives.
               </p>
               <button
                 onClick={() => setShowApplicationForm(true)}

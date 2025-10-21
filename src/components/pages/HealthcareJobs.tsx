@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   MapPin,
   Clock,
@@ -20,6 +21,7 @@ import SEOHeadNative from "../seo/SEOHeadNative";
 import { createBreadcrumbSchema } from "../../utils/structuredData";
 
 const HealthcareJobs: React.FC = () => {
+  const navigate = useNavigate();
   const {
     filteredHealthcareJobs,
     healthcareFilters,
@@ -46,7 +48,7 @@ const HealthcareJobs: React.FC = () => {
 
   const handleViewDetails = (job: HealthcareJob) => {
     setSelectedHealthcareJob(job);
-    setCurrentPage("healthcare-job-detail");
+    navigate(`/healthcare-job/${job.id}`);
   };
 
   const handleApplyClick = (job: HealthcareJob) => {
