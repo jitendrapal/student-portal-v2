@@ -1,18 +1,5 @@
 import type { HealthcareApplication } from "../types/healthcare";
 
-// Lead Magnet interface for Google Sheets
-export interface LeadMagnetSubmission {
-  id: string;
-  firstName: string;
-  email: string;
-  leadMagnetType: "healthcare" | "student" | "general";
-  source: string;
-  timestamp: string;
-  userAgent?: string;
-  referrer?: string;
-  ipAddress?: string;
-}
-
 // Course Application interface for Google Sheets
 export interface CourseApplication {
   id: string;
@@ -78,75 +65,6 @@ const fileToBase64 = (file: File): Promise<string> => {
     };
     reader.onerror = (error) => reject(error);
   });
-};
-
-/**
- * Submit lead magnet signup to Google Sheets
- */
-export const submitLeadMagnetToGoogleSheets = async (
-  leadData: LeadMagnetSubmission
-): Promise<void> => {
-  try {
-    console.log(
-      "📚 Starting lead magnet submission to Google Sheets:",
-      leadData
-    );
-    console.log("🔗 Using Google Apps Script URL:", GOOGLE_APPS_SCRIPT_URL);
-
-    // Prepare the data for Google Sheets
-    const sheetData = {
-      type: "lead_magnet", // Add type identifier for routing
-      timestamp: leadData.timestamp,
-      leadId: leadData.id,
-      firstName: leadData.firstName,
-      email: leadData.email,
-      leadMagnetType: leadData.leadMagnetType,
-      source: leadData.source,
-      userAgent: leadData.userAgent || "",
-      referrer: leadData.referrer || "",
-      ipAddress: leadData.ipAddress || "",
-    };
-
-    console.log("📊 Prepared lead magnet data:", sheetData);
-    console.log("🔍 Type field:", sheetData.type);
-    console.log("🔍 Lead ID:", sheetData.leadId);
-
-    // Use POST method for lead magnet submissions
-    console.log("📤 Using POST method for lead magnet submission");
-    const formData = new FormData();
-    Object.keys(sheetData).forEach((key) => {
-      const value = sheetData[key as keyof typeof sheetData];
-      formData.append(key, value.toString());
-      console.log(
-        `📝 FormData: ${key} = ${value.toString().substring(0, 50)}${
-          value.toString().length > 50 ? "..." : ""
-        }`
-      );
-    });
-
-    console.log("🎯 FormData keys:", Array.from(formData.keys()));
-    console.log(
-      "🎯 Total FormData entries:",
-      Array.from(formData.keys()).length
-    );
-
-    await fetch(GOOGLE_APPS_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      body: formData,
-    });
-
-    console.log("✅ Lead magnet submission successful");
-    console.log(
-      "🔍 Check Google Apps Script execution logs for processing details"
-    );
-
-    // With no-cors mode, we can't read the response, but the request will go through
-    // We'll assume success if no error is thrown
-  } catch (error) {
-    console.error("Error submitting lead magnet to Google Sheets:", error);
-    throw error;
-  }
 };
 
 export const submitToGoogleSheets = async (
@@ -377,30 +295,6 @@ function doPost(e) {
     let rowData = [];
 
     switch (data.type) {
-      case 'lead_magnet':
-        sheet = spreadsheet.getSheetByName('Lead_Magnets') || spreadsheet.insertSheet('Lead_Magnets');
-
-        // Set headers if this is the first row
-        if (sheet.getLastRow() === 0) {
-          sheet.appendRow([
-            'Timestamp', 'Lead ID', 'First Name', 'Email', 'Lead Magnet Type',
-            'Source', 'User Agent', 'Referrer', 'IP Address'
-          ]);
-        }
-
-        rowData = [
-          data.timestamp,
-          data.leadId,
-          data.firstName,
-          data.email,
-          data.leadMagnetType,
-          data.source,
-          data.userAgent,
-          data.referrer,
-          data.ipAddress
-        ];
-        break;
-
       case 'healthcare_application':
         sheet = spreadsheet.getSheetByName('Healthcare_Applications') || spreadsheet.insertSheet('Healthcare_Applications');
 
@@ -656,18 +550,6 @@ export const COURSE_SHEET_HEADERS = [
   "Has Passport",
   "Status",
   "Submitted At",
-];
-
-export const LEAD_MAGNET_SHEET_HEADERS = [
-  "Timestamp",
-  "Lead ID",
-  "First Name",
-  "Email",
-  "Lead Magnet Type",
-  "Source",
-  "User Agent",
-  "Referrer",
-  "IP Address",
 ];
 
 /**

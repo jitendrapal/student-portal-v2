@@ -10,6 +10,12 @@ import {
   FileText,
   CheckCircle,
   AlertCircle,
+  MessageCircle,
+  Calendar,
+  Star,
+  Users,
+  Clock,
+  TrendingUp,
 } from "lucide-react";
 import type { Course, University } from "../../types";
 import { useStore } from "../../store/useStore";
@@ -519,42 +525,162 @@ const CourseApplicationForm: React.FC<CourseApplicationFormProps> = ({
           </div>
         </div>
 
+        {/* Social Proof Banner */}
+        <div className="px-6 py-3 bg-green-50 border-b border-green-200">
+          <div className="flex items-center justify-center space-x-6 text-sm text-green-700">
+            <div className="flex items-center space-x-1">
+              <TrendingUp className="w-4 h-4" />
+              <span>85% acceptance rate</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <Users className="w-4 h-4" />
+              <span>700+ students placed</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <Clock className="w-4 h-4" />
+              <span>Average processing: 5 days</span>
+            </div>
+          </div>
+        </div>
+
         {/* Form Content */}
         <div className="p-6">
           {isSubmitted ? (
-            // Success State
-            <div className="text-center py-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Application Submitted Successfully!
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Your application for <strong>{course.name}</strong> at{" "}
-                <strong>{university.name}</strong> has been submitted
-                successfully. Our admissions team will review your application
-                and contact you within 3-5 business days.
-              </p>
-              <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                <p className="text-sm text-gray-700">
-                  <strong>What's next?</strong>
-                  <br />
-                  • We'll review your application and documents
-                  <br />
-                  • You'll receive an email confirmation shortly
-                  <br />
-                  • Our counselors will contact you to discuss next steps
-                  <br />• You can track your application status in your
-                  dashboard
+            // Enhanced Success State
+            <div className="py-6">
+              {/* Success Header */}
+              <div className="text-center mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  🎉 Application Submitted Successfully!
+                </h3>
+                <p className="text-gray-600 mb-4">
+                  Your application for <strong>{course.name}</strong> at{" "}
+                  <strong>{university.name}</strong> is now under review
                 </p>
+
+                {/* Success Stats */}
+                <div className="bg-green-50 rounded-lg p-4 mb-6">
+                  <div className="flex items-center justify-center space-x-6 text-sm text-green-700">
+                    <div className="flex items-center space-x-1">
+                      <TrendingUp className="w-4 h-4" />
+                      <span>85% acceptance rate</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Users className="w-4 h-4" />
+                      <span>700+ students placed</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <Star className="w-4 h-4 text-yellow-500" />
+                      <span>4.9/5 rating</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <button
-                onClick={handleClose}
-                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Close
-              </button>
+
+              {/* Next Steps Timeline */}
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                  📋 Your Application Journey
+                </h4>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-blue-600 font-semibold text-sm">
+                        1
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">
+                        Application Review
+                      </p>
+                      <p className="text-gray-600 text-sm">
+                        Our team reviews your documents (3-5 business days)
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-blue-600 font-semibold text-sm">
+                        2
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">
+                        University Submission
+                      </p>
+                      <p className="text-gray-600 text-sm">
+                        We submit your application to the university
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <span className="text-blue-600 font-semibold text-sm">
+                        3
+                      </span>
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">
+                        Admission Decision
+                      </p>
+                      <p className="text-gray-600 text-sm">
+                        University provides admission decision (4-8 weeks)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Immediate Actions */}
+              <div className="bg-blue-50 rounded-lg p-4 mb-6">
+                <h4 className="font-semibold text-blue-900 mb-3">
+                  💬 Stay Connected & Get Updates
+                </h4>
+                <p className="text-blue-700 text-sm mb-4">
+                  Join our WhatsApp group for real-time updates on your
+                  application status, visa guidance, and connect with other
+                  students.
+                </p>
+                <button
+                  onClick={() => {
+                    const message = `Hi! I just applied for ${course.name} at ${university.name}. Can you add me to the student WhatsApp group and provide updates on my application?`;
+                    const whatsappUrl = `https://wa.me/917701875294?text=${encodeURIComponent(
+                      message
+                    )}`;
+                    window.open(whatsappUrl, "_blank");
+                  }}
+                  className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
+                >
+                  <MessageCircle className="w-5 h-5" />
+                  <span>💬 Join WhatsApp Group</span>
+                </button>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="space-y-3">
+                <button
+                  onClick={() => {
+                    const consultationUrl = `https://wa.me/917701875294?text=${encodeURIComponent(
+                      "I want to book a FREE consultation to discuss my study abroad journey and next steps"
+                    )}`;
+                    window.open(consultationUrl, "_blank");
+                  }}
+                  className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+                >
+                  <Calendar className="w-5 h-5" />
+                  <span>📅 Book FREE Consultation</span>
+                </button>
+
+                <button
+                  onClick={handleClose}
+                  className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+                >
+                  Close Application
+                </button>
+              </div>
             </div>
           ) : (
             // Form State

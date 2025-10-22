@@ -12,11 +12,11 @@
 
 ### ❌ **Missing Opportunities:**
 
-- No lead magnets or downloadable resources
 - Limited email capture mechanisms
 - No social proof/testimonials prominently displayed
 - Missing urgency/scarcity elements
 - No retargeting or follow-up sequences
+- Underutilized WhatsApp automation potential
 
 ---
 

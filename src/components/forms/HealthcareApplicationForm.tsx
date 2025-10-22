@@ -9,6 +9,11 @@ import {
   CheckCircle,
   AlertCircle,
   X,
+  MessageCircle,
+  Calendar,
+  Star,
+  Users,
+  Clock,
 } from "lucide-react";
 import type { HealthcareJob } from "../../types/healthcare";
 import { useStore } from "../../store/useStore";
@@ -126,29 +131,129 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8 text-center">
-          <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Application Submitted!
-          </h2>
-          <p className="text-gray-600 mb-6">
-            Thank you for applying to the {job.title} position at {job.hospital}
-            . We'll review your application and get back to you soon.
-          </p>
-          <div className="space-y-3">
-            <button
-              onClick={onClose}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-            >
-              Back to Job Details
-            </button>
-            <button
-              onClick={() => window.location.reload()}
-              className="w-full text-blue-600 hover:text-blue-700 font-medium"
-            >
-              Apply to Another Position
-            </button>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+          {/* Success Header */}
+          <div className="bg-gradient-to-r from-green-500 to-emerald-600 p-6 text-center text-white">
+            <CheckCircle className="w-16 h-16 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold mb-2">
+              🎉 Application Submitted Successfully!
+            </h2>
+            <p className="text-green-100">
+              Your application for {job.title} at {job.hospital} is now under
+              review
+            </p>
+          </div>
+
+          {/* Next Steps */}
+          <div className="p-6">
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                📋 What Happens Next?
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <span className="text-blue-600 font-semibold text-sm">
+                      1
+                    </span>
+                  </div>
+                  <p className="text-gray-700">
+                    Application review (2-3 business days)
+                  </p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <span className="text-blue-600 font-semibold text-sm">
+                      2
+                    </span>
+                  </div>
+                  <p className="text-gray-700">
+                    Initial screening call (if shortlisted)
+                  </p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                    <span className="text-blue-600 font-semibold text-sm">
+                      3
+                    </span>
+                  </div>
+                  <p className="text-gray-700">Interview & job offer process</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Immediate Actions */}
+            <div className="bg-blue-50 rounded-lg p-4 mb-6">
+              <h4 className="font-semibold text-blue-900 mb-3">
+                💬 Get Instant Updates & Support
+              </h4>
+              <p className="text-blue-700 text-sm mb-4">
+                Connect with our counselors on WhatsApp for real-time updates on
+                your application status and personalized guidance.
+              </p>
+              <button
+                onClick={() => {
+                  const message = `Hi! I just applied for ${job.title} at ${job.hospital}. Can you help me with the next steps and provide updates on my application?`;
+                  const whatsappUrl = `https://wa.me/917701875294?text=${encodeURIComponent(
+                    message
+                  )}`;
+                  window.open(whatsappUrl, "_blank");
+                }}
+                className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
+              >
+                <MessageCircle className="w-5 h-5" />
+                <span>💬 Connect on WhatsApp</span>
+              </button>
+            </div>
+
+            {/* Social Proof */}
+            <div className="bg-gray-50 rounded-lg p-4 mb-6">
+              <div className="flex items-center justify-between text-sm text-gray-600">
+                <div className="flex items-center space-x-1">
+                  <Users className="w-4 h-4" />
+                  <span>2,500+ doctors placed</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <Star className="w-4 h-4 text-yellow-500" />
+                  <span>4.9/5 rating</span>
+                </div>
+                <div className="flex items-center space-x-1">
+                  <Clock className="w-4 h-4" />
+                  <span>98% success rate</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="space-y-3">
+              <button
+                onClick={() => {
+                  const consultationUrl = `https://wa.me/917701875294?text=${encodeURIComponent(
+                    "I want to book a FREE consultation call to discuss my healthcare career in Germany"
+                  )}`;
+                  window.open(consultationUrl, "_blank");
+                }}
+                className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
+              >
+                <Calendar className="w-5 h-5" />
+                <span>📅 Book FREE Consultation</span>
+              </button>
+
+              <button
+                onClick={onClose}
+                className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+              >
+                Back to Job Details
+              </button>
+
+              <button
+                onClick={() => window.location.reload()}
+                className="w-full text-blue-600 hover:text-blue-700 font-medium py-2"
+              >
+                Apply to Another Position
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -174,6 +279,35 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
         >
           <X className="w-6 h-6" />
         </button>
+      </div>
+
+      {/* Progress Indicator */}
+      <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+        <div className="flex items-center justify-between text-sm">
+          <span className="text-gray-600">Application Progress</span>
+          <span className="text-blue-600 font-semibold">Step 1 of 1</span>
+        </div>
+        <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
+          <div className="bg-blue-600 h-2 rounded-full w-full"></div>
+        </div>
+      </div>
+
+      {/* Social Proof Banner */}
+      <div className="px-6 py-3 bg-green-50 border-b border-green-200">
+        <div className="flex items-center justify-center space-x-6 text-sm text-green-700">
+          <div className="flex items-center space-x-1">
+            <Users className="w-4 h-4" />
+            <span>2,500+ doctors placed</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <Star className="w-4 h-4 text-yellow-500" />
+            <span>4.9/5 rating</span>
+          </div>
+          <div className="flex items-center space-x-1">
+            <Clock className="w-4 h-4" />
+            <span>Average response: 24 hours</span>
+          </div>
+        </div>
       </div>
 
       {/* Modal Content */}
