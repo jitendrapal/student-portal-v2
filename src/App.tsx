@@ -45,6 +45,7 @@ import FreeStudyEurope from "./components/pages/guides/FreeStudyEurope";
 
 function App() {
   const { user } = useStore();
+  // Force redeploy - StudyInEurope route fix
 
   return (
     <>
