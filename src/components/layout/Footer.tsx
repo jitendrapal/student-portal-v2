@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
                 className="flex items-center text-gray-300 hover:text-white transition-colors"
               >
                 <Phone className="w-4 h-4 mr-3" />
-                <span>+31 620 371 533</span>
+                <span>+31 683 078 160</span>
               </a>
               <a
                 href="mailto:info@ejcgroup.eu"
