@@ -15,6 +15,9 @@ import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
 import TopCollegesSection from "../common/TopCollegesSection";
 import SEOHeadNative from "../seo/SEOHeadNative";
 import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
+import LeadMagnetPopup from "../common/LeadMagnetPopup";
+import ExitIntentPopup from "../common/ExitIntentPopup";
+import SocialProofBanner from "../common/SocialProofBanner";
 import type { HealthcareJob } from "../../types/healthcare";
 import {
   createOrganizationSchema,
@@ -27,6 +30,7 @@ const Home: React.FC = () => {
   const { setSearchQuery, universities, fetchUniversities, isLoading } =
     useStore();
   const [showCounselingForm, setShowCounselingForm] = useState(false);
+  const [showLeadMagnet, setShowLeadMagnet] = useState(false);
 
   useEffect(() => {
     // Fetch universities when component mounts
@@ -210,6 +214,12 @@ const Home: React.FC = () => {
               >
                 🏥 Healthcare Jobs
               </button>
+              <button
+                onClick={() => setShowLeadMagnet(true)}
+                className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-yellow-600 hover:to-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 animate-pulse"
+              >
+                📚 FREE Germany Guide
+              </button>
             </div>
 
             {/* Key Value Proposition - Moved below buttons */}
@@ -232,6 +242,13 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Social Proof Banner */}
+      <SocialProofBanner
+        variant="section"
+        showStats={true}
+        showRecentActivity={true}
+      />
 
       {/* Study Goals Carousel */}
       <StudyGoalsCarousel />
@@ -577,6 +594,14 @@ const Home: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Lead Generation Popups */}
+      <LeadMagnetPopup
+        isOpen={showLeadMagnet}
+        onClose={() => setShowLeadMagnet(false)}
+        leadMagnetType="general"
+      />
+      <ExitIntentPopup enabled={true} delay={30} />
     </div>
   );
 };
