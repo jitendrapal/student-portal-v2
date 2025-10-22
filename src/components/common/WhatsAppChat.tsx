@@ -43,10 +43,31 @@ const WhatsAppChat: React.FC<WhatsAppChatProps> = ({
     setIsOpen(false);
   };
 
-  const quickMessages = whatsappConfig.quickMessages;
+  // Enhanced quick messages based on user type
+  const enhancedQuickMessages = [
+    "🏥 I'm a doctor interested in Germany jobs",
+    "👩‍⚕️ I'm a nurse looking for opportunities in Germany",
+    "🎓 I want to study medicine in Germany",
+    "📋 I need help with license recognition process",
+    "💰 What are the salary expectations in Germany?",
+    "📅 I want to book a FREE consultation call",
+    "📄 Can you review my documents?",
+    "🇩🇪 Do I need to learn German language?",
+    "📚 Send me the FREE Germany guide",
+    "⚡ I'm ready to start my application",
+  ];
 
   const handleQuickMessage = (quickMsg: string) => {
     console.log("🔥 Quick message clicked:", quickMsg);
+
+    // Track WhatsApp engagement
+    if (typeof gtag !== "undefined") {
+      gtag("event", "whatsapp_quick_message", {
+        event_category: "Lead Generation",
+        event_label: quickMsg,
+        value: 1,
+      });
+    }
 
     // Simple direct implementation
     const phone = phoneNumber || whatsappConfig.phoneNumber || "917701875294";
@@ -107,7 +128,7 @@ const WhatsAppChat: React.FC<WhatsAppChatProps> = ({
                 Click to send directly on WhatsApp:
               </p>
               <div className="space-y-2">
-                {quickMessages.map((quickMsg, index) => (
+                {enhancedQuickMessages.map((quickMsg, index) => (
                   <button
                     key={index}
                     onClick={(e) => {
