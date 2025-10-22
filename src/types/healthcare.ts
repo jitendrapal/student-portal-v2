@@ -33,8 +33,6 @@ export interface HealthcareApplication {
   email: string;
   phone: string;
   gender: "male" | "female" | "other";
-  resumeFile?: File;
-  resumeUrl?: string;
   coverLetter?: string;
   experience: string;
   qualifications: string;

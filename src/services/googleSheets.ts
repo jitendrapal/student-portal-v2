@@ -76,16 +76,7 @@ export const submitToGoogleSheets = async (
       application
     );
     console.log("🔗 Using Google Apps Script URL:", GOOGLE_APPS_SCRIPT_URL);
-    // Convert resume file to base64 if present
-    let resumeBase64 = "";
-    let resumeFileName = "";
-    let resumeMimeType = "";
-
-    if (application.resumeFile) {
-      resumeBase64 = await fileToBase64(application.resumeFile);
-      resumeFileName = application.resumeFile.name;
-      resumeMimeType = application.resumeFile.type;
-    }
+    // No resume file handling needed - resume fields removed
 
     // Prepare the data for Google Sheets
     const sheetData = {
@@ -104,9 +95,6 @@ export const submitToGoogleSheets = async (
       coverLetter: application.coverLetter || "",
       status: application.status,
       submittedAt: application.submittedAt.toISOString(),
-      resumeBase64: resumeBase64,
-      resumeFileName: resumeFileName,
-      resumeMimeType: resumeMimeType,
     };
 
     console.log("📊 Prepared healthcare application data:", sheetData);

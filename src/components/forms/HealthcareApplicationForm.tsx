@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   ArrowLeft,
-  Upload,
   User,
   Mail,
   Phone,
@@ -43,7 +42,6 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
     captcha: "",
   });
 
-  const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [captchaQuestion, setCaptchaQuestion] = useState(() => {
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
@@ -59,32 +57,6 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // Validate file type and size
-      const allowedTypes = [
-        "application/pdf",
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      ];
-      const maxSize = 5 * 1024 * 1024; // 5MB
-
-      if (!allowedTypes.includes(file.type)) {
-        setError("Please upload a PDF or Word document for your resume.");
-        return;
-      }
-
-      if (file.size > maxSize) {
-        setError("Resume file size must be less than 5MB.");
-        return;
-      }
-
-      setResumeFile(file);
-      setError("");
-    }
-  };
-
   const validateForm = () => {
     if (!formData.firstName.trim()) return "First name is required.";
     if (!formData.lastName.trim()) return "Last name is required.";
@@ -96,7 +68,7 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
     if (!formData.qualifications.trim()) return "Qualifications are required.";
     if (!formData.availability.trim())
       return "Availability information is required.";
-    if (!resumeFile) return "Resume upload is required.";
+
     if (parseInt(formData.captcha) !== captchaQuestion.answer) {
       return "Captcha answer is incorrect.";
     }
@@ -136,7 +108,7 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
         email: formData.email,
         phone: formData.phone,
         gender: formData.gender,
-        resumeFile: resumeFile!,
+
         coverLetter: formData.coverLetter,
         experience: formData.experience,
         qualifications: formData.qualifications,
@@ -293,38 +265,6 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
                     <option value="other">Other</option>
                   </select>
                 </div>
-              </div>
-            </div>
-
-            {/* Resume Upload */}
-            <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center space-x-2">
-                <FileText className="w-5 h-5" />
-                <span>Resume Upload</span>
-              </h2>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                <div className="text-sm text-gray-600 mb-2">
-                  Upload your resume (PDF or Word document, max 5MB)
-                </div>
-                <input
-                  type="file"
-                  accept=".pdf,.doc,.docx"
-                  onChange={handleFileChange}
-                  className="hidden"
-                  id="resume-upload"
-                />
-                <label
-                  htmlFor="resume-upload"
-                  className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700 transition-colors"
-                >
-                  Choose File
-                </label>
-                {resumeFile && (
-                  <div className="mt-2 text-sm text-green-600">
-                    ✓ {resumeFile.name}
-                  </div>
-                )}
               </div>
             </div>
 
