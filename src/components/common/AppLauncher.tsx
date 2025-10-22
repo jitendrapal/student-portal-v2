@@ -213,7 +213,7 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
           <div className="border-t border-gray-100 p-4">
             <div className="grid grid-cols-3 gap-4 text-center">
               <a
-                href="tel:+31620371533"
+                href="tel:+31683078160"
                 className="flex flex-col items-center p-2 rounded-lg hover:bg-gray-50 transition-colors"
               >
                 <Phone className="w-4 h-4 text-blue-600 mb-1" />

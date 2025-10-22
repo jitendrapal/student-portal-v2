@@ -238,11 +238,11 @@ const Navbar: React.FC = () => {
             {/* Contact Information */}
             <div className="hidden lg:flex flex-col space-y-1 text-sm text-gray-600">
               <a
-                href="tel:+31620371533"
+                href="tel:+31683078160"
                 className="flex items-center space-x-1 hover:text-blue-600 transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                <span>+31620371533</span>
+                <span>+31683078160</span>
               </a>
               <a
                 href="mailto:info@ejcgroup.eu"
