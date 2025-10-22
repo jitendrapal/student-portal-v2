@@ -606,30 +606,30 @@ const StudyInEurope: React.FC = () => {
                   Country-Specific Guides
                 </h3>
                 <div className="space-y-3">
-                  <a
-                    href="/guides/study-in-germany"
+                  <Link
+                    to="/guides/study-in-germany"
                     className="block text-blue-600 hover:text-blue-800 transition-colors"
                   >
                     → Study in Germany Guide
-                  </a>
-                  <a
-                    href="/guides/study-in-poland"
+                  </Link>
+                  <Link
+                    to="/guides/study-in-poland"
                     className="block text-blue-600 hover:text-blue-800 transition-colors"
                   >
                     → Study in Poland Guide
-                  </a>
-                  <a
-                    href="/guides/cheap-study-europe"
+                  </Link>
+                  <Link
+                    to="/guides/cheap-study-europe"
                     className="block text-blue-600 hover:text-blue-800 transition-colors"
                   >
                     → Cheap Study Options
-                  </a>
-                  <a
-                    href="/guides/free-study-europe"
+                  </Link>
+                  <Link
+                    to="/guides/free-study-europe"
                     className="block text-blue-600 hover:text-blue-800 transition-colors"
                   >
                     → Free Study Opportunities
-                  </a>
+                  </Link>
                 </div>
               </div>
 

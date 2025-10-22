@@ -38,6 +38,10 @@ import CompleteNursingGuide2024 from "./components/pages/guides/CompleteNursingG
 import CheapestUniversitiesEurope from "./components/pages/guides/CheapestUniversitiesEurope";
 import VisaApplicationGermany from "./components/pages/guides/VisaApplicationGermany";
 import CostComparisonGermanyIndia from "./components/pages/guides/CostComparisonGermanyIndia";
+import StudyInGermany from "./components/pages/guides/StudyInGermany";
+import StudyInPoland from "./components/pages/guides/StudyInPoland";
+import CheapStudyEurope from "./components/pages/guides/CheapStudyEurope";
+import FreeStudyEurope from "./components/pages/guides/FreeStudyEurope";
 
 function App() {
   const { user } = useStore();
@@ -114,6 +118,24 @@ function App() {
               <Route
                 path="/guides/cost-comparison-germany-india"
                 element={<CostComparisonGermanyIndia />}
+              />
+
+              {/* Country-Specific Guide Pages */}
+              <Route
+                path="/guides/study-in-germany"
+                element={<StudyInGermany />}
+              />
+              <Route
+                path="/guides/study-in-poland"
+                element={<StudyInPoland />}
+              />
+              <Route
+                path="/guides/cheap-study-europe"
+                element={<CheapStudyEurope />}
+              />
+              <Route
+                path="/guides/free-study-europe"
+                element={<FreeStudyEurope />}
               />
 
               {/* Legal Pages */}
