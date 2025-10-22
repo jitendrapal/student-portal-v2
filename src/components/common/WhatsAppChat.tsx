@@ -6,6 +6,10 @@ import {
   getContextMessage,
   createWhatsAppUrl,
 } from "../../config/whatsapp";
+import {
+  enhancedWhatsAppConfig,
+  whatsappUtils,
+} from "../../config/whatsappEnhanced";
 
 interface WhatsAppChatProps {
   phoneNumber?: string;
@@ -21,6 +25,42 @@ const WhatsAppChat: React.FC<WhatsAppChatProps> = ({
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
+
+  // Determine user type based on current page
+  const getUserType = (
+    pathname: string
+  ): "doctors" | "nurses" | "students" | "general" => {
+    if (pathname.includes("healthcare") && pathname.includes("doctor"))
+      return "doctors";
+    if (pathname.includes("healthcare") || pathname.includes("nursing"))
+      return "nurses";
+    if (
+      pathname.includes("university") ||
+      pathname.includes("course") ||
+      pathname.includes("study")
+    )
+      return "students";
+    return "general";
+  };
+
+  const userType = getUserType(location.pathname);
+
+  // Check if currently within business hours
+  const isBusinessHours = () => {
+    const now = new Date();
+    const berlinTime = new Date(
+      now.toLocaleString("en-US", { timeZone: "Europe/Berlin" })
+    );
+    const currentHour = berlinTime.getHours();
+    const currentDay = berlinTime.getDay(); // 0 = Sunday, 6 = Saturday
+
+    // Business hours: Monday-Friday 9-18, Saturday 10-16, Sunday closed
+    if (currentDay === 0) return false; // Sunday closed
+    if (currentDay === 6) return currentHour >= 10 && currentHour < 16; // Saturday 10-16
+    return currentHour >= 9 && currentHour < 18; // Monday-Friday 9-18
+  };
+
+  const businessStatus = isBusinessHours();
 
   // Update message based on current page context
   useEffect(() => {
@@ -43,39 +83,35 @@ const WhatsAppChat: React.FC<WhatsAppChatProps> = ({
     setIsOpen(false);
   };
 
-  // Enhanced quick messages based on user type
-  const enhancedQuickMessages = [
-    "🏥 I'm a doctor interested in Germany jobs",
-    "👩‍⚕️ I'm a nurse looking for opportunities in Germany",
-    "🎓 I want to study medicine in Germany",
-    "📋 I need help with license recognition process",
-    "💰 What are the salary expectations in Germany?",
-    "📅 I want to book a FREE consultation call",
-    "📄 Can you review my documents?",
-    "🇩🇪 Do I need to learn German language?",
-    "📚 Send me the FREE Germany guide",
-    "⚡ I'm ready to start my application",
-  ];
+  // Get enhanced quick messages based on user type
+  const enhancedQuickMessages = whatsappUtils.getQuickMessages(userType);
 
   const handleQuickMessage = (quickMsg: string) => {
     console.log("🔥 Quick message clicked:", quickMsg);
 
-    // Track WhatsApp engagement
+    // Score the lead based on message content
+    const leadScore = whatsappUtils.scoreMessage(quickMsg);
+
+    // Track WhatsApp engagement with enhanced data
     if (typeof gtag !== "undefined") {
       gtag("event", "whatsapp_quick_message", {
         event_category: "Lead Generation",
         event_label: quickMsg,
-        value: 1,
+        custom_parameter_1: userType,
+        custom_parameter_2: leadScore,
+        value: leadScore === "high" ? 10 : leadScore === "medium" ? 5 : 1,
       });
     }
 
-    // Simple direct implementation
-    const phone = phoneNumber || whatsappConfig.phoneNumber || "917701875294";
-    const formattedPhone = phone.replace(/[+\s-()]/g, "");
-    const encodedMessage = encodeURIComponent(quickMsg);
-    const whatsappUrl = `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
+    // Use enhanced WhatsApp utility
+    const whatsappUrl = whatsappUtils.generateWhatsAppURL(
+      quickMsg,
+      phoneNumber
+    );
 
     console.log("📱 Opening WhatsApp URL:", whatsappUrl);
+    console.log("👤 User Type:", userType);
+    console.log("📊 Lead Score:", leadScore);
 
     // Open WhatsApp
     window.open(whatsappUrl, "_blank");
@@ -100,8 +136,14 @@ const WhatsAppChat: React.FC<WhatsAppChatProps> = ({
                   {businessName || whatsappConfig.businessName}
                 </h3>
                 <div className="flex items-center space-x-1 text-xs text-green-100">
-                  <Clock className="w-3 h-3" />
-                  <span>{whatsappConfig.businessHours.weekdays}</span>
+                  <div
+                    className={`w-2 h-2 rounded-full ${
+                      businessStatus ? "bg-green-300" : "bg-yellow-300"
+                    }`}
+                  ></div>
+                  <span>{businessStatus ? "Online" : "Offline"}</span>
+                  <Clock className="w-3 h-3 ml-1" />
+                  <span>9AM-6PM Berlin</span>
                 </div>
               </div>
             </div>
