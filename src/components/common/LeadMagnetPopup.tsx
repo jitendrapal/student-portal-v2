@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { X, Download, CheckCircle, Gift } from "lucide-react";
+import {
+  submitLeadMagnetToGoogleSheets,
+  type LeadMagnetSubmission,
+} from "../../services/googleSheets";
 
 interface LeadMagnetPopupProps {
   isOpen: boolean;
@@ -14,7 +18,7 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
   onClose,
   title,
   description,
-  leadMagnetType = "general"
+  leadMagnetType = "general",
 }) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -25,46 +29,49 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
   const leadMagnets = {
     healthcare: {
       title: "🏥 FREE: Complete Medical License Guide for Germany 2024",
-      description: "Get our 50-page guide with step-by-step process for doctors & nurses to work in Germany",
+      description:
+        "Get our 50-page guide with step-by-step process for doctors & nurses to work in Germany",
       benefits: [
         "✅ License recognition process (step-by-step)",
-        "✅ Required documents checklist", 
+        "✅ Required documents checklist",
         "✅ Timeline and costs breakdown",
         "✅ German language requirements",
         "✅ Salary expectations & benefits",
-        "✅ Success stories from Indian doctors"
+        "✅ Success stories from Indian doctors",
       ],
       downloadText: "Download FREE Medical Guide",
-      fileName: "Medical-License-Germany-Guide-2024.pdf"
+      fileName: "Medical-License-Germany-Guide-2024.pdf",
     },
     student: {
       title: "🎓 FREE: Complete Study in Germany Guide 2024",
-      description: "Get our comprehensive guide with everything you need to study in Germany for FREE",
+      description:
+        "Get our comprehensive guide with everything you need to study in Germany for FREE",
       benefits: [
         "✅ 50+ tuition-free universities list",
         "✅ Application requirements by program",
         "✅ Scholarship opportunities (€10,000+)",
         "✅ Student visa process guide",
         "✅ Living costs by city comparison",
-        "✅ Part-time work opportunities"
+        "✅ Part-time work opportunities",
       ],
       downloadText: "Download FREE Study Guide",
-      fileName: "Study-Germany-Complete-Guide-2024.pdf"
+      fileName: "Study-Germany-Complete-Guide-2024.pdf",
     },
     general: {
       title: "🇩🇪 FREE: Complete Germany Career & Study Guide 2024",
-      description: "Everything you need to work or study in Germany - doctors, nurses & students",
+      description:
+        "Everything you need to work or study in Germany - doctors, nurses & students",
       benefits: [
         "✅ Healthcare jobs process (doctors & nurses)",
         "✅ Free university admission guide",
         "✅ Visa application templates",
         "✅ German language learning roadmap",
         "✅ Cost of living calculator",
-        "✅ 100+ success stories"
+        "✅ 100+ success stories",
       ],
       downloadText: "Download FREE Complete Guide",
-      fileName: "Germany-Complete-Guide-2024.pdf"
-    }
+      fileName: "Germany-Complete-Guide-2024.pdf",
+    },
   };
 
   const currentLeadMagnet = leadMagnets[leadMagnetType];
@@ -72,12 +79,12 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
   const validateForm = () => {
     if (!firstName.trim()) return "First name is required.";
     if (!email.trim()) return "Email is required.";
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return "Please enter a valid email address.";
     }
-    
+
     return null;
   };
 
@@ -94,43 +101,42 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
     setIsSubmitting(true);
 
     try {
-      // Submit to your email marketing service (Mailchimp, ConvertKit, etc.)
-      const response = await fetch('/api/lead-magnet-signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName,
-          email,
-          leadMagnetType,
-          source: 'popup',
-          timestamp: new Date().toISOString()
-        }),
-      });
+      // Create lead magnet submission data
+      const leadData: LeadMagnetSubmission = {
+        id: `lead_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+        firstName,
+        email,
+        leadMagnetType,
+        source: "popup",
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer,
+        // Note: IP address would need to be obtained from a backend service
+      };
 
-      if (response.ok) {
-        setIsSubmitted(true);
-        
-        // Track conversion event
-        if (typeof gtag !== 'undefined') {
-          gtag('event', 'lead_magnet_download', {
-            event_category: 'Lead Generation',
-            event_label: leadMagnetType,
-            value: 1
-          });
-        }
-        
-        // Auto-close after 3 seconds
-        setTimeout(() => {
-          onClose();
-          setIsSubmitted(false);
-          setEmail("");
-          setFirstName("");
-        }, 3000);
-      } else {
-        throw new Error('Submission failed');
+      // Submit to Google Sheets
+      await submitLeadMagnetToGoogleSheets(leadData);
+
+      setIsSubmitted(true);
+
+      // Track conversion event
+      if (typeof gtag !== "undefined") {
+        gtag("event", "lead_magnet_download", {
+          event_category: "Lead Generation",
+          event_label: leadMagnetType,
+          value: 1,
+        });
       }
+
+      console.log("✅ Lead magnet submission successful:", leadData);
+
+      // Auto-close after 3 seconds
+      setTimeout(() => {
+        onClose();
+        setIsSubmitted(false);
+        setEmail("");
+        setFirstName("");
+      }, 3000);
     } catch (err) {
       setError("Failed to submit. Please try again.");
       console.error("Lead magnet submission error:", err);
@@ -162,14 +168,14 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
           >
             <X className="w-6 h-6" />
           </button>
-          
+
           <div className="flex items-center mb-4">
             <Gift className="w-8 h-8 mr-3" />
             <span className="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">
               LIMITED TIME FREE
             </span>
           </div>
-          
+
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
             {title || currentLeadMagnet.title}
           </h2>
@@ -195,11 +201,12 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
                     </li>
                   ))}
                 </ul>
-                
+
                 <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
                   <p className="text-sm text-yellow-800">
-                    <strong>⚡ Instant Download:</strong> Get immediate access after entering your email. 
-                    No waiting, no spam - just valuable content!
+                    <strong>⚡ Instant Download:</strong> Get immediate access
+                    after entering your email. No waiting, no spam - just
+                    valuable content!
                   </p>
                 </div>
               </div>
@@ -220,7 +227,7 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
                       required
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Email Address *
@@ -260,7 +267,8 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
                   </button>
 
                   <p className="text-xs text-gray-500 text-center">
-                    ✅ No spam. Unsubscribe anytime. Join 10,000+ professionals who downloaded this guide.
+                    ✅ No spam. Unsubscribe anytime. Join 10,000+ professionals
+                    who downloaded this guide.
                   </p>
                 </form>
               </div>
@@ -276,17 +284,22 @@ const LeadMagnetPopup: React.FC<LeadMagnetPopupProps> = ({
                 We've sent your free guide to <strong>{email}</strong>
               </p>
               <p className="text-sm text-gray-500">
-                Don't see it? Check your spam folder or contact us at info@ejcgroup.eu
+                Don't see it? Check your spam folder or contact us at
+                info@ejcgroup.eu
               </p>
-              
+
               <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
                 <p className="text-sm text-blue-800">
-                  <strong>Next Step:</strong> Book a FREE consultation to discuss your specific situation!
+                  <strong>Next Step:</strong> Book a FREE consultation to
+                  discuss your specific situation!
                 </p>
                 <button
                   onClick={() => {
                     // Trigger WhatsApp or consultation booking
-                    window.open('https://wa.me/917701875294?text=Hi! I just downloaded your guide and would like to book a consultation.', '_blank');
+                    window.open(
+                      "https://wa.me/917701875294?text=Hi! I just downloaded your guide and would like to book a consultation.",
+                      "_blank"
+                    );
                   }}
                   className="mt-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                 >
