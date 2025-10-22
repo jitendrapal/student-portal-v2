@@ -401,56 +401,115 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Nursing Jobs Guide */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+            {/* Complete Nursing Guide 2024 - NEW */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-blue-500">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                   <span className="text-2xl">🩺</span>
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">
-                    Nursing Jobs Germany
+                    Complete Nursing Guide 2024
                   </h3>
-                  <p className="text-sm text-green-600">
-                    Complete Career Guide
+                  <p className="text-sm text-blue-600 font-medium">
+                    ⭐ Most Comprehensive
                   </p>
                 </div>
               </div>
               <p className="text-gray-600 mb-4">
-                Salary ranges, visa process, language requirements, and top
-                hospitals hiring international nurses.
+                Ultimate guide: Salaries €2,800-€6,500, step-by-step process,
+                visa requirements, top cities, and success tips for Indian
+                nurses.
               </p>
               <Link
-                to="/guides/nursing-jobs-germany"
-                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
+                to="/guides/complete-nursing-guide-2024"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
               >
-                Read Guide
+                Read Complete Guide
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
 
-            {/* Doctors Jobs Guide */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+            {/* Cheapest Universities Europe - NEW */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-green-500">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">👨‍⚕️</span>
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">🎓</span>
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">
-                    Doctors Jobs Germany
+                    Top 10 Cheapest Universities
                   </h3>
-                  <p className="text-sm text-blue-600">Medical Career Guide</p>
+                  <p className="text-sm text-green-600 font-medium">
+                    💰 Save ₹15-30 Lakhs
+                  </p>
                 </div>
               </div>
               <p className="text-gray-600 mb-4">
-                License recognition, specialization opportunities, and pathway
-                to medical practice in Germany.
+                Discover affordable European education: Free tuition in Germany,
+                €0-€8,000 fees, scholarships, and complete cost breakdown.
               </p>
               <Link
-                to="/guides/doctors-jobs-germany"
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                to="/guides/cheapest-universities-europe"
+                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
               >
-                Read Guide
+                View Universities
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            {/* Visa Application Process - NEW */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-purple-500">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">✈️</span>
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Visa Application Process
+                  </h3>
+                  <p className="text-sm text-purple-600 font-medium">
+                    📋 Step-by-Step Guide
+                  </p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Complete visa guide: Student, work, EU Blue Card requirements,
+                documents, processing time, and consulate information.
+              </p>
+              <Link
+                to="/guides/visa-application-germany"
+                className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium"
+              >
+                Start Application
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
+
+            {/* Cost Comparison - NEW */}
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-orange-500">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">📊</span>
+                </div>
+                <div className="ml-4">
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    Germany vs India Costs
+                  </h3>
+                  <p className="text-sm text-orange-600 font-medium">
+                    💡 ROI Analysis
+                  </p>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4">
+                Detailed financial analysis: Education costs, living expenses,
+                salaries, and return on investment comparison.
+              </p>
+              <Link
+                to="/guides/cost-comparison-germany-india"
+                className="inline-flex items-center text-orange-600 hover:text-orange-700 font-medium"
+              >
+                Compare Costs
                 <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
@@ -458,14 +517,14 @@ const Home: React.FC = () => {
             {/* Study in Europe Guide */}
             <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
               <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🎓</span>
+                <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
+                  <span className="text-2xl">🌍</span>
                 </div>
                 <div className="ml-4">
                   <h3 className="text-lg font-semibold text-gray-900">
                     Study in Europe
                   </h3>
-                  <p className="text-sm text-purple-600">Education Guide</p>
+                  <p className="text-sm text-indigo-600">Education Guide</p>
                 </div>
               </div>
               <p className="text-gray-600 mb-4">
@@ -474,59 +533,7 @@ const Home: React.FC = () => {
               </p>
               <Link
                 to="/guides/study-in-europe"
-                className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium"
-              >
-                Read Guide
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            </div>
-
-            {/* Free Visa Guide */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🆓</span>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Free Visa Germany
-                  </h3>
-                  <p className="text-sm text-green-600">Save €75-€150</p>
-                </div>
-              </div>
-              <p className="text-gray-600 mb-4">
-                7 proven ways to get Germany visa fee waiver. Scholarship visas,
-                family reunification, and more.
-              </p>
-              <Link
-                to="/guides/free-visa-germany"
-                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
-              >
-                Read Guide
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Link>
-            </div>
-
-            {/* Work Visa Guide */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">💼</span>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Work Visa Germany
-                  </h3>
-                  <p className="text-sm text-blue-600">Complete Requirements</p>
-                </div>
-              </div>
-              <p className="text-gray-600 mb-4">
-                EU Blue Card, job seeker visa, and general work permits.
-                Complete guide with requirements.
-              </p>
-              <Link
-                to="/guides/work-visa-germany"
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                className="inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium"
               >
                 Read Guide
                 <ArrowRight className="w-4 h-4 ml-1" />

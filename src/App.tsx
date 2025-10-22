@@ -34,6 +34,10 @@ import DoctorsJobsGermany from "./components/pages/guides/DoctorsJobsGermany";
 import StudyInEurope from "./components/pages/guides/StudyInEurope";
 import FreeVisaGermany from "./components/pages/guides/FreeVisaGermany";
 import WorkVisaGermany from "./components/pages/guides/WorkVisaGermany";
+import CompleteNursingGuide2024 from "./components/pages/guides/CompleteNursingGuide2024";
+import CheapestUniversitiesEurope from "./components/pages/guides/CheapestUniversitiesEurope";
+import VisaApplicationGermany from "./components/pages/guides/VisaApplicationGermany";
+import CostComparisonGermanyIndia from "./components/pages/guides/CostComparisonGermanyIndia";
 
 function App() {
   const { user } = useStore();
@@ -92,6 +96,24 @@ function App() {
               <Route
                 path="/guides/work-visa-germany"
                 element={<WorkVisaGermany />}
+              />
+
+              {/* New SEO-Optimized Guide Pages */}
+              <Route
+                path="/guides/complete-nursing-guide-2024"
+                element={<CompleteNursingGuide2024 />}
+              />
+              <Route
+                path="/guides/cheapest-universities-europe"
+                element={<CheapestUniversitiesEurope />}
+              />
+              <Route
+                path="/guides/visa-application-germany"
+                element={<VisaApplicationGermany />}
+              />
+              <Route
+                path="/guides/cost-comparison-germany-india"
+                element={<CostComparisonGermanyIndia />}
               />
 
               {/* Legal Pages */}
