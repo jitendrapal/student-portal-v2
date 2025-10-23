@@ -179,19 +179,6 @@ const Home: React.FC = () => {
               .
             </p>
 
-            {/* Key Benefits */}
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 text-xs sm:text-sm">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 sm:px-3 py-1 text-blue-100 whitespace-nowrap">
-                ✅ 98% Success
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 sm:px-3 py-1 text-blue-100 whitespace-nowrap">
-                💰 €45,000+ Salary
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 sm:px-3 py-1 text-blue-100 whitespace-nowrap">
-                🆓 Free Consultation
-              </div>
-            </div>
-
             {/* Search Bar */}
             <div className="max-w-2xl mx-auto mb-6">
               <SearchWithSuggestions
