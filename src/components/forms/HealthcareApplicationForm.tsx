@@ -132,7 +132,16 @@ const HealthcareApplicationForm: React.FC<HealthcareApplicationFormProps> = ({
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <div className="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden relative">
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-2 transition-all duration-200"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5 text-white" />
+          </button>
+
           {/* Success Header */}
           <div className="bg-gradient-to-r from-green-500 to-emerald-600 p-6 text-center text-white">
             <CheckCircle className="w-16 h-16 mx-auto mb-4" />
