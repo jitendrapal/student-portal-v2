@@ -297,121 +297,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Universities */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Featured Universities
-              </h2>
-              <p className="text-xl text-gray-600">
-                Explore top-ranked institutions worldwide
-              </p>
-            </div>
-            <button
-              onClick={() => navigate("/universities")}
-              className="hidden md:flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium"
-            >
-              <span>View All</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {isLoading ? (
-              // Loading skeleton
-              Array.from({ length: 3 }).map((_, index) => (
-                <div key={index} className="card p-6 animate-pulse">
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-12 h-12 bg-gray-200 rounded"></div>
-                    <div>
-                      <div className="h-4 bg-gray-200 rounded w-32 mb-2"></div>
-                      <div className="h-3 bg-gray-200 rounded w-24"></div>
-                    </div>
-                  </div>
-                  <div className="h-3 bg-gray-200 rounded w-full mb-2"></div>
-                  <div className="h-3 bg-gray-200 rounded w-3/4 mb-4"></div>
-                  <div className="flex justify-between items-center">
-                    <div className="h-4 bg-gray-200 rounded w-20"></div>
-                    <div className="h-8 bg-gray-200 rounded w-24"></div>
-                  </div>
-                </div>
-              ))
-            ) : featuredUniversities.length > 0 ? (
-              featuredUniversities.map((university) => (
-                <div
-                  key={university.id}
-                  className="card p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex items-center space-x-4 mb-4">
-                    {university.logo && (
-                      <img
-                        src={university.logo}
-                        alt={university.name}
-                        className="w-12 h-12 object-contain"
-                      />
-                    )}
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        {university.name}
-                      </h3>
-                      <p className="text-gray-600">
-                        {university.city}, {university.country}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="flex items-center space-x-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="text-sm text-gray-600">
-                        #{university.ranking.world} World
-                      </span>
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {university.acceptanceRate}% acceptance
-                    </div>
-                  </div>
-
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {university.description}
-                  </p>
-
-                  <div className="flex justify-between items-center">
-                    <div className="text-sm text-gray-600">
-                      From {university.tuitionRange.currency}{" "}
-                      {university.tuitionRange.min.toLocaleString()}/year
-                    </div>
-                    <button
-                      onClick={() => navigate("/universities")}
-                      className="text-blue-600 hover:text-blue-700 font-medium text-sm"
-                    >
-                      View Details
-                    </button>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div className="col-span-3 text-center py-8">
-                <p className="text-gray-600">
-                  No featured universities available at the moment.
-                </p>
-              </div>
-            )}
-          </div>
-
-          <div className="text-center mt-8 md:hidden">
-            <button
-              onClick={() => navigate("/universities")}
-              className="btn-primary"
-            >
-              View All Universities
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* Guides & Resources Section */}
       <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -587,6 +472,121 @@ const Home: React.FC = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Universities */}
+      <section className="py-8 sm:py-12 lg:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Featured Universities
+              </h2>
+              <p className="text-xl text-gray-600">
+                Explore top-ranked institutions worldwide
+              </p>
+            </div>
+            <button
+              onClick={() => navigate("/universities")}
+              className="hidden md:flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium"
+            >
+              <span>View All</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+            {isLoading ? (
+              // Loading skeleton
+              Array.from({ length: 3 }).map((_, index) => (
+                <div key={index} className="card p-6 animate-pulse">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gray-200 rounded"></div>
+                    <div>
+                      <div className="h-4 bg-gray-200 rounded w-32 mb-2"></div>
+                      <div className="h-3 bg-gray-200 rounded w-24"></div>
+                    </div>
+                  </div>
+                  <div className="h-3 bg-gray-200 rounded w-full mb-2"></div>
+                  <div className="h-3 bg-gray-200 rounded w-3/4 mb-4"></div>
+                  <div className="flex justify-between items-center">
+                    <div className="h-4 bg-gray-200 rounded w-20"></div>
+                    <div className="h-8 bg-gray-200 rounded w-24"></div>
+                  </div>
+                </div>
+              ))
+            ) : featuredUniversities.length > 0 ? (
+              featuredUniversities.map((university) => (
+                <div
+                  key={university.id}
+                  className="card p-6 hover:shadow-lg transition-shadow"
+                >
+                  <div className="flex items-center space-x-4 mb-4">
+                    {university.logo && (
+                      <img
+                        src={university.logo}
+                        alt={university.name}
+                        className="w-12 h-12 object-contain"
+                      />
+                    )}
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {university.name}
+                      </h3>
+                      <p className="text-gray-600">
+                        {university.city}, {university.country}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="flex items-center space-x-1">
+                      <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                      <span className="text-sm text-gray-600">
+                        #{university.ranking.world} World
+                      </span>
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {university.acceptanceRate}% acceptance
+                    </div>
+                  </div>
+
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                    {university.description}
+                  </p>
+
+                  <div className="flex justify-between items-center">
+                    <div className="text-sm text-gray-600">
+                      From {university.tuitionRange.currency}{" "}
+                      {university.tuitionRange.min.toLocaleString()}/year
+                    </div>
+                    <button
+                      onClick={() => navigate("/universities")}
+                      className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-3 text-center py-8">
+                <p className="text-gray-600">
+                  No featured universities available at the moment.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="text-center mt-8 md:hidden">
+            <button
+              onClick={() => navigate("/universities")}
+              className="btn-primary"
+            >
+              View All Universities
+            </button>
           </div>
         </div>
       </section>
