@@ -16,6 +16,7 @@ import OAuthSuccess from "./components/auth/OAuthSuccess";
 import StudentDashboard from "./components/student/StudentDashboard";
 import CounselorDashboard from "./components/counselor/CounselorDashboard";
 import WhatsAppChat from "./components/common/WhatsAppChat";
+import PopupManager from "./components/popups/PopupManager";
 import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 import TermsOfService from "./components/pages/TermsOfService";
 import CookiePolicy from "./components/pages/CookiePolicy";
@@ -52,113 +53,119 @@ function App() {
       <GoogleAnalytics trackingId={import.meta.env.VITE_GA_TRACKING_ID} />
       <Router>
         <ScrollToTop />
-        <div className="min-h-screen bg-gray-50">
-          <Navbar />
-          <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/universities" element={<Universities />} />
-              <Route path="/university/:id" element={<UniversityDetail />} />
-              <Route path="/courses" element={<Courses />} />
-              <Route path="/course/:id" element={<CourseDetail />} />
-              <Route path="/healthcare-jobs" element={<HealthcareJobs />} />
-              <Route
-                path="/healthcare-job/:id"
-                element={<HealthcareJobDetail />}
-              />
-              <Route path="/login" element={<Login />} />
-              <Route path="/auth/success" element={<OAuthSuccess />} />
-              <Route
-                path="/applications"
-                element={
-                  user?.role === "student" ? <StudentDashboard /> : <Home />
-                }
-              />
-              <Route
-                path="/dashboard"
-                element={
-                  user?.role === "counselor" ? <CounselorDashboard /> : <Home />
-                }
-              />
+        <PopupManager>
+          <div className="min-h-screen bg-gray-50">
+            <Navbar />
+            <main>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/universities" element={<Universities />} />
+                <Route path="/university/:id" element={<UniversityDetail />} />
+                <Route path="/courses" element={<Courses />} />
+                <Route path="/course/:id" element={<CourseDetail />} />
+                <Route path="/healthcare-jobs" element={<HealthcareJobs />} />
+                <Route
+                  path="/healthcare-job/:id"
+                  element={<HealthcareJobDetail />}
+                />
+                <Route path="/login" element={<Login />} />
+                <Route path="/auth/success" element={<OAuthSuccess />} />
+                <Route
+                  path="/applications"
+                  element={
+                    user?.role === "student" ? <StudentDashboard /> : <Home />
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={
+                    user?.role === "counselor" ? (
+                      <CounselorDashboard />
+                    ) : (
+                      <Home />
+                    )
+                  }
+                />
 
-              {/* Guide Pages */}
-              <Route
-                path="/guides/nursing-jobs-germany"
-                element={<NursingJobsGermany />}
-              />
-              <Route
-                path="/guides/doctors-jobs-germany"
-                element={<DoctorsJobsGermany />}
-              />
-              <Route
-                path="/guides/study-in-europe"
-                element={<StudyInEurope />}
-              />
-              <Route
-                path="/guides/free-visa-germany"
-                element={<FreeVisaGermany />}
-              />
-              <Route
-                path="/guides/work-visa-germany"
-                element={<WorkVisaGermany />}
-              />
+                {/* Guide Pages */}
+                <Route
+                  path="/guides/nursing-jobs-germany"
+                  element={<NursingJobsGermany />}
+                />
+                <Route
+                  path="/guides/doctors-jobs-germany"
+                  element={<DoctorsJobsGermany />}
+                />
+                <Route
+                  path="/guides/study-in-europe"
+                  element={<StudyInEurope />}
+                />
+                <Route
+                  path="/guides/free-visa-germany"
+                  element={<FreeVisaGermany />}
+                />
+                <Route
+                  path="/guides/work-visa-germany"
+                  element={<WorkVisaGermany />}
+                />
 
-              {/* New SEO-Optimized Guide Pages */}
-              <Route
-                path="/guides/complete-nursing-guide-2024"
-                element={<CompleteNursingGuide2024 />}
-              />
-              <Route
-                path="/guides/cheapest-universities-europe"
-                element={<CheapestUniversitiesEurope />}
-              />
-              <Route
-                path="/guides/visa-application-germany"
-                element={<VisaApplicationGermany />}
-              />
-              <Route
-                path="/guides/cost-comparison-germany-india"
-                element={<CostComparisonGermanyIndia />}
-              />
+                {/* New SEO-Optimized Guide Pages */}
+                <Route
+                  path="/guides/complete-nursing-guide-2024"
+                  element={<CompleteNursingGuide2024 />}
+                />
+                <Route
+                  path="/guides/cheapest-universities-europe"
+                  element={<CheapestUniversitiesEurope />}
+                />
+                <Route
+                  path="/guides/visa-application-germany"
+                  element={<VisaApplicationGermany />}
+                />
+                <Route
+                  path="/guides/cost-comparison-germany-india"
+                  element={<CostComparisonGermanyIndia />}
+                />
 
-              {/* Country-Specific Guide Pages */}
-              <Route
-                path="/guides/study-in-germany"
-                element={<StudyInGermany />}
-              />
-              <Route
-                path="/guides/study-in-poland"
-                element={<StudyInPoland />}
-              />
-              <Route
-                path="/guides/cheap-study-europe"
-                element={<CheapStudyEurope />}
-              />
-              <Route
-                path="/guides/free-study-europe"
-                element={<FreeStudyEurope />}
-              />
+                {/* Country-Specific Guide Pages */}
+                <Route
+                  path="/guides/study-in-germany"
+                  element={<StudyInGermany />}
+                />
+                <Route
+                  path="/guides/study-in-poland"
+                  element={<StudyInPoland />}
+                />
+                <Route
+                  path="/guides/cheap-study-europe"
+                  element={<CheapStudyEurope />}
+                />
+                <Route
+                  path="/guides/free-study-europe"
+                  element={<FreeStudyEurope />}
+                />
 
-              {/* Legal Pages */}
-              <Route path="/privacy" element={<PrivacyPolicy />} />
-              <Route path="/terms" element={<TermsOfService />} />
-              <Route path="/cookies" element={<CookiePolicy />} />
-              <Route path="/refund" element={<RefundPolicy />} />
+                {/* Legal Pages */}
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsOfService />} />
+                <Route path="/cookies" element={<CookiePolicy />} />
+                <Route path="/refund" element={<RefundPolicy />} />
 
-              {/* Debug/Test Routes */}
-              <Route
-                path="/test-google-sheets"
-                element={<GoogleSheetsTest />}
-              />
-            </Routes>
-          </main>
+                {/* Debug/Test Routes */}
+                <Route
+                  path="/test-google-sheets"
+                  element={<GoogleSheetsTest />}
+                />
+              </Routes>
+            </main>
 
-          {/* Footer */}
-          <Footer />
+            {/* Footer */}
+            <Footer />
 
-          {/* WhatsApp Chat Widget - Available on all pages */}
-          <WhatsAppChat />
-        </div>
+            {/* WhatsApp Chat Widget - Available on all pages */}
+            <WhatsAppChat />
+          </div>
+        </PopupManager>
       </Router>
     </>
   );
