@@ -260,164 +260,172 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
             {/* Complete Nursing Guide 2024 - NEW */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border-l-4 border-blue-500">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🩺</span>
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-2 sm:p-4 lg:p-6 border-l-4 border-blue-500">
+              <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-4">
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-2 sm:mb-0">
+                  <span className="text-lg sm:text-2xl">🩺</span>
                 </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Complete Nursing Guide 2024
+                <div className="sm:ml-4 text-center sm:text-left">
+                  <h3 className="text-sm sm:text-lg font-semibold text-gray-900">
+                    Nursing Guide 2024
                   </h3>
-                  <p className="text-sm text-blue-600 font-medium">
+                  <p className="text-xs sm:text-sm text-blue-600 font-medium">
                     ⭐ Most Comprehensive
                   </p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-xs sm:text-base text-gray-600 mb-2 sm:mb-4 hidden sm:block">
                 Ultimate guide: Salaries €2,800-€6,500, step-by-step process,
                 visa requirements, top cities, and success tips for Indian
                 nurses.
               </p>
               <Link
                 to="/guides/complete-nursing-guide-2024"
-                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-xs sm:text-base"
               >
-                Read Complete Guide
-                <ArrowRight className="w-4 h-4 ml-1" />
+                <span className="hidden sm:inline">Read Complete Guide</span>
+                <span className="sm:hidden">Read Guide</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
               </Link>
             </div>
 
             {/* Cheapest Universities Europe - NEW */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border-l-4 border-green-500">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🎓</span>
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-2 sm:p-4 lg:p-6 border-l-4 border-green-500">
+              <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-4">
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center mb-2 sm:mb-0">
+                  <span className="text-lg sm:text-2xl">🎓</span>
                 </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Top 10 Cheapest Universities
+                <div className="sm:ml-4 text-center sm:text-left">
+                  <h3 className="text-sm sm:text-lg font-semibold text-gray-900">
+                    Cheapest Universities
                   </h3>
-                  <p className="text-sm text-green-600 font-medium">
+                  <p className="text-xs sm:text-sm text-green-600 font-medium">
                     💰 Save ₹15-30 Lakhs
                   </p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-xs sm:text-base text-gray-600 mb-2 sm:mb-4 hidden sm:block">
                 Discover affordable European education: Free tuition in Germany,
                 €0-€8,000 fees, scholarships, and complete cost breakdown.
               </p>
               <Link
                 to="/guides/cheapest-universities-europe"
-                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium"
+                className="inline-flex items-center text-green-600 hover:text-green-700 font-medium text-xs sm:text-base"
               >
-                View Universities
-                <ArrowRight className="w-4 h-4 ml-1" />
+                <span className="hidden sm:inline">View Universities</span>
+                <span className="sm:hidden">View Unis</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
               </Link>
             </div>
 
             {/* Visa Application Process - NEW */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border-l-4 border-purple-500">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">✈️</span>
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-2 sm:p-4 lg:p-6 border-l-4 border-purple-500">
+              <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-4">
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-2 sm:mb-0">
+                  <span className="text-lg sm:text-2xl">✈️</span>
                 </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Visa Application Process
+                <div className="sm:ml-4 text-center sm:text-left">
+                  <h3 className="text-sm sm:text-lg font-semibold text-gray-900">
+                    Visa Process
                   </h3>
-                  <p className="text-sm text-purple-600 font-medium">
+                  <p className="text-xs sm:text-sm text-purple-600 font-medium">
                     📋 Step-by-Step Guide
                   </p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-xs sm:text-base text-gray-600 mb-2 sm:mb-4 hidden sm:block">
                 Complete visa guide: Student, work, EU Blue Card requirements,
                 documents, processing time, and consulate information.
               </p>
               <Link
                 to="/guides/visa-application-germany"
-                className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium"
+                className="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium text-xs sm:text-base"
               >
-                Start Application
-                <ArrowRight className="w-4 h-4 ml-1" />
+                <span className="hidden sm:inline">Start Application</span>
+                <span className="sm:hidden">Apply</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
               </Link>
             </div>
 
             {/* Cost Comparison - NEW */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border-l-4 border-orange-500">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">📊</span>
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-2 sm:p-4 lg:p-6 border-l-4 border-orange-500">
+              <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-4">
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-2 sm:mb-0">
+                  <span className="text-lg sm:text-2xl">📊</span>
                 </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    Germany vs India Costs
+                <div className="sm:ml-4 text-center sm:text-left">
+                  <h3 className="text-sm sm:text-lg font-semibold text-gray-900">
+                    Cost Comparison
                   </h3>
-                  <p className="text-sm text-orange-600 font-medium">
+                  <p className="text-xs sm:text-sm text-orange-600 font-medium">
                     💡 ROI Analysis
                   </p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-xs sm:text-base text-gray-600 mb-2 sm:mb-4 hidden sm:block">
                 Detailed financial analysis: Education costs, living expenses,
                 salaries, and return on investment comparison.
               </p>
               <Link
                 to="/guides/cost-comparison-germany-india"
-                className="inline-flex items-center text-orange-600 hover:text-orange-700 font-medium"
+                className="inline-flex items-center text-orange-600 hover:text-orange-700 font-medium text-xs sm:text-base"
               >
-                Compare Costs
-                <ArrowRight className="w-4 h-4 ml-1" />
+                <span className="hidden sm:inline">Compare Costs</span>
+                <span className="sm:hidden">Compare</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
               </Link>
             </div>
 
             {/* Study in Europe Guide */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
-                  <span className="text-2xl">🌍</span>
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-2 sm:p-4 lg:p-6">
+              <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-4">
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-2 sm:mb-0">
+                  <span className="text-lg sm:text-2xl">🌍</span>
                 </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-semibold text-gray-900">
+                <div className="sm:ml-4 text-center sm:text-left">
+                  <h3 className="text-sm sm:text-lg font-semibold text-gray-900">
                     Study in Europe
                   </h3>
-                  <p className="text-sm text-indigo-600">Education Guide</p>
+                  <p className="text-xs sm:text-sm text-indigo-600">
+                    Education Guide
+                  </p>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4">
+              <p className="text-xs sm:text-base text-gray-600 mb-2 sm:mb-4 hidden sm:block">
                 Best universities, scholarships, free education options, and
                 application process for Indian students.
               </p>
               <Link
                 to="/guides/study-in-europe"
-                className="inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium"
+                className="inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium text-xs sm:text-base"
               >
-                Read Guide
-                <ArrowRight className="w-4 h-4 ml-1" />
+                <span className="hidden sm:inline">Read Guide</span>
+                <span className="sm:hidden">Read</span>
+                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1" />
               </Link>
             </div>
 
             {/* Featured CTA Card */}
-            <div className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-lg shadow-md p-4 sm:p-6">
+            <div className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-lg shadow-md p-2 sm:p-4 lg:p-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">✨</span>
+                <div className="w-8 sm:w-12 h-8 sm:h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                  <span className="text-lg sm:text-2xl">✨</span>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">
+                <h3 className="text-sm sm:text-lg font-semibold mb-1 sm:mb-2">
                   Need Personal Guidance?
                 </h3>
-                <p className="text-indigo-100 mb-4 text-sm">
+                <p className="text-indigo-100 mb-2 sm:mb-4 text-xs sm:text-sm hidden sm:block">
                   Get free consultation from our experts for your specific
                   situation.
                 </p>
                 <button
                   onClick={handleCounselingClick}
-                  className="bg-white text-indigo-600 px-4 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+                  className="bg-white text-indigo-600 px-2 sm:px-4 py-1 sm:py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors text-xs sm:text-base"
                 >
-                  Free Consultation
+                  <span className="hidden sm:inline">Free Consultation</span>
+                  <span className="sm:hidden">Consult</span>
                 </button>
               </div>
             </div>
