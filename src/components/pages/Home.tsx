@@ -273,7 +273,7 @@ const Home: React.FC = () => {
       <TopCollegesSection />
 
       {/* Success Stories Section */}
-      <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
+      <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-r from-green-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -285,9 +285,9 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12">
             {/* Success Story 1 - Doctor */}
-            <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-green-500">
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 border-l-4 border-green-500">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
                   <span className="text-2xl">👨‍⚕️</span>
@@ -314,7 +314,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Success Story 2 - Nurse */}
-            <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-500">
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 border-l-4 border-blue-500">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                   <span className="text-2xl">👩‍⚕️</span>
@@ -337,7 +337,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Success Story 3 - Student */}
-            <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-purple-500">
+            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 border-l-4 border-purple-500">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
                   <span className="text-2xl">🎓</span>
@@ -365,7 +365,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -377,11 +377,11 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="card p-6 text-center">
+                <div key={index} className="card p-4 lg:p-6 text-center">
                   <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
                     <Icon className="w-6 h-6 text-blue-600" />
                   </div>
@@ -397,7 +397,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Featured Universities */}
-      <section className="py-16 bg-white">
+      <section className="py-8 sm:py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12">
             <div>
@@ -417,7 +417,7 @@ const Home: React.FC = () => {
             </button>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {isLoading ? (
               // Loading skeleton
               Array.from({ length: 3 }).map((_, index) => (
@@ -512,7 +512,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Guides & Resources Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -525,9 +525,9 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {/* Complete Nursing Guide 2024 - NEW */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-blue-500">
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border-l-4 border-blue-500">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                   <span className="text-2xl">🩺</span>
@@ -556,7 +556,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Cheapest Universities Europe - NEW */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-green-500">
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border-l-4 border-green-500">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                   <span className="text-2xl">🎓</span>
@@ -584,7 +584,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Visa Application Process - NEW */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-purple-500">
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border-l-4 border-purple-500">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                   <span className="text-2xl">✈️</span>
@@ -612,7 +612,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Cost Comparison - NEW */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-l-4 border-orange-500">
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6 border-l-4 border-orange-500">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                   <span className="text-2xl">📊</span>
@@ -640,7 +640,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Study in Europe Guide */}
-            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6">
+            <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-4 sm:p-6">
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
                   <span className="text-2xl">🌍</span>
@@ -666,7 +666,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Featured CTA Card */}
-            <div className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-lg shadow-md p-6">
+            <div className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-lg shadow-md p-4 sm:p-6">
               <div className="text-center">
                 <div className="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">✨</span>
@@ -691,7 +691,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white">
+      <section className="py-8 sm:py-12 lg:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -705,7 +705,7 @@ const Home: React.FC = () => {
 
           <div className="space-y-6">
             {/* FAQ 1 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
                 🏥 What is the average salary for healthcare professionals in
                 Germany?
@@ -719,7 +719,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* FAQ 2 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
                 🎓 Can I study in Germany for free as an Indian student?
               </h3>
@@ -732,7 +732,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* FAQ 3 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
                 ⏰ How long does the application process take?
               </h3>
@@ -745,7 +745,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* FAQ 4 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
                 🇩🇪 Do I need to learn German before applying?
               </h3>
@@ -758,7 +758,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* FAQ 5 */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-3">
                 💰 What are the total costs involved?
               </h3>
