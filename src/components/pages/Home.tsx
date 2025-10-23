@@ -202,39 +202,39 @@ const Home: React.FC = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
               <button
                 onClick={handleCounselingClick}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-2 relative"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 sm:px-8 py-2 sm:py-4 rounded-lg font-bold text-sm sm:text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-1 sm:gap-2 relative"
               >
-                <MessageCircle className="w-5 h-5" />
+                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                 <div className="flex flex-col items-start">
-                  <span>FREE Counseling</span>
-                  <span className="text-xs font-normal text-blue-200">
+                  <span className="text-xs sm:text-base">FREE Counseling</span>
+                  <span className="text-xs font-normal text-blue-200 hidden sm:block">
                     🔥 Limited slots today
                   </span>
                 </div>
-                <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-red-500 text-white text-xs px-1 sm:px-2 py-0.5 sm:py-1 rounded-full animate-pulse">
                   FREE
                 </div>
               </button>
               <button
                 onClick={() => navigate("/universities")}
-                className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="bg-white text-blue-600 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-xs sm:text-base hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap"
               >
-                🎓 Browse Universities
+                🎓 Universities
               </button>
               <button
                 onClick={() => navigate("/courses")}
-                className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="border-2 border-white text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-xs sm:text-base hover:bg-white hover:text-blue-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap"
               >
-                📚 Explore Courses
+                📚 Courses
               </button>
               <button
                 onClick={() => navigate("/healthcare-jobs")}
-                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-xs sm:text-base hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap"
               >
-                🏥 Healthcare Jobs
+                🏥 Healthcare
               </button>
             </div>
 
