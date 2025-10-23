@@ -180,14 +180,14 @@ const Home: React.FC = () => {
             </p>
 
             {/* Key Benefits */}
-            <div className="flex flex-wrap justify-center gap-4 mb-6 text-sm">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 text-blue-100">
-                ✅ 98% Success Rate
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-6 text-xs sm:text-sm">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 sm:px-3 py-1 text-blue-100 whitespace-nowrap">
+                ✅ 98% Success
               </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 text-blue-100">
-                💰 €45,000+ Average Salary
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 sm:px-3 py-1 text-blue-100 whitespace-nowrap">
+                💰 €45,000+ Salary
               </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 text-blue-100">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-2 sm:px-3 py-1 text-blue-100 whitespace-nowrap">
                 🆓 Free Consultation
               </div>
             </div>
@@ -255,44 +255,6 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Study Goals Carousel */}
-      <StudyGoalsCarousel />
-
-      {/* Top Colleges Section */}
-      <TopCollegesSection />
-
-      {/* Features Section */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Europe Job Consultancy?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide comprehensive support for your study and career abroad
-              journey, from university selection to application success.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div key={index} className="card p-4 lg:p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
-                    <Icon className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </div>
-              );
-            })}
           </div>
         </div>
       </section>
@@ -472,6 +434,44 @@ const Home: React.FC = () => {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Study Goals Carousel */}
+      <StudyGoalsCarousel />
+
+      {/* Top Colleges Section */}
+      <TopCollegesSection />
+
+      {/* Features Section */}
+      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Why Choose Europe Job Consultancy?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We provide comprehensive support for your study and career abroad
+              journey, from university selection to application success.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <div key={index} className="card p-4 lg:p-6 text-center">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
+                    <Icon className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
