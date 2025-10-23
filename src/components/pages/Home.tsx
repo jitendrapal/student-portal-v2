@@ -15,7 +15,7 @@ import StudyGoalsCarousel from "../common/StudyGoalsCarousel";
 import TopCollegesSection from "../common/TopCollegesSection";
 import SEOHeadNative from "../seo/SEOHeadNative";
 import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
-import SocialProofBanner from "../common/SocialProofBanner";
+
 import type { HealthcareJob } from "../../types/healthcare";
 import {
   createOrganizationSchema,
@@ -259,110 +259,11 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Social Proof Banner */}
-      <SocialProofBanner
-        variant="section"
-        showStats={true}
-        showRecentActivity={true}
-      />
-
       {/* Study Goals Carousel */}
       <StudyGoalsCarousel />
 
       {/* Top Colleges Section */}
       <TopCollegesSection />
-
-      {/* Success Stories Section */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-r from-green-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              🌟 Success Stories That Inspire
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Real people, real success. See how we've helped thousands achieve
-              their European dreams.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12">
-            {/* Success Story 1 - Doctor */}
-            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 border-l-4 border-green-500">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl">👨‍⚕️</span>
-                </div>
-                <div className="ml-4">
-                  <h3 className="font-semibold text-gray-900">
-                    Dr. Priya Sharma
-                  </h3>
-                  <p className="text-sm text-green-600">
-                    Cardiologist • Berlin
-                  </p>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm mb-4">
-                "From Mumbai to Berlin in 8 months! Now earning €85,000/year.
-                The team guided me through every step of license recognition."
-              </p>
-              <div className="flex items-center text-sm text-gray-500">
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
-                  €85,000/year
-                </span>
-                <span className="ml-2">• 2 months ago</span>
-              </div>
-            </div>
-
-            {/* Success Story 2 - Nurse */}
-            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 border-l-4 border-blue-500">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl">👩‍⚕️</span>
-                </div>
-                <div className="ml-4">
-                  <h3 className="font-semibold text-gray-900">Anjali Patel</h3>
-                  <p className="text-sm text-blue-600">ICU Nurse • Munich</p>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm mb-4">
-                "Amazing support! Got my nursing license recognized and landed a
-                job in Munich. Work-life balance is incredible here."
-              </p>
-              <div className="flex items-center text-sm text-gray-500">
-                <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">
-                  €52,000/year
-                </span>
-                <span className="ml-2">• 1 week ago</span>
-              </div>
-            </div>
-
-            {/* Success Story 3 - Student */}
-            <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 border-l-4 border-purple-500">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl">🎓</span>
-                </div>
-                <div className="ml-4">
-                  <h3 className="font-semibold text-gray-900">Rahul Kumar</h3>
-                  <p className="text-sm text-purple-600">
-                    MS Computer Science • TU Munich
-                  </p>
-                </div>
-              </div>
-              <p className="text-gray-600 text-sm mb-4">
-                "Free tuition at TU Munich! The application process was smooth
-                with their guidance. Already got internship offers."
-              </p>
-              <div className="flex items-center text-sm text-gray-500">
-                <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs">
-                  €0 tuition
-                </span>
-                <span className="ml-2">• 3 days ago</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Features Section */}
       <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
