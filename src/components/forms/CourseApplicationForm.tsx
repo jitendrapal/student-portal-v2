@@ -219,6 +219,12 @@ const COUNTRIES = [
   "Zimbabwe",
 ];
 
+// Generate graduation years from 1950 to 2030
+const GRADUATION_YEARS = Array.from(
+  { length: 2030 - 1950 + 1 },
+  (_, i) => 2030 - i
+);
+
 interface CourseApplicationFormProps {
   course: Course;
   university: University;
@@ -625,16 +631,20 @@ const CourseApplicationForm: React.FC<CourseApplicationFormProps> = ({
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Graduation Year *
           </label>
-          <input
-            type="number"
+          <select
             name="graduationYear"
             value={formData.graduationYear}
             onChange={handleInputChange}
-            min="1950"
-            max="2030"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
             required
-          />
+          >
+            <option value="">Select graduation year</option>
+            {GRADUATION_YEARS.map((year) => (
+              <option key={year} value={year.toString()}>
+                {year}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
