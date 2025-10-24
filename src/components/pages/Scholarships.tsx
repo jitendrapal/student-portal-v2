@@ -9,7 +9,6 @@ import {
   GraduationCap,
   Globe,
   Star,
-  ExternalLink,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -458,11 +457,6 @@ const Scholarships: React.FC = () => {
                       {scholarship.applications.toLocaleString()}
                     </div>
                   </div>
-
-                  <button className="w-full bg-yellow-600 text-white py-2 px-4 rounded-lg hover:bg-yellow-700 transition-colors flex items-center justify-center">
-                    Apply Now
-                    <ExternalLink className="w-4 h-4 ml-2" />
-                  </button>
                 </div>
               </div>
             ))}
@@ -554,11 +548,6 @@ const Scholarships: React.FC = () => {
                         {new Date(scholarship.deadline).toLocaleDateString()}
                       </p>
                     </div>
-
-                    <button className="w-full bg-yellow-600 text-white py-3 px-4 rounded-lg hover:bg-yellow-700 transition-colors flex items-center justify-center">
-                      Apply Now
-                      <ExternalLink className="w-4 h-4 ml-2" />
-                    </button>
                   </div>
                 </div>
               </div>
