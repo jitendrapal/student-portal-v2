@@ -27,6 +27,7 @@ import SuccessStories from "./components/pages/SuccessStories";
 import Blog from "./components/pages/Blog";
 import CareerCounseling from "./components/pages/CareerCounseling";
 import Scholarships from "./components/pages/Scholarships";
+import Guides from "./components/pages/Guides";
 import GoogleSheetsTest from "./components/debug/GoogleSheetsTest";
 import NotFound from "./components/pages/NotFound";
 
@@ -150,6 +151,18 @@ function App() {
                   path="/guides/study-in-germany-free"
                   element={<StudyInGermanyFree />}
                 />
+
+                {/* Service Pages */}
+                <Route path="/about" element={<AboutUs />} />
+                <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path="/success-stories" element={<SuccessStories />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route
+                  path="/career-counseling"
+                  element={<CareerCounseling />}
+                />
+                <Route path="/scholarships" element={<Scholarships />} />
+                <Route path="/guides" element={<Guides />} />
 
                 {/* Legal Pages */}
                 <Route path="/privacy" element={<PrivacyPolicy />} />

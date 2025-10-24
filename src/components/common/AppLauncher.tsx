@@ -11,6 +11,8 @@ import {
   Phone,
   Mail,
   X,
+  Award,
+  Map,
 } from "lucide-react";
 import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
 import type { HealthcareJob } from "../../types/healthcare";
@@ -135,6 +137,22 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
       icon: Search,
       path: "/",
       color: "bg-orange-500",
+    },
+    {
+      id: "guides",
+      title: "Guides",
+      description: "Study & work guides",
+      icon: Map,
+      path: "/guides",
+      color: "bg-emerald-500",
+    },
+    {
+      id: "scholarships",
+      title: "Scholarships",
+      description: "Find funding options",
+      icon: Award,
+      path: "/scholarships",
+      color: "bg-yellow-500",
     },
     {
       id: "counseling",
