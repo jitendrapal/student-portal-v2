@@ -3,7 +3,7 @@
 export const SEO_CONFIG = {
   defaultTitle:
     "Nursing Jobs Germany | Doctors Jobs Germany | Study in Europe | EJC Group",
-  titleTemplate: "%s | EJC Group - Europe Job Center",
+  titleTemplate: "%s | EJC Group - Europe Job Consultancy",
   defaultDescription:
     "Leading recruitment agency for nursing jobs Germany and doctors jobs Germany. Study in Europe's top universities with visa assistance. Healthcare recruitment, medical jobs, and European education for Indian professionals and students.",
   siteUrl: "https://www.ejcgroup.eu",
@@ -108,7 +108,7 @@ export const SEO_CONFIG = {
       addressCountry: "EU",
     },
     contactPoint: {
-      telephone: "+49-XXX-XXXXXXX",
+      telephone: "+31683078160",
       contactType: "customer service",
       availableLanguage: ["English", "German", "French"],
     },
@@ -275,7 +275,7 @@ export const PAGE_SEO = {
     description:
       "Contact Europe Job Center for personalized guidance on studying and working in Europe. Get expert advice from our experienced consultants.",
     keywords: [
-      "contact Europe Job Center",
+      "contact Europe Job C",
       "education consultant",
       "study abroad guidance",
       "career counseling",

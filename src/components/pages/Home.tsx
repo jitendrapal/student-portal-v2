@@ -652,20 +652,6 @@ const Home: React.FC = () => {
                 resources and partner with certified institutes for preparation.
               </p>
             </div>
-
-            {/* FAQ 5 */}
-            <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                💰 What are the total costs involved?
-              </h3>
-              <p className="text-gray-600">
-                Our healthcare package: €2,999 (includes license recognition,
-                job placement, visa support). Student package: €1,999 (includes
-                university application, visa guidance, accommodation help).
-                Payment plans available. FREE initial consultation for all
-                services.
-              </p>
-            </div>
           </div>
 
           {/* CTA after FAQ */}
