@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   BookOpen,
@@ -11,8 +11,11 @@ import {
   Users,
   Star,
 } from "lucide-react";
+import ContactForm from "../forms/ContactForm";
 
 const Guides: React.FC = () => {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+
   const guideCategories = [
     {
       id: "healthcare",
@@ -29,7 +32,7 @@ const Guides: React.FC = () => {
           popularity: "Most Popular",
         },
         {
-          title: "Doctors Jobs in Germany", 
+          title: "Doctors Jobs in Germany",
           path: "/guides/doctors-jobs-germany",
           description: "Medical career opportunities in Germany",
           readTime: "10 min read",
@@ -64,13 +67,6 @@ const Guides: React.FC = () => {
           description: "Universities and programs in Germany",
           readTime: "10 min read",
           popularity: "Popular",
-        },
-        {
-          title: "Study in Germany Free",
-          path: "/guides/study-in-germany-free",
-          description: "Free education opportunities in Germany",
-          readTime: "8 min read",
-          popularity: "Hot",
         },
         {
           title: "Cheapest Universities Europe",
@@ -165,7 +161,7 @@ const Guides: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-4 text-sm">
               <div className="flex items-center space-x-2 bg-white/20 px-4 py-2 rounded-full">
                 <BookOpen className="w-4 h-4" />
-                <span>15+ Comprehensive Guides</span>
+                <span>14+ Comprehensive Guides</span>
               </div>
               <div className="flex items-center space-x-2 bg-white/20 px-4 py-2 rounded-full">
                 <Users className="w-4 h-4" />
@@ -190,7 +186,9 @@ const Guides: React.FC = () => {
                 {/* Category Header */}
                 <div className="text-center">
                   <div className="flex justify-center mb-4">
-                    <div className={`w-16 h-16 ${category.color} rounded-full flex items-center justify-center`}>
+                    <div
+                      className={`w-16 h-16 ${category.color} rounded-full flex items-center justify-center`}
+                    >
                       <Icon className="w-8 h-8 text-white" />
                     </div>
                   </div>
@@ -216,15 +214,15 @@ const Guides: React.FC = () => {
                         </span>
                         <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
                       </div>
-                      
+
                       <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                         {guide.title}
                       </h3>
-                      
+
                       <p className="text-gray-600 mb-4 line-clamp-2">
                         {guide.description}
                       </p>
-                      
+
                       <div className="flex items-center text-sm text-gray-500">
                         <Clock className="w-4 h-4 mr-1" />
                         <span>{guide.readTime}</span>
@@ -245,24 +243,34 @@ const Guides: React.FC = () => {
             Need Personalized Guidance?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Our expert counselors are here to help you navigate your European journey
+            Our expert counselors are here to help you navigate your European
+            journey
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/career-counseling"
+            <button
+              onClick={() => setIsContactFormOpen(true)}
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
             >
-              Get Expert Counseling
-            </Link>
+              Get Scholarship Guidance
+            </button>
             <Link
-              to="/scholarships"
+              to="/universities"
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
             >
-              Find Scholarships
+              Universities
             </Link>
           </div>
         </div>
       </div>
+
+      {/* Contact Form Modal for Scholarship Guidance */}
+      <ContactForm
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+        title="Get Scholarship Guidance"
+        subtitle="Connect with our expert counselors for personalized scholarship advice"
+        serviceType="Scholarship Guidance"
+      />
     </div>
   );
 };
