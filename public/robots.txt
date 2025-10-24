@@ -1,5 +1,5 @@
 User-agent: *
-Allow: /
+Allow: /sitemap.xml
 
 # Sitemap
 Sitemap: https://www.ejcgroup.eu/sitemap.xml
