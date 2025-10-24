@@ -11,6 +11,8 @@ import {
   Star,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
+import type { HealthcareJob } from "../../types/healthcare";
 
 const Scholarships: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +20,8 @@ const Scholarships: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState("all");
   const [selectedLevel, setSelectedLevel] = useState("all");
   const [selectedField, setSelectedField] = useState("all");
+  const [showHealthcareForm, setShowHealthcareForm] = useState(false);
+  const [selectedJob, setSelectedJob] = useState<HealthcareJob | null>(null);
 
   const countries = [
     { id: "all", name: "All Countries" },
@@ -253,6 +257,49 @@ const Scholarships: React.FC = () => {
       applications: 3000,
     },
   ];
+
+  // Sample healthcare job for scholarship guidance form
+  const sampleHealthcareJob: HealthcareJob = {
+    id: "scholarship-guidance-job",
+    title: "Healthcare Professional - Scholarship Guidance",
+    category: "nurse",
+    location: "Europe",
+    country: "Germany",
+    hospital: "EJC Group - Career Services",
+    employmentType: "full-time",
+    experience: "Entry Level",
+    salary: {
+      min: 30000,
+      max: 60000,
+      currency: "EUR",
+      period: "annual",
+    },
+    requirements: [
+      "Interest in healthcare career",
+      "Scholarship guidance needed",
+      "European study/work aspirations",
+    ],
+    responsibilities: [
+      "Explore healthcare opportunities",
+      "Apply for relevant scholarships",
+      "Connect with career counselors",
+    ],
+    benefits: [
+      "Scholarship guidance",
+      "Career counseling",
+      "European placement support",
+    ],
+    description:
+      "Get personalized guidance for healthcare scholarships and career opportunities in Europe.",
+    postedDate: new Date(),
+    contactEmail: "scholarships@ejcgroup.eu",
+    isActive: true,
+  };
+
+  const handleScholarshipGuidance = () => {
+    setSelectedJob(sampleHealthcareJob);
+    setShowHealthcareForm(true);
+  };
 
   const filteredScholarships = scholarships.filter((scholarship) => {
     const matchesSearch =
@@ -580,20 +627,39 @@ const Scholarships: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              onClick={() => navigate("/contact")}
+              onClick={handleScholarshipGuidance}
               className="bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
             >
               Get Scholarship Guidance
             </button>
             <button
-              onClick={() => navigate("/success-stories")}
+              onClick={() => navigate("/universities")}
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-600 transition-colors"
             >
-              View Success Stories
+              Universities
             </button>
           </div>
         </div>
       </div>
+
+      {/* Healthcare Application Form Modal for Scholarship Guidance */}
+      {showHealthcareForm && selectedJob && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <HealthcareApplicationForm
+              job={selectedJob}
+              onClose={() => {
+                setShowHealthcareForm(false);
+                setSelectedJob(null);
+              }}
+              onBack={() => {
+                setShowHealthcareForm(false);
+                setSelectedJob(null);
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
