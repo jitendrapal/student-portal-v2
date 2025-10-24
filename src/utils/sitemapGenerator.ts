@@ -167,35 +167,139 @@ export const getStaticSitemapUrls = (): SitemapUrl[] => {
       priority: 0.8,
     },
 
-    // SEO-Optimized Guide Pages
+    // SEO-Optimized Guide Pages - High Priority Healthcare Keywords
     {
       loc: `${baseUrl}/guides/nursing-jobs-germany`,
       lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.85,
+      changefreq: "weekly",
+      priority: 0.95,
     },
     {
       loc: `${baseUrl}/guides/doctors-jobs-germany`,
       lastmod: currentDate,
-      changefreq: "monthly",
+      changefreq: "weekly",
+      priority: 0.95,
+    },
+    {
+      loc: `${baseUrl}/guides/nursing-jobs-germany-with-visa-sponsorship`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.9,
+    },
+    {
+      loc: `${baseUrl}/guides/doctors-jobs-germany-with-visa-sponsorship`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.9,
+    },
+    {
+      loc: `${baseUrl}/guides/nursing-jobs-germany-for-indian-nurses`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.9,
+    },
+    {
+      loc: `${baseUrl}/guides/doctors-jobs-germany-for-indian-doctors`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.9,
+    },
+    {
+      loc: `${baseUrl}/guides/healthcare-recruitment-germany`,
+      lastmod: currentDate,
+      changefreq: "weekly",
       priority: 0.85,
     },
     {
-      loc: `${baseUrl}/guides/study-in-europe`,
+      loc: `${baseUrl}/guides/medical-recruitment-germany`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.85,
+    },
+    {
+      loc: `${baseUrl}/guides/nurse-recruitment-germany`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.85,
+    },
+    {
+      loc: `${baseUrl}/guides/nursing-abroad-germany`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.85,
+    },
+    {
+      loc: `${baseUrl}/guides/nursing-license-germany`,
       lastmod: currentDate,
       changefreq: "monthly",
-      priority: 0.85,
+      priority: 0.8,
+    },
+    {
+      loc: `${baseUrl}/guides/medical-license-germany`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: 0.8,
+    },
+    {
+      loc: `${baseUrl}/guides/nursing-salary-germany`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: 0.8,
+    },
+    {
+      loc: `${baseUrl}/guides/doctor-salary-germany`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: 0.8,
+    },
+
+    // High Priority Education Keywords
+    {
+      loc: `${baseUrl}/guides/study-in-europe`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.9,
     },
     {
       loc: `${baseUrl}/guides/study-in-germany`,
       lastmod: currentDate,
-      changefreq: "monthly",
+      changefreq: "weekly",
+      priority: 0.9,
+    },
+    {
+      loc: `${baseUrl}/guides/study-in-germany-free`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.9,
+    },
+    {
+      loc: `${baseUrl}/guides/study-in-europe-for-indian-students`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.85,
+    },
+    {
+      loc: `${baseUrl}/guides/best-universities-europe`,
+      lastmod: currentDate,
+      changefreq: "weekly",
       priority: 0.85,
     },
     {
       loc: `${baseUrl}/guides/study-in-poland`,
       lastmod: currentDate,
-      changefreq: "monthly",
+      changefreq: "weekly",
+      priority: 0.8,
+    },
+    {
+      loc: `${baseUrl}/guides/study-in-netherlands`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.8,
+    },
+    {
+      loc: `${baseUrl}/guides/study-in-belgium`,
+      lastmod: currentDate,
+      changefreq: "weekly",
       priority: 0.8,
     },
     {
@@ -217,22 +321,42 @@ export const getStaticSitemapUrls = (): SitemapUrl[] => {
       priority: 0.85,
     },
     {
-      loc: `${baseUrl}/guides/indian-jobs-germany`,
+      loc: `${baseUrl}/guides/affordable-education-europe`,
       lastmod: currentDate,
       changefreq: "monthly",
+      priority: 0.8,
+    },
+
+    // Visa and Immigration Pages
+    {
+      loc: `${baseUrl}/guides/indian-jobs-germany`,
+      lastmod: currentDate,
+      changefreq: "weekly",
       priority: 0.85,
     },
     {
       loc: `${baseUrl}/guides/free-visa-germany`,
       lastmod: currentDate,
-      changefreq: "monthly",
+      changefreq: "weekly",
       priority: 0.85,
     },
     {
       loc: `${baseUrl}/guides/work-visa-germany`,
       lastmod: currentDate,
-      changefreq: "monthly",
+      changefreq: "weekly",
       priority: 0.85,
+    },
+    {
+      loc: `${baseUrl}/guides/student-visa-europe`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: 0.8,
+    },
+    {
+      loc: `${baseUrl}/guides/visa-assistance-germany`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: 0.8,
     },
     {
       loc: `${baseUrl}/guides/doctors-study-europe`,

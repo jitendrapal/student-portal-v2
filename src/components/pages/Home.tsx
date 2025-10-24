@@ -133,9 +133,9 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <SEOHeadNative
-        title="EJC - Europe Job Center | Study & Work in Europe"
-        description="Europe Job Center helps students and professionals find opportunities to study and work in Europe. Browse universities, courses, and healthcare jobs across 50+ European countries."
-        keywords="Europe jobs, European universities, study abroad, healthcare jobs Germany, European education, work in Europe, student visa, university applications, career counseling"
+        title="Nursing Jobs Germany | Doctors Jobs Germany | Study in Europe | EJC Group"
+        description="Leading recruitment agency for nursing jobs Germany and doctors jobs Germany with visa sponsorship. Study in Europe's top universities. Healthcare recruitment, medical jobs, European education, and visa assistance for Indian professionals."
+        keywords="nursing jobs in germany, doctors jobs in germany, nursing jobs germany for indian nurses, doctors jobs germany for indian doctors, nursing jobs germany with visa sponsorship, medical jobs germany, healthcare jobs germany, nurse recruitment germany, medical recruitment germany, healthcare recruitment germany, study in europe, study in germany, study in europe for indian students, european universities, best universities in europe, study abroad europe, higher education europe, indian jobs in germany, indian nurses in germany, indian doctors in germany, free visa in germany, work visa in germany, student visa europe, visa assistance germany, cheap study in europe, affordable education europe, nursing abroad germany, medical careers germany, healthcare visa germany, nursing license germany, medical license germany, hospital jobs germany, nursing salary germany, doctor salary germany, career counseling, education consultant, study abroad consultant"
         url="https://www.ejcgroup.eu"
         image="https://www.ejcgroup.eu/og-image.jpg"
         structuredData={structuredData}

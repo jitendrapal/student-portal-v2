@@ -11,15 +11,50 @@ Disallow: /private/
 Disallow: /_redirects
 Disallow: /.htaccess
 
-# Allow important pages
-Allow: /
+# High Priority Pages for Healthcare Recruitment
+Allow: /nursing-jobs-germany
+Allow: /doctors-jobs-germany
+Allow: /healthcare-jobs
+Allow: /guides/nursing-jobs-germany
+Allow: /guides/doctors-jobs-germany
+Allow: /guides/nursing-jobs-germany-with-visa-sponsorship
+Allow: /guides/doctors-jobs-germany-with-visa-sponsorship
+Allow: /guides/nursing-jobs-germany-for-indian-nurses
+Allow: /guides/doctors-jobs-germany-for-indian-doctors
+Allow: /guides/healthcare-recruitment-germany
+Allow: /guides/medical-recruitment-germany
+Allow: /guides/nurse-recruitment-germany
+Allow: /guides/nursing-abroad-germany
+Allow: /guides/nursing-license-germany
+Allow: /guides/medical-license-germany
+
+# High Priority Pages for European Education
 Allow: /universities
 Allow: /courses
-Allow: /healthcare-jobs
+Allow: /guides/study-in-europe
+Allow: /guides/study-in-germany
+Allow: /guides/study-in-germany-free
+Allow: /guides/study-in-europe-for-indian-students
+Allow: /guides/best-universities-europe
+Allow: /guides/cheap-study-europe
+Allow: /guides/free-study-europe
+Allow: /guides/affordable-education-europe
+
+# Important Service Pages
+Allow: /
 Allow: /about
 Allow: /contact
 Allow: /how-it-works
 Allow: /success-stories
+Allow: /apply/healthcare
+Allow: /apply/university
+
+# Visa and Immigration Pages
+Allow: /guides/free-visa-germany
+Allow: /guides/work-visa-germany
+Allow: /guides/student-visa-europe
+Allow: /guides/visa-assistance-germany
+Allow: /guides/indian-jobs-germany
 
 # Crawl delay (optional)
 Crawl-delay: 1
