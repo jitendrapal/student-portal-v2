@@ -11,50 +11,37 @@ Disallow: /private/
 Disallow: /_redirects
 Disallow: /.htaccess
 
-# High Priority Pages for Healthcare Recruitment
-Allow: /nursing-jobs-germany
-Allow: /doctors-jobs-germany
+# High Priority Pages for Healthcare Recruitment (only existing routes)
 Allow: /healthcare-jobs
 Allow: /guides/nursing-jobs-germany
 Allow: /guides/doctors-jobs-germany
-Allow: /guides/nursing-jobs-germany-with-visa-sponsorship
-Allow: /guides/doctors-jobs-germany-with-visa-sponsorship
-Allow: /guides/nursing-jobs-germany-for-indian-nurses
-Allow: /guides/doctors-jobs-germany-for-indian-doctors
-Allow: /guides/healthcare-recruitment-germany
-Allow: /guides/medical-recruitment-germany
-Allow: /guides/nurse-recruitment-germany
-Allow: /guides/nursing-abroad-germany
-Allow: /guides/nursing-license-germany
-Allow: /guides/medical-license-germany
+Allow: /guides/complete-nursing-guide-2024
 
-# High Priority Pages for European Education
+# High Priority Pages for European Education (only existing routes)
 Allow: /universities
 Allow: /courses
 Allow: /guides/study-in-europe
 Allow: /guides/study-in-germany
 Allow: /guides/study-in-germany-free
-Allow: /guides/study-in-europe-for-indian-students
-Allow: /guides/best-universities-europe
+Allow: /guides/study-in-poland
 Allow: /guides/cheap-study-europe
 Allow: /guides/free-study-europe
-Allow: /guides/affordable-education-europe
+Allow: /guides/cheapest-universities-europe
 
-# Important Service Pages
+# Important Service Pages (only existing routes)
 Allow: /
 Allow: /about
-Allow: /contact
 Allow: /how-it-works
 Allow: /success-stories
-Allow: /apply/healthcare
-Allow: /apply/university
+Allow: /blog
+Allow: /career-counseling
+Allow: /scholarships
 
-# Visa and Immigration Pages
+# Visa and Immigration Pages (only existing routes)
 Allow: /guides/free-visa-germany
 Allow: /guides/work-visa-germany
-Allow: /guides/student-visa-europe
-Allow: /guides/visa-assistance-germany
-Allow: /guides/indian-jobs-germany
+Allow: /guides/visa-application-germany
+Allow: /guides/cost-comparison-germany-india
 
 # Crawl delay (optional)
 Crawl-delay: 1

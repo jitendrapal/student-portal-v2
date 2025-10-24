@@ -1,322 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage - Primary Landing Page -->
   <url>
     <loc>https://www.ejcgroup.eu</loc>
-    <lastmod>2025-10-21</lastmod>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
   </url>
-
-  <!-- Healthcare Jobs - High Priority (Core Service) -->
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
-
-  <!-- Universities - High Priority (Core Service) -->
   <url>
     <loc>https://www.ejcgroup.eu/universities</loc>
-    <lastmod>2025-10-21</lastmod>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
-
-  <!-- Courses - Important for University Applications -->
+  <url>
+    <loc>https://www.ejcgroup.eu/healthcare-jobs</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
   <url>
     <loc>https://www.ejcgroup.eu/courses</loc>
-    <lastmod>2025-10-21</lastmod>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-
-  <!-- Healthcare Job Categories - Target Specific Professions -->
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs/nursing</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs/medical-doctors</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs/physiotherapy</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs/pharmacy</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- German Cities for Healthcare Jobs -->
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs/berlin</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs/munich</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs/hamburg</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/healthcare-jobs/frankfurt</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <!-- European Countries for Universities -->
-  <url>
-    <loc>https://www.ejcgroup.eu/universities/germany</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/universities/netherlands</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/universities/france</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/universities/sweden</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Study Programs for Indian Students -->
-  <url>
-    <loc>https://www.ejcgroup.eu/programs/engineering</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/programs/medicine</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/programs/business</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/programs/computer-science</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Information Pages -->
-  <url>
-    <loc>https://www.ejcgroup.eu/about</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Guides and Resources for SEO -->
   <url>
     <loc>https://www.ejcgroup.eu/guides/nursing-jobs-germany</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://www.ejcgroup.eu/guides/doctors-jobs-germany</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
   </url>
   <url>
     <loc>https://www.ejcgroup.eu/guides/study-in-europe</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/guides/healthcare-visa-germany</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/guides/european-university-admission</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- High-Priority Keyword-Specific Guide Pages -->
-  <url>
-    <loc>https://www.ejcgroup.eu/guides/doctors-jobs-germany</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.ejcgroup.eu/guides/study-in-germany</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.ejcgroup.eu/guides/study-in-germany-free</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.ejcgroup.eu/guides/study-in-poland</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/guides/best-study-schools-europe</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.ejcgroup.eu/guides/cheap-study-europe</loc>
-    <lastmod>2025-10-21</lastmod>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.ejcgroup.eu/guides/free-study-europe</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/guides/indian-jobs-germany</loc>
-    <lastmod>2025-10-21</lastmod>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.ejcgroup.eu/guides/free-visa-germany</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://www.ejcgroup.eu/guides/work-visa-germany</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://www.ejcgroup.eu/guides/doctors-study-europe</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.80</priority>
-  </url>
-
-  <!-- Application and Contact Pages -->
-  <url>
-    <loc>https://www.ejcgroup.eu/apply/healthcare</loc>
-    <lastmod>2025-10-21</lastmod>
+    <loc>https://www.ejcgroup.eu/guides/complete-nursing-guide-2024</loc>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.ejcgroup.eu/apply/university</loc>
-    <lastmod>2025-10-21</lastmod>
+    <loc>https://www.ejcgroup.eu/guides/cheapest-universities-europe</loc>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.ejcgroup.eu/contact</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.75</priority>
+    <loc>https://www.ejcgroup.eu/guides/visa-application-germany</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
   </url>
-
-  <!-- Service Information Pages -->
+  <url>
+    <loc>https://www.ejcgroup.eu/guides/cost-comparison-germany-india</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ejcgroup.eu/about</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.ejcgroup.eu/how-it-works</loc>
-    <lastmod>2025-10-21</lastmod>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.ejcgroup.eu/success-stories</loc>
-    <lastmod>2025-10-21</lastmod>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.65</priority>
   </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/testimonials</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-  <url>
-    <loc>https://www.ejcgroup.eu/faq</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.65</priority>
-  </url>
-
-  <!-- Blog/News Section for Content Marketing -->
   <url>
     <loc>https://www.ejcgroup.eu/blog</loc>
-    <lastmod>2025-10-21</lastmod>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.70</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.ejcgroup.eu/news</loc>
-    <lastmod>2025-10-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.65</priority>
+    <loc>https://www.ejcgroup.eu/career-counseling</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-
-  <!-- Legal and Policy Pages -->
   <url>
-    <loc>https://www.ejcgroup.eu/privacy</loc>
-    <lastmod>2025-10-21</lastmod>
+    <loc>https://www.ejcgroup.eu/scholarships</loc>
+    <lastmod>2025-10-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.ejcgroup.eu/privacy-policy</loc>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.ejcgroup.eu/terms</loc>
-    <lastmod>2025-10-21</lastmod>
+    <loc>https://www.ejcgroup.eu/terms-of-service</loc>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.30</priority>
+    <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://www.ejcgroup.eu/cookies</loc>
-    <lastmod>2025-10-21</lastmod>
+    <loc>https://www.ejcgroup.eu/cookie-policy</loc>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.25</priority>
   </url>
   <url>
-    <loc>https://www.ejcgroup.eu/refund</loc>
-    <lastmod>2025-10-21</lastmod>
+    <loc>https://www.ejcgroup.eu/refund-policy</loc>
+    <lastmod>2025-10-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.25</priority>
   </url>
