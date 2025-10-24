@@ -10,7 +10,6 @@ import {
   Search,
   Phone,
   Mail,
-  MapPin,
   X,
 } from "lucide-react";
 import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
@@ -152,10 +151,13 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
       {/* 9-Dot Grid Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 rounded-lg hover:bg-gray-100 transition-colors group"
+        className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors group"
         title="Explore"
       >
         <Grid3X3 className="w-5 h-5 text-gray-600 group-hover:text-blue-600" />
+        <span className="text-sm font-medium text-gray-600 group-hover:text-blue-600">
+          Explore
+        </span>
       </button>
 
       {/* Dropdown Menu */}
@@ -226,13 +228,6 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
                 <Mail className="w-4 h-4 text-blue-600 mb-1" />
                 <span className="text-xs text-gray-600">Email</span>
               </a>
-              <button
-                onClick={() => handleNavigation("/contact")}
-                className="flex flex-col items-center p-2 rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <MapPin className="w-4 h-4 text-blue-600 mb-1" />
-                <span className="text-xs text-gray-600">Location</span>
-              </button>
             </div>
           </div>
         </div>
