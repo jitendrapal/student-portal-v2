@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
   BookOpen,
@@ -11,11 +11,8 @@ import {
   Users,
   Star,
 } from "lucide-react";
-import ContactForm from "../forms/ContactForm";
 
 const Guides: React.FC = () => {
-  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
-
   const guideCategories = [
     {
       id: "healthcare",
@@ -247,12 +244,12 @@ const Guides: React.FC = () => {
             journey
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={() => setIsContactFormOpen(true)}
+            <Link
+              to="/scholarships"
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
             >
               Get Scholarship Guidance
-            </button>
+            </Link>
             <Link
               to="/universities"
               className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors"
@@ -262,15 +259,6 @@ const Guides: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Contact Form Modal for Scholarship Guidance */}
-      <ContactForm
-        isOpen={isContactFormOpen}
-        onClose={() => setIsContactFormOpen(false)}
-        title="Get Scholarship Guidance"
-        subtitle="Connect with our expert counselors for personalized scholarship advice"
-        serviceType="Scholarship Guidance"
-      />
     </div>
   );
 };
