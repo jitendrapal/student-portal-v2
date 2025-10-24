@@ -94,38 +94,11 @@ const Footer: React.FC = () => {
               </div>
             </div>
 
-            {/* Social Media */}
+            {/* Social Media - Removed placeholder links to prevent broken links */}
             <div className="flex space-x-4 mt-6">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white transition-colors"
-              >
-                <Youtube className="w-5 h-5" />
-              </a>
+              <div className="text-gray-400 text-sm">
+                Follow us on social media (coming soon)
+              </div>
             </div>
           </div>
 

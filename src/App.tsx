@@ -28,6 +28,7 @@ import Blog from "./components/pages/Blog";
 import CareerCounseling from "./components/pages/CareerCounseling";
 import Scholarships from "./components/pages/Scholarships";
 import GoogleSheetsTest from "./components/debug/GoogleSheetsTest";
+import NotFound from "./components/pages/NotFound";
 
 // Guide Pages
 import NursingJobsGermany from "./components/pages/guides/NursingJobsGermany";
@@ -43,6 +44,7 @@ import StudyInGermany from "./components/pages/guides/StudyInGermany";
 import StudyInPoland from "./components/pages/guides/StudyInPoland";
 import CheapStudyEurope from "./components/pages/guides/CheapStudyEurope";
 import FreeStudyEurope from "./components/pages/guides/FreeStudyEurope";
+import StudyInGermanyFree from "./components/pages/guides/StudyInGermanyFree";
 
 function App() {
   const { user } = useStore();
@@ -144,6 +146,10 @@ function App() {
                   path="/guides/free-study-europe"
                   element={<FreeStudyEurope />}
                 />
+                <Route
+                  path="/guides/study-in-germany-free"
+                  element={<StudyInGermanyFree />}
+                />
 
                 {/* Legal Pages */}
                 <Route path="/privacy" element={<PrivacyPolicy />} />
@@ -156,6 +162,9 @@ function App() {
                   path="/test-google-sheets"
                   element={<GoogleSheetsTest />}
                 />
+
+                {/* 404 Catch-All Route - Must be last */}
+                <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
 

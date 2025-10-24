@@ -63,109 +63,9 @@ export const getStaticSitemapUrls = (): SitemapUrl[] => {
       priority: 0.95,
     },
 
-    // Healthcare Job Categories - Target Specific Professions
-    {
-      loc: `${baseUrl}/healthcare-jobs/nursing`,
-      lastmod: currentDate,
-      changefreq: "daily",
-      priority: 0.9,
-    },
-    {
-      loc: `${baseUrl}/healthcare-jobs/medical-doctors`,
-      lastmod: currentDate,
-      changefreq: "daily",
-      priority: 0.9,
-    },
-    {
-      loc: `${baseUrl}/healthcare-jobs/physiotherapy`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/healthcare-jobs/pharmacy`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-
-    // German Cities for Healthcare Jobs
-    {
-      loc: `${baseUrl}/healthcare-jobs/berlin`,
-      lastmod: currentDate,
-      changefreq: "daily",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/healthcare-jobs/munich`,
-      lastmod: currentDate,
-      changefreq: "daily",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/healthcare-jobs/hamburg`,
-      lastmod: currentDate,
-      changefreq: "daily",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/healthcare-jobs/frankfurt`,
-      lastmod: currentDate,
-      changefreq: "daily",
-      priority: 0.85,
-    },
-
-    // European Countries for Universities
-    {
-      loc: `${baseUrl}/universities/germany`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.9,
-    },
-    {
-      loc: `${baseUrl}/universities/netherlands`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/universities/france`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/universities/sweden`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-
-    // Study Programs for Target Keywords
-    {
-      loc: `${baseUrl}/programs/engineering`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/programs/medicine`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/programs/business`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/programs/computer-science`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
+    // Note: Removed broken URLs that don't have corresponding routes
+    // Healthcare job categories, city pages, university country pages, and program pages
+    // will be added back when the actual pages are created
 
     // SEO-Optimized Guide Pages - High Priority Healthcare Keywords
     {
@@ -180,78 +80,9 @@ export const getStaticSitemapUrls = (): SitemapUrl[] => {
       changefreq: "weekly",
       priority: 0.95,
     },
-    {
-      loc: `${baseUrl}/guides/nursing-jobs-germany-with-visa-sponsorship`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.9,
-    },
-    {
-      loc: `${baseUrl}/guides/doctors-jobs-germany-with-visa-sponsorship`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.9,
-    },
-    {
-      loc: `${baseUrl}/guides/nursing-jobs-germany-for-indian-nurses`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.9,
-    },
-    {
-      loc: `${baseUrl}/guides/doctors-jobs-germany-for-indian-doctors`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.9,
-    },
-    {
-      loc: `${baseUrl}/guides/healthcare-recruitment-germany`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/guides/medical-recruitment-germany`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/guides/nurse-recruitment-germany`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/guides/nursing-abroad-germany`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/guides/nursing-license-germany`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/medical-license-germany`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/nursing-salary-germany`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/doctor-salary-germany`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
+    // Note: Removed broken guide URLs that don't have corresponding routes
+    // These will be added back when the actual pages are created:
+    // Note: More broken guide URLs removed
 
     // High Priority Education Keywords
     {
@@ -272,42 +103,14 @@ export const getStaticSitemapUrls = (): SitemapUrl[] => {
       changefreq: "weekly",
       priority: 0.9,
     },
-    {
-      loc: `${baseUrl}/guides/study-in-europe-for-indian-students`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
-    {
-      loc: `${baseUrl}/guides/best-universities-europe`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
+    // Note: Removed broken education guide URLs that don't have routes
     {
       loc: `${baseUrl}/guides/study-in-poland`,
       lastmod: currentDate,
       changefreq: "weekly",
       priority: 0.8,
     },
-    {
-      loc: `${baseUrl}/guides/study-in-netherlands`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/study-in-belgium`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/best-study-schools-europe`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.85,
-    },
+    // Note: Removed more broken study guide URLs
     {
       loc: `${baseUrl}/guides/cheap-study-europe`,
       lastmod: currentDate,
@@ -320,20 +123,9 @@ export const getStaticSitemapUrls = (): SitemapUrl[] => {
       changefreq: "monthly",
       priority: 0.85,
     },
-    {
-      loc: `${baseUrl}/guides/affordable-education-europe`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
+    // Note: Removed broken visa and immigration URLs
 
-    // Visa and Immigration Pages
-    {
-      loc: `${baseUrl}/guides/indian-jobs-germany`,
-      lastmod: currentDate,
-      changefreq: "weekly",
-      priority: 0.85,
-    },
+    // Visa and Immigration Pages (keeping only existing routes)
     {
       loc: `${baseUrl}/guides/free-visa-germany`,
       lastmod: currentDate,
@@ -346,49 +138,32 @@ export const getStaticSitemapUrls = (): SitemapUrl[] => {
       changefreq: "weekly",
       priority: 0.85,
     },
-    {
-      loc: `${baseUrl}/guides/student-visa-europe`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/visa-assistance-germany`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/doctors-study-europe`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/healthcare-visa-germany`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
-    {
-      loc: `${baseUrl}/guides/european-university-admission`,
-      lastmod: currentDate,
-      changefreq: "monthly",
-      priority: 0.8,
-    },
+    // Note: Removed broken visa and application URLs that don't have routes
 
-    // Application Pages
+    // Existing Guide Pages (keeping only routes that exist)
     {
-      loc: `${baseUrl}/apply/healthcare`,
+      loc: `${baseUrl}/guides/complete-nursing-guide-2024`,
       lastmod: currentDate,
       changefreq: "weekly",
       priority: 0.9,
     },
     {
-      loc: `${baseUrl}/apply/university`,
+      loc: `${baseUrl}/guides/cheapest-universities-europe`,
       lastmod: currentDate,
       changefreq: "weekly",
       priority: 0.9,
+    },
+    {
+      loc: `${baseUrl}/guides/visa-application-germany`,
+      lastmod: currentDate,
+      changefreq: "weekly",
+      priority: 0.85,
+    },
+    {
+      loc: `${baseUrl}/guides/cost-comparison-germany-india`,
+      lastmod: currentDate,
+      changefreq: "monthly",
+      priority: 0.8,
     },
 
     {
