@@ -2,112 +2,146 @@ import React, { useState } from "react";
 import {
   ArrowLeft,
   Users,
-  Calendar,
-  Video,
   MessageCircle,
   CheckCircle,
-  Star,
-  Clock,
   Award,
   Target,
+  Heart,
+  Stethoscope,
+  MapPin,
+  Euro,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ContactForm from "../forms/ContactForm";
+import HealthcareApplicationForm from "../forms/HealthcareApplicationForm";
+import type { HealthcareJob } from "../../types/healthcare";
 
 const CareerCounseling: React.FC = () => {
   const navigate = useNavigate();
-  const [selectedPackage, setSelectedPackage] = useState("standard");
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [showHealthcareForm, setShowHealthcareForm] = useState(false);
+  const [selectedJob, setSelectedJob] = useState<HealthcareJob | null>(null);
 
-  const counselors = [
+  // Featured healthcare jobs for career counseling
+  const featuredHealthcareJobs: HealthcareJob[] = [
     {
-      id: 1,
-      name: "Dr. Sarah Johnson",
-      title: "Senior Career Counselor",
-      specialization: "Healthcare & Medical Careers",
-      experience: "15+ years",
-      rating: 4.9,
-      reviews: 234,
-      languages: ["English", "German", "French"],
-      image: "/api/placeholder/150/150",
-      expertise: ["Medical Licensing", "Healthcare Jobs", "Career Transition"],
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      title: "Technology Career Specialist",
-      specialization: "IT & Engineering",
-      experience: "12+ years",
-      rating: 4.8,
-      reviews: 189,
-      languages: ["English", "Mandarin", "Dutch"],
-      image: "/api/placeholder/150/150",
-      expertise: ["Tech Careers", "Software Engineering", "Data Science"],
-    },
-    {
-      id: 3,
-      name: "Emma Rodriguez",
-      title: "Business & Finance Advisor",
-      specialization: "Business & Finance",
-      experience: "10+ years",
-      rating: 4.9,
-      reviews: 156,
-      languages: ["English", "Spanish", "Portuguese"],
-      image: "/api/placeholder/150/150",
-      expertise: ["MBA Programs", "Finance Careers", "Consulting"],
-    },
-  ];
-
-  const packages = [
-    {
-      id: "basic",
-      name: "Basic Consultation",
-      price: "€99",
-      duration: "60 minutes",
-      sessions: 1,
-      features: [
-        "Career assessment and goal setting",
-        "European job market overview",
-        "Basic CV review and feedback",
-        "Q&A session",
-        "Follow-up email summary",
+      id: "nurse-featured-001",
+      title: "Registered Nurse - ICU",
+      category: "nurse",
+      location: "Berlin",
+      country: "Germany",
+      hospital: "Charité - Universitätsmedizin Berlin",
+      department: "Intensive Care Unit",
+      employmentType: "full-time",
+      experience: "2-5 years",
+      salary: {
+        min: 35000,
+        max: 45000,
+        currency: "EUR",
+        period: "annual",
+      },
+      requirements: [
+        "Bachelor's degree in Nursing",
+        "Valid nursing license",
+        "ICU experience preferred",
+        "BLS and ACLS certification",
       ],
-      popular: false,
+      responsibilities: [
+        "Provide critical care nursing",
+        "Monitor patient vital signs",
+        "Administer medications",
+        "Collaborate with medical team",
+      ],
+      benefits: [
+        "Competitive salary",
+        "Health insurance",
+        "Professional development",
+        "Visa sponsorship available",
+      ],
+      description:
+        "Join our ICU team providing critical care to patients in Berlin's leading hospital.",
+      postedDate: new Date(),
+      contactEmail: "careers@ejcgroup.eu",
+      isActive: true,
     },
     {
-      id: "standard",
-      name: "Standard Package",
-      price: "€299",
-      duration: "3 sessions",
-      sessions: 3,
-      features: [
-        "Comprehensive career assessment",
-        "Personalized career roadmap",
-        "CV and cover letter optimization",
-        "Interview preparation and practice",
-        "Job search strategy development",
-        "LinkedIn profile optimization",
-        "30-day email support",
+      id: "doctor-featured-001",
+      title: "Emergency Medicine Physician",
+      category: "doctor",
+      location: "Munich",
+      country: "Germany",
+      hospital: "Klinikum der Universität München",
+      department: "Emergency Department",
+      employmentType: "full-time",
+      experience: "3-7 years",
+      salary: {
+        min: 80000,
+        max: 120000,
+        currency: "EUR",
+        period: "annual",
+      },
+      requirements: [
+        "Medical degree (MD)",
+        "Emergency medicine residency",
+        "Board certification",
+        "German medical license",
       ],
-      popular: true,
+      responsibilities: [
+        "Provide emergency medical care",
+        "Diagnose and treat acute conditions",
+        "Perform emergency procedures",
+        "Lead emergency response team",
+      ],
+      benefits: [
+        "Excellent compensation",
+        "Research opportunities",
+        "Continuing education support",
+        "Relocation assistance",
+      ],
+      description:
+        "Lead emergency care in Munich's premier university hospital.",
+      postedDate: new Date(),
+      contactEmail: "careers@ejcgroup.eu",
+      isActive: true,
     },
     {
-      id: "premium",
-      name: "Premium Package",
-      price: "€599",
-      duration: "6 sessions",
-      sessions: 6,
-      features: [
-        "All Standard Package features",
-        "Industry-specific guidance",
-        "Networking strategy and connections",
-        "Salary negotiation coaching",
-        "Personal branding development",
-        "Mock interviews with feedback",
-        "90-day ongoing support",
-        "Priority booking and scheduling",
+      id: "dentist-featured-001",
+      title: "General Dentist",
+      category: "dentist",
+      location: "Frankfurt",
+      country: "Germany",
+      hospital: "Frankfurt Dental Center",
+      employmentType: "full-time",
+      experience: "2-5 years",
+      salary: {
+        min: 45000,
+        max: 65000,
+        currency: "EUR",
+        period: "annual",
+      },
+      requirements: [
+        "Doctor of Dental Surgery (DDS)",
+        "Valid dental license",
+        "German language proficiency",
+        "Patient care experience",
       ],
-      popular: false,
+      responsibilities: [
+        "Perform routine dental examinations",
+        "Diagnose oral health issues",
+        "Perform dental procedures",
+        "Educate patients on oral hygiene",
+      ],
+      benefits: [
+        "Modern dental facility",
+        "Flexible scheduling",
+        "Professional development",
+        "Competitive benefits package",
+      ],
+      description:
+        "Practice modern dentistry in Frankfurt's state-of-the-art dental center.",
+      postedDate: new Date(),
+      contactEmail: "careers@ejcgroup.eu",
+      isActive: true,
     },
   ];
 
@@ -137,29 +171,23 @@ const CareerCounseling: React.FC = () => {
     },
   ];
 
-  const testimonials = [
-    {
-      name: "Priya Sharma",
-      role: "Software Engineer at Spotify",
-      content:
-        "The career counseling helped me transition from India to Sweden seamlessly. The guidance was invaluable.",
-      rating: 5,
-    },
-    {
-      name: "Ahmed Hassan",
-      role: "Registered Nurse in Amsterdam",
-      content:
-        "Dr. Johnson helped me navigate the complex healthcare licensing process. Now I have my dream job!",
-      rating: 5,
-    },
-    {
-      name: "Maria Rodriguez",
-      role: "Business Analyst in Berlin",
-      content:
-        "The interview coaching and CV optimization made all the difference. Highly recommended!",
-      rating: 5,
-    },
-  ];
+  const handleApplyToJob = (job: HealthcareJob) => {
+    setSelectedJob(job);
+    setShowHealthcareForm(true);
+  };
+
+  const getCategoryIcon = (category: HealthcareJob["category"]) => {
+    switch (category) {
+      case "nurse":
+        return <Heart className="w-5 h-5 text-red-500" />;
+      case "doctor":
+        return <Stethoscope className="w-5 h-5 text-blue-500" />;
+      case "dentist":
+        return <Users className="w-5 h-5 text-green-500" />;
+      default:
+        return <Heart className="w-5 h-5 text-gray-500" />;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -225,153 +253,6 @@ const CareerCounseling: React.FC = () => {
         </div>
       </div>
 
-      {/* Counseling Packages */}
-      <div className="py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Choose Your Package
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {packages.map((pkg) => (
-              <div
-                key={pkg.id}
-                className={`bg-white rounded-lg shadow-lg overflow-hidden relative ${
-                  pkg.popular ? "ring-2 ring-purple-600" : ""
-                }`}
-              >
-                {pkg.popular && (
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <span className="bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-medium">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
-                <div className="p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {pkg.name}
-                  </h3>
-                  <div className="text-3xl font-bold text-purple-600 mb-4">
-                    {pkg.price}
-                  </div>
-                  <div className="text-gray-600 mb-6">{pkg.duration}</div>
-
-                  <ul className="space-y-3 mb-8">
-                    {pkg.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <button
-                    onClick={() => setSelectedPackage(pkg.id)}
-                    className={`w-full py-3 px-4 rounded-lg font-semibold transition-colors ${
-                      pkg.popular
-                        ? "bg-purple-600 text-white hover:bg-purple-700"
-                        : "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                    }`}
-                  >
-                    Select Package
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Meet Our Counselors */}
-      <div className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Meet Our Expert Counselors
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {counselors.map((counselor) => (
-              <div key={counselor.id} className="bg-gray-50 rounded-lg p-6">
-                <div className="text-center mb-6">
-                  <div className="w-24 h-24 bg-gradient-to-br from-purple-400 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-12 h-12 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {counselor.name}
-                  </h3>
-                  <p className="text-purple-600 font-medium">
-                    {counselor.title}
-                  </p>
-                </div>
-
-                <div className="space-y-3">
-                  <div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Specialization:
-                    </span>
-                    <p className="text-sm text-gray-600">
-                      {counselor.specialization}
-                    </p>
-                  </div>
-
-                  <div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Experience:
-                    </span>
-                    <p className="text-sm text-gray-600">
-                      {counselor.experience}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center">
-                    <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                    <span className="text-sm font-medium text-gray-900 ml-1">
-                      {counselor.rating}
-                    </span>
-                    <span className="text-sm text-gray-600 ml-1">
-                      ({counselor.reviews} reviews)
-                    </span>
-                  </div>
-
-                  <div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Languages:
-                    </span>
-                    <p className="text-sm text-gray-600">
-                      {counselor.languages.join(", ")}
-                    </p>
-                  </div>
-
-                  <div>
-                    <span className="text-sm font-medium text-gray-900">
-                      Expertise:
-                    </span>
-                    <div className="flex flex-wrap gap-1 mt-1">
-                      {counselor.expertise.map((skill, index) => (
-                        <span
-                          key={index}
-                          className="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setIsContactFormOpen(true)}
-                  className="w-full mt-6 bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
-                >
-                  Book Session
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* How It Works */}
       <div className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -431,37 +312,83 @@ const CareerCounseling: React.FC = () => {
         </div>
       </div>
 
-      {/* Testimonials */}
+      {/* Healthcare Jobs */}
       <div className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Success Stories
+            Featured Healthcare Jobs
           </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            Explore exciting healthcare opportunities in Europe. Our career
+            counselors can help you prepare for these positions and guide you
+            through the application process.
+          </p>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-6">
+            {featuredHealthcareJobs.map((job) => (
+              <div
+                key={job.id}
+                className="bg-gray-50 rounded-lg p-6 hover:shadow-lg transition-shadow"
+              >
                 <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 text-yellow-400 fill-current"
-                    />
-                  ))}
+                  {getCategoryIcon(job.category)}
+                  <span className="ml-2 px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                    {job.category.charAt(0).toUpperCase() +
+                      job.category.slice(1)}
+                  </span>
                 </div>
-                <p className="text-gray-700 mb-4 italic">
-                  "{testimonial.content}"
+
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  {job.title}
+                </h3>
+
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center text-sm text-gray-600">
+                    <MapPin className="w-4 h-4 mr-2" />
+                    {job.location}, {job.country}
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Euro className="w-4 h-4 mr-2" />€
+                    {job.salary.min.toLocaleString()} - €
+                    {job.salary.max.toLocaleString()} {job.salary.period}
+                  </div>
+                </div>
+
+                <p className="text-gray-700 text-sm mb-4 line-clamp-3">
+                  {job.description}
                 </p>
-                <div>
-                  <div className="font-semibold text-gray-900">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-gray-600">
-                    {testimonial.role}
-                  </div>
+
+                <div className="mb-4">
+                  <h4 className="text-sm font-medium text-gray-900 mb-2">
+                    Key Benefits:
+                  </h4>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    {job.benefits.slice(0, 3).map((benefit, index) => (
+                      <li key={index} className="flex items-start">
+                        <CheckCircle className="w-3 h-3 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+
+                <button
+                  onClick={() => handleApplyToJob(job)}
+                  className="w-full bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Apply Now
+                </button>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <button
+              onClick={() => navigate("/healthcare-jobs")}
+              className="bg-gray-100 text-gray-900 px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+            >
+              View All Healthcare Jobs
+            </button>
           </div>
         </div>
       </div>
@@ -484,10 +411,10 @@ const CareerCounseling: React.FC = () => {
               Book Free Consultation
             </button>
             <button
-              onClick={() => navigate("/success-stories")}
+              onClick={() => navigate("/healthcare-jobs")}
               className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors"
             >
-              View Success Stories
+              Explore Healthcare Jobs
             </button>
           </div>
         </div>
@@ -501,6 +428,25 @@ const CareerCounseling: React.FC = () => {
         subtitle="Get expert guidance for your European career journey"
         serviceType="Career Counseling"
       />
+
+      {/* Healthcare Application Form Modal */}
+      {showHealthcareForm && selectedJob && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <HealthcareApplicationForm
+              job={selectedJob}
+              onClose={() => {
+                setShowHealthcareForm(false);
+                setSelectedJob(null);
+              }}
+              onBack={() => {
+                setShowHealthcareForm(false);
+                setSelectedJob(null);
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
