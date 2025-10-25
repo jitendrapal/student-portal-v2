@@ -181,7 +181,7 @@ const NotFound: React.FC = () => {
                 href="tel:+917701875294"
                 className="text-blue-600 hover:text-blue-700 font-medium"
               >
-                +31 683 078 160
+                +917701875294
               </a>
             </p>
           </div>
