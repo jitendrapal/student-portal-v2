@@ -122,22 +122,7 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
       path: "/healthcare-jobs",
       color: "bg-red-500",
     },
-    {
-      id: "applications",
-      title: "Applications",
-      description: "Track your applications",
-      icon: FileText,
-      path: "/applications",
-      color: "bg-purple-500",
-    },
-    {
-      id: "search",
-      title: "Search",
-      description: "Find anything quickly",
-      icon: Search,
-      path: "/",
-      color: "bg-orange-500",
-    },
+
     {
       id: "guides",
       title: "Guides",
