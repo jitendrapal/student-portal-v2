@@ -424,7 +424,7 @@ const StudyInGermanyFree: React.FC = () => {
                   <div className="flex items-center space-x-3">
                     <Phone className="w-5 h-5 text-blue-600" />
                     <a
-                      href="tel:+31683078160"
+                      href="tel:+917701875294"
                       className="text-gray-600 hover:text-blue-600"
                     >
                       +31 683 078 160

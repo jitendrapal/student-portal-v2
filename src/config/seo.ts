@@ -108,7 +108,7 @@ export const SEO_CONFIG = {
       addressCountry: "EU",
     },
     contactPoint: {
-      telephone: "+31683078160",
+      telephone: "+917701875294",
       contactType: "customer service",
       availableLanguage: ["English", "German", "French"],
     },

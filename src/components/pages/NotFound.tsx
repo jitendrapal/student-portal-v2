@@ -58,8 +58,8 @@ const NotFound: React.FC = () => {
               Page Not Found
             </h2>
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-              The page you're looking for doesn't exist or has been moved. 
-              Don't worry, we'll help you find what you need!
+              The page you're looking for doesn't exist or has been moved. Don't
+              worry, we'll help you find what you need!
             </p>
           </div>
 
@@ -72,7 +72,7 @@ const NotFound: React.FC = () => {
               <ArrowLeft className="w-5 h-5" />
               <span>Go Back</span>
             </button>
-            
+
             <Link
               to="/"
               className="flex items-center justify-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
@@ -87,30 +87,39 @@ const NotFound: React.FC = () => {
             <h3 className="text-xl font-bold text-gray-800 mb-6">
               Popular Pages You Might Be Looking For:
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {popularPages.map((page, index) => {
                 const Icon = page.icon;
                 const colorClasses = {
                   blue: "border-blue-200 hover:border-blue-300 bg-blue-50 hover:bg-blue-100",
-                  green: "border-green-200 hover:border-green-300 bg-green-50 hover:bg-green-100",
-                  purple: "border-purple-200 hover:border-purple-300 bg-purple-50 hover:bg-purple-100",
+                  green:
+                    "border-green-200 hover:border-green-300 bg-green-50 hover:bg-green-100",
+                  purple:
+                    "border-purple-200 hover:border-purple-300 bg-purple-50 hover:bg-purple-100",
                   red: "border-red-200 hover:border-red-300 bg-red-50 hover:bg-red-100",
                 };
-                
+
                 return (
                   <Link
                     key={index}
                     to={page.path}
-                    className={`block p-6 rounded-lg border-2 transition-all duration-200 hover:shadow-lg ${colorClasses[page.color as keyof typeof colorClasses]}`}
+                    className={`block p-6 rounded-lg border-2 transition-all duration-200 hover:shadow-lg ${
+                      colorClasses[page.color as keyof typeof colorClasses]
+                    }`}
                   >
                     <div className="flex items-center space-x-4">
-                      <div className={`p-3 rounded-full ${
-                        page.color === 'blue' ? 'bg-blue-600' :
-                        page.color === 'green' ? 'bg-green-600' :
-                        page.color === 'purple' ? 'bg-purple-600' :
-                        'bg-red-600'
-                      }`}>
+                      <div
+                        className={`p-3 rounded-full ${
+                          page.color === "blue"
+                            ? "bg-blue-600"
+                            : page.color === "green"
+                            ? "bg-green-600"
+                            : page.color === "purple"
+                            ? "bg-purple-600"
+                            : "bg-red-600"
+                        }`}
+                      >
                         <Icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-left">
@@ -169,7 +178,7 @@ const NotFound: React.FC = () => {
             <p>
               Or call us at{" "}
               <a
-                href="tel:+31683078160"
+                href="tel:+917701875294"
                 className="text-blue-600 hover:text-blue-700 font-medium"
               >
                 +31 683 078 160
