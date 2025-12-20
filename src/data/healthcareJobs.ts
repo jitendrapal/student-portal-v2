@@ -129,9 +129,9 @@ export const healthcareJobs: HealthcareJob[] = [
     ],
     description:
       "Join our emergency department team in one of Munich's premier teaching hospitals.",
-    postedDate: new Date("2024-01-12"),
-    applicationDeadline: new Date("2024-03-01"),
-    contactEmail: "hr@klinikum.uni-muenchen.de",
+    postedDate: new Date("2025-12-12"),
+    applicationDeadline: new Date("2026-03-01"),
+    contactEmail: "info@ejcgroup.eu",
     isActive: true,
   },
   {
@@ -173,8 +173,8 @@ export const healthcareJobs: HealthcareJob[] = [
     ],
     description:
       "Lead cardiovascular care in a world-renowned academic medical center.",
-    postedDate: new Date("2024-01-08"),
-    contactEmail: "hr@uke.de",
+    postedDate: new Date("2025-12-15"),
+    contactEmail: "info@ejcgroup.eu",
     isActive: true,
   },
 
@@ -217,8 +217,8 @@ export const healthcareJobs: HealthcareJob[] = [
     ],
     description:
       "Join our modern dental practice serving the Frankfurt community with comprehensive oral care.",
-    postedDate: new Date("2024-01-14"),
-    contactEmail: "jobs@frankfurtdental.de",
+    postedDate: new Date("2025-12-14"),
+    contactEmail: "info@ejcgroup.eu",
     isActive: true,
   },
   {
@@ -259,8 +259,8 @@ export const healthcareJobs: HealthcareJob[] = [
     ],
     description:
       "Provide specialized orthodontic care using the latest digital technologies and techniques.",
-    postedDate: new Date("2024-01-11"),
-    contactEmail: "careers@cologneortho.de",
+    postedDate: new Date("2025-12-15"),
+    contactEmail: "info@ejcgroup.eu",
     isActive: true,
   },
 ];
