@@ -41,9 +41,9 @@ export const healthcareJobs: HealthcareJob[] = [
     ],
     description:
       "Join our dynamic ICU team providing critical care to patients in a state-of-the-art facility.",
-    postedDate: new Date("2024-01-15"),
-    applicationDeadline: new Date("2024-02-15"),
-    contactEmail: "hr@charite.de",
+    postedDate: new Date("2025-12-15"),
+    applicationDeadline: new Date("2026-02-15"),
+    contactEmail: "info@ejcgroup.eu",
     isActive: true,
   },
   {
