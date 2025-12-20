@@ -84,8 +84,8 @@ export const healthcareJobs: HealthcareJob[] = [
     ],
     description:
       "Provide specialized care to children in one of Europe's leading pediatric departments.",
-    postedDate: new Date("2024-01-10"),
-    contactEmail: "careers@charite.de",
+    postedDate: new Date("2025-12-15"),
+    contactEmail: "info@ejcgroup.eu",
     isActive: true,
   },
 
