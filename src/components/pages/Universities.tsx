@@ -117,7 +117,7 @@ const Universities: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className="lg:w-80">
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+            <div className="bg-white/95 backdrop-blur-md rounded-modern-lg shadow-modern border border-gray-100/50 p-6 sticky top-24">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-lg font-semibold text-gray-900 flex items-center">
                   <Filter className="w-5 h-5 mr-2" />
@@ -276,7 +276,7 @@ const Universities: React.FC = () => {
           {/* Results */}
           <div className="flex-1">
             {/* Sort Options */}
-            <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div className="bg-white/95 backdrop-blur-md rounded-modern-lg shadow-modern border border-gray-100/50 p-4 mb-6">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-700">Sort by:</span>
                 <select
@@ -300,7 +300,7 @@ const Universities: React.FC = () => {
                 return (
                   <div
                     key={university.id}
-                    className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                    className="bg-white/95 backdrop-blur-sm rounded-modern-lg shadow-modern hover:shadow-modern-lg transition-all duration-300 border border-gray-100/50 group hover:-translate-y-1"
                   >
                     <div className="p-6">
                       <div className="flex flex-col md:flex-row gap-6">
@@ -313,7 +313,7 @@ const Universities: React.FC = () => {
                               className="w-16 h-16 object-contain rounded-lg border border-gray-200"
                             />
                           ) : (
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-sm">
+                            <div className="w-16 h-16 bg-gradient-primary rounded-modern flex items-center justify-center shadow-glow group-hover:shadow-glow transition-all duration-300">
                               <span className="text-white text-lg font-bold">
                                 {university.name.charAt(0)}
                               </span>

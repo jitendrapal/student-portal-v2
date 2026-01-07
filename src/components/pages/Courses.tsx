@@ -150,10 +150,10 @@ const Courses: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className="lg:w-80">
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+            <div className="bg-white/95 backdrop-blur-md rounded-modern-lg shadow-modern border border-gray-100/50 p-6 sticky top-24">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-semibold text-gray-900 flex items-center">
-                  <Filter className="w-5 h-5 mr-2" />
+                <h2 className="text-lg font-semibold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent flex items-center">
+                  <Filter className="w-5 h-5 mr-2 text-primary-600" />
                   Filters
                 </h2>
                 <button
@@ -421,7 +421,7 @@ const Courses: React.FC = () => {
           {/* Results */}
           <div className="flex-1">
             {/* Sort Options */}
-            <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div className="bg-white/95 backdrop-blur-md rounded-modern-lg shadow-modern border border-gray-100/50 p-4 mb-6">
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-700">Sort by:</span>
                 <select
@@ -462,7 +462,7 @@ const Courses: React.FC = () => {
                   return (
                     <div
                       key={course.id}
-                      className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                      className="bg-white/95 backdrop-blur-sm rounded-modern-lg shadow-modern hover:shadow-modern-lg transition-all duration-300 border border-gray-100/50 group hover:-translate-y-1"
                     >
                       <div className="p-6">
                         <div className="flex flex-col lg:flex-row gap-6">

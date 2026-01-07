@@ -221,18 +221,23 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav className="bg-white/95 backdrop-blur-md shadow-modern border-b border-gray-100/50 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Contact Info */}
           <div className="flex items-center space-x-6">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Briefcase className="w-5 h-5 text-white" />
+            <Link to="/" className="flex items-center space-x-3 group">
+              <div className="w-10 h-10 bg-gradient-primary rounded-modern flex items-center justify-center shadow-glow group-hover:shadow-glow transition-all duration-300">
+                <Briefcase className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gray-900">
-                Europe Jobs Consultancy
-              </span>
+              <div className="flex flex-col">
+                <span className="text-xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+                  EJC
+                </span>
+                <span className="text-xs text-gray-500 font-medium">
+                  Your Gateway to Europe
+                </span>
+              </div>
             </Link>
 
             {/* Contact Information */}
@@ -271,10 +276,10 @@ const Navbar: React.FC = () => {
                   >
                     <button
                       onClick={handleUniversityMenuClick}
-                      className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      className={`flex items-center space-x-1 px-4 py-2 rounded-modern text-sm font-medium transition-all duration-200 ${
                         location.pathname === "/universities"
-                          ? "text-blue-600 bg-blue-50"
-                          : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                          ? "text-primary-600 bg-primary-50 shadow-modern"
+                          : "text-gray-700 hover:text-primary-600 hover:bg-primary-50/50"
                       }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -284,16 +289,16 @@ const Navbar: React.FC = () => {
 
                     {/* Universities Dropdown Menu */}
                     {showUniversityDropdown && (
-                      <div className="absolute top-full left-0 mt-1 w-[800px] bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                      <div className="absolute top-full left-0 mt-2 w-[800px] bg-white/95 backdrop-blur-md rounded-modern-lg shadow-modern-xl border border-gray-200/50 z-50">
                         <div className="p-6">
                           {/* Header */}
                           <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
-                            <h3 className="text-lg font-semibold text-gray-900">
+                            <h3 className="text-lg font-semibold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
                               European Universities
                             </h3>
                             <button
                               onClick={handleAllUniversities}
-                              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                              className="text-sm text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
                             >
                               View All →
                             </button>

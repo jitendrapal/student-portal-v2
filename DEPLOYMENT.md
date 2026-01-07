@@ -1,4 +1,4 @@
-# 🚀 European Student Portal - Deployment Guide
+# 🚀 EJC - Deployment Guide
 
 ## 📋 Prerequisites
 

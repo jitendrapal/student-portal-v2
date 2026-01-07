@@ -77,7 +77,7 @@ const Home: React.FC = () => {
     ],
     postedDate: new Date(),
     applicationDeadline: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
-    contactEmail: "counseling@ejcgroup.eu",
+    contactEmail: "info@ejcgroup.eu",
     isActive: true,
   };
 
@@ -140,41 +140,36 @@ const Home: React.FC = () => {
         image="https://www.ejcgroup.eu/og-image.jpg"
         structuredData={structuredData}
       />
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform -skew-y-12"></div>
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/5 to-transparent transform skew-y-12"></div>
+      {/* Ultra Modern Hero Section */}
+      <section className="relative bg-gradient-hero text-white overflow-hidden min-h-[80vh] flex items-center">
+        {/* Ultra Modern Background Pattern */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-blue/20 to-transparent transform -skew-y-12"></div>
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-neon-purple/20 to-transparent transform skew-y-12"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(0,212,255,0.2),transparent_50%)]"></div>
+          <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,rgba(217,70,239,0.2),transparent_50%)]"></div>
+          <div
+            className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(14,165,233,0.1),rgba(139,92,246,0.1),rgba(217,70,239,0.1),rgba(236,72,153,0.1),rgba(14,165,233,0.1))] animate-spin"
+            style={{ animationDuration: "20s" }}
+          ></div>
         </div>
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
           <div className="text-center">
-            {/* Company Badge */}
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-4">
-              <span className="text-sm font-medium text-blue-100">
-                🇪🇺 Europe Job Center
-              </span>
-              <span className="mx-2 text-blue-200">•</span>
-              <span className="text-sm text-blue-200">
-                Your European Career Partner
-              </span>
-            </div>
-
-            {/* Main Heading */}
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-              Build Your Future in{" "}
-              <span className="bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+            {/* Ultra Modern Main Heading */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-8 leading-tight animate-slide-up">
+              Shape Your Future in{" "}
+              <span className="gradient-text-electric bg-gradient-neon bg-clip-text text-transparent animate-pulse">
                 Europe
               </span>
             </h1>
 
-            {/* Enhanced Description with Benefits */}
-            <p className="text-lg md:text-xl mb-4 text-blue-100 max-w-2xl mx-auto leading-relaxed">
-              Connect with top European universities, discover healthcare career
-              opportunities with{" "}
-              <span className="font-semibold text-white">
-                guaranteed placement support
+            {/* Ultra Modern Description */}
+            <p className="text-xl md:text-2xl mb-8 text-white max-w-4xl mx-auto leading-relaxed animate-fade-in font-semibold">
+              Discover cutting-edge programs, explore limitless career
+              opportunities, and embark on your journey to{" "}
+              <span className="font-black text-vibrant-pink glow-text">
+                extraordinary success
               </span>
               .
             </p>
@@ -188,40 +183,37 @@ const Home: React.FC = () => {
               />
             </div>
 
-            {/* Quick Actions */}
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+            {/* Ultra Modern Action Buttons */}
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
               <button
                 onClick={handleCounselingClick}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 sm:px-8 py-2 sm:py-4 rounded-lg font-bold text-sm sm:text-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-1 sm:gap-2 relative"
+                className="bg-gradient-neon text-white px-6 sm:px-10 py-4 sm:py-5 rounded-modern-xl font-black text-sm sm:text-xl hover:shadow-electric transition-all duration-500 shadow-cyber hover:shadow-electric transform hover:-translate-y-2 hover:scale-105 flex items-center gap-3 sm:gap-4 relative group pulse-glow"
               >
-                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce-gentle" />
                 <div className="flex flex-col items-start">
-                  <span className="text-xs sm:text-base">FREE Counseling</span>
-                  <span className="text-xs font-normal text-blue-200 hidden sm:block">
-                    🔥 Limited slots today
+                  <span className="text-sm sm:text-lg font-black text-white">
+                    FREE Consultation
+                  </span>
+                  <span className="text-xs font-bold text-vibrant-yellow glow-text hidden sm:block animate-pulse">
+                    ⚡ AI-Powered Matching
                   </span>
                 </div>
-                <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-red-500 text-white text-xs px-1 sm:px-2 py-0.5 sm:py-1 rounded-full animate-pulse">
+                <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-gradient-accent text-white text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full animate-bounce shadow-glow-accent font-black">
                   FREE
                 </div>
               </button>
-              <button
-                onClick={() => navigate("/universities")}
-                className="bg-white text-blue-600 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-xs sm:text-base hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap"
-              >
-                🎓 Universities
-              </button>
-              <button
-                onClick={() => navigate("/courses")}
-                className="border-2 border-white text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-xs sm:text-base hover:bg-white hover:text-blue-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap"
-              >
-                📚 Courses
-              </button>
+
               <button
                 onClick={() => navigate("/healthcare-jobs")}
-                className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-xs sm:text-base hover:from-green-600 hover:to-emerald-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 whitespace-nowrap"
+                className="bg-gradient-secondary text-white px-6 sm:px-8 py-4 sm:py-5 rounded-modern-xl font-bold text-sm sm:text-lg hover:shadow-glow-secondary transition-all duration-500 shadow-modern-lg hover:shadow-electric transform hover:-translate-y-2 hover:scale-105 whitespace-nowrap"
               >
-                🏥 Healthcare
+                🏥 Healthcare Careers
+              </button>
+              <button
+                onClick={() => navigate("/universities")}
+                className="glass-cyber text-white px-6 sm:px-8 py-4 sm:py-5 rounded-modern-xl font-bold text-sm sm:text-lg hover:shadow-glow-neon transition-all duration-500 shadow-modern-lg hover:shadow-electric transform hover:-translate-y-2 hover:scale-105 whitespace-nowrap border border-neon-blue/30"
+              >
+                🚀 Explore Universities
               </button>
             </div>
 
@@ -230,11 +222,11 @@ const Home: React.FC = () => {
               <div className="flex flex-wrap justify-center gap-4 text-sm">
                 <div className="flex items-center text-blue-200">
                   <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-                  1000+ Partner Universities
+                  Partner Universities
                 </div>
                 <div className="flex items-center text-blue-200">
                   <span className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></span>
-                  Healthcare Jobs in Germany
+                  Nurshing Jobs in Germany
                 </div>
                 <div className="flex items-center text-blue-200">
                   <span className="w-2 h-2 bg-purple-400 rounded-full mr-2"></span>
@@ -440,30 +432,42 @@ const Home: React.FC = () => {
       <TopCollegesSection />
 
       {/* Features Section */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Europe Job Consultancy?
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center glass-cyber text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-glow-neon">
+              ⚡ Why Choose Our Platform
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black gradient-text-electric mb-8">
+              Next-Generation Education Platform
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We provide comprehensive support for your study and career abroad
-              journey, from university selection to application success.
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Experience cutting-edge technology and personalized support for
+              your European education journey, powered by AI and backed by
+              expert guidance.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
               return (
-                <div key={index} className="card p-4 lg:p-6 text-center">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
-                    <Icon className="w-6 h-6 text-blue-600" />
+                <div
+                  key={index}
+                  className="glass-cyber p-8 lg:p-10 text-center rounded-modern-xl shadow-cyber hover:shadow-electric transition-all duration-500 border border-neon-blue/20 group hover:-translate-y-3 hover:scale-105 relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-neon opacity-5 group-hover:opacity-10 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-neon rounded-modern-lg mb-8 shadow-glow-neon group-hover:shadow-electric transition-all duration-500 pulse-glow">
+                      <Icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-black text-vibrant-cyan mb-4 glow-text">
+                      {feature.title}
+                    </h3>
+                    <p className="text-white leading-relaxed font-semibold">
+                      {feature.description}
+                    </p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600">{feature.description}</p>
                 </div>
               );
             })}

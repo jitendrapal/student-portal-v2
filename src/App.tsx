@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useStore } from "./store/useStore";
+import "./styles/modern-theme.css";
 import GoogleAnalytics from "./components/analytics/GoogleAnalytics";
 import ScrollToTop from "./components/common/ScrollToTop";
 import Navbar from "./components/layout/Navbar";
@@ -46,6 +47,7 @@ import StudyInPoland from "./components/pages/guides/StudyInPoland";
 import CheapStudyEurope from "./components/pages/guides/CheapStudyEurope";
 import FreeStudyEurope from "./components/pages/guides/FreeStudyEurope";
 import StudyInGermanyFree from "./components/pages/guides/StudyInGermanyFree";
+import ThemeDemo from "./components/pages/ThemeDemo";
 
 function App() {
   const { user } = useStore();
@@ -57,7 +59,7 @@ function App() {
       <Router>
         <ScrollToTop />
         <PopupManager>
-          <div className="min-h-screen bg-gray-50">
+          <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
             <Navbar />
             <main>
               <Routes>
@@ -175,6 +177,9 @@ function App() {
                   path="/test-google-sheets"
                   element={<GoogleSheetsTest />}
                 />
+
+                {/* Theme Demo Route */}
+                <Route path="/theme-demo" element={<ThemeDemo />} />
 
                 {/* 404 Catch-All Route - Must be last */}
                 <Route path="*" element={<NotFound />} />
