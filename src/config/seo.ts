@@ -97,12 +97,12 @@ export const SEO_CONFIG = {
 
   // Organization information
   organization: {
-    name: "Europe Job Center",
+    name: "Europe Jobs Consultancy",
     alternateName: "EJC",
     url: "https://www.ejcgroup.eu",
     logo: "https://www.ejcgroup.eu/logo.png",
     description:
-      "Europe Job Center helps students and professionals find opportunities to study and work in Europe.",
+      "Europe Jobs Consultancy helps students and professionals find opportunities to study and work in Europe.",
     address: {
       addressRegion: "Europe",
       addressCountry: "EU",
@@ -257,11 +257,11 @@ export const PAGE_SEO = {
   },
 
   about: {
-    title: "About Europe Job Center | Your European Education Partner",
+    title: "About Europe Jobs Consultancy | Your European Education Partner",
     description:
-      "Learn about Europe Job Center's mission to help students and professionals achieve their European dreams. Discover our services, team, and success stories.",
+      "Learn about Europe Jobs Consultancy's mission to help students and professionals achieve their European dreams. Discover our services, team, and success stories.",
     keywords: [
-      "Europe Job Center",
+      "Europe Jobs Consultancy",
       "about EJC",
       "European education consultant",
       "study abroad agency",
@@ -271,9 +271,9 @@ export const PAGE_SEO = {
   },
 
   contact: {
-    title: "Contact Europe Job Center | Get Expert Guidance",
+    title: "Contact Europe Jobs Consultancy | Get Expert Guidance",
     description:
-      "Contact Europe Job Center for personalized guidance on studying and working in Europe. Get expert advice from our experienced consultants.",
+      "Contact Europe Jobs Consultancy for personalized guidance on studying and working in Europe. Get expert advice from our experienced consultants.",
     keywords: [
       "contact Europe Job C",
       "education consultant",

@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <Briefcase className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold">Europe Job Center</span>
+              <span className="text-xl font-bold">Europe Jobs Consultancy</span>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               Your gateway to European education and career opportunities. We
@@ -195,7 +195,7 @@ const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 Europe Job Center. All rights reserved.
+              © 2024 Europe Jobs Consultancy. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
               <div className="flex items-center">

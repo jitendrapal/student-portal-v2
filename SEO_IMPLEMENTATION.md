@@ -1,11 +1,13 @@
-# SEO Implementation Guide for Europe Job Center
+# SEO Implementation Guide for Europe Jobs Consultancy
 
 ## 🎯 Overview
-This document outlines the comprehensive SEO implementation for the Europe Job Center website to improve search engine visibility and organic traffic.
+
+This document outlines the comprehensive SEO implementation for the Europe Jobs Consultancy website to improve search engine visibility and organic traffic.
 
 ## ✅ Implemented SEO Features
 
 ### 1. **Meta Tags & Open Graph**
+
 - ✅ Dynamic meta titles and descriptions
 - ✅ Open Graph tags for social media sharing
 - ✅ Twitter Card implementation
@@ -14,6 +16,7 @@ This document outlines the comprehensive SEO implementation for the Europe Job C
 - ✅ Theme color and mobile optimization
 
 ### 2. **Structured Data (Schema.org)**
+
 - ✅ Organization schema
 - ✅ Website schema with search action
 - ✅ Educational organization schema for universities
@@ -23,6 +26,7 @@ This document outlines the comprehensive SEO implementation for the Europe Job C
 - ✅ Service schema for consulting services
 
 ### 3. **Technical SEO**
+
 - ✅ Robots.txt file
 - ✅ XML Sitemap (static and dynamic generation)
 - ✅ React Helmet for dynamic meta management
@@ -30,6 +34,7 @@ This document outlines the comprehensive SEO implementation for the Europe Job C
 - ✅ Performance optimizations
 
 ### 4. **Analytics & Tracking**
+
 - ✅ Google Analytics 4 integration
 - ✅ Custom event tracking functions
 - ✅ Page view tracking
@@ -60,6 +65,7 @@ public/
 ## 🔧 Configuration
 
 ### Environment Variables
+
 Add these to your `.env` and `.env.production` files:
 
 ```env
@@ -67,6 +73,7 @@ VITE_GA_TRACKING_ID=G-XXXXXXXXXX  # Replace with your GA4 tracking ID
 ```
 
 ### Google Analytics Setup
+
 1. Create a Google Analytics 4 property
 2. Get your tracking ID (G-XXXXXXXXXX)
 3. Replace the placeholder in environment variables
@@ -75,6 +82,7 @@ VITE_GA_TRACKING_ID=G-XXXXXXXXXX  # Replace with your GA4 tracking ID
 ## 📊 SEO Checklist
 
 ### ✅ Completed
+
 - [x] Meta tags implementation
 - [x] Open Graph tags
 - [x] Twitter Cards
@@ -87,6 +95,7 @@ VITE_GA_TRACKING_ID=G-XXXXXXXXXX  # Replace with your GA4 tracking ID
 - [x] Mobile optimization
 
 ### 🔄 Next Steps (Recommended)
+
 - [ ] Google Search Console setup
 - [ ] Core Web Vitals optimization
 - [ ] Image optimization and WebP format
@@ -101,6 +110,7 @@ VITE_GA_TRACKING_ID=G-XXXXXXXXXX  # Replace with your GA4 tracking ID
 ## 🎯 Target Keywords
 
 ### Primary Keywords
+
 - Europe jobs
 - European universities
 - Study abroad
@@ -109,6 +119,7 @@ VITE_GA_TRACKING_ID=G-XXXXXXXXXX  # Replace with your GA4 tracking ID
 - Work in Europe
 
 ### Long-tail Keywords
+
 - Healthcare jobs in Germany for international students
 - Best European universities for international students
 - How to apply for universities in Europe
@@ -118,7 +129,9 @@ VITE_GA_TRACKING_ID=G-XXXXXXXXXX  # Replace with your GA4 tracking ID
 ## 📈 Monitoring & Analytics
 
 ### Google Analytics Events
+
 The following custom events are tracked:
+
 - `view_university` - University page views
 - `view_job` - Healthcare job views
 - `begin_application` - Application form starts
@@ -127,6 +140,7 @@ The following custom events are tracked:
 - `contact_form_submit` - Contact form submissions
 
 ### Key Metrics to Monitor
+
 1. **Organic Traffic Growth**
 2. **Keyword Rankings**
 3. **Page Load Speed**
@@ -138,14 +152,15 @@ The following custom events are tracked:
 ## 🛠️ Usage Examples
 
 ### Adding SEO to a New Page
+
 ```tsx
-import SEOHead from '../seo/SEOHead';
-import { createBreadcrumbSchema } from '../../utils/structuredData';
+import SEOHead from "../seo/SEOHead";
+import { createBreadcrumbSchema } from "../../utils/structuredData";
 
 const MyPage = () => {
   const breadcrumbData = createBreadcrumbSchema([
     { name: "Home", url: "https://www.ejcgroup.eu" },
-    { name: "My Page", url: "https://www.ejcgroup.eu/my-page" }
+    { name: "My Page", url: "https://www.ejcgroup.eu/my-page" },
   ]);
 
   return (
@@ -164,16 +179,17 @@ const MyPage = () => {
 ```
 
 ### Tracking Custom Events
+
 ```tsx
-import { trackEvent, trackUniversityView } from '../analytics/GoogleAnalytics';
+import { trackEvent, trackUniversityView } from "../analytics/GoogleAnalytics";
 
 // Track university view
-trackUniversityView('univ-123', 'University of Oxford');
+trackUniversityView("univ-123", "University of Oxford");
 
 // Track custom event
-trackEvent('custom_action', {
-  category: 'engagement',
-  value: 1
+trackEvent("custom_action", {
+  category: "engagement",
+  value: 1,
 });
 ```
 
@@ -191,12 +207,14 @@ trackEvent('custom_action', {
 ## 📞 Support & Maintenance
 
 ### Regular SEO Tasks
+
 1. **Monthly**: Review Google Analytics and Search Console data
 2. **Quarterly**: Update sitemap and check for broken links
 3. **Bi-annually**: Review and update meta tags and content
 4. **Annually**: Comprehensive SEO audit and strategy review
 
 ### Tools for Monitoring
+
 - Google Analytics 4
 - Google Search Console
 - PageSpeed Insights

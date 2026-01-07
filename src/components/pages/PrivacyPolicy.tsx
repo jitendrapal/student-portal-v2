@@ -1,6 +1,15 @@
-import React from 'react';
-import { ArrowLeft, Shield, Eye, Lock, Database, UserCheck, Mail, Phone } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import {
+  ArrowLeft,
+  Shield,
+  Eye,
+  Lock,
+  Database,
+  UserCheck,
+  Mail,
+  Phone,
+} from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const PrivacyPolicy: React.FC = () => {
   const navigate = useNavigate();
@@ -22,7 +31,9 @@ const PrivacyPolicy: React.FC = () => {
               <Shield className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Privacy Policy</h1>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Privacy Policy
+              </h1>
               <p className="text-gray-600">Last updated: October 19, 2024</p>
             </div>
           </div>
@@ -32,17 +43,21 @@ const PrivacyPolicy: React.FC = () => {
       {/* Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-lg shadow-sm p-8">
-          
           {/* Introduction */}
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Introduction</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Introduction
+            </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Europe Job Center ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy 
-              explains how we collect, use, disclose, and safeguard your information when you visit our website and 
-              use our services for European education and career opportunities.
+              Europe Jobs Consultancy ("we," "our," or "us") is committed to
+              protecting your privacy. This Privacy Policy explains how we
+              collect, use, disclose, and safeguard your information when you
+              visit our website and use our services for European education and
+              career opportunities.
             </p>
             <p className="text-gray-700 leading-relaxed">
-              By using our services, you agree to the collection and use of information in accordance with this policy.
+              By using our services, you agree to the collection and use of
+              information in accordance with this policy.
             </p>
           </section>
 
@@ -52,10 +67,12 @@ const PrivacyPolicy: React.FC = () => {
               <Database className="w-6 h-6 mr-2 text-blue-600" />
               Information We Collect
             </h2>
-            
+
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Personal Information</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  Personal Information
+                </h3>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
                   <li>Name, email address, phone number</li>
                   <li>Date of birth, nationality, passport information</li>
@@ -67,7 +84,9 @@ const PrivacyPolicy: React.FC = () => {
               </div>
 
               <div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Usage Information</h3>
+                <h3 className="text-lg font-medium text-gray-900 mb-2">
+                  Usage Information
+                </h3>
                 <ul className="list-disc list-inside text-gray-700 space-y-1">
                   <li>IP address, browser type, and device information</li>
                   <li>Pages visited, time spent on our website</li>
@@ -105,11 +124,26 @@ const PrivacyPolicy: React.FC = () => {
               We may share your information with:
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
-              <li><strong>Universities and Educational Institutions:</strong> To process your applications</li>
-              <li><strong>Healthcare Employers:</strong> For job placement services</li>
-              <li><strong>Service Providers:</strong> Third-party vendors who assist our operations</li>
-              <li><strong>Legal Authorities:</strong> When required by law or to protect our rights</li>
-              <li><strong>Business Partners:</strong> With your explicit consent for specific services</li>
+              <li>
+                <strong>Universities and Educational Institutions:</strong> To
+                process your applications
+              </li>
+              <li>
+                <strong>Healthcare Employers:</strong> For job placement
+                services
+              </li>
+              <li>
+                <strong>Service Providers:</strong> Third-party vendors who
+                assist our operations
+              </li>
+              <li>
+                <strong>Legal Authorities:</strong> When required by law or to
+                protect our rights
+              </li>
+              <li>
+                <strong>Business Partners:</strong> With your explicit consent
+                for specific services
+              </li>
             </ul>
           </section>
 
@@ -120,8 +154,9 @@ const PrivacyPolicy: React.FC = () => {
               Data Security
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              We implement appropriate technical and organizational security measures to protect your personal 
-              information against unauthorized access, alteration, disclosure, or destruction.
+              We implement appropriate technical and organizational security
+              measures to protect your personal information against unauthorized
+              access, alteration, disclosure, or destruction.
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
               <li>SSL encryption for data transmission</li>
@@ -134,7 +169,9 @@ const PrivacyPolicy: React.FC = () => {
 
           {/* Your Rights */}
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Your Rights</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Your Rights
+            </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               Under GDPR and other applicable laws, you have the right to:
             </p>
@@ -151,23 +188,30 @@ const PrivacyPolicy: React.FC = () => {
 
           {/* Cookies */}
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Cookies and Tracking</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Cookies and Tracking
+            </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              We use cookies and similar technologies to enhance your experience. For detailed information, 
-              please see our <button 
-                onClick={() => navigate('/cookies')} 
+              We use cookies and similar technologies to enhance your
+              experience. For detailed information, please see our{" "}
+              <button
+                onClick={() => navigate("/cookies")}
                 className="text-blue-600 hover:text-blue-700 underline"
               >
                 Cookie Policy
-              </button>.
+              </button>
+              .
             </p>
           </section>
 
           {/* Contact Information */}
           <section className="mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Contact Us</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Contact Us
+            </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              If you have questions about this Privacy Policy or our data practices, please contact us:
+              If you have questions about this Privacy Policy or our data
+              practices, please contact us:
             </p>
             <div className="bg-gray-50 rounded-lg p-6 space-y-3">
               <div className="flex items-center text-gray-700">
@@ -186,14 +230,17 @@ const PrivacyPolicy: React.FC = () => {
 
           {/* Updates */}
           <section>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Policy Updates</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Policy Updates
+            </h2>
             <p className="text-gray-700 leading-relaxed">
-              We may update this Privacy Policy from time to time. We will notify you of any changes by 
-              posting the new Privacy Policy on this page and updating the "Last updated" date. 
-              Continued use of our services after changes constitutes acceptance of the updated policy.
+              We may update this Privacy Policy from time to time. We will
+              notify you of any changes by posting the new Privacy Policy on
+              this page and updating the "Last updated" date. Continued use of
+              our services after changes constitutes acceptance of the updated
+              policy.
             </p>
           </section>
-
         </div>
       </div>
     </div>

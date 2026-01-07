@@ -53,7 +53,7 @@ const AppLauncher: React.FC<AppLauncherProps> = ({ className = "" }) => {
     id: "counseling-consultation-app",
     title: "Expert Career Counseling Session",
     category: "nurse",
-    hospital: "Europe Job Center",
+    hospital: "Europe Jobs Consultancy",
     location: "Online/Multiple Cities",
     country: "Europe",
     employmentType: "full-time",

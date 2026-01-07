@@ -1,6 +1,6 @@
-# OAuth Setup Guide for Europe Job Center
+# OAuth Setup Guide for Europe Jobs Consultancy
 
-This guide will help you set up Google and LinkedIn OAuth authentication for the Europe Job Center application.
+This guide will help you set up Google and LinkedIn OAuth authentication for the Europe Jobs Consultancy application.
 
 ## Prerequisites
 
@@ -17,11 +17,11 @@ This guide will help you set up Google and LinkedIn OAuth authentication for the
 3. Enable the Google+ API and Google OAuth2 API
 4. Go to "Credentials" → "Create Credentials" → "OAuth 2.0 Client IDs"
 5. Configure the OAuth consent screen:
-   - Application name: "Europe Job Center"
+   - Application name: "Europe Jobs Consultancy"
    - Authorized domains: Add your domain (e.g., `localhost` for development)
 6. Create OAuth 2.0 Client ID:
    - Application type: Web application
-   - Name: "Europe Job Center Web Client"
+   - Name: "Europe Jobs Consultancy Web Client"
    - Authorized JavaScript origins:
      - `http://localhost:5173` (frontend)
      - `http://localhost:5001` (backend)
@@ -43,7 +43,7 @@ This guide will help you set up Google and LinkedIn OAuth authentication for the
 
 1. Go to [LinkedIn Developer Portal](https://www.linkedin.com/developers/)
 2. Create a new app:
-   - App name: "Europe Job Center"
+   - App name: "Europe Jobs Consultancy"
    - LinkedIn Page: Create or select a LinkedIn page
    - App logo: Upload your logo
    - Legal agreement: Accept terms
@@ -114,12 +114,14 @@ REACT_APP_LINKEDIN_CLIENT_ID=your-linkedin-client-id
 ## Testing OAuth Integration
 
 1. Start the backend server:
+
    ```bash
    cd backend
    npm start
    ```
 
 2. Start the frontend application:
+
    ```bash
    npm run dev
    ```
@@ -134,14 +136,17 @@ REACT_APP_LINKEDIN_CLIENT_ID=your-linkedin-client-id
 ### Common Issues
 
 1. **"redirect_uri_mismatch" error**:
+
    - Ensure the redirect URI in your OAuth app matches exactly: `http://localhost:5001/api/auth/google/callback`
    - Check for trailing slashes and protocol (http vs https)
 
 2. **"invalid_client" error**:
+
    - Verify your Client ID and Client Secret are correct
    - Ensure environment variables are loaded properly
 
 3. **CORS errors**:
+
    - Check that your frontend URL is added to CORS configuration in the backend
    - Verify the frontend URL in the backend `.env` file
 

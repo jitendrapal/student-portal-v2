@@ -1,8 +1,8 @@
-# 🎓 Europe Job Center - Complete Project Structure
+# 🎓 Europe Jobs Consultancy - Complete Project Structure
 
 ## 📋 Project Overview
 
-**Europe Job Center (EJC Group)** is a comprehensive student portal application that helps Indian students find healthcare jobs and study opportunities in Europe, particularly Germany and Poland.
+**Europe Jobs Consultancy (EJC Group)** is a comprehensive student portal application that helps Indian students find healthcare jobs and study opportunities in Europe, particularly Germany and Poland.
 
 ### 🏗️ Technology Stack
 
@@ -356,7 +356,7 @@ npm run dev
 ```env
 VITE_API_URL=https://student-portal-v2-production.up.railway.app/api
 VITE_NODE_ENV=production
-VITE_APP_NAME=Europe Job Center
+VITE_APP_NAME=Europe Jobs Consultancy
 VITE_GA_TRACKING_ID=your-google-analytics-id
 ```
 

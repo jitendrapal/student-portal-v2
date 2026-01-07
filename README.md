@@ -1,4 +1,4 @@
-# EJC - Europe Job Center
+# EJC - Europe Jobs Consultancy
 
 A comprehensive web application for managing job applications, university searches, healthcare job opportunities, and career guidance across Europe.
 

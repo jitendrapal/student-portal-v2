@@ -421,13 +421,13 @@ function doPost(e) {
  * Instructions for setting up Google Sheets integration
  */
 export const SETUP_INSTRUCTIONS = `
-# Google Sheets Integration Setup for Europe Job Center
+# Google Sheets Integration Setup for Europe Jobs Consultancy
 
 ## Method 1: Using Google Apps Script (Recommended)
 
 1. **Create a Google Sheet:**
    - Go to Google Sheets and create a new spreadsheet
-   - Name it "Europe Job Center - Lead Management"
+   - Name it "Europe Jobs Consultancy - Lead Management"
    - The script will automatically create these sheets:
      * Lead_Magnets (for FREE guide downloads)
      * Healthcare_Applications (for doctor/nurse applications)

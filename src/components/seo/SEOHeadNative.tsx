@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 interface SEOHeadNativeProps {
   title?: string;
@@ -6,7 +6,7 @@ interface SEOHeadNativeProps {
   keywords?: string;
   image?: string;
   url?: string;
-  type?: 'website' | 'article' | 'profile';
+  type?: "website" | "article" | "profile";
   author?: string;
   publishedTime?: string;
   modifiedTime?: string;
@@ -19,13 +19,13 @@ interface SEOHeadNativeProps {
 }
 
 const SEOHeadNative: React.FC<SEOHeadNativeProps> = ({
-  title = 'EJC - Europe Job Center | Study & Work in Europe',
-  description = 'Europe Job Center helps students and professionals find opportunities to study and work in Europe. Browse universities, courses, and healthcare jobs across 50+ European countries.',
-  keywords = 'Europe jobs, European universities, study abroad, healthcare jobs Germany, European education, work in Europe, student visa, university applications',
-  image = 'https://www.ejcgroup.eu/og-image.jpg',
-  url = 'https://www.ejcgroup.eu',
-  type = 'website',
-  author = 'Europe Job Center',
+  title = "EJC - Europe Jobs Consultancy | Study & Work in Europe",
+  description = "Europe Jobs Consultancy helps students and professionals find opportunities to study and work in Europe. Browse universities, courses, and healthcare jobs across 50+ European countries.",
+  keywords = "Europe jobs, European universities, study abroad, healthcare jobs Germany, European education, work in Europe, student visa, university applications",
+  image = "https://www.ejcgroup.eu/og-image.jpg",
+  url = "https://www.ejcgroup.eu",
+  type = "website",
+  author = "Europe Jobs Consultancy",
   publishedTime,
   modifiedTime,
   section,
@@ -36,7 +36,9 @@ const SEOHeadNative: React.FC<SEOHeadNativeProps> = ({
   structuredData,
 }) => {
   useEffect(() => {
-    const fullTitle = title.includes('EJC') ? title : `${title} | EJC - Europe Job Center`;
+    const fullTitle = title.includes("EJC")
+      ? title
+      : `${title} | EJC - Europe Jobs Consultancy`;
     const currentUrl = canonical || url;
 
     // Update document title
@@ -44,11 +46,13 @@ const SEOHeadNative: React.FC<SEOHeadNativeProps> = ({
 
     // Function to update or create meta tag
     const updateMetaTag = (name: string, content: string, property = false) => {
-      const attribute = property ? 'property' : 'name';
-      let meta = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
-      
+      const attribute = property ? "property" : "name";
+      let meta = document.querySelector(
+        `meta[${attribute}="${name}"]`
+      ) as HTMLMetaElement;
+
       if (!meta) {
-        meta = document.createElement('meta');
+        meta = document.createElement("meta");
         meta.setAttribute(attribute, name);
         document.head.appendChild(meta);
       }
@@ -57,10 +61,12 @@ const SEOHeadNative: React.FC<SEOHeadNativeProps> = ({
 
     // Function to update or create link tag
     const updateLinkTag = (rel: string, href: string) => {
-      let link = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
-      
+      let link = document.querySelector(
+        `link[rel="${rel}"]`
+      ) as HTMLLinkElement;
+
       if (!link) {
-        link = document.createElement('link');
+        link = document.createElement("link");
         link.rel = rel;
         document.head.appendChild(link);
       }
@@ -68,76 +74,85 @@ const SEOHeadNative: React.FC<SEOHeadNativeProps> = ({
     };
 
     // Basic Meta Tags
-    updateMetaTag('description', description);
-    updateMetaTag('keywords', keywords);
-    updateMetaTag('author', author);
+    updateMetaTag("description", description);
+    updateMetaTag("keywords", keywords);
+    updateMetaTag("author", author);
 
     // Robots
     if (noIndex || noFollow) {
-      updateMetaTag('robots', `${noIndex ? 'noindex' : 'index'},${noFollow ? 'nofollow' : 'follow'}`);
+      updateMetaTag(
+        "robots",
+        `${noIndex ? "noindex" : "index"},${noFollow ? "nofollow" : "follow"}`
+      );
     }
 
     // Canonical URL
     if (canonical) {
-      updateLinkTag('canonical', canonical);
+      updateLinkTag("canonical", canonical);
     }
 
     // Open Graph / Facebook
-    updateMetaTag('og:type', type, true);
-    updateMetaTag('og:title', fullTitle, true);
-    updateMetaTag('og:description', description, true);
-    updateMetaTag('og:image', image, true);
-    updateMetaTag('og:url', currentUrl, true);
-    updateMetaTag('og:site_name', 'Europe Job Center', true);
-    updateMetaTag('og:locale', 'en_US', true);
+    updateMetaTag("og:type", type, true);
+    updateMetaTag("og:title", fullTitle, true);
+    updateMetaTag("og:description", description, true);
+    updateMetaTag("og:image", image, true);
+    updateMetaTag("og:url", currentUrl, true);
+    updateMetaTag("og:site_name", "Europe Jobs Consultancy", true);
+    updateMetaTag("og:locale", "en_US", true);
 
     // Article specific
-    if (type === 'article') {
-      if (publishedTime) updateMetaTag('article:published_time', publishedTime, true);
-      if (modifiedTime) updateMetaTag('article:modified_time', modifiedTime, true);
-      if (author) updateMetaTag('article:author', author, true);
-      if (section) updateMetaTag('article:section', section, true);
-      
+    if (type === "article") {
+      if (publishedTime)
+        updateMetaTag("article:published_time", publishedTime, true);
+      if (modifiedTime)
+        updateMetaTag("article:modified_time", modifiedTime, true);
+      if (author) updateMetaTag("article:author", author, true);
+      if (section) updateMetaTag("article:section", section, true);
+
       // Remove existing article tags
-      document.querySelectorAll('meta[property^="article:tag"]').forEach(tag => tag.remove());
-      
+      document
+        .querySelectorAll('meta[property^="article:tag"]')
+        .forEach((tag) => tag.remove());
+
       // Add new article tags
-      tags.forEach(tag => {
-        const meta = document.createElement('meta');
-        meta.setAttribute('property', 'article:tag');
+      tags.forEach((tag) => {
+        const meta = document.createElement("meta");
+        meta.setAttribute("property", "article:tag");
         meta.content = tag;
         document.head.appendChild(meta);
       });
     }
 
     // Twitter Card
-    updateMetaTag('twitter:card', 'summary_large_image');
-    updateMetaTag('twitter:title', fullTitle);
-    updateMetaTag('twitter:description', description);
-    updateMetaTag('twitter:image', image);
-    updateMetaTag('twitter:site', '@EuropeJobCenter');
-    updateMetaTag('twitter:creator', '@EuropeJobCenter');
+    updateMetaTag("twitter:card", "summary_large_image");
+    updateMetaTag("twitter:title", fullTitle);
+    updateMetaTag("twitter:description", description);
+    updateMetaTag("twitter:image", image);
+    updateMetaTag("twitter:site", "@EuropeJobCenter");
+    updateMetaTag("twitter:creator", "@EuropeJobCenter");
 
     // Additional SEO Meta Tags
-    updateMetaTag('theme-color', '#2563eb');
-    updateMetaTag('msapplication-TileColor', '#2563eb');
-    updateMetaTag('application-name', 'Europe Job Center');
+    updateMetaTag("theme-color", "#2563eb");
+    updateMetaTag("msapplication-TileColor", "#2563eb");
+    updateMetaTag("application-name", "Europe Jobs Consultancy");
 
     // Language and Region
-    updateMetaTag('geo.region', 'EU');
-    updateMetaTag('geo.placename', 'Europe');
+    updateMetaTag("geo.region", "EU");
+    updateMetaTag("geo.placename", "Europe");
 
     // Structured Data
     if (structuredData) {
       // Remove existing structured data
-      const existingScript = document.querySelector('script[type="application/ld+json"]');
+      const existingScript = document.querySelector(
+        'script[type="application/ld+json"]'
+      );
       if (existingScript) {
         existingScript.remove();
       }
 
       // Add new structured data
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
       script.textContent = JSON.stringify(structuredData);
       document.head.appendChild(script);
     }

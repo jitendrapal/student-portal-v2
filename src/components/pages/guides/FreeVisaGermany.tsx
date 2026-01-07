@@ -63,11 +63,11 @@ const FreeVisaGermany: React.FC = () => {
     description: seoData.description,
     author: {
       "@type": "Organization",
-      name: "Europe Job Center",
+      name: "Europe Jobs Consultancy",
     },
     publisher: {
       "@type": "Organization",
-      name: "Europe Job Center",
+      name: "Europe Jobs Consultancy",
       logo: {
         "@type": "ImageObject",
         url: "https://www.ejcgroup.eu/logo.png",

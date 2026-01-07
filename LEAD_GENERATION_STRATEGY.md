@@ -1,4 +1,4 @@
-# 🎯 Lead Generation Strategy for Europe Job Center
+# 🎯 Lead Generation Strategy for Europe Jobs Consultancy
 
 ## 📊 Current Performance Analysis
 
@@ -119,7 +119,7 @@
 ```javascript
 // WhatsApp Business Profile Setup
 const businessProfile = {
-  businessName: "Europe Job Center - Germany Opportunities",
+  businessName: "Europe Jobs Consultancy - Germany Opportunities",
   category: "Education Consultant",
   description:
     "🇩🇪 Your gateway to Germany! 2,500+ doctors & nurses placed | 700+ students enrolled | FREE consultation",
@@ -241,7 +241,7 @@ const enhancedQuickMessages = {
 const autoResponses = {
   greeting: {
     message:
-      "👋 Hi! Welcome to Europe Job Center!\n\n🇩🇪 We help Indian professionals work & study in Germany\n\n✅ 2,500+ doctors placed\n✅ 1,800+ nurses hired\n✅ 700+ students enrolled\n✅ 98% success rate\n\nHow can I help you today?",
+      "👋 Hi! Welcome to Europe Jobs Consultancy!\n\n🇩🇪 We help Indian professionals work & study in Germany\n\n✅ 2,500+ doctors placed\n✅ 1,800+ nurses hired\n✅ 700+ students enrolled\n✅ 98% success rate\n\nHow can I help you today?",
     quickReplies: [
       "🏥 Doctor Jobs",
       "�‍⚕️ Nursing Jobs",
@@ -510,7 +510,7 @@ const websiteIntegration = {
 
 ### **4. 🎬 Video Content Strategy**
 
-#### **YouTube Channel: "Europe Job Center"**
+#### **YouTube Channel: "Europe Jobs Consultancy"**
 
 **A. Weekly Content Calendar:**
 
@@ -815,7 +815,7 @@ const emailSequences = {
 
 #### **1. Video Content Creation**
 
-- **YouTube Channel**: "Europe Job Center"
+- **YouTube Channel**: "Europe Jobs Consultancy"
 - **Weekly Videos**: Success stories, tutorials, Q&A
 - **Video Topics**:
   - "Day in the Life: Indian Doctor in Germany"

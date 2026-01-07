@@ -5,12 +5,13 @@ export const whatsappConfig = {
 
   // Business information
   businessName:
-    import.meta.env.VITE_WHATSAPP_BUSINESS_NAME || "Europe Job Center Support",
+    import.meta.env.VITE_WHATSAPP_BUSINESS_NAME ||
+    "Europe Jobs Consultancy Support",
 
   // Default messages for different scenarios
   defaultMessages: {
     general:
-      "Hi! I'm interested in learning more about Europe Job Center opportunities.",
+      "Hi! I'm interested in learning more about Europe Jobs Consultancy opportunities.",
     studyPrograms:
       "I want to know about study programs in Germany and admission requirements.",
     healthcareJobs: "I'm interested in healthcare job opportunities in Europe.",
@@ -36,7 +37,7 @@ export const whatsappConfig = {
 
   // Welcome message
   welcomeMessage:
-    "👋 Hello! Welcome to Europe Job Center. How can we help you today?",
+    "👋 Hello! Welcome to Europe Jobs Consultancy. How can we help you today?",
 
   // Auto-responses based on page context
   contextMessages: {

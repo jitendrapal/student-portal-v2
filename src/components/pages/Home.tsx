@@ -46,7 +46,7 @@ const Home: React.FC = () => {
     id: "counseling-consultation",
     title: "Free Career Counseling Consultation",
     category: "nurse",
-    hospital: "Europe Job Center",
+    hospital: "Europe Jobs Consultancy",
     location: "Online/Multiple Cities",
     country: "Europe",
     employmentType: "full-time",

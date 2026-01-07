@@ -1,5 +1,5 @@
 /**
- * Google Apps Script for Europe Job Center Applications
+ * Google Apps Script for Europe Jobs Consultancy Applications
  *
  * DEPLOYMENT INFO:
  * Script URL: https://script.google.com/macros/s/AKfycbxvTjFWJac0M-nD1hJpSnD6siF-6l2ruHfExMEB_OC31y94012EXEsCxvVtZMvz0y48Lw/exec

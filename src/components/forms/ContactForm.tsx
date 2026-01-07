@@ -1,5 +1,15 @@
-import React, { useState } from 'react';
-import { X, Send, User, Mail, Phone, MessageCircle, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
+import React, { useState } from "react";
+import {
+  X,
+  Send,
+  User,
+  Mail,
+  Phone,
+  MessageCircle,
+  Calendar,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -14,7 +24,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
   onClose,
   title = "Book Free Consultation",
   subtitle = "Get expert guidance for your European career journey",
-  serviceType = "Career Counseling"
+  serviceType = "Career Counseling",
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -38,7 +48,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
     if (!formData.email.trim()) return "Email is required.";
     if (!formData.phone.trim()) return "Phone number is required.";
     if (!formData.message.trim()) return "Please tell us how we can help you.";
-    if (!formData.consent) return "Please agree to our terms and privacy policy.";
+    if (!formData.consent)
+      return "Please agree to our terms and privacy policy.";
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
@@ -62,11 +73,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
     try {
       // Simulate API call - replace with actual submission logic
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Here you would typically send the data to your backend
-      console.log('Contact form submitted:', formData);
-      
+      console.log("Contact form submitted:", formData);
+
       setIsSubmitted(true);
     } catch (err) {
       setError("Failed to submit form. Please try again.");
@@ -77,11 +88,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   const handleInputChange = (field: string, value: string | boolean) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
-    
+
     if (error) {
       setError("");
     }
@@ -136,16 +147,23 @@ const ContactForm: React.FC<ContactFormProps> = ({
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Thank You!</h3>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Thank You!
+              </h3>
               <p className="text-gray-600 mb-6">
-                Your consultation request has been submitted successfully. Our team will contact you within 24 hours to schedule your free consultation.
+                Your consultation request has been submitted successfully. Our
+                team will contact you within 24 hours to schedule your free
+                consultation.
               </p>
               <div className="bg-gray-50 rounded-lg p-4 mb-6">
                 <p className="text-sm text-gray-700">
-                  <strong>What's next?</strong><br />
-                  • We'll review your request<br />
-                  • A counselor will contact you to confirm your preferred time<br />
-                  • You'll receive a calendar invitation with meeting details
+                  <strong>What's next?</strong>
+                  <br />
+                  • We'll review your request
+                  <br />
+                  • A counselor will contact you to confirm your preferred time
+                  <br />• You'll receive a calendar invitation with meeting
+                  details
                 </p>
               </div>
               <button
@@ -176,7 +194,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   <input
                     type="text"
                     value={formData.firstName}
-                    onChange={(e) => handleInputChange('firstName', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("firstName", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="Enter your first name"
                     required
@@ -189,7 +209,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   <input
                     type="text"
                     value={formData.lastName}
-                    onChange={(e) => handleInputChange('lastName', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("lastName", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="Enter your last name"
                     required
@@ -207,7 +229,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   <input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="your.email@example.com"
                     required
@@ -221,7 +243,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   <input
                     type="tel"
                     value={formData.phone}
-                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     placeholder="+1 (555) 123-4567"
                     required
@@ -236,13 +258,19 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 </label>
                 <select
                   value={formData.serviceType}
-                  onChange={(e) => handleInputChange('serviceType', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("serviceType", e.target.value)
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 >
                   <option value="Career Counseling">Career Counseling</option>
-                  <option value="University Application">University Application</option>
+                  <option value="University Application">
+                    University Application
+                  </option>
                   <option value="Healthcare Jobs">Healthcare Jobs</option>
-                  <option value="Scholarship Guidance">Scholarship Guidance</option>
+                  <option value="Scholarship Guidance">
+                    Scholarship Guidance
+                  </option>
                   <option value="Visa Assistance">Visa Assistance</option>
                   <option value="General Inquiry">General Inquiry</option>
                 </select>
@@ -258,9 +286,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   <input
                     type="date"
                     value={formData.preferredDate}
-                    onChange={(e) => handleInputChange('preferredDate', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("preferredDate", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                    min={new Date().toISOString().split('T')[0]}
+                    min={new Date().toISOString().split("T")[0]}
                   />
                 </div>
                 <div>
@@ -269,7 +299,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   </label>
                   <select
                     value={formData.preferredTime}
-                    onChange={(e) => handleInputChange('preferredTime', e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("preferredTime", e.target.value)
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   >
                     <option value="">Select time</option>
@@ -291,7 +323,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 </label>
                 <textarea
                   value={formData.message}
-                  onChange={(e) => handleInputChange('message', e.target.value)}
+                  onChange={(e) => handleInputChange("message", e.target.value)}
                   rows={4}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                   placeholder="Tell us about your goals, current situation, and how we can assist you..."
@@ -305,14 +337,26 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   type="checkbox"
                   id="consent"
                   checked={formData.consent}
-                  onChange={(e) => handleInputChange('consent', e.target.checked)}
+                  onChange={(e) =>
+                    handleInputChange("consent", e.target.checked)
+                  }
                   className="mt-1 w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
                   required
                 />
                 <label htmlFor="consent" className="text-sm text-gray-700">
-                  I agree to the <a href="/terms" className="text-purple-600 hover:underline">Terms of Service</a> and{' '}
-                  <a href="/privacy" className="text-purple-600 hover:underline">Privacy Policy</a>. 
-                  I consent to being contacted by Europe Job Center regarding my inquiry. *
+                  I agree to the{" "}
+                  <a href="/terms" className="text-purple-600 hover:underline">
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a
+                    href="/privacy"
+                    className="text-purple-600 hover:underline"
+                  >
+                    Privacy Policy
+                  </a>
+                  . I consent to being contacted by Europe Jobs Consultancy
+                  regarding my inquiry. *
                 </label>
               </div>
 

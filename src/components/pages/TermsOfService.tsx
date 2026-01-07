@@ -65,7 +65,7 @@ const TermsOfService: React.FC = () => {
               Our Services
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              Europe Job Center provides:
+              Europe Jobs Consultancy provides:
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
               <li>University application assistance and counseling services</li>
@@ -155,8 +155,8 @@ const TermsOfService: React.FC = () => {
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
               All content, features, and functionality of our services are owned
-              by Europe Job Center and are protected by international copyright,
-              trademark, and other intellectual property laws.
+              by Europe Jobs Consultancy and are protected by international
+              copyright, trademark, and other intellectual property laws.
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
               <li>
@@ -283,7 +283,7 @@ const TermsOfService: React.FC = () => {
             </p>
             <div className="bg-gray-50 rounded-lg p-6">
               <p className="text-gray-700 mb-2">
-                <strong>Europe Job Center</strong>
+                <strong>Europe Jobs Consultancy</strong>
                 <br />
                 Email: legal@ejcgroup.eu
                 <br />
