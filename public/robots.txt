@@ -17,6 +17,14 @@ Allow: /guides/nursing-jobs-germany
 Allow: /guides/doctors-jobs-germany
 Allow: /guides/complete-nursing-guide-2024
 
+# High Priority Pages for Ausbildung Programs Germany
+Allow: /ausbildung-germany
+Allow: /vocational-training-germany
+Allow: /apprenticeship-germany
+Allow: /guides/ausbildung-program-germany
+Allow: /guides/german-vocational-training
+Allow: /guides/dual-education-germany
+
 # High Priority Pages for European Education (only existing routes)
 Allow: /universities
 Allow: /courses

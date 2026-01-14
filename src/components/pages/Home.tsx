@@ -215,6 +215,12 @@ const Home: React.FC = () => {
               >
                 🚀 Explore Universities
               </button>
+              <button
+                onClick={() => navigate("/ausbildung-germany")}
+                className="bg-gradient-accent text-white px-6 sm:px-8 py-4 sm:py-5 rounded-modern-xl font-bold text-sm sm:text-lg hover:shadow-glow-accent transition-all duration-500 shadow-modern-lg hover:shadow-electric transform hover:-translate-y-2 hover:scale-105 whitespace-nowrap"
+              >
+                🎓 Ausbildung Germany
+              </button>
             </div>
 
             {/* Key Value Proposition - Moved below buttons */}
