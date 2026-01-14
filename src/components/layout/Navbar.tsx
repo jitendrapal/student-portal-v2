@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  Search,
   Menu,
   X,
   User,
@@ -13,9 +12,9 @@ import {
   Globe,
   Heart,
   Stethoscope,
-  Briefcase,
   Phone,
   Mail,
+  GraduationCap,
 } from "lucide-react";
 import { useStore } from "../../store/useStore";
 import SearchWithSuggestions from "../common/SearchWithSuggestions";
@@ -66,6 +65,8 @@ const Navbar: React.FC = () => {
         return "/courses";
       case "healthcare-jobs":
         return "/healthcare-jobs";
+      case "ausbildung-germany":
+        return "/ausbildung-germany";
       case "login":
         return "/login";
       case "applications":
@@ -209,6 +210,11 @@ const Navbar: React.FC = () => {
     { id: "universities", label: "Universities", icon: BookOpen },
     { id: "courses", label: "Courses", icon: BookOpen },
     { id: "healthcare-jobs", label: "Healthcare Jobs", icon: Heart },
+    {
+      id: "ausbildung-germany",
+      label: "Ausbildung Germany",
+      icon: GraduationCap,
+    },
   ];
 
   // Add authenticated user items
@@ -222,24 +228,41 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-white/90 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50 shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex justify-between items-center h-16">
           {/* Clean Modern Logo */}
-          <div className="flex items-center space-x-6">
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
-                <Briefcase className="w-6 h-6 text-white" />
+          <div className="flex items-center space-x-4">
+            <Link to="/" className="flex items-center space-x-2 group">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-white shadow-lg flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+                <img
+                  src="/logo-ejc.png"
+                  alt="Europe Jobs Consultancy Logo"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to gradient background with EJC text if logo fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.className =
+                        "w-10 h-10 bg-gradient-to-br from-blue-600 to-green-500 rounded-full flex items-center justify-center group-hover:scale-105 transition-all duration-300 text-white font-bold text-xs shadow-lg";
+                      parent.innerHTML = "EJC";
+                    }
+                  }}
+                />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-gray-900">EJC</span>
-                <span className="text-xs text-gray-600 font-medium">
-                  Gateway to Europe
+                <span className="text-lg font-bold text-gray-900">
+                  Europe Jobs
+                </span>
+                <span className="text-xs text-gray-600 font-medium -mt-1">
+                  Consultancy
                 </span>
               </div>
             </Link>
 
             {/* Clean Contact Information */}
-            <div className="hidden lg:flex flex-col space-y-1 text-sm">
+            <div className="hidden xl:flex flex-col space-y-1 text-sm">
               <a
                 href="tel:+917701875294"
                 className="flex items-center space-x-1 text-gray-600 hover:text-primary-600 transition-colors duration-200 font-medium"

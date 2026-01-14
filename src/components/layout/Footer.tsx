@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
-  Briefcase,
   Phone,
   Mail,
   MapPin,
@@ -58,8 +57,23 @@ const Footer: React.FC = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <Briefcase className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-white shadow-lg flex items-center justify-center">
+                <img
+                  src="/logo-ejc.png"
+                  alt="Europe Jobs Consultancy Logo"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // Fallback to gradient background with EJC text if logo fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.className =
+                        "w-10 h-10 bg-gradient-to-br from-blue-600 to-green-500 rounded-lg flex items-center justify-center text-white font-bold text-xs";
+                      parent.innerHTML = "EJC";
+                    }
+                  }}
+                />
               </div>
               <span className="text-xl font-bold">Europe Jobs Consultancy</span>
             </div>

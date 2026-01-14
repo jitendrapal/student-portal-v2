@@ -12,6 +12,8 @@ import Courses from "./components/pages/Courses";
 import CourseDetail from "./components/pages/CourseDetail";
 import HealthcareJobs from "./components/pages/HealthcareJobs";
 import HealthcareJobDetail from "./components/pages/HealthcareJobDetail";
+import AusbildungGermany from "./components/pages/AusbildungGermany";
+
 import Login from "./components/auth/Login";
 import OAuthSuccess from "./components/auth/OAuthSuccess";
 import StudentDashboard from "./components/student/StudentDashboard";
@@ -73,6 +75,11 @@ function App() {
                   path="/healthcare-job/:id"
                   element={<HealthcareJobDetail />}
                 />
+                <Route
+                  path="/ausbildung-germany"
+                  element={<AusbildungGermany />}
+                />
+
                 <Route path="/login" element={<Login />} />
                 <Route path="/auth/success" element={<OAuthSuccess />} />
                 <Route

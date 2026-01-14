@@ -131,7 +131,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       <SEOHeadNative
         title="Nursing Jobs Germany | Doctors Jobs Germany | Study in Europe | EJC Group"
         description="Leading recruitment agency for nursing jobs Germany and doctors jobs Germany with visa sponsorship. Study in Europe's top universities. Healthcare recruitment, medical jobs, European education, and visa assistance for Indian professionals."
@@ -141,18 +141,9 @@ const Home: React.FC = () => {
         structuredData={structuredData}
       />
       {/* Ultra Modern Hero Section */}
-      <section className="relative bg-gradient-hero text-white overflow-hidden min-h-[80vh] flex items-center">
-        {/* Ultra Modern Background Pattern */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-neon-blue/20 to-transparent transform -skew-y-12"></div>
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-neon-purple/20 to-transparent transform skew-y-12"></div>
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(0,212,255,0.2),transparent_50%)]"></div>
-          <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,rgba(217,70,239,0.2),transparent_50%)]"></div>
-          <div
-            className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,rgba(14,165,233,0.1),rgba(139,92,246,0.1),rgba(217,70,239,0.1),rgba(236,72,153,0.1),rgba(14,165,233,0.1))] animate-spin"
-            style={{ animationDuration: "20s" }}
-          ></div>
-        </div>
+      <section className="relative bg-gradient-to-r from-blue-600 via-blue-700 to-green-600 text-white overflow-hidden min-h-[80vh] flex items-center">
+        {/* Background Overlay */}
+        <div className="absolute inset-0 bg-black/20"></div>
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
           <div className="text-center">
@@ -245,7 +236,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Guides & Resources Section */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
+      <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-blue-50 to-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -406,7 +397,7 @@ const Home: React.FC = () => {
             </div>
 
             {/* Featured CTA Card */}
-            <div className="bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-lg shadow-md p-2 sm:p-4 lg:p-6">
+            <div className="bg-gradient-to-br from-blue-600 to-green-600 text-white rounded-lg shadow-md p-2 sm:p-4 lg:p-6">
               <div className="text-center">
                 <div className="w-8 sm:w-12 h-8 sm:h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-4">
                   <span className="text-lg sm:text-2xl">✨</span>
@@ -420,7 +411,7 @@ const Home: React.FC = () => {
                 </p>
                 <button
                   onClick={handleCounselingClick}
-                  className="bg-white text-indigo-600 px-2 sm:px-4 py-1 sm:py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors text-xs sm:text-base"
+                  className="bg-white text-blue-600 px-2 sm:px-4 py-1 sm:py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors text-xs sm:text-base"
                 >
                   <span className="hidden sm:inline">Free Consultation</span>
                   <span className="sm:hidden">Consult</span>
@@ -438,7 +429,7 @@ const Home: React.FC = () => {
       <TopCollegesSection />
 
       {/* Features Section */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-white to-primary-50/20">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <div className="inline-flex items-center glass-cyber text-white px-6 py-3 rounded-full text-sm font-bold mb-6 shadow-glow-neon">
@@ -666,7 +657,7 @@ const Home: React.FC = () => {
 
           {/* CTA after FAQ */}
           <div className="text-center mt-12">
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-8 text-white">
+            <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-green-600 rounded-lg p-8 text-white">
               <h3 className="text-2xl font-bold mb-4">
                 Still Have Questions? 🤔
               </h3>
