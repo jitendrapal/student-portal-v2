@@ -207,14 +207,14 @@ const Navbar: React.FC = () => {
   };
 
   const navItems = [
-    { id: "universities", label: "Universities", icon: BookOpen },
-    { id: "courses", label: "Courses", icon: BookOpen },
     { id: "healthcare-jobs", label: "Healthcare Jobs", icon: Heart },
     {
       id: "ausbildung-germany",
       label: "Ausbildung Germany",
       icon: GraduationCap,
     },
+    { id: "universities", label: "Universities", icon: BookOpen },
+    { id: "courses", label: "Courses", icon: BookOpen },
   ];
 
   // Add authenticated user items
@@ -228,12 +228,12 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="bg-white/90 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50 shadow-lg">
-      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+      <div className="max-w-7xl mx-auto px-1 sm:px-2 lg:px-4">
         <div className="flex justify-between items-center h-16">
           {/* Clean Modern Logo */}
-          <div className="flex items-center space-x-4">
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-10 h-10 rounded-full overflow-hidden bg-white shadow-lg flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+          <div className="flex items-center space-x-2 ml-2">
+            <Link to="/" className="flex items-center space-x-1 group">
+              <div className="w-12 h-10 rounded-lg overflow-hidden bg-white shadow-lg flex items-center justify-center group-hover:scale-105 transition-all duration-300">
                 <img
                   src="/logo-ejc.png"
                   alt="Europe Jobs Consultancy Logo"
@@ -245,17 +245,17 @@ const Navbar: React.FC = () => {
                     const parent = target.parentElement;
                     if (parent) {
                       parent.className =
-                        "w-10 h-10 bg-gradient-to-br from-blue-600 to-green-500 rounded-full flex items-center justify-center group-hover:scale-105 transition-all duration-300 text-white font-bold text-xs shadow-lg";
+                        "w-12 h-10 bg-gradient-to-br from-blue-600 to-green-500 rounded-lg flex items-center justify-center group-hover:scale-105 transition-all duration-300 text-white font-bold text-xs shadow-lg";
                       parent.innerHTML = "EJC";
                     }
                   }}
                 />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold text-gray-900">
+                <span className="text-base font-bold text-gray-900 leading-tight">
                   Europe Jobs
                 </span>
-                <span className="text-xs text-gray-600 font-medium -mt-1">
+                <span className="text-xs text-gray-600 font-medium -mt-1 leading-tight">
                   Consultancy
                 </span>
               </div>
@@ -802,11 +802,11 @@ const Navbar: React.FC = () => {
               href="https://www.linkedin.com/company/europe-job"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-gray-100 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+              className="w-9 h-9 bg-[#0077B5] hover:bg-[#005885] rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               aria-label="Follow us on LinkedIn"
             >
               <svg
-                className="w-4 h-4 text-gray-600 group-hover:text-white"
+                className="w-4 h-4 text-white"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -817,11 +817,11 @@ const Navbar: React.FC = () => {
               href="https://www.instagram.com/europe_jobs_consultancy"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-gray-100 hover:bg-pink-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+              className="w-9 h-9 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:from-[#6B2C91] hover:via-[#E11818] hover:to-[#E6672E] rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               aria-label="Follow us on Instagram"
             >
               <svg
-                className="w-4 h-4 text-gray-600 group-hover:text-white"
+                className="w-4 h-4 text-white"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -832,11 +832,11 @@ const Navbar: React.FC = () => {
               href="https://www.facebook.com/people/Europe-Jobs/61581349025866/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-9 h-9 bg-gray-100 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+              className="w-9 h-9 bg-[#1877F2] hover:bg-[#166FE5] rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
               aria-label="Follow us on Facebook"
             >
               <svg
-                className="w-4 h-4 text-gray-600 group-hover:text-white"
+                className="w-4 h-4 text-white"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >

@@ -156,7 +156,7 @@ const AusbildungGermany: React.FC = () => {
             <div className="text-center">
               <h1 className="text-4xl md:text-6xl font-black mb-6">
                 <span className="block">Ausbildung in</span>
-                <span className="block text-yellow-300">Germany 2024</span>
+                <span className="block text-yellow-300">Germany 2026</span>
               </h1>
               <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
                 Start your career with German Vocational Training. Earn while

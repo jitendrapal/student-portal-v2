@@ -178,37 +178,37 @@ const Home: React.FC = () => {
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
               <button
                 onClick={handleCounselingClick}
-                className="bg-gradient-neon text-white px-6 sm:px-10 py-4 sm:py-5 rounded-modern-xl font-black text-sm sm:text-xl hover:shadow-electric transition-all duration-500 shadow-cyber hover:shadow-electric transform hover:-translate-y-2 hover:scale-105 flex items-center gap-3 sm:gap-4 relative group pulse-glow"
+                className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-6 sm:px-10 py-4 sm:py-5 rounded-xl font-black text-sm sm:text-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 flex items-center gap-3 sm:gap-4 relative group"
               >
-                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce-gentle" />
+                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
                 <div className="flex flex-col items-start">
-                  <span className="text-sm sm:text-lg font-black text-white">
+                  <span className="text-sm sm:text-lg font-black text-black">
                     FREE Consultation
                   </span>
-                  <span className="text-xs font-bold text-vibrant-yellow glow-text hidden sm:block animate-pulse">
+                  <span className="text-xs font-bold text-black hidden sm:block">
                     ⚡ AI-Powered Matching
                   </span>
                 </div>
-                <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-gradient-accent text-white text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full animate-bounce shadow-glow-accent font-black">
+                <div className="absolute -top-2 -right-2 sm:-top-3 sm:-right-3 bg-gradient-to-r from-blue-600 to-green-600 text-white text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-black">
                   FREE
                 </div>
               </button>
 
               <button
                 onClick={() => navigate("/healthcare-jobs")}
-                className="bg-gradient-secondary text-white px-6 sm:px-8 py-4 sm:py-5 rounded-modern-xl font-bold text-sm sm:text-lg hover:shadow-glow-secondary transition-all duration-500 shadow-modern-lg hover:shadow-electric transform hover:-translate-y-2 hover:scale-105 whitespace-nowrap"
+                className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-xl font-bold text-sm sm:text-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 whitespace-nowrap"
               >
                 🏥 Healthcare Careers
               </button>
               <button
                 onClick={() => navigate("/universities")}
-                className="glass-cyber text-white px-6 sm:px-8 py-4 sm:py-5 rounded-modern-xl font-bold text-sm sm:text-lg hover:shadow-glow-neon transition-all duration-500 shadow-modern-lg hover:shadow-electric transform hover:-translate-y-2 hover:scale-105 whitespace-nowrap border border-neon-blue/30"
+                className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-xl font-bold text-sm sm:text-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 whitespace-nowrap"
               >
                 🚀 Explore Universities
               </button>
               <button
                 onClick={() => navigate("/ausbildung-germany")}
-                className="bg-gradient-accent text-white px-6 sm:px-8 py-4 sm:py-5 rounded-modern-xl font-bold text-sm sm:text-lg hover:shadow-glow-accent transition-all duration-500 shadow-modern-lg hover:shadow-electric transform hover:-translate-y-2 hover:scale-105 whitespace-nowrap"
+                className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-6 sm:px-8 py-4 sm:py-5 rounded-xl font-bold text-sm sm:text-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 whitespace-nowrap"
               >
                 🎓 Ausbildung Germany
               </button>
@@ -657,20 +657,14 @@ const Home: React.FC = () => {
 
           {/* CTA after FAQ */}
           <div className="text-center mt-12">
-            <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-green-600 rounded-lg p-8 text-white">
+            <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-green-600 rounded-lg p-8 text-white text-center">
               <h3 className="text-2xl font-bold mb-4">
                 Still Have Questions? 🤔
               </h3>
-              <p className="text-blue-100 mb-6">
-                Get personalized answers from our expert counselors in a FREE
-                consultation call
+              <p className="text-blue-100 mb-4">
+                Get personalized answers from our expert counselors - all
+                buttons above lead to our consultation system!
               </p>
-              <button
-                onClick={handleCounselingClick}
-                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors"
-              >
-                📞 Book FREE Consultation
-              </button>
             </div>
           </div>
         </div>

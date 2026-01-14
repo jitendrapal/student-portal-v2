@@ -111,11 +111,11 @@ const Footer: React.FC = () => {
                 href="https://www.linkedin.com/company/europe-job"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-700 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-10 h-10 bg-[#0077B5] hover:bg-[#005885] rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                 aria-label="Follow us on LinkedIn"
               >
                 <svg
-                  className="w-5 h-5 text-gray-300 group-hover:text-white"
+                  className="w-5 h-5 text-white"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -126,11 +126,11 @@ const Footer: React.FC = () => {
                 href="https://www.instagram.com/europe_jobs_consultancy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-700 hover:bg-pink-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-10 h-10 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:from-[#6B2C91] hover:via-[#E11818] hover:to-[#E6672E] rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                 aria-label="Follow us on Instagram"
               >
                 <svg
-                  className="w-5 h-5 text-gray-300 group-hover:text-white"
+                  className="w-5 h-5 text-white"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -141,11 +141,11 @@ const Footer: React.FC = () => {
                 href="https://www.facebook.com/people/Europe-Jobs/61581349025866/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-gray-700 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                className="w-10 h-10 bg-[#1877F2] hover:bg-[#166FE5] rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 group"
                 aria-label="Follow us on Facebook"
               >
                 <svg
-                  className="w-5 h-5 text-gray-300 group-hover:text-white"
+                  className="w-5 h-5 text-white"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -248,7 +248,7 @@ const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 Europe Jobs Consultancy. All rights reserved.
+              © 2025 Europe Jobs Consultancy. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm text-gray-400">
               <div className="flex items-center">
