@@ -39,9 +39,19 @@ const AusbildungGermany: React.FC = () => {
   const counselingJob: HealthcareJob = {
     id: "ausbildung-counseling",
     title: "Ausbildung Germany Consultation",
+    category: "nurse" as const,
     location: "Germany",
-    type: "Consultation",
-    salary: "Free",
+    country: "Germany",
+    hospital: "Europe Jobs Consultancy",
+    department: "Counseling Services",
+    employmentType: "contract" as const,
+    experience: "No experience required",
+    salary: {
+      min: 0,
+      max: 0,
+      currency: "EUR",
+      period: "monthly" as const,
+    },
     description:
       "Get expert guidance for your German Ausbildung journey. Our counselors will help you choose the right program, understand requirements, and guide you through the application process.",
     requirements: [
@@ -49,6 +59,12 @@ const AusbildungGermany: React.FC = () => {
       "Basic educational qualifications",
       "Willingness to learn German language",
       "Commitment to vocational training",
+    ],
+    responsibilities: [
+      "Attend consultation sessions",
+      "Provide accurate personal information",
+      "Follow guidance and recommendations",
+      "Complete application requirements",
     ],
     benefits: [
       "Free consultation",
