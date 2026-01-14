@@ -143,7 +143,7 @@ const AusbildungGermany: React.FC = () => {
   return (
     <>
       <SEOHeadNative
-        title="Ausbildung in Germany 2024 | German Vocational Training Programs | Europe Jobs Consultancy"
+        title="Ausbildung in Germany 2026 | German Vocational Training Programs | Europe Jobs Consultancy"
         description="Start your Ausbildung in Germany with Europe Jobs Consultancy. Paid vocational training programs in healthcare, IT, banking, automotive & more. Get job guarantee, residence permit & earn while you learn. Apply now!"
         keywords="ausbildung germany, german vocational training, apprenticeship germany, dual education germany, ausbildung visa, vocational training germany, german apprenticeship programs, ausbildung application, study and work germany, vocational education germany"
       />
