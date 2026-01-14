@@ -19,9 +19,9 @@ interface SEOHeadNativeProps {
 }
 
 const SEOHeadNative: React.FC<SEOHeadNativeProps> = ({
-  title = "EJC - Europe Jobs Consultancy | Study & Work in Europe",
-  description = "Europe Jobs Consultancy helps students and professionals find opportunities to study and work in Europe. Browse universities, courses, and healthcare jobs across 50+ European countries.",
-  keywords = "Europe jobs, European universities, study abroad, healthcare jobs Germany, European education, work in Europe, student visa, university applications",
+  title = "Europe Jobs Consultancy - Study in Europe | Nurse & Doctor Jobs Germany | European Universities",
+  description = "Europe Jobs Consultancy - Your gateway to study in Europe, Germany, Poland, Netherlands, Belgium. Find nurse jobs in Germany, doctor jobs in Germany, and connect with top European universities. Expert guidance for European education and healthcare careers.",
+  keywords = "Europe Jobs Consultancy, europe job consultancy, europe jobs consultancy, Europe Job Consultancy, nurse job in Germany, doctors job in Germany, study in europe, study in germany, study in poland, study in netherlands, study in belgium, european universities, healthcare jobs Europe, medical careers Germany, nursing jobs Germany, European education, study abroad Europe, university admissions Europe, German universities, Polish universities, Dutch universities, Belgian universities, healthcare recruitment Europe, medical jobs Europe, nursing careers Europe, doctor recruitment Germany, nurse recruitment Germany, European study programs, international education Europe, overseas education Europe, Europe study visa, Germany study visa, student visa Europe, healthcare professionals Europe, medical professionals Germany, nursing professionals Germany, European job opportunities, Germany job opportunities, healthcare consultancy Europe, education consultancy Europe, study consultancy Europe, European career guidance, Germany career opportunities, healthcare career Europe, medical career Germany, nursing career Germany, European work permits, Germany work visa, healthcare visa Germany, study and work in Europe, European immigration, Germany immigration, healthcare immigration Germany, medical immigration Germany, nursing immigration Germany",
   image = "https://www.ejcgroup.eu/og-image.jpg",
   url = "https://www.ejcgroup.eu",
   type = "website",
