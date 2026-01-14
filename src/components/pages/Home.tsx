@@ -250,7 +250,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 lg:gap-6">
-            {/* Complete Nursing Guide 2024 - NEW */}
+            {/* Complete Nursing Guide 2026 - NEW */}
             <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-2 sm:p-4 lg:p-6 border-l-4 border-blue-500">
               <div className="flex flex-col sm:flex-row items-center mb-2 sm:mb-4">
                 <div className="w-8 sm:w-12 h-8 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-2 sm:mb-0">
@@ -258,7 +258,7 @@ const Home: React.FC = () => {
                 </div>
                 <div className="sm:ml-4 text-center sm:text-left">
                   <h3 className="text-sm sm:text-lg font-semibold text-gray-900">
-                    Nursing Guide 2024
+                    Nursing Guide 2026
                   </h3>
                   <p className="text-xs sm:text-sm text-blue-600 font-medium">
                     ⭐ Most Comprehensive
